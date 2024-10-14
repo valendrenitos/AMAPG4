@@ -20,7 +20,7 @@ namespace AMAPG4
         {
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
             {
-                options.LoginPath = "/Login/IndexLogin";
+                options.LoginPath = "/Login/Index";
 
             });
             services.AddControllersWithViews();
@@ -47,11 +47,11 @@ namespace AMAPG4
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGet("/", async context =>
-                {
-                    await context.Response.WriteAsync("Hello World!");
-                });
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
             });
+
         }
     }
 }

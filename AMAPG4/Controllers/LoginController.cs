@@ -1,6 +1,5 @@
 ﻿using AMAPG4.Models.User;
 using AMAPG4.ViewModels;
-using AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -20,9 +19,9 @@ namespace AMAPG4.Controllers
                 {
                     UserAccountViewModel.UserAccount = userAccountDal.GetUserAccount(HttpContext.User.Identity.Name);
                 }
-                return View(UserAccountViewModel);
+                return View("IndexLogin",UserAccountViewModel);
             }
-            return View(UserAccountViewModel);
+            return View("IndexLogin", UserAccountViewModel);
         }
         [HttpPost]
         public IActionResult Index(UserAccountViewModel viewModel, string returnUrl)
