@@ -1,3 +1,5 @@
+using AMAPG4.Models.User;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -16,6 +18,12 @@ namespace AMAPG4
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(options =>
+            {
+                options.LoginPath = "/Login/IndexLogin";
+
+            });
+            services.AddControllersWithViews();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -26,7 +34,16 @@ namespace AMAPG4
                 app.UseDeveloperExceptionPage();
             }
 
+            using (UserAccountDal userAccountDal = new UserAccountDal())
+            {
+                userAccountDal.InitializeDataBase();
+            }
+
             app.UseRouting();
+            app.UseStaticFiles();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {

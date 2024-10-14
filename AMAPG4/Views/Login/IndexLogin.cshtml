@@ -1,5 +1,32 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@model AMAPG4.ViewModels.UserAccountViewModel
+
+@if (Model.Authentication)
+{
+    <h3>
+        Vous êtes déjà authentifié avec le login :
+        @Model.UserAccount.Email
+    </h3>
+    @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
+}
+else
+{
+    <p>
+        Veuillez vous authentifier :
+    </p>
+    using (Html.BeginForm())
+    {
+        <div>
+            @Html.LabelFor(m => m.UserAccount.Email)
+            @Html.TextBoxFor(m => m.UserAccount.Email)
+            @Html.ValidationMessageFor(m => m.UserAccount.Email)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.UserAccount.Password)
+            @Html.PasswordFor(m => m.UserAccount.Password)
+            @Html.ValidationMessageFor(m => m.UserAccount.Password)
+        </div>
+        <input type="submit" value="Se connecter" />
+        <br />
+        @Html.ActionLink("Créer un compte", "CreerCompte")
+    }
 }

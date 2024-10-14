@@ -5,9 +5,9 @@ namespace AMAPG4.Models
 {
     public class MyDBContext : DbContext
     {
-        public DbSet<Individual> Individuals { get; set; }
-        public DbSet<CE> CEs { get; set; }
-        public DbSet<Producer> Producers{ get; set; }
+        //public DbSet<Individual> Individuals { get; set; }
+        //public DbSet<CE> CEs { get; set; }
+        //public DbSet<Producer> Producers{ get; set; }
         public DbSet<UserAccount> UserAccounts { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

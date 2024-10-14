@@ -1,4 +1,6 @@
-﻿using AMAPG4.ViewModels;
+﻿using AMAPG4.Models.User;
+using AMAPG4.ViewModels;
+using AspNetCore;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
@@ -10,33 +12,33 @@ namespace AMAPG4.Controllers
     {
         public IActionResult Index()
         {
-            UserViewModel UserViewModel =
-                new UserViewModel() { Authentifie = HttpContext.User.Identity.IsAuthenticated };
-            if (UserViewModel.Authentifie)
+            UserAccountViewModel UserAccountViewModel =
+                new UserAccountViewModel() { Authentication = HttpContext.User.Identity.IsAuthenticated };
+            if (UserAccountViewModel.Authentication)
             {
-                using (Dal dal = new Dal())
+                using (UserAccountDal userAccountDal = new UserAccountDal())
                 {
-                    UserViewModel.User = dal.ObtenirUtilisateur(HttpContext.User.Identity.Name);
+                    UserAccountViewModel.UserAccount = userAccountDal.GetUserAccount(HttpContext.User.Identity.Name);
                 }
-                return View(UserViewModel);
+                return View(UserAccountViewModel);
             }
-            return View(UserViewModel);
+            return View(UserAccountViewModel);
         }
         [HttpPost]
-        public IActionResult Index(UserViewModel viewModel, string returnUrl)
+        public IActionResult Index(UserAccountViewModel viewModel, string returnUrl)
         {
             if (ModelState.IsValid)
             {
-                using (Dal dal = new Dal())
+                using (UserAccountDal userAccountDal = new UserAccountDal())
                 {   //On vérifie qu'un utilisateur avec ce Nom + MDP existe en allant le chercher dans la BDD
-                    User user =
-                        dal.Authentifier(viewModel.User.Prenom, viewModel.User.Password);
+                    UserAccount userAccount =
+                        userAccountDal.Authentication(viewModel.UserAccount.Email, viewModel.UserAccount.Password);
 
-                    if (user != null)
+                    if (userAccount != null)
                     {
                         List<Claim> userClaims = new List<Claim>()
                         {
-                            new Claim(ClaimTypes.Name, user.Id.ToString()),
+                            new Claim(ClaimTypes.Email, userAccount.Id.ToString()),
 
                         };
 
@@ -47,7 +49,7 @@ namespace AMAPG4.Controllers
                     }
                     else
                     {
-                        ModelState.AddModelError("Utilisateur.Prenom", "Prénom et/ou mot de passe incorrect(s)");
+                        ModelState.AddModelError("Utilisateur.Email", "Email et/ou mot de passe incorrect(s)");
                     }
 
                 }
@@ -59,18 +61,18 @@ namespace AMAPG4.Controllers
             return View(viewModel);
         }
 
-        public IActionResult CreerCompte()
+        public IActionResult CreateAccount()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult CreerCompte(User user)
+        public IActionResult CreateAccount(UserAccount userAccount)
         {
             if (ModelState.IsValid)
             {
-                using (Dal dal = new Dal())
+                using (UserAccountDal userAccountDal = new UserAccountDal())
                 {
-                    int id = dal.AjouterUtilisateur(user.Prenom, user.Password);
+                    int id = userAccountDal.AddUserAccount(userAccount.Email, userAccount.Password);
 
                     return Redirect("/Login/IndexLogin");
                 }
