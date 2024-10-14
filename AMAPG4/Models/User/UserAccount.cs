@@ -14,7 +14,7 @@ namespace AMAPG4.Models.User
         [MinLength(2), MaxLength(120)]
         public string Address { get; set; }
         [MinLength(10), MaxLength(10)]
-        public int Phone { get; set; }
+        public string Phone { get; set; }
 
     }
 }

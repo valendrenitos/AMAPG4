@@ -8,7 +8,7 @@ namespace AMAPG4.Models.User
 
   
         List<UserAccount> GetAllUsers();
-        int AddUser(string address, string mail, int phone,  string nom, string password);
+        int AddUser(string address, string email, string phone,  string name, string password);
         UserAccount Authentication(string nom, string password);
         UserAccount GetUser(int id);
         UserAccount GetUser(string idStr);
