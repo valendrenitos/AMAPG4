@@ -1,4 +1,4 @@
-﻿namespace AMAPG4.Models
+﻿namespace AMAPG4.Models.User
 {
     public class UserService
     {

@@ -72,7 +72,7 @@ namespace AMAPG4.Controllers
                 {
                     int id = dal.AjouterUtilisateur(user.Prenom, user.Password);
 
-                    return Redirect("/Login/Index");
+                    return Redirect("/Login/IndexLogin");
                 }
             }
             return View();

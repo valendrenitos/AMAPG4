@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AMAPG4.Models
+namespace AMAPG4.Models.User
 {
     public class UserAccount
     {
@@ -15,6 +15,6 @@ namespace AMAPG4.Models
         public string Address { get; set; }
         [MinLength(10), MaxLength(10)]
         public int Phone { get; set; }
-        
+
     }
 }

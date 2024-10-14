@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace AMAPG4.Models
+namespace AMAPG4.Models.User
 {
     public class CE
     {

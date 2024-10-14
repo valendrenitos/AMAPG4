@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualBasic;
 using System;
 
-namespace AMAPG4.Models
+namespace AMAPG4.Models.User
 {
     public class Individual
     {
