@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using AMAPG4.ViewModels;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Security.Claims;
@@ -9,33 +10,33 @@ namespace AMAPG4.Controllers
     {
         public IActionResult Index()
         {
-            UtilisateurViewModel utilisateurViewModel =
-                new UtilisateurViewModel() { Authentifie = HttpContext.User.Identity.IsAuthenticated };
-            if (utilisateurViewModel.Authentifie)
+            UserViewModel UserViewModel =
+                new UserViewModel() { Authentifie = HttpContext.User.Identity.IsAuthenticated };
+            if (UserViewModel.Authentifie)
             {
                 using (Dal dal = new Dal())
                 {
-                    utilisateurViewModel.Utilisateur = dal.ObtenirUtilisateur(HttpContext.User.Identity.Name);
+                    UserViewModel.User = dal.ObtenirUtilisateur(HttpContext.User.Identity.Name);
                 }
-                return View(utilisateurViewModel);
+                return View(UserViewModel);
             }
-            return View(utilisateurViewModel);
+            return View(UserViewModel);
         }
         [HttpPost]
-        public IActionResult Index(UtilisateurViewModel viewModel, string returnUrl)
+        public IActionResult Index(UserViewModel viewModel, string returnUrl)
         {
             if (ModelState.IsValid)
             {
                 using (Dal dal = new Dal())
                 {   //On vérifie qu'un utilisateur avec ce Nom + MDP existe en allant le chercher dans la BDD
-                    Utilisateur utilisateur =
-                        dal.Authentifier(viewModel.Utilisateur.Prenom, viewModel.Utilisateur.Password);
+                    User user =
+                        dal.Authentifier(viewModel.User.Prenom, viewModel.User.Password);
 
-                    if (utilisateur != null)
+                    if (user != null)
                     {
                         List<Claim> userClaims = new List<Claim>()
                         {
-                            new Claim(ClaimTypes.Name, utilisateur.Id.ToString()),
+                            new Claim(ClaimTypes.Name, user.Id.ToString()),
 
                         };
 
@@ -63,13 +64,13 @@ namespace AMAPG4.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CreerCompte(Utilisateur utilisateur)
+        public IActionResult CreerCompte(User user)
         {
             if (ModelState.IsValid)
             {
                 using (Dal dal = new Dal())
                 {
-                    int id = dal.AjouterUtilisateur(utilisateur.Prenom, utilisateur.Password);
+                    int id = dal.AjouterUtilisateur(user.Prenom, user.Password);
 
                     return Redirect("/Login/Index");
                 }
