@@ -4,6 +4,7 @@ namespace AMAPG4.Models.User
 {
     public class CE
     {
+        public int Id { get; set; }
         [Required(ErrorMessage = "Le nom est obligatoire.")]
         [MinLength(2), MaxLength(50)]
         public string ContactName { get; set; }
@@ -11,6 +12,6 @@ namespace AMAPG4.Models.User
         [MinLength(1), MaxLength(3)]
         public int NumberOfEmployees { get; set; }
         public bool IsContributionPaid { get; set; }
-        UserAccount Account { get; set; }
+        public virtual int AccountId { get; set; }
     }
 }
