@@ -51,7 +51,7 @@ namespace AMAPG4
                 userAccountDal.InitializeDataBase();
 
                 ProductDal productDal = scope.ServiceProvider.GetRequiredService<ProductDal>();
-                productDal.InitializeDataBase();
+                productDal.InitializeDataBase();  
             }
 
             app.UseEndpoints(endpoints =>
