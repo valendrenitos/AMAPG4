@@ -33,15 +33,14 @@ namespace AMAPG4.Models.User
         {
             // 1. Crée d'abord le compte utilisateur associé
             int userAccountId = _userAccountDal.CreateUserAccount(address, email, phone, name, password);
-            UserAccount userAccount = _userAccountDal.GetUserAccount(userAccountId);
-
+            
             // 2. Crée le CE et l'associe au compte utilisateur
             CE ce = new CE()
             {
                 ContactName = contactName,
                 NumberOfEmployees = numberOfEmployees,
                 IsContributionPaid = isContributionPaid,
-                Account = userAccount
+                AccountId = userAccountId
             };
 
             // 3. Ajoute le CE à la base de données
@@ -56,7 +55,7 @@ namespace AMAPG4.Models.User
         public void UpdateCE(int ceId, string contactName, int numberOfEmployees, bool isContributionPaid, UserAccount account)
         {
             // Mettre à jour le CE
-            var ce = _bddContext.CEs.FirstOrDefault(c => c.Id == ceId);
+            CE ce = _bddContext.CEs.FirstOrDefault(c => c.Id == ceId);
             if (ce != null)
             {
                 ce.ContactName = contactName;
@@ -65,9 +64,9 @@ namespace AMAPG4.Models.User
                 _bddContext.SaveChanges();
 
                 // Mettre à jour le compte utilisateur associé
-                if (ce.Account != null)
+                if (_userAccountDal.GetUserAccount(ce.AccountId) != null)
                 {
-                    _userAccountDal.UpdateUserAccount(ce.Account.Id, account.Address, account.Email, account.Phone, account.Name, account.Password);
+                    _userAccountDal.UpdateUserAccount(ce.AccountId, account.Address, account.Email, account.Phone, account.Name, account.Password);
                 }
             }
         }

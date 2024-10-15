@@ -12,6 +12,6 @@ namespace AMAPG4.Models.User
         [MinLength(1), MaxLength(3)]
         public int NumberOfEmployees { get; set; }
         public bool IsContributionPaid { get; set; }
-        public virtual UserAccount Account { get; set; }
+        public virtual int AccountId { get; set; }
     }
 }

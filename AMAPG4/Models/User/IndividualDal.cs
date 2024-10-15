@@ -34,8 +34,7 @@ namespace AMAPG4.Models.User
         {
             // 1. Crée d'abord le compte utilisateur associé
             int userAccountId = _userAccountDal.CreateUserAccount(address, email, phone, name, password);
-            UserAccount userAccount = _userAccountDal.GetUserAccount(userAccountId);
-
+            
             // 2. Crée l'individu et l'associe au compte utilisateur
             Individual individual = new Individual()
             {
@@ -43,7 +42,7 @@ namespace AMAPG4.Models.User
                 InscriptionDate = inscriptionDate,
                 IsContributionPaid = isContributionPaid,
                 IsVolunteer = isVolunteer,
-                Account = userAccount  // Associer l'utilisateur créé
+                AccountId = userAccountId
             };
 
             // 3. Ajoute l'individu à la base de données
@@ -70,9 +69,9 @@ namespace AMAPG4.Models.User
                 _bddContext.SaveChanges();
 
                 // 2. Mettre à jour le compte utilisateur associé
-                if (individual.Account != null)
+                if (_userAccountDal.GetUserAccount(individual.AccountId) != null)
                 {
-                    _userAccountDal.UpdateUserAccount(individual.Account.Id, account.Address, account.Email, account.Phone, account.Name, account.Password);
+                    _userAccountDal.UpdateUserAccount(individual.AccountId, account.Address, account.Email, account.Phone, account.Name, account.Password);
                 }
             }
         }
