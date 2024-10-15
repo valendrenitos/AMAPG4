@@ -44,7 +44,7 @@ namespace AMAPG4
             app.UseAuthentication();
             app.UseAuthorization();
 
-            // Initialisez les bases de données ici en utilisant un fournisseur de services scoped
+            // Initialisez les bases de donnï¿½es ici en utilisant un fournisseur de services scoped
             using (IServiceScope scope = app.ApplicationServices.CreateScope())
             {
                 UserAccountDal userAccountDal = scope.ServiceProvider.GetRequiredService<UserAccountDal>();
