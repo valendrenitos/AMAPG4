@@ -1,0 +1,19 @@
+﻿@using System.Globalization
+
+@model IEnumerable<AMAPG4.Models.Catalog.Product>
+
+<h2>Catalogue de Produits</h2>
+
+<div class="product-catalog">
+    @foreach (AMAPG4.Models.Catalog.Product product in Model)
+    {
+        <div class="product-item">
+            <h3>@product.ProductName</h3>
+            <p><strong>Prix :</strong> @product.Price.ToString("C", new CultureInfo("fr-FR"))</p>
+            <p><strong>Description :</strong> @product.Description</p>
+            <p>
+                <a href="@Url.Action("ProductView", "Catalog", new { id = product.Id })">Détails</a>
+            </p>
+        </div>
+    }
+</div>
