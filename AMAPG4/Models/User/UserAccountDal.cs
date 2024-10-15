@@ -11,7 +11,7 @@ namespace AMAPG4.Models.User
 {
     public class UserAccountDal : IUserAccountDal
     {
-        private MyDBContext _bddContext;
+        public MyDBContext _bddContext;
         public UserAccountDal()
         {
             _bddContext = new MyDBContext();
@@ -26,7 +26,13 @@ namespace AMAPG4.Models.User
         public void InitializeDataBase()
         {
             DeleteCreateDatabase();
-            
+            CreateUserAccount("168 rue de Paris, 73000, Chambery", "janettedupont@gmail.com", "0687956475", "Dupont", "123password");
+            CreateUserAccount("15 rue des Acacias, 73000, Chambéry", "marie.leroy@gmail.com", "0698123456", "Leroy", "Marie!Pass2024");
+            CreateUserAccount("25 avenue des Monts, 73000, Chambéry", "pierre.durand@hotmail.com", "0678912345", "Durand", "SecurePierre123");
+            CreateUserAccount("8 boulevard de la Colline, 73000, Chambéry", "julie.perrin@yahoo.fr", "0654321987", "Perrin", "Julie2024$Safe");
+            CreateUserAccount("30 rue du Stade, 73000, Chambéry", "alexandre.bernard@outlook.fr", "0645678901", "Bernard", "AlexPass!456");
+            CreateUserAccount("50 rue de la Gare, 73000, Chambéry", "lucie.dumont@gmail.com", "0667123456", "Dumont", "Dumont@Password1");
+
         }
 
         public List<UserAccount> GetAllUserAccounts()
@@ -67,10 +73,10 @@ namespace AMAPG4.Models.User
         /******************************************************/
         /*          Méthodes pour l'authentification          */
         /******************************************************/
-        public int AddUserAccount(string email, string password)
+        public int AddUserAccount(string email,string address, string phone,string name, string password)
         {
             string encodedPassword = EncodeMD5(password);
-            UserAccount userAccount = new UserAccount() { Email = email, Password = encodedPassword };
+            UserAccount userAccount = new UserAccount() { Email = email, Address = address, Phone = phone, Name = name, Password = encodedPassword };
             this._bddContext.UserAccounts.Add(userAccount);
             this._bddContext.SaveChanges();
             return userAccount.Id;
