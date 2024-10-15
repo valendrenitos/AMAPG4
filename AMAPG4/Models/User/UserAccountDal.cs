@@ -11,7 +11,7 @@ namespace AMAPG4.Models.User
 {
     public class UserAccountDal : IUserAccountDal
     {
-        private MyDBContext _bddContext;
+        public MyDBContext _bddContext;
         public UserAccountDal()
         {
             _bddContext = new MyDBContext();
@@ -73,10 +73,10 @@ namespace AMAPG4.Models.User
         /******************************************************/
         /*          Méthodes pour l'authentification          */
         /******************************************************/
-        public int AddUserAccount(string email, string password)
+        public int AddUserAccount(string email,string address, string phone,string name, string password)
         {
             string encodedPassword = EncodeMD5(password);
-            UserAccount userAccount = new UserAccount() { Email = email, Password = encodedPassword };
+            UserAccount userAccount = new UserAccount() { Email = email, Address = address, Phone = phone, Name = name, Password = encodedPassword };
             this._bddContext.UserAccounts.Add(userAccount);
             this._bddContext.SaveChanges();
             return userAccount.Id;
