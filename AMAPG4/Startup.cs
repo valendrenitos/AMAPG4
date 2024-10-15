@@ -1,3 +1,4 @@
+using AMAPG4.Models.Catalog;
 using AMAPG4.Models.User;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -23,20 +24,18 @@ namespace AMAPG4
                 options.LoginPath = "/Login/Index";
 
             });
+
             services.AddControllersWithViews();
+
+            services.AddScoped<UserAccountDal>();
+            services.AddScoped<ProductDal>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-            }
-
-            using (UserAccountDal userAccountDal = new UserAccountDal())
-            {
-                userAccountDal.InitializeDataBase();
             }
 
             app.UseRouting();
@@ -45,13 +44,23 @@ namespace AMAPG4
             app.UseAuthentication();
             app.UseAuthorization();
 
+            // Initialisez les bases de données ici en utilisant un fournisseur de services scoped
+            using (IServiceScope scope = app.ApplicationServices.CreateScope())
+            {
+                UserAccountDal userAccountDal = scope.ServiceProvider.GetRequiredService<UserAccountDal>();
+                userAccountDal.InitializeDataBase();
+
+                ProductDal productDal = scope.ServiceProvider.GetRequiredService<ProductDal>();
+                productDal.InitializeDataBase();  
+            }
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
         }
+
     }
 }
