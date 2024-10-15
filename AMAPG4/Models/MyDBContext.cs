@@ -1,4 +1,5 @@
 ﻿using AMAPG4.Models.User;
+using AMAPG4.Models.Catalog;
 using Microsoft.EntityFrameworkCore;
 
 namespace AMAPG4.Models
@@ -9,6 +10,9 @@ namespace AMAPG4.Models
         public DbSet<CE> CEs { get; set; }
         public DbSet<Producer> Producers { get; set; }
         public DbSet<UserAccount> UserAccounts { get; set; }
+        public DbSet<Product> Products { get; set; }
+
+        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

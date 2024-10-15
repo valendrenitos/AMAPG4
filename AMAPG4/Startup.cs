@@ -1,3 +1,4 @@
+using AMAPG4.Models.Catalog;
 using AMAPG4.Models.User;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
@@ -25,9 +26,9 @@ namespace AMAPG4
             services.AddScoped<IndividualDal>();
             services.AddScoped<CEDal>();
             services.AddScoped<ProducerDal>();
+            services.AddScoped<ProductDal>();
         }
 
-        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
@@ -49,6 +50,9 @@ namespace AMAPG4
 
                 ProducerDal producerDal = scope.ServiceProvider.GetRequiredService<ProducerDal>();
                 producerDal.Initialize();
+
+                ProductDal productDal = scope.ServiceProvider.GetRequiredService<ProductDal>();
+                productDal.InitializeDataBase();
             }
 
             app.UseRouting();
@@ -64,5 +68,6 @@ namespace AMAPG4
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
+
     }
 }
