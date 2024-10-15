@@ -47,7 +47,8 @@ namespace AMAPG4.Models.User
 
         public int CreateUserAccount(string address, string email, string phone, string name, string password)
         {
-            UserAccount userAccount = new UserAccount() { Address = address,  Email = email , Phone = phone, Name = name , Password = password};
+            string encodedPassword = EncodeMD5(password);
+            UserAccount userAccount = new UserAccount() { Address = address, Email = email, Phone = phone, Name = name, Password = encodedPassword };
             _bddContext.UserAccounts.Add(userAccount);
             _bddContext.SaveChanges();
             return userAccount.Id;
