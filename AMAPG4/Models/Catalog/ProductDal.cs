@@ -23,9 +23,15 @@ namespace AMAPG4.Models.Catalog
         public void InitializeDataBase()
         {
             //DeleteCreateDatabase();
-            CreateProduct("Miel de Lavande", "Miel doux et floral, idéal pour les tisanes.", true, 8.50m, 100, DateTime.Now.AddMonths(6), ProductType.NonPerishable);
-            CreateProduct("Œufs de Poules Heureuses", "Œufs bio issus de poules élevées en plein air.", true, 3.20m, 50, DateTime.Now.AddMonths(3), ProductType.NonPerishable); 
+            CreateProduct("Miel de Lavande", "Miel doux et floral, idéal pour les tisanes.", true, 8.50m, 100, DateTime.Now.AddMonths(6), ProductType.Unitary);
+            CreateProduct("Œufs de Poules Heureuses", "Œufs bio issus de poules élevées en plein air.", true, 3.20m, 50, DateTime.Now.AddMonths(3), ProductType.Unitary); 
             CreateProduct("Panier de Légumes de Saison", "Un mélange frais de légumes de saison, cultivés localement.", true, 15.00m, 30, DateTime.Now.AddDays(7), ProductType.Basket);
+            CreateProduct("Confiture de Fraises", "Confiture artisanale préparée avec des fraises locales.", true, 5.60m, 80, DateTime.Now.AddMonths(12), ProductType.Unitary);
+            CreateProduct("Lait Cru Fermier", "Lait frais directement de la ferme, non pasteurisé.", true, 1.50m, 40, DateTime.Now.AddDays(3), ProductType.Unitary);
+            CreateProduct("Baguette Traditionnelle", "Pain frais cuit au four à bois, idéal pour accompagner vos repas.", true, 1.20m, 60, DateTime.Now.AddDays(1), ProductType.Unitary);
+            CreateProduct("Panier de Fruits Bio", "Un assortiment de fruits de saison issus de l'agriculture biologique.", true, 12.00m, 25, DateTime.Now.AddDays(5), ProductType.Basket);
+            CreateProduct("Huile d'Olive Extra Vierge", "Huile d'olive pressée à froid, 100% naturelle.", true, 10.00m, 200, DateTime.Now.AddYears(1), ProductType.Unitary);
+            CreateProduct("Fromage de Chèvre Affiné", "Fromage de chèvre fermier affiné à la perfection.", true, 6.00m, 70, DateTime.Now.AddMonths(1), ProductType.Unitary);
 
         }
 
@@ -39,7 +45,7 @@ namespace AMAPG4.Models.Catalog
             _bddContext.Dispose();
         }
 
-        //CRUD
+        //*******************CRUD**********************//
 
         public int CreateProduct(string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType)
         {
@@ -58,6 +64,12 @@ namespace AMAPG4.Models.Catalog
             return product.Id;
         }
 
+        public Product GetProductById(int id)
+        {
+            Product product = _bddContext.Products.Find(id);
+            return product;
+        }
+
 
         public void UpdateProduct(int id, string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType)
         {
@@ -71,6 +83,16 @@ namespace AMAPG4.Models.Catalog
                 product.Stock = stock;
                 product.LimitDate = limitDate;
                 product.ProductType = productType;
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void DeleteProduct(int id)
+        {
+            Product product = _bddContext.Products.Find(id);
+            if (product != null)
+            {
+                _bddContext.Products.Remove(product);
                 _bddContext.SaveChanges();
             }
         }

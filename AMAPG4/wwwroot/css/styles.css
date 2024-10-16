@@ -1,8 +1,11 @@
-﻿header {
+﻿/********STYLES FOR HEADER********/
+html {
+    display: flex;
+}
+
+header {
     font-family: 'Poppins', sans-serif;
     width: 96%;
-    height: 129px;
-    background-color: #ffffff;
     justify-content: space-between;
     align-items: center;
     display: flex;
@@ -15,9 +18,7 @@
 
 nav {
     width: 34%;
-    background-color: #ffffff;
     justify-content: space-between;
-    align-items: center;
     display: flex;
 }
 
@@ -25,15 +26,12 @@ nav {
     color: #1e1e1e;
     width: auto;
     height: auto;
-    font-size: 16px;
-    font-weight: 400;
-    vertical-align: center;
+    font-size: 1rem;
+    font-weight: normal;
     justify-content: center;
-    align-items: center;
-    display: flex;   
+    text-align: center;
     padding: 8px;
 }
-
 
 .nav-buttons {
     width: 20%;
@@ -44,12 +42,12 @@ nav {
 
 .btn-connection {
     background-color: #285146;
-    border-radius: 12px;
+    border-radius: 16px;
 }
 
 .btn-register {
     background-color: #a1cf59;
-    border-radius: 12px;
+    border-radius: 16px;
 }
 
 .btn-text {
@@ -57,4 +55,83 @@ nav {
     font-size: 16px;
     font-weight: 400;
     padding: 10px 18px 10px 18px;
+}
+
+/********STYLES FOR CATALOG********/
+
+.catalog-body {
+    display: flex;
+}
+
+.column-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.top-bar {
+    display: flex;
+}
+
+.row-container {
+    display: flex;
+    justify-content: space-between;
+}
+.filters {
+    width: 30%;
+}
+
+.catalog-container {
+    width: 70%;
+    justify-content: flex-end;
+    font-family: 'Poppins', sans-serif;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product-card {
+    width: 25%;
+    margin: 10px;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px 2px #285146;
+}
+.catalog-photo {
+    width: 200px;
+    height: auto;
+}
+.product-name {
+    font-weight: bold;
+    color: #2e2e2e;
+}
+.product-price {
+    font-weight: bold;
+    color: #2e2e2e;
+    margin-top: 6px;
+}
+.btn-add-to-basket {
+    background-color: #285146;
+    border-radius: 12px;
+    color: white;
+    margin:8px;
+    padding: 6px;
+}
+.details {
+
+}
+
+/********STYLES FOR PRODUCT VIEW********/
+
+.product-container {
+    display: flex;
+}
+
+.product-photo {
+    width: 400px;
+    height: auto;
+    align-content: center;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
 }
