@@ -2,22 +2,39 @@
 
 @model IEnumerable<AMAPG4.Models.Catalog.Product>
 @{
-    ViewBag.Title = "Catalogue";
-    Layout = "_layout";
+	ViewBag.Title = "Catalogue de Produits";
+	Layout = "_layout";
 }
 
-<h2>Catalogue de Produits</h2>
+<head>
+	<link rel="stylesheet" href="~/css/styles.css" />
+</head>
 
-<div class="product-catalog">
-    @foreach (AMAPG4.Models.Catalog.Product product in Model)
-    {
-        <div class="product-item">
-            <h3>@product.ProductName</h3>
-            <p><strong>Prix :</strong> @product.Price.ToString("C", new CultureInfo("fr-FR"))</p>
-            <p><strong>Description :</strong> @product.Description</p>
-            <p>
-                <a href="@Url.Action("ProductView", "Catalog", new { id = product.Id })">Détails</a>
-            </p>
-        </div>
-    }
+<div class="catalog-body">
+	<div class="column-container">
+		<div class="top-bar">
+			<div class="product-search"></div>
+			<div class="order-by"></div>
+		</div>
+
+		<div class="row-container">
+			<div class="filters"></div>
+
+			<div class="catalog-container">
+				@foreach (AMAPG4.Models.Catalog.Product product in Model)
+				{
+					<div class="product-card">
+						<img class="product-photo" src="~/images//ProductImages/cheese.png">
+						<div class="product-name">@product.ProductName</div>
+						<div class="product-price">@product.Price.ToString("C", new CultureInfo("fr-FR"))</div>
+						<button class="btn-add-to-basket">Ajouter au Panier</button>
+						<div class="details">
+							<a href="@Url.Action("ProductView", "Catalog", new { id = product.Id })">Détails</a>
+						</div>
+					</div>
+				}
+			</div>
+		</div>
+	</div>
+
 </div>
