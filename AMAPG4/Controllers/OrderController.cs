@@ -21,7 +21,7 @@ namespace AMAPG4.Controllers
             {
                 UserActualId = UserAccountViewModel.UserAccount.Id;
             }
-            return View(); // mettre vue du panier et afficher l'id utilisateur ;
+            return ""; // mettre vue du panier et afficher l'id utilisateur ;
         }
     }
 }
