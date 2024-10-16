@@ -95,13 +95,19 @@ namespace AMAPG4.Models.User
             _bddContext.Dispose();
         }
 
+        public CE GetCEByUserAccount(int userAccountId)
+        {
+            return _bddContext.CEs.FirstOrDefault(ce => ce.AccountId == userAccountId);
+        }
+
+
         public void Initialize()
         {
             // Exemples de CE
-            CreateCE("Jean Dupont", 250, true, "jean.dupont@entreprise.com", "DupontPassword123", "Jean Dupont", "10 Rue de l'Entreprise, 75001 Paris", "0612345678");
-            CreateCE("Marie Leroy", 150, false, "marie.leroy@entreprise.com", "LeroyPassword456", "Marie Leroy", "15 Rue des Acacias, 69001 Lyon", "0623456789");
-            CreateCE("Luc Martin", 500, true, "luc.martin@entreprise.com", "MartinPassword789", "Luc Martin", "20 Avenue des Champs, 75008 Paris", "0634567890");
-            CreateCE("Clara Bernard", 100, false, "clara.bernard@entreprise.com", "BernardPassword321", "Clara Bernard", "25 Rue de la République, 69002 Lyon", "0645678901");
+            CreateCE("Jean Dupont", 250, true, "jean.dupont@entreprise.com", "DupontPassword123!", "Jean Dupont", "10 Rue de l'Entreprise, 75001 Paris", "0612345678");
+            CreateCE("Marie Leroy", 150, false, "marie.leroy@entreprise.com", "LeroyPassword456!", "Marie Leroy", "15 Rue des Acacias, 69001 Lyon", "0623456789");
+            CreateCE("Luc Martin", 500, true, "luc.martin@entreprise.com", "MartinPassword789!", "Luc Martin", "20 Avenue des Champs, 75008 Paris", "0634567890");
+            CreateCE("Clara Bernard", 100, false, "clara.bernard@entreprise.com", "BernardPassword321!", "Clara Bernard", "25 Rue de la République, 69002 Lyon", "0645678901");
         }
 
     }

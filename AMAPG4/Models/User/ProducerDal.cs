@@ -94,14 +94,19 @@ namespace AMAPG4.Models.User
         {
             _bddContext.Dispose();
         }
+        public Producer GetProducerByUserAccount(int userAccountId)
+        {
+            return _bddContext.Producers.FirstOrDefault(p => p.AccountId == userAccountId);
+        }
+
 
         public void Initialize()
         {
             // Exemples de producteurs
-            CreateProducer("12345678901234", "Pierre Durand", "FR76300060000112345678", "pierre.durand@agricole.com", "DurandPassword123", "Pierre Durand", "30 Chemin des Champs, 84000 Avignon", "0654321987");
-            CreateProducer("23456789012345", "Anne Dubois", "FR76300060000112345678", "anne.dubois@bio.com", "DuboisPassword456", "Anne Dubois", "40 Rue de la Ferme, 68000 Colmar", "0665432198");
-            CreateProducer("34567890123456", "Julien Lefevre", "FR76300060000112345678", "julien.lefevre@vin.com", "LefevrePassword789", "Julien Lefevre", "50 Route des Vins, 67000 Strasbourg", "0676543219");
-            CreateProducer("45678901234567", "Sophie Morel", "FR76300060000112345678", "sophie.morel@produits.com", "MorelPassword321", "Sophie Morel", "60 Chemin des Producteurs, 44000 Nantes", "0687654321");
+            CreateProducer("12345678901234", "Pierre Durand", "FR76300060000112345678", "pierre.durand@agricole.com", "DurandPassword123!", "Pierre Durand", "30 Chemin des Champs, 84000 Avignon", "0654321987");
+            CreateProducer("23456789012345", "Anne Dubois", "FR76300060000112345678", "anne.dubois@bio.com", "DuboisPassword456!", "Anne Dubois", "40 Rue de la Ferme, 68000 Colmar", "0665432198");
+            CreateProducer("34567890123456", "Julien Lefevre", "FR76300060000112345678", "julien.lefevre@vin.com", "LefevrePassword789!", "Julien Lefevre", "50 Route des Vins, 67000 Strasbourg", "0676543219");
+            CreateProducer("45678901234567", "Sophie Morel", "FR76300060000112345678", "sophie.morel@produits.com", "MorelPassword321!", "Sophie Morel", "60 Chemin des Producteurs, 44000 Nantes", "0687654321");
         }
 
     }

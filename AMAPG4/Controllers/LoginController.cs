@@ -29,8 +29,8 @@ namespace AMAPG4.Controllers
         {
            
        
-            if (ModelState.IsValid)
-            {
+            //if (ModelState.IsValid)
+            //{
               
                
             
@@ -67,7 +67,7 @@ namespace AMAPG4.Controllers
                     
 
                 return Redirect("/");
-            }
+            //}
             return View(viewModel);
         }
 

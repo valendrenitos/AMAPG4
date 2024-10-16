@@ -9,9 +9,9 @@ namespace AMAPG4.Controllers
     {
         private ProductDal _productDal;
 
-        public CatalogController(ProductDal productDal)
+        public CatalogController()
         {
-            _productDal = productDal;
+            _productDal = new ProductDal();
         }
 
         public IActionResult Index()
