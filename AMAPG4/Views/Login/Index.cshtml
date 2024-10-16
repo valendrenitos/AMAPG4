@@ -22,14 +22,14 @@ else
     using (Html.BeginForm())
     {
         <div>
-            @Html.LabelFor(m => m.UserAccount.Email)
-            @Html.TextBoxFor(m => m.UserAccount.Email)
-            @Html.ValidationMessageFor(m => m.UserAccount.Email)
+            @Html.LabelFor(m => m.UserAccount.Email, "Email")
+            @Html.TextBoxFor(m => m.UserAccount.Email, new { @placeholder = "Adresse email" })
+            @Html.ValidationMessageFor(m => m.UserAccount.Email, "", new { @class = "error" })
         </div>
         <div>
-            @Html.LabelFor(m => m.UserAccount.Password)
-            @Html.PasswordFor(m => m.UserAccount.Password)
-            @Html.ValidationMessageFor(m => m.UserAccount.Password)
+            @Html.LabelFor(m => m.UserAccount.Password, "Mot de passe")
+            @Html.PasswordFor(m => m.UserAccount.Password, new { @placeholder = "Mot de passe" })
+            @Html.ValidationMessageFor(m => m.UserAccount.Password, "", new { @class = "error" })
         </div>
         <input type="submit" value="Se connecter" />
         <br />
