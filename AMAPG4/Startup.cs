@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.DependencyInjection.Extensions;
+
 
 namespace AMAPG4
 {
@@ -21,12 +21,7 @@ namespace AMAPG4
 
             services.AddControllersWithViews();
 
-            // Ajout des DAL en tant que services
-            services.AddScoped<UserAccountDal>();
-            services.AddScoped<IndividualDal>();
-            services.AddScoped<CEDal>();
-            services.AddScoped<ProducerDal>();
-            services.AddScoped<ProductDal>();
+            
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -37,23 +32,22 @@ namespace AMAPG4
             }
 
             // Initialisation des données
-            using (IServiceScope scope = app.ApplicationServices.CreateScope())
-            {
-                UserAccountDal userAccountDal = scope.ServiceProvider.GetRequiredService<UserAccountDal>();
+            
+                UserAccountDal userAccountDal = new UserAccountDal();
                 userAccountDal.InitializeDataBase();
 
-                IndividualDal individualDal = scope.ServiceProvider.GetRequiredService<IndividualDal>();
+                IndividualDal individualDal = new IndividualDal();
                 individualDal.Initialize();
 
-                CEDal ceDal = scope.ServiceProvider.GetRequiredService<CEDal>();
+                CEDal ceDal = new CEDal();
                 ceDal.Initialize();
 
-                ProducerDal producerDal = scope.ServiceProvider.GetRequiredService<ProducerDal>();
+                ProducerDal producerDal = new ProducerDal();
                 producerDal.Initialize();
 
-                ProductDal productDal = scope.ServiceProvider.GetRequiredService<ProductDal>();
+                ProductDal productDal = new ProductDal();
                 productDal.InitializeDataBase();
-            }
+           
 
             app.UseRouting();
             app.UseStaticFiles();
