@@ -1,9 +1,11 @@
 ﻿/********STYLES FOR HEADER********/
+html {
+    display: flex;
+}
 
 header {
     font-family: 'Poppins', sans-serif;
     width: 96%;
-    height: 129px;
     justify-content: space-between;
     align-items: center;
     display: flex;
@@ -17,7 +19,6 @@ header {
 nav {
     width: 34%;
     justify-content: space-between;
-    align-items: center;
     display: flex;
 }
 
@@ -25,12 +26,10 @@ nav {
     color: #1e1e1e;
     width: auto;
     height: auto;
-    font-size: 16px;
+    font-size: 1rem;
     font-weight: normal;
-    vertical-align: central;
     justify-content: center;
-    align-items: center;
-    display: flex;   
+    text-align: center;
     padding: 8px;
 }
 
@@ -96,7 +95,7 @@ nav {
     border-radius: 10px;
     box-shadow: 0px 2px 8px 2px #285146;
 }
-.product-photo {
+.catalog-photo {
     width: 200px;
     height: auto;
 }
@@ -120,5 +119,19 @@ nav {
 
 }
 
-
 /********STYLES FOR PRODUCT VIEW********/
+
+.product-container {
+    display: flex;
+}
+
+.product-photo {
+    width: 400px;
+    height: auto;
+    align-content: center;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+}

@@ -24,7 +24,7 @@
 				@foreach (AMAPG4.Models.Catalog.Product product in Model)
 				{
 					<div class="product-card">
-						<img class="product-photo" src="~/images//ProductImages/cheese.png">
+						<img class="catalog-photo" src="~/images//ProductImages/cheese.png">
 						<div class="product-name">@product.ProductName</div>
 						<div class="product-price">@product.Price.ToString("C", new CultureInfo("fr-FR"))</div>
 						<button class="btn-add-to-basket">Ajouter au Panier</button>
