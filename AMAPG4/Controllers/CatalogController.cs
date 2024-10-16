@@ -15,21 +15,19 @@ namespace AMAPG4.Controllers
             _productDal = productDal;
         }
 
-        //public IActionResult Index()
-        //{
-        //    List<Product> products = _productDal.GetAllProducts();
-        //    return View(products);
-        //}
 
 		public IActionResult Index(string searchString)
 		{
 			List<Product> products = _productDal.GetAllProducts();
+
+
+            // Search using the search bar
 			if (!string.IsNullOrEmpty(searchString))
 			{
 				products = products.Where(p => p.ProductName.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
 			}
 			return View(products);
-		}
+        }
 
 		public IActionResult ProductView(int id)
         {
