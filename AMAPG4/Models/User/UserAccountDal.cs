@@ -11,6 +11,7 @@ namespace AMAPG4.Models.User
 {
     public class UserAccountDal : IUserAccountDal
     {
+   
         public MyDBContext _bddContext;
         public UserAccountDal()
         {

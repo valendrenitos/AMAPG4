@@ -1,5 +1,6 @@
 using AMAPG4.Models.Catalog;
 using AMAPG4.Models.User;
+using AMAPG4.Models.Command;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,6 +30,10 @@ namespace AMAPG4
 
             services.AddScoped<UserAccountDal>();
             services.AddScoped<ProductDal>();
+            services.AddScoped<IndividualDal>();
+            services.AddScoped<ProducerDal>();
+            services.AddScoped<CEDal>();
+            services.AddScoped<OrderLineDal>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
