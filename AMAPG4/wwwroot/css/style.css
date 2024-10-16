@@ -99,6 +99,10 @@ form {
     margin: 20px auto;
 }
 
+input::placeholder {
+    font-style: italic;
+}
+
 input[type="text"],
 input[type="password"],
 input[type="email"],
