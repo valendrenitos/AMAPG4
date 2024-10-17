@@ -11,17 +11,26 @@
 </head>
 
 <div class="catalog-body">
+
     <div class="column-container">
+
         <div class="top-bar">
             <form method="get" action="@Url.Action("Index", "Catalog")">
-                <div class="product-search">
                     <input type="text" name="searchString" class="search-bar" placeholder="Rechercher un produit..." />
-                </div>
 
                 <div class="order-by">
+                    <button type="submit" name="sortOrder" value="ascending" class="btn-sort">Prix Croissant</button>
+                    <button type="submit" name="sortOrder" value="descending" class="btn-sort">Prix Décroissant</button>
                 </div>
             </form>
         </div>
+
+        <div class="row-container">
+
+            <div class="filters">
+
+            </div>
+
 
         <div class="catalog-container">
 
@@ -42,5 +51,7 @@
                 </div>
             }
         </div>
+        </div>
     </div>
+
 </div>

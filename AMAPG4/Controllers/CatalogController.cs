@@ -16,7 +16,7 @@ namespace AMAPG4.Controllers
         }
 
 
-		public IActionResult Index(string searchString)
+		public IActionResult Index(string searchString, string sortOrder)
 		{
 			List<Product> products = _productDal.GetAllProducts();
 
@@ -26,6 +26,19 @@ namespace AMAPG4.Controllers
 			{
 				products = products.Where(p => p.ProductName.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
 			}
+
+            // Sorting by price
+            switch (sortOrder)
+            {
+                case "ascending":
+                    products = products.OrderBy(p => p.Price).ToList(); // Cast to List
+                    break;
+                case "descending":
+                    products = products.OrderByDescending(p => p.Price).ToList(); // Cast to List
+                    break;
+                default:
+                    break; // No sorting
+            }
 
             return View(products);
         }
