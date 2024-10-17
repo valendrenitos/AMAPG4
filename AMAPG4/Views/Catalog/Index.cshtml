@@ -2,56 +2,49 @@
 
 @model IEnumerable<AMAPG4.Models.Catalog.Product>
 @{
-    ViewBag.Title = "Catalogue de Produits";
-    Layout = "_layout";
+	ViewBag.Title = "Catalogue de Produits";
+	Layout = "_layout";
 }
 
 <head>
-    <link rel="stylesheet" href="~/css/styles.css" />
+	<link rel="stylesheet" href="~/css/styles.css" />
 </head>
 
 <div class="catalog-body">
 
-    <div class="column-container">
+	<div class="left-container">
 
-        <div class="top-bar">
-            <form method="get" action="@Url.Action("Index", "Catalog")">
-                    <input type="text" name="searchString" class="search-bar" placeholder="Rechercher un produit..." />
+		<form method="get" action="@Url.Action("Index", "Catalog")">
+			<input type="text" name="searchString" class="search-bar" placeholder="Rechercher un produit..." />
 
-                <div class="order-by">
-                    <button type="submit" name="sortOrder" value="ascending" class="btn-sort">Prix Croissant</button>
-                    <button type="submit" name="sortOrder" value="descending" class="btn-sort">Prix Décroissant</button>
-                </div>
-            </form>
-        </div>
+			<div class="order-by">
+				<button type="submit" name="sortOrder" value="ascending" class="btn-sort">Prix Croissant</button>
+				<button type="submit" name="sortOrder" value="descending" class="btn-sort">Prix Décroissant</button>
+			</div>
+		</form>
 
-        <div class="row-container">
+		<div class="filters">
+		</div>
+	</div>
 
-            <div class="filters">
+	<div class="catalog-container">
 
-            </div>
+		@foreach (AMAPG4.Models.Catalog.Product product in Model)
+		{
+			<div class="product-card">
+				<a href="@Url.Action("ProductView", "Catalog", new { id = product.Id })">
+					<img class="catalog-photo" src="~/images/ProductImages/cheese.png" />
+				</a>
 
+				<div class="product-name">@product.ProductName</div>
 
-        <div class="catalog-container">
+				<div class="info-row">
+					<div class="product-price">@product.Price.ToString("C", new CultureInfo("fr-FR"))</div>
+				</div>
 
-            @foreach (AMAPG4.Models.Catalog.Product product in Model)
-            {
-                <div class="product-card">
-                    <a href="@Url.Action("ProductView", "Catalog", new { id = product.Id })">
-                        <img class="catalog-photo" src="~/images/ProductImages/cheese.png" />
-                    </a>
-
-                    <div class="product-name">@product.ProductName</div>
-
-                    <div class="info-row">
-                        <div class="product-price">@product.Price.ToString("C", new CultureInfo("fr-FR"))</div>
-                    </div>
-
-                    <button class="btn-add-to-basket">Ajouter au Panier</button>
-                </div>
-            }
-        </div>
-        </div>
-    </div>
+				<button class="btn-add-to-basket">Ajouter</button>
+			</div>
+		}
+	</div>
 
 </div>
