@@ -192,3 +192,44 @@ nav {
 .btn-edit:hover, .btn-save:hover, .btn-cancel:hover {
     background-color: #66a236;
 }
+
+/********STYLES FOR Accueil page********/
+.stretched-custom {
+   
+}
+
+
+
+/********STYLES FOR FOOTER********/
+footer{
+    display:flex;
+    flex-direction:column;
+}
+.footer-top{
+
+    display:flex; 
+    flex-direction:row; 
+    justify-content:space-around;
+    
+}
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  
+}
+.footer-links * {
+    margin:0.3rem;
+}
+.footer-logo{
+    width:25%;
+    height:auto;
+}
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.footer-contact * {
+    margin:0.3rem;
+}
