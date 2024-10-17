@@ -16,6 +16,8 @@ header {
     width: 24%;
 }
 
+/*Navigation elements*/
+
 nav {
     width: 34%;
     justify-content: space-between;
@@ -32,7 +34,19 @@ nav {
     text-align: center;
     padding: 8px;
 }
+.nav-link {
+    color: #1e1e1e;
+    text-decoration: none;
+    font-weight: normal;
+}
 
+.nav-element:hover {
+    transform: scale(1.04);
+    transition: transform 0.1s ease-in-out;
+}
+
+
+/* Buttons on the right*/
 .nav-buttons {
     width: 20%;
     align-items: center;
@@ -49,6 +63,7 @@ nav {
     background-color: #a1cf59;
     border-radius: 16px;
 }
+
 .btn-logout {
     background-color: #ff0000;
     border-radius: 16px;
@@ -64,6 +79,19 @@ nav {
     font-size: 16px;
     font-weight: 400;
     padding: 10px 18px 10px 18px;
+}
+
+.btn-link {
+    color: white;
+    text-decoration: none;
+}
+
+.btn-connection:hover,
+.btn-register:hover,
+.btn-logout:hover,
+.btn-account:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
 }
 
 /********STYLES FOR CATALOG********/
@@ -88,6 +116,7 @@ nav {
     display: flex;
     justify-content: space-between;
 }
+
 .filters {
     width: 30%;
     flex-shrink: 0; /* Prevent shrinking */
@@ -107,8 +136,8 @@ nav {
 }
 
 .product-card {
-    display:flex;
-    flex-direction:column;
+    display: flex;
+    flex-direction: column;
     align-items: center;
     width: 28%;
     margin: 10px;
@@ -122,10 +151,10 @@ nav {
     border-radius: 1rem;
 }
 
-.product-card:hover {
-    transform: scale(1.02);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
-}
+    .product-card:hover {
+        transform: scale(1.02);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+    }
 
 .catalog-photo {
     width: 200px;
@@ -134,6 +163,7 @@ nav {
     border-top-left-radius: calc(1rem - 1px);
     border-top-right-radius: calc(1rem - 1px);
 }
+
 .product-name {
     font-weight: bold;
     color: #2e2e2e;
@@ -144,21 +174,22 @@ nav {
 .product-price {
     color: #2e2e2e;
     margin-top: 6px;
-    text-align:center;
+    text-align: center;
 }
+
 .btn-add-to-basket {
     background-color: #285146;
     border-radius: 12px;
     color: white;
-    margin:8px;
+    margin: 8px;
     padding: 6px;
     font-size: .9rem;
     font-weight: 500;
     padding: 5px 50px 5px 50px;
     border: none;
 }
-.details {
 
+.details {
 }
 
 /********STYLES FOR PRODUCT VIEW********/
@@ -222,6 +253,6 @@ nav {
     display: none;
 }
 
-.btn-edit:hover, .btn-save:hover, .btn-cancel:hover {
-    background-color: #66a236;
-}
+    .btn-edit:hover, .btn-save:hover, .btn-cancel:hover {
+        background-color: #66a236;
+    }

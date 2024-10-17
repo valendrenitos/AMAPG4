@@ -11,8 +11,8 @@
 	<img id="header-logo" src="~/images/logo.png" />
 
 	<nav>
-		<div class="nav-element">@Html.ActionLink("Accueil", "Index", "Home", new { @id = 1 })</div>
-		<div class="nav-element">@Html.ActionLink("Catalogue", "Index", "Catalog")</div>
+		<div class="nav-element">@Html.ActionLink("Accueil", "Index", "Home", new { @id = 1 }, new { @class = "nav-link" })</div>
+		<div class="nav-element">@Html.ActionLink("Catalogue", "Index", "Catalog", null, new { @class = "nav-link" })</div>
 		<div class="nav-element"><div class="nav-text">Nos Producteurs</div></div>
 		<div class="nav-element"><div class="nav-text">L'Association</div></div>
 		<div class="nav-element"><div class="nav-text">Contact</div></div>
@@ -21,13 +21,13 @@
 	<div class="nav-buttons">
 		@if (User.Identity.IsAuthenticated)
 		{
-			<div class="btn-account"><div class="btn-text">@Html.ActionLink("Mon Compte", "Index", "Account")</div></div>
-			<div class="btn-logout"><div class="btn-text">@Html.ActionLink("Déconnexion", "Deconnexion", "Login")</div></div>
+			<div class="btn-account"><div class="btn-text">@Html.ActionLink("Mon Compte", "Index", "Account", null, new { @class = "btn-link" })</div></div>
+			<div class="btn-logout"><div class="btn-text">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, new { @class = "btn-link" })</div></div>
 		}
 		else
 		{
-			<div class="btn-connection"><div class="btn-text">@Html.ActionLink("Se Connecter", "Index", "Login")</div></div>
-			<div class="btn-register"><div class="btn-text">@Html.ActionLink("S’inscrire", "Index", "CreateAccount")</div></div>
+			<div class="btn-connection"><div class="btn-text">@Html.ActionLink("Se Connecter", "Index", "Login", null, new { @class = "btn-link" })</div></div>
+			<div class="btn-register"><div class="btn-text">@Html.ActionLink("S’inscrire", "Index", "CreateAccount", null, new { @class = "btn-link" })</div></div>
 		}
 		</div>
 </header>
