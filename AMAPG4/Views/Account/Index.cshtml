@@ -1,0 +1,40 @@
+﻿@model AMAPG4.ViewModels.UserAccountViewModel
+@{
+    ViewBag.Title = "Mon Compte";
+    Layout = "_layout";
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mon Compte</title>
+</head>
+<body>
+
+    <h1>Mon Compte</h1>
+
+    <p>Email : @Model.UserAccount.Email</p>
+
+    @if (Model.CE != null)
+    {
+        <h2>Compte CE</h2>
+        <p>Nom du CE : @Model.UserAccount.Name</p>
+        <p>Nombre d'employés : @Model.CE.NumberOfEmployees</p>
+    }
+
+    @if (Model.Individual != null)
+    {
+        <h2>Compte Individuel</h2>
+        <p>Nom : @Model.Individual.FirstName</p>
+        <p>Date d'inscription : @Model.Individual.InscriptionDate.ToShortDateString()</p>
+    }
+
+    @if (Model.Producer != null)
+    {
+        <h2>Compte Producteur</h2>
+        <p>Nom du producteur : @Model.Producer.ContactName</p>
+        <p>SIRET : @Model.Producer.Siret</p>
+    }
+
+</body>
+</html>
+

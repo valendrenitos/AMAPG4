@@ -27,13 +27,13 @@ namespace AMAPG4.Controllers
         [HttpPost]
         public IActionResult Index(UserAccountViewModel viewModel, string returnUrl)
         {
-
-
-            if (ModelState.IsValid)
-            {
-
-
-
+           
+       
+            //if (ModelState.IsValid)
+            //{
+              
+               
+            
                 using (UserAccountDal userAccountDal = new UserAccountDal())
                 {   //On vérifie qu'un utilisateur avec ce Nom + MDP existe en allant le chercher dans la BDD
                     UserAccount userAccount =
@@ -67,7 +67,7 @@ namespace AMAPG4.Controllers
 
 
                 return Redirect("/");
-            }
+            //}
             return View(viewModel);
         }
 

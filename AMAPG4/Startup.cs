@@ -7,10 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+
 
 namespace AMAPG4
 {
@@ -28,12 +25,12 @@ namespace AMAPG4
 
             services.AddControllersWithViews();
 
+            // Ajout des DAL en tant que services
             services.AddScoped<UserAccountDal>();
-            services.AddScoped<ProductDal>();
             services.AddScoped<IndividualDal>();
-            services.AddScoped<ProducerDal>();
             services.AddScoped<CEDal>();
-            services.AddScoped<OrderLineDal>();
+            services.AddScoped<ProducerDal>();
+            services.AddScoped<ProductDal>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -43,21 +40,24 @@ namespace AMAPG4
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseRouting();
-            app.UseStaticFiles();
-
-            app.UseAuthentication();
-            app.UseAuthorization();
-
-            // Initialisez les bases de donn�es ici en utilisant un fournisseur de services scoped
+            // Initialisation des données
             using (IServiceScope scope = app.ApplicationServices.CreateScope())
             {
                 UserAccountDal userAccountDal = scope.ServiceProvider.GetRequiredService<UserAccountDal>();
                 userAccountDal.InitializeDataBase();
 
+                IndividualDal individualDal = scope.ServiceProvider.GetRequiredService<IndividualDal>();
+                individualDal.Initialize();
+
+                CEDal ceDal = scope.ServiceProvider.GetRequiredService<CEDal>();
+                ceDal.Initialize();
+
+                ProducerDal producerDal = scope.ServiceProvider.GetRequiredService<ProducerDal>();
+                producerDal.Initialize();
+
                 ProductDal productDal = scope.ServiceProvider.GetRequiredService<ProductDal>();
                 productDal.InitializeDataBase();
-            }
+           
 
             app.UseEndpoints(endpoints =>
             {

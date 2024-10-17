@@ -99,14 +99,19 @@ namespace AMAPG4.Models.User
         {
             _bddContext.Dispose();
         }
+        public Individual GetIndividualByUserAccount(int userAccountId)
+        {
+            return _bddContext.Individuals.FirstOrDefault(i => i.AccountId == userAccountId);
+        }
+
 
         public void Initialize()
         {
             // Exemples d'individus
             CreateIndividual("Alex Dupuis", DateTime.Now.AddYears(-2), true, true, "alex.dupuis@exemple.com", "DupuisPassword123!", "Alex Dupuis", "5 Rue des Fleurs, 75012 Paris", "0611223344");
-            CreateIndividual("Emma Lefebvre", DateTime.Now.AddYears(-1), true, false, "emma.lefebvre@exemple.com", "LefebvrePassword456", "Emma Lefebvre", "6 Avenue des Lilas, 34000 Montpellier", "0622334455");
-            CreateIndividual("Louis Moreau", DateTime.Now.AddMonths(-6), false, true, "louis.moreau@exemple.com", "MoreauPassword789", "Louis Moreau", "7 Rue des Roses, 69003 Lyon", "0633445566");
-            CreateIndividual("Isabelle Dubois", DateTime.Now.AddMonths(-3), false, false, "isabelle.dubois@exemple.com", "DuboisPassword321", "Isabelle Dubois", "8 Chemin des Violettes, 13006 Marseille", "0644556677");
+            CreateIndividual("Emma Lefebvre", DateTime.Now.AddYears(-1), true, false, "emma.lefebvre@exemple.com", "LefebvrePassword456!", "Emma Lefebvre", "6 Avenue des Lilas, 34000 Montpellier", "0622334455");
+            CreateIndividual("Louis Moreau", DateTime.Now.AddMonths(-6), false, true, "louis.moreau@exemple.com", "MoreauPassword789!", "Louis Moreau", "7 Rue des Roses, 69003 Lyon", "0633445566");
+            CreateIndividual("Isabelle Dubois", DateTime.Now.AddMonths(-3), false, false, "isabelle.dubois@exemple.com", "DuboisPassword321!", "Isabelle Dubois", "8 Chemin des Violettes, 13006 Marseille", "0644556677");
         }
 
     }

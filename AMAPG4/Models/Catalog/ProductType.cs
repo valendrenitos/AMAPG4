@@ -3,7 +3,7 @@
     public enum ProductType
     {
         Basket,
-        NonPerishable,
+        Unitary,
         Activity
     }
 }
