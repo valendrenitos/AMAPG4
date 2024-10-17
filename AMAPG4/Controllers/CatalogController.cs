@@ -26,7 +26,8 @@ namespace AMAPG4.Controllers
 			{
 				products = products.Where(p => p.ProductName.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
 			}
-			return View(products);
+
+            return View(products);
         }
 
 		public IActionResult ProductView(int id)

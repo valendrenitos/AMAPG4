@@ -1,4 +1,4 @@
-﻿/********STYLES FOR HEADER********/
+﻿/***************************STYLES FOR HEADER***********************/
 html {
     display: flex;
 }
@@ -94,7 +94,7 @@ nav {
     transition: transform 0.3s ease-in-out;
 }
 
-/********STYLES FOR CATALOG********/
+/***************************STYLES FOR CATALOG***********************/
 
 .catalog-body {
     display: flex;
@@ -189,10 +189,23 @@ nav {
     border: none;
 }
 
-.details {
+/*******STYLES FOR CATALOG/SEARCH AND ORDER BAR********/
+
+.search-bar {
+    margin-top: 1em;
+    background: #fff;
+    padding: 0.8em;
+    width: 100%;
+    border-radius: 6em;
 }
 
-/********STYLES FOR PRODUCT VIEW********/
+
+/*******STYLES FOR CATALOG/FILTERS********/
+
+
+
+
+/***************************STYLES FOR PRODUCT VIEW***********************/
 
 .product-container {
     display: flex;
@@ -209,7 +222,7 @@ nav {
     flex-direction: column;
 }
 
-/********STYLES FOR Account page********/
+/***************************STYLES FOR Account page***********************/
 .user-profile {
     width: 60%;
     margin: auto;
