@@ -1,4 +1,5 @@
 ﻿using AMAPG4.Models.Catalog;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -6,6 +7,7 @@ using System.Linq;
 
 namespace AMAPG4.Controllers
 {
+    [Authorize(Roles = "Manager")]
     public class CatalogController : Controller
     {
         private ProductDal _productDal;
