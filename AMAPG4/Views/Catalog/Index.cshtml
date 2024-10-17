@@ -15,18 +15,34 @@
 	<div class="left-container">
 
 		<form method="get" action="@Url.Action("Index", "Catalog")">
+			<!-- Search bar -->
 			<input type="text" name="searchString" class="search-bar" placeholder="Rechercher un produit..." />
 
+			<!-- Order by price -->
 			<div class="order-by">
 				<button type="submit" name="sortOrder" value="ascending" class="btn-sort">Prix Croissant</button>
 				<button type="submit" name="sortOrder" value="descending" class="btn-sort">Prix Décroissant</button>
 			</div>
+
+			<!-- Product Type Filter -->
+			<label>
+				<input type="checkbox" name="showAll" value="true" onchange="this.form.submit()" /> Tous les Produits
+			</label>
+			<label>
+				<input type="checkbox" name="productTypes" value="Basket" onchange="this.form.submit()" /> Panier
+			</label>
+			<label>
+				<input type="checkbox" name="productTypes" value="Unitary" onchange="this.form.submit()" /> Produit Non-Maraîchère
+			</label>
+			<label>
+				<input type="checkbox" name="productTypes" value="Activity" onchange="this.form.submit()" /> Activité
+			</label>
 		</form>
 
-		<div class="filters">
-		</div>
+
 	</div>
 
+	<!-- Catalog -->
 	<div class="catalog-container">
 
 		@foreach (AMAPG4.Models.Catalog.Product product in Model)
