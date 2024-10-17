@@ -1,0 +1,40 @@
+﻿<ul class="navbar-nav">
+    @if (Model.IsProducer)
+    {
+        <li class="nav-item">
+            <a class="nav-link" href="/Product/MesProduits">Mes Produits</a>
+        </li>
+    }
+    @if (Model.IsIndividual)
+    {
+        <li class="nav-item">
+            <a class="nav-link" href="/Account/Individual">Mon Compte Individuel</a>
+        </li>
+    }
+    @if (Model.IsCE)
+    {
+        <li class="nav-item">
+            <a class="nav-link" href="/Account/CE">Compte CE</a>
+        </li>
+    }
+
+    <!-- Liens basés sur les rôles, sans passer par le ViewModel -->
+    @if (User.IsInRole("Admin"))
+    {
+        <li class="nav-item">
+            <a class="nav-link" href="/Admin">Admin Dashboard</a>
+        </li>
+    }
+    @if (User.IsInRole("Manager"))
+    {
+        <li class="nav-item">
+            <a class="nav-link" href="/Manager">Manager Dashboard</a>
+        </li>
+    }
+    @if (User.IsInRole("Utilisateur"))
+    {
+        <li class="nav-item">
+            <a class="nav-link" href="/Account">Mon Compte</a>
+        </li>
+    }
+</ul>

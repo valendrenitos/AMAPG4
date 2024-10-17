@@ -23,6 +23,7 @@ namespace AMAPG4.Models.User
         [Required(ErrorMessage = "Veuillez renseigner votre téléphone")]
         [MinLength(10), MaxLength(10)]
         public string Phone { get; set; }
+        public Role Role { get; set; } = Role.Utilisateur;
 
     }
 }

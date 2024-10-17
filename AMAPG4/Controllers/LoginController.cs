@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Security.Claims;
 
 namespace AMAPG4.Controllers
@@ -27,13 +28,20 @@ namespace AMAPG4.Controllers
         [HttpPost]
         public IActionResult Index(UserAccountViewModel viewModel, string returnUrl)
         {
-           
-       
-            //if (ModelState.IsValid)
-            //{
-              
-               
-            
+            // Liste des champs qu'on veut garder dans le ModelState
+            string[] fieldsToKeep = { "UserAccount.Email", "UserAccount.Password" };
+
+            // On supprime tous les autres champs du ModelState
+            foreach (string key in ModelState.Keys.ToList())
+            {
+                if (!fieldsToKeep.Contains(key))
+                {
+                    ModelState.Remove(key);
+                }
+            }
+            //On ne vérifie que les champs Email et Password
+            if (ModelState.IsValid)
+            {
                 using (UserAccountDal userAccountDal = new UserAccountDal())
                 {   //On vérifie qu'un utilisateur avec ce Nom + MDP existe en allant le chercher dans la BDD
                     UserAccount userAccount =
@@ -43,7 +51,8 @@ namespace AMAPG4.Controllers
                     {
                         List<Claim> userClaims = new List<Claim>()
                         {
-                            new Claim(ClaimTypes.Name, userAccount.Id.ToString())
+                            new Claim(ClaimTypes.Name, userAccount.Id.ToString()),
+                            new Claim(ClaimTypes.Role, userAccount.Role.ToString())
 
                         };
 
@@ -67,7 +76,7 @@ namespace AMAPG4.Controllers
                     
 
                 return Redirect("/");
-            //}
+            }
             return View(viewModel);
         }
 
@@ -94,7 +103,7 @@ namespace AMAPG4.Controllers
                     //throw new ArgumentException("Un utilisateur avec cet email existe déjà.");
                     //}
 
-                    int id = userAccountDal.AddUserAccount(createUserAccountViewModel.UserAccount.Email, createUserAccountViewModel.UserAccount.Address, createUserAccountViewModel.UserAccount.Phone, createUserAccountViewModel.UserAccount.Name, createUserAccountViewModel.UserAccount.Password);
+                    int id = userAccountDal.CreateUserAccount( createUserAccountViewModel.UserAccount.Address, createUserAccountViewModel.UserAccount.Email, createUserAccountViewModel.UserAccount.Phone, createUserAccountViewModel.UserAccount.Name, createUserAccountViewModel.UserAccount.Password);
 
                     return Redirect("/Login/Index");
                 }
