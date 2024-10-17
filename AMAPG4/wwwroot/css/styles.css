@@ -49,6 +49,15 @@ nav {
     background-color: #a1cf59;
     border-radius: 16px;
 }
+.btn-logout {
+    background-color: #ff0000;
+    border-radius: 16px;
+}
+
+.btn-account {
+    background-color: #a1cf59;
+    border-radius: 16px;
+}
 
 .btn-text {
     color: #ffffff;
@@ -134,4 +143,52 @@ nav {
 .product-details {
     display: flex;
     flex-direction: column;
+}
+
+/********STYLES FOR Account page********/
+.user-profile {
+    width: 60%;
+    margin: auto;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+    .user-info label {
+        font-weight: bold;
+        width: 10rem;
+    }
+
+    .user-info span {
+        flex-grow: 1;
+        padding: 5px;
+        background-color: #eef6e1;
+        border: 1px solid #c1d5a4;
+        border-radius: 5px;
+    }
+
+.btn-edit, .btn-save, .btn-cancel {
+    background-color: #80b347;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    margin-left: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-save, .btn-cancel {
+    display: none;
+}
+
+.btn-edit:hover, .btn-save:hover, .btn-cancel:hover {
+    background-color: #66a236;
 }

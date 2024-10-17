@@ -1,4 +1,5 @@
 ﻿using AMAPG4.Models.User;
+using System.ComponentModel.DataAnnotations;
 
 namespace AMAPG4.ViewModels
 {
@@ -9,5 +10,6 @@ namespace AMAPG4.ViewModels
         public CE CE { get; set; }
         public Individual Individual { get; set; }
         public Producer Producer { get; set; }
+         
     }
 }

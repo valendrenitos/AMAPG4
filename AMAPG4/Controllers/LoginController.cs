@@ -76,13 +76,25 @@ namespace AMAPG4.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult CreateAccount(UserAccount userAccount)
+        public IActionResult CreateAccount(CreateUserAccountViewModel createUserAccountViewModel)
         {
             if (ModelState.IsValid)
             {
                 using (UserAccountDal userAccountDal = new UserAccountDal())
                 {
-                    int id = userAccountDal.AddUserAccount(userAccount.Email, userAccount.Address, userAccount.Phone, userAccount.Name, userAccount.Password);
+                    // Validation
+                    if (createUserAccountViewModel.UserAccount.Password != createUserAccountViewModel.ConfirmPassword)
+                    {
+                        ModelState.AddModelError("ConfirmPassword", "Les mots de passe ne correspondent pas.");
+                    }
+
+                    // Vérifier si l'email existe déjà
+                    //if (_bddContext.UserAccounts.Any(u => u.Email == email))
+                    //{
+                    //throw new ArgumentException("Un utilisateur avec cet email existe déjà.");
+                    //}
+
+                    int id = userAccountDal.AddUserAccount(createUserAccountViewModel.UserAccount.Email, createUserAccountViewModel.UserAccount.Address, createUserAccountViewModel.UserAccount.Phone, createUserAccountViewModel.UserAccount.Name, createUserAccountViewModel.UserAccount.Password);
 
                     return Redirect("/Login/Index");
                 }

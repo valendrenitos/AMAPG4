@@ -2,6 +2,7 @@
 using AMAPG4.Models.Catalog;
 using AMAPG4.Models.Command;
 using Microsoft.EntityFrameworkCore;
+using AMAPG4.Models.Command;
 
 namespace AMAPG4.Models
 {
