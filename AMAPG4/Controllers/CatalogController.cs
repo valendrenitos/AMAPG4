@@ -16,7 +16,7 @@ namespace AMAPG4.Controllers
         }
 
 
-		public IActionResult Index(string searchString)
+		public IActionResult Index(string searchString, string sortOrder, string[] productTypes, bool? showAll)
 		{
 			List<Product> products = _productDal.GetAllProducts();
 
@@ -26,7 +26,27 @@ namespace AMAPG4.Controllers
 			{
 				products = products.Where(p => p.ProductName.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
 			}
-			return View(products);
+
+			// If showAll is not checked, filter by product type
+			if (showAll != true && productTypes != null && productTypes.Length > 0)
+			{
+				products = products.Where(p => productTypes.Contains(p.ProductType.ToString())).ToList();
+			}
+
+			// Sorting by price
+			switch (sortOrder)
+            {
+                case "ascending":
+                    products = products.OrderBy(p => p.Price).ToList();
+                    break;
+                case "descending":
+                    products = products.OrderByDescending(p => p.Price).ToList();
+                    break;
+                default:
+                    break; // No sorting
+            }
+
+            return View(products);
         }
 
 		public IActionResult ProductView(int id)
