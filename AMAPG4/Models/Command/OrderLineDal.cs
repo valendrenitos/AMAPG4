@@ -12,6 +12,7 @@ using System.Linq;
 using XAct;
 
 using AMAPG4.Models.User;
+using Microsoft.EntityFrameworkCore;
 
 namespace AMAPG4.Models.Command
 {
@@ -28,7 +29,7 @@ namespace AMAPG4.Models.Command
         public List<OrderLine> GetAllOrderLines()
         {
           
-            return _bddContext.OrderLines.ToList();
+            return _bddContext.OrderLines.Include(od=>od.Product).ToList();
         }
         public List<OrderLine> GetPastOrderLines(int IdUtilisateur, OrderLineType Paid)
         {

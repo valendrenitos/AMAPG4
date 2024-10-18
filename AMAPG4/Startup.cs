@@ -51,11 +51,7 @@ namespace AMAPG4
             
                 OrderLineDal orderLineDal = new OrderLineDal();
                 orderLineDal.Initialize();
-            ProductDal productDal = new ProductDal();
-            productDal.InitializeDataBase();
 
-            OrderLineDal orderLineDal = new OrderLineDal();
-            orderLineDal.Initialize();
 
 
 

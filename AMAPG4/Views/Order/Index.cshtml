@@ -19,7 +19,7 @@
     <div> Votre panier contient : </div>
     @foreach (OrderLine orderLine in Model.OrderLinesCurrent)
     {
-        <p>@orderLine.Product </p>
+        <p>@orderLine.Product.ProductName @orderLine.Quantity @orderLine.Total </p>
     }
 
 }
