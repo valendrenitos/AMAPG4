@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using AMAPG4.Helpers;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
@@ -44,7 +45,7 @@ namespace AMAPG4.Models.User
                     Email = email,
                     Phone = phone,
                     Name = name,
-                    Password = password
+                    Password = Encode.EncodeMD5(password)
                 }
             };
 
