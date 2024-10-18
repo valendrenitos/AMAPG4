@@ -1,5 +1,6 @@
 using AMAPG4.Models.Catalog;
 using AMAPG4.Models.User;
+using AMAPG4.Models.Command;
 using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
