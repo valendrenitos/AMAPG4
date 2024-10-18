@@ -26,6 +26,11 @@ namespace AMAPG4.Models.User
         {
             return _bddContext.CEs.FirstOrDefault(c => c.Id == id);
         }
+        public UserAccount GetUserAccount(int id)
+        {
+            int AccountId = GetCEById(id).AccountId;
+            return _bddContext.UserAccounts.FirstOrDefault(u => u.Id == AccountId);
+        }
 
         // Ajoute un nouveau CE avec son compte utilisateur associé
         public int CreateCE(string contactName, int numberOfEmployees, bool isContributionPaid,

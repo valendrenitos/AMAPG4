@@ -1,11 +1,11 @@
-﻿@model AMAPG4.Models.Catalog.Product
+﻿@model AMAPG4.ViewModels.ProductDetailViewModel
 
 @{
 	ViewBag.Title = @Model.ProductName;
 	Layout = "_layout";
 }
 
-
+<div class="product-detail-body">
 <div class="product-container">
 	<img class="product-photo" src="~/images//ProductImages/cheese.png" />
 
@@ -14,7 +14,10 @@
 		<p><strong>Prix :</strong> @Model.Price.ToString("C")</p>
 		<p><strong>Description :</strong> @Model.Description</p>
 		<p><strong>Disponibilité :</strong> @(Model.IsAvailable ? "En Stock" : "Hors Stock")</p>
+		<button class="btn-add-to-basket">Ajouter</button>
 	</div>
 
 </div>
-<a href="@Url.Action("Index", "Catalog")">Retour à la Liste des Produits</a>
+</div>
+<div class="nav-element">@Html.ActionLink("Retour au catalogue", "Index", "Catalog", new { @class = "return-catalog" })</div>
+

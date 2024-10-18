@@ -26,7 +26,8 @@ namespace AMAPG4.Models.User
 
         public void InitializeDataBase()
         {
-            DeleteCreateDatabase();
+            UpdateUserRole(1, Role.Admin);
+            UpdateUserRole(2, Role.Manager);
         }
 
         public List<UserAccount> GetAllUserAccounts()

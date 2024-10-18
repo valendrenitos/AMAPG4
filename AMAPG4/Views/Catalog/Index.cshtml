@@ -1,66 +1,74 @@
 ﻿@using System.Globalization
-
-@model IEnumerable<AMAPG4.Models.Catalog.Product>
+@model AMAPG4.ViewModels.CatalogViewModel
 @{
-	ViewBag.Title = "Catalogue de Produits";
-	Layout = "_layout";
+    ViewBag.Title = "Catalogue de Produits";
+    Layout = "_layout";
 }
 
 <head>
-	<link rel="stylesheet" href="~/css/styles.css" />
+    <link rel="stylesheet" href="~/css/styles.css" />
 </head>
 
 <div class="catalog-body">
 
-	<div class="left-container">
+    <div class="catalog-col-container">
+    <!-- Display User Information (Optional) -->
+    @if (Model.IsAuthenticated)
+    {
+        <p id="welcome-text">Bienvenue, @Model.UserName!</p>
+    }
 
-		<form method="get" action="@Url.Action("Index", "Catalog")">
-			<!-- Search bar -->
-			<input type="text" name="searchString" class="search-bar" placeholder="Rechercher un produit..." />
+    <div class="catalog-row-container">
+    <div class="left-container">
 
-			<!-- Order by price -->
-			<div class="order-by">
-				<button type="submit" name="sortOrder" value="ascending" class="btn-sort">Prix Croissant</button>
-				<button type="submit" name="sortOrder" value="descending" class="btn-sort">Prix Décroissant</button>
-			</div>
+        <form method="get" action="@Url.Action("Index", "Catalog")">
+            <!-- Search bar -->
+            <input type="text" name="searchString" class="search-bar" placeholder="Rechercher un produit..." />
 
-			<!-- Product Type Filter -->
-			<label>
-				<input type="checkbox" name="showAll" value="true" onchange="this.form.submit()" /> Tous les Produits
-			</label>
-			<label>
-				<input type="checkbox" name="productTypes" value="Basket" onchange="this.form.submit()" /> Panier
-			</label>
-			<label>
-				<input type="checkbox" name="productTypes" value="Unitary" onchange="this.form.submit()" /> Produit Non-Maraîchère
-			</label>
-			<label>
-				<input type="checkbox" name="productTypes" value="Activity" onchange="this.form.submit()" /> Activité
-			</label>
-		</form>
+            <!-- Order by price -->
+            <div class="order-by">
+                <button type="submit" name="sortOrder" value="ascending" class="btn-sort">Prix Croissant</button>
+                <button type="submit" name="sortOrder" value="descending" class="btn-sort">Prix Décroissant</button>
+            </div>
 
+            <!-- Product Type Filter -->
+            <label>
+                <input type="checkbox" name="showAll" value="true" onchange="this.form.submit()" /> Tous les Produits
+            </label>
+            <label>
+                <input type="checkbox" name="productTypes" value="Basket" onchange="this.form.submit()" /> Panier
+            </label>
+            <label>
+                <input type="checkbox" name="productTypes" value="Unitary" onchange="this.form.submit()" /> Produit Non-Maraîchère
+            </label>
+            <label>
+                <input type="checkbox" name="productTypes" value="Activity" onchange="this.form.submit()" /> Activité
+            </label>
+        </form>
 
-	</div>
+    </div>
 
-	<!-- Catalog -->
-	<div class="catalog-container">
+    <!-- Catalog -->
+    <div class="catalog-container">
 
-		@foreach (AMAPG4.Models.Catalog.Product product in Model)
-		{
-			<div class="product-card">
-				<a href="@Url.Action("ProductView", "Catalog", new { id = product.Id })">
-					<img class="catalog-photo" src="~/images/ProductImages/cheese.png" />
-				</a>
+        
+        @foreach (var product in Model.Products)
+        {
+            <div class="product-card">
+                <a href="@Url.Action("ProductView", "Catalog", new { id = product.Id })">
+                    <img class="catalog-photo" src="~/images/ProductImages/cheese.png" />
+                </a>
 
-				<div class="product-name">@product.ProductName</div>
+                <div class="product-name">@product.ProductName</div>
 
-				<div class="info-row">
-					<div class="product-price">@product.Price.ToString("C", new CultureInfo("fr-FR"))</div>
-				</div>
+                <div class="info-row">
+                    <div class="product-price">@product.Price.ToString("C", new CultureInfo("fr-FR"))</div>
+                </div>
 
-				<button class="btn-add-to-basket">Ajouter</button>
-			</div>
-		}
-	</div>
-
+                <button class="btn-add-to-basket">Ajouter</button>
+            </div>
+        }
+    </div>
+    </div>
+    </div>
 </div>

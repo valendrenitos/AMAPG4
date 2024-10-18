@@ -3,6 +3,7 @@ using AMAPG4.Models.Command;
 using AMAPG4.Models.User;
 using AMAPG4.ViewModels;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -10,23 +11,21 @@ using System.Linq;
 
 namespace AMAPG4.Controllers
 {
-    [Authorize]
-    public class CatalogController : Controller
-    {
-        private ProductDal _productDal;
+	[Authorize(Roles = "Manager")]
+	public class CatalogController : Controller
+	{
+		private ProductDal _productDal;
 
-        public CatalogController()
-        {
-            _productDal = new ProductDal();
-        }
-
+		public CatalogController()
+		{
+			_productDal = new ProductDal();
+		}
 
 		public IActionResult Index(string searchString, string sortOrder, string[] productTypes, bool? showAll)
 		{
 			List<Product> products = _productDal.GetAllProducts();
 
-
-            // Search using the search bar
+			// Search using the search bar
 			if (!string.IsNullOrEmpty(searchString))
 			{
 				products = products.Where(p => p.ProductName.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
@@ -40,51 +39,72 @@ namespace AMAPG4.Controllers
 
 			// Sorting by price
 			switch (sortOrder)
-            {
-                case "ascending":
-                    products = products.OrderBy(p => p.Price).ToList();
-                    break;
-                case "descending":
-                    products = products.OrderByDescending(p => p.Price).ToList();
-                    break;
-                default:
-                    break; // No sorting
-            }
+			{
+				case "ascending":
+					products = products.OrderBy(p => p.Price).ToList();
+					break;
+				case "descending":
+					products = products.OrderByDescending(p => p.Price).ToList();
+					break;
+				default:
+					break; // No sorting
+			}
 
+			// Create the view model
+			CatalogViewModel viewModel = new CatalogViewModel
+			{
+				Products = products,
+				IsAuthenticated = HttpContext.User.Identity.IsAuthenticated,
+				UserName = HttpContext.User.Identity.Name
+			};
 
-            return View(products);
-        }
+			return View(viewModel);
+		}
 
 		public IActionResult ProductView(int id)
-        {
-            Product product = _productDal.GetAllProducts().FirstOrDefault(p => p.Id == id);
-            if (product == null)
-            {
-                return NotFound(); 
-            }
-            return View(product);
-        }
+		{
+			Product product = _productDal.GetProductById(id);
+			if (product == null)
+			{
+				return NotFound();
+			}
+
+			// Create a view model for the product details
+			ProductDetailViewModel productViewModel = new ProductDetailViewModel
+			{
+				ProductName = product.ProductName,
+				Price = product.Price,
+				Description = product.Description,
+				IsAvailable = product.IsAvailable,
+
+			};
+
+			return View(productViewModel);
+
+
+		}
 
 
 
 
-        [HttpPost]
-        public IActionResult AddOrder(int quantity, int id)
-        {
+
+		[HttpPost]
+		public IActionResult AddOrder(int quantity, int id)
+		{
 			List<Product> products = _productDal.GetAllProducts();
-			
 
-            UserAccountViewModel UserAccountViewModel =
-        new UserAccountViewModel();
-            using (UserAccountDal userAccountDal = new UserAccountDal())
-            {
-                UserAccountViewModel.UserAccount = userAccountDal.GetUserAccount(HttpContext.User.Identity.Name);
-            }
-            using (OrderLineDal orderLineDal = new OrderLineDal())
-            {
-                orderLineDal.CheckOrderLine(UserAccountViewModel.UserAccount.Id, quantity, id);
-            }
-            return View(products);
-        }
-    }
+
+			UserAccountViewModel UserAccountViewModel =
+		new UserAccountViewModel();
+			using (UserAccountDal userAccountDal = new UserAccountDal())
+			{
+				UserAccountViewModel.UserAccount = userAccountDal.GetUserAccount(HttpContext.User.Identity.Name);
+			}
+			using (OrderLineDal orderLineDal = new OrderLineDal())
+			{
+				orderLineDal.CheckOrderLine(UserAccountViewModel.UserAccount.Id, quantity, id);
+			}
+			return View(products);
+		}
+	}
 }

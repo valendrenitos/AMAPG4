@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ﻿@using AMAPG4.Models.Catalog
 @using AMAPG4.Models.Command
 
@@ -32,4 +33,40 @@ else
     
 
 
+=======
+﻿@using AMAPG4.Models.Catalog
+@using AMAPG4.Models.Command
+
+@model AMAPG4.ViewModels.OrderLineViewModel
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Panier</title>
+</head>
+<h3>
+    Id utilisateur login :
+    @Model.UserActualId
+</h3>
+
+
+@if (Model.OrderLinesCurrent != null)
+{
+    <div> Votre panier contient : </div>
+    @foreach (OrderLine orderLine in Model.OrderLinesCurrent)
+    {
+        <p>@orderLine.Product.ProductName @orderLine.Quantity @orderLine.Total </p>
+    }
+
+}
+else 
+{
+
+    <div>
+        Le panier est Vide !
+    </div>
+    
+
+
+>>>>>>> 000472833dfc8c4c749f887785243bdb658deeaa
 }

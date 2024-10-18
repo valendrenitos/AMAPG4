@@ -33,10 +33,7 @@ namespace AMAPG4
             }
 
             // Initialisation des données
-
-            UserAccountDal userAccountDal = new UserAccountDal();
-            userAccountDal.InitializeDataBase();
-
+            
             IndividualDal individualDal = new IndividualDal();
             individualDal.Initialize();
 
@@ -46,10 +43,13 @@ namespace AMAPG4
             ProducerDal producerDal = new ProducerDal();
             producerDal.Initialize();
 
-                ProductDal productDal = new ProductDal();
-                productDal.InitializeDataBase();
-            
-                OrderLineDal orderLineDal = new OrderLineDal();
+            ProductDal productDal = new ProductDal();
+            productDal.InitializeDataBase();
+
+            UserAccountDal userAccountDal = new UserAccountDal();
+            userAccountDal.InitializeDataBase();
+
+            OrderLineDal orderLineDal = new OrderLineDal();
                 orderLineDal.Initialize();
 
 

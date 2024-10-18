@@ -26,6 +26,11 @@ namespace AMAPG4.Models.User
         {
             return _bddContext.Producers.FirstOrDefault(p => p.Id == id);
         }
+        public UserAccount GetUserAccount(int id)
+        {
+            int AccountId = GetProducerById(id).AccountId;
+            return _bddContext.UserAccounts.FirstOrDefault(u => u.Id == AccountId);
+        }
 
         // Ajoute un nouveau producteur avec son compte utilisateur associé
         public int CreateProducer(string siret, string contactName, string rib,
