@@ -61,15 +61,12 @@ namespace AMAPG4.Models.Command
 
         public void Dispose()
         {
+         
             _bddContext.Dispose();
+           
         }
 
-        public int GetProduct()
-        {
-            Product product = new Product();
-            int ProductId = product.Id;
-            return ProductId;
-        }
+        // fonction de création d'orderline dans la base de donnée
         public int CreateOrderLine(int useraccountId, int quantity, int productid)
         {
             Product product = _bddContext.Products.Find(productid);
@@ -89,14 +86,28 @@ namespace AMAPG4.Models.Command
             _bddContext.SaveChanges();
             return orderLine.Id;
         }
-        public void UpdateOrderLine(int id, int qantity)
+        // fonction permettant d'update une orderline
+        public void UpdateOrderLine(OrderLine orderline, int qantity)
         {
-            OrderLine orderline = _bddContext.OrderLines.Find(id);
+            orderline.Quantity = qantity;
+         if (orderline.Quantity > orderline.Product.Stock) {     
+                orderline.Quantity = orderline.Product.Stock;
+            }
+            if (orderline.Quantity <= 0)
+            {
+                _bddContext.Remove(orderline);
+            }
+
+
 
         }
+
+
+        // Fonction permettant de récupérer un numéro de commande ou d'en générer un
         public int GenerateCommandNumber(int useraccountId)
         {
             int CommandNumber;
+            
             OrderLine orderLine = new OrderLine();
             // Cas ou une commande est en cours
             if (_bddContext.OrderLines.Contains(new OrderLine { orderLineType = OrderLineType.Reserved , UserAccountId = useraccountId}))
@@ -130,7 +141,22 @@ namespace AMAPG4.Models.Command
             CreateOrderLine(6, 1, 3);
             CreateOrderLine(3, 1, 4);
         }
-         
+        // fonction rattacher au bouton d'ajout d'un produit
+         public void CheckOrderLine(int useraccountId, int quantity, int productid)
+        {
+            OrderLine orderLine = _bddContext.OrderLines.FirstOrDefault(orderline =>
+                (orderline.orderLineType == OrderLineType.Reserved) && (orderline.UserAccountId == useraccountId) && (orderline.Product.Id == productid));
+            if (orderLine == null)
+            {
+                CreateOrderLine(useraccountId, quantity, productid);
+            }
+            else
+            {
+                
+                UpdateOrderLine(orderLine, quantity);
+            }
+
+        }
 
 
 } }

@@ -1,4 +1,7 @@
 ﻿using AMAPG4.Models.Catalog;
+using AMAPG4.Models.Command;
+using AMAPG4.Models.User;
+using AMAPG4.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -7,7 +10,7 @@ using System.Linq;
 
 namespace AMAPG4.Controllers
 {
-    [Authorize(Roles = "Manager")]
+    [Authorize]
     public class CatalogController : Controller
     {
         private ProductDal _productDal;
@@ -48,6 +51,7 @@ namespace AMAPG4.Controllers
                     break; // No sorting
             }
 
+
             return View(products);
         }
 
@@ -59,6 +63,28 @@ namespace AMAPG4.Controllers
                 return NotFound(); 
             }
             return View(product);
+        }
+
+
+
+
+        [HttpPost]
+        public IActionResult AddOrder(int quantity, int id)
+        {
+			List<Product> products = _productDal.GetAllProducts();
+			
+
+            UserAccountViewModel UserAccountViewModel =
+        new UserAccountViewModel();
+            using (UserAccountDal userAccountDal = new UserAccountDal())
+            {
+                UserAccountViewModel.UserAccount = userAccountDal.GetUserAccount(HttpContext.User.Identity.Name);
+            }
+            using (OrderLineDal orderLineDal = new OrderLineDal())
+            {
+                orderLineDal.CheckOrderLine(UserAccountViewModel.UserAccount.Id, quantity, id);
+            }
+            return View(products);
         }
     }
 }
