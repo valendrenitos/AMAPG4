@@ -80,34 +80,62 @@ namespace AMAPG4.Controllers
             return View(viewModel);
         }
 
-        public IActionResult CreateAccount()
+        public IActionResult CreateIndividualAccount()
         {
             return View();
         }
         [HttpPost]
-        public IActionResult CreateAccount(CreateUserAccountViewModel createUserAccountViewModel)
+        public IActionResult CreateIndividualAccount(CreateUserAccountViewModel createUserAccountViewModel)
         {
-            if (ModelState.IsValid)
+            Console.WriteLine("1");
+            
+            foreach (string key in ModelState.Keys.ToList())
             {
-                using (UserAccountDal userAccountDal = new UserAccountDal())
+                bool isValid = !ModelState[key].Errors.Any();
+
+                if (isValid)
                 {
-                    // Validation
+                    Console.WriteLine($"{key}: true");
+                }
+                else
+                {
+                    Console.WriteLine($"{key}: false");
+                }
+            }
+                                
+                if (ModelState.IsValid)
+            {
+                Console.WriteLine("2");
+                using (IndividualDal individualDal = new IndividualDal())
+                {
+                    Console.WriteLine("3");
+                    // Validation  
                     if (createUserAccountViewModel.UserAccount.Password != createUserAccountViewModel.ConfirmPassword)
                     {
                         ModelState.AddModelError("ConfirmPassword", "Les mots de passe ne correspondent pas.");
                     }
+                    Console.WriteLine("4");
+                    // Vérifier si l'email existe déjà  
+                    //if (_bddContext.UserAccounts.Any(u => u.Email == email))  
+                    //{  
+                    //throw new ArgumentException("Un utilisateur avec cet email existe déjà.");  
+                    //}  
 
-                    // Vérifier si l'email existe déjà
-                    //if (_bddContext.UserAccounts.Any(u => u.Email == email))
-                    //{
-                    //throw new ArgumentException("Un utilisateur avec cet email existe déjà.");
-                    //}
-
-                    int id = userAccountDal.CreateUserAccount( createUserAccountViewModel.UserAccount.Address, createUserAccountViewModel.UserAccount.Email, createUserAccountViewModel.UserAccount.Phone, createUserAccountViewModel.UserAccount.Name, createUserAccountViewModel.UserAccount.Password);
-
+                    int id = individualDal.CreateIndividual(
+                        createUserAccountViewModel.Individual.FirstName,
+                        DateTime.Now,
+                        true,
+                        createUserAccountViewModel.Individual.IsVolunteer,
+                        createUserAccountViewModel.UserAccount.Email,
+                        createUserAccountViewModel.UserAccount.Password,
+                        createUserAccountViewModel.UserAccount.Name,
+                        createUserAccountViewModel.UserAccount.Address,
+                        createUserAccountViewModel.UserAccount.Phone);
+                    Console.WriteLine("5");
                     return Redirect("/Login/Index");
                 }
             }
+            Console.WriteLine("6");
             return View();
         }
 
