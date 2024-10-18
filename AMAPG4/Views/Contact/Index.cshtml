@@ -3,5 +3,77 @@
     ViewBag.Title = "Contact";
     Layout = "_Layout";
 }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Page contact</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+
+<h2>Bienvenue sur la page de contact ! </h2>
+
+<div class="container">
+    <div class="formulaire">
+        <h2>Le formulaire</h2>
+        @using (Html.BeginForm("EnvoyerMessage", "Contact", FormMethod.Post))
+        {
+            <div>
+                @Html.LabelFor(m => m.Name, "Nom")
+                @Html.TextBoxFor(m => m.Name, new { @class = "input-field", placeholder = "Votre nom" })
+                @Html.ValidationMessageFor(m => m.Name)
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.FirstName, "Prénom")
+                @Html.TextBoxFor(m => m.FirstName, new { @class = "input-field", placeholder = "Votre prénom" })
+                @Html.ValidationMessageFor(m => m.FirstName)
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.Email, "Email")
+                @Html.TextBoxFor(m => m.Email, new { @class = "input-field", placeholder = "Votre email", type = "email" })
+                @Html.ValidationMessageFor(m => m.Email)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.PhoneNumber, "Numéro de téléphone")
+                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "input-field", placeholder = "Votre numéro de téléphone", type = "tel" })
+                @Html.ValidationMessageFor(m => m.PhoneNumber)
+            </div>
+
+
+            <div>
+                @Html.LabelFor(m => m.Message, "Message")
+                @Html.TextAreaFor(m => m.Message, new { @class = "input-field", placeholder = "Votre message", rows = 4 })
+            </div>
+
+            <div>
+                <button type="submit" class="submit-button">Soumettre</button>
+            </div>
+
+            @if (ViewBag.Message != null)
+            {
+                <p>@ViewBag.Message</p>
+            }
+        }
+    </div>
+
+    <div class="adresse">
+        <h2>L'adresse</h2>
+        <div class="adresse-contenu">
+            <p>
+                Maison des associations<br>
+                67 rue Saint François de Sales<br>
+                73000 Chambéry
+            </p>
+            <p><em>Nous ne sommes pas présent dans les locaux tous les jours bla bla</em></p>
+            <p><strong>Tél :</strong> 04 79 00 12 68</p>
+            <p><strong>Mail :</strong> monpanierpaysan@amap.fr</p>
+            <div class="social-icons">
+                <a href="https://facebook.com"><img src="~/images/facebook-icon.png" alt="Facebook"></a>
+                <a href="https://instagram.com"><img src="~/images/instagram-icon.png" alt="Instagram"></a>
+            </div>
+        </div>
+    </div>
+</div>
 
 
