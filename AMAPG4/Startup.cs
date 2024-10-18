@@ -47,7 +47,9 @@ namespace AMAPG4
 
                 ProductDal productDal = new ProductDal();
                 productDal.InitializeDataBase();
-           
+            
+                OrderLineDal orderLineDal = new OrderLineDal();
+                orderLineDal.Initialize();
 
             app.UseRouting();
             app.UseStaticFiles();
