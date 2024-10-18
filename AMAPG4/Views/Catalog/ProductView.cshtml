@@ -5,7 +5,7 @@
 	Layout = "_layout";
 }
 
-
+<div class="product-detail-body">
 <div class="product-container">
 	<img class="product-photo" src="~/images//ProductImages/cheese.png" />
 
@@ -17,4 +17,6 @@
 	</div>
 
 </div>
-<a href="@Url.Action("Index", "Catalog")">Retour à la Liste des Produits</a>
+</div>
+<div class="nav-element">@Html.ActionLink("Retour au catalogue", "Index", "Catalog", new { @class = "return-catalog" })</div>
+
