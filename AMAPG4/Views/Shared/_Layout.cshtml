@@ -12,11 +12,9 @@
 
 
 	<nav>
-		<div class="nav-element">@Html.ActionLink("Accueil", "Index", "Home", new { @id = 1 }, new { @class = "nav-link" })</div>
-		<div class="nav-element">@Html.ActionLink("Catalogue", "Index", "Catalog", null, new { @class = "nav-link" })</div>
-        <div class="nav-element">@Html.ActionLink("Nos Producteurs", "Index", "Producer", null, new { @class = "nav-link" })</div>
-		<div class="nav-element"><div class="nav-text">L'Association</div></div>
-		<div class="nav-element"><div class="nav-text">Contact</div></div>
+	
+
+		
 		@await Component.InvokeAsync("Navbar")
 	</nav>
 
