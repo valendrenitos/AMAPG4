@@ -11,12 +11,14 @@
 
 <div class="catalog-body">
 
+    <div class="catalog-col-container">
     <!-- Display User Information (Optional) -->
     @if (Model.IsAuthenticated)
     {
-        <p>Bienvenue, @Model.UserName!</p>
+        <p id="welcome-text">Bienvenue, @Model.UserName!</p>
     }
 
+    <div class="catalog-row-container">
     <div class="left-container">
 
         <form method="get" action="@Url.Action("Index", "Catalog")">
@@ -67,5 +69,6 @@
             </div>
         }
     </div>
-
+    </div>
+    </div>
 </div>
