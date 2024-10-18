@@ -46,6 +46,11 @@ namespace AMAPG4
             ProducerDal producerDal = new ProducerDal();
             producerDal.Initialize();
 
+                ProductDal productDal = new ProductDal();
+                productDal.InitializeDataBase();
+            
+                OrderLineDal orderLineDal = new OrderLineDal();
+                orderLineDal.Initialize();
             ProductDal productDal = new ProductDal();
             productDal.InitializeDataBase();
 

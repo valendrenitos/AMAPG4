@@ -62,19 +62,33 @@ namespace AMAPG4.Models.User
                 _bddContext.SaveChanges();
             }
         }
+        public Role GetUserRole(int userAccountId)
+        {
+            UserAccount userAccount = _bddContext.UserAccounts.FirstOrDefault(u => u.Id == userAccountId);
+            if (userAccount != null)
+            {
+                return userAccount.Role;
+            }
+            else
+            {
+                return Role.Utilisateur; // Retourne 'Utilisateur' par défaut si l'utilisateur n'existe pas
+            }
+        }
+        public void UpdateUserRole(int userAccountId, Role newRole)
+        {
+            UserAccount userAccount = _bddContext.UserAccounts.FirstOrDefault(u => u.Id == userAccountId);
+            if (userAccount != null)
+            {
+                userAccount.Role = newRole; // Mise à jour du rôle
+                _bddContext.SaveChanges();  // Sauvegarde les modifications dans la base de données
+            }
+        }
+
 
 
         /******************************************************/
         /*          Méthodes pour l'authentification          */
         /******************************************************/
-        public int AddUserAccount(string email,string address, string phone,string name, string password)
-        {
-            string encodedPassword = EncodeMD5(password);
-            UserAccount userAccount = new UserAccount() { Email = email, Address = address, Phone = phone, Name = name, Password = encodedPassword };
-            this._bddContext.UserAccounts.Add(userAccount);
-            this._bddContext.SaveChanges();
-            return userAccount.Id;
-        }
 
         public UserAccount Authentication(string email, string password)
         {

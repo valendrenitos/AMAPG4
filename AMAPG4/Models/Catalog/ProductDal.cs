@@ -30,8 +30,13 @@ namespace AMAPG4.Models.Catalog
             CreateProduct("Lait Cru Fermier", "Lait frais directement de la ferme, non pasteurisé.", true, 1.50m, 40, DateTime.Now.AddDays(3), ProductType.Unitary);
             CreateProduct("Baguette Traditionnelle", "Pain frais cuit au four à bois, idéal pour accompagner vos repas.", true, 1.20m, 60, DateTime.Now.AddDays(1), ProductType.Unitary);
             CreateProduct("Panier de Fruits Bio", "Un assortiment de fruits de saison issus de l'agriculture biologique.", true, 12.00m, 25, DateTime.Now.AddDays(5), ProductType.Basket);
-            CreateProduct("Huile d'Olive Extra Vierge", "Huile d'olive pressée à froid, 100% naturelle.", true, 10.00m, 200, DateTime.Now.AddYears(1), ProductType.Unitary);
             CreateProduct("Fromage de Chèvre Affiné", "Fromage de chèvre fermier affiné à la perfection.", true, 6.00m, 70, DateTime.Now.AddMonths(1), ProductType.Unitary);
+            CreateProduct("Atelier de Cuisine Écologique", "Un atelier pour apprendre à cuisiner avec des ingrédients bio et locaux.", true, 30.00m, 15, DateTime.Now.AddMonths(2), ProductType.Activity);
+            CreateProduct("Visite de Ferme Bio", "Découvrez les pratiques de l'agriculture biologique lors d'une visite guidée de notre ferme.", true, 20.00m, 50, DateTime.Now.AddMonths(3), ProductType.Activity);
+            CreateProduct("Randonnée en Nature", "Une randonnée guidée pour explorer la biodiversité locale et apprendre sur les plantes comestibles.", true, 15.00m, 25, DateTime.Now.AddMonths(1), ProductType.Activity);
+            CreateProduct("Séance de Yoga en Plein Air", "Une séance de yoga relaxante dans un cadre naturel, accessible à tous les niveaux.", true, 12.00m, 30, DateTime.Now.AddMonths(1), ProductType.Activity);
+
+
 
         }
 
