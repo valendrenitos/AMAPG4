@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using AMAPG4.Helpers;
+using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 
@@ -18,7 +20,7 @@ namespace AMAPG4.Models.User
         // Récupère toutes les entreprises (CE)
         public List<CE> GetAllCEs()
         {
-            return _bddContext.CEs.ToList();
+            return _bddContext.CEs.Include(i => i.Account).ToList();
         }
 
         // Récupère un CE par son Id
@@ -26,26 +28,25 @@ namespace AMAPG4.Models.User
         {
             return _bddContext.CEs.FirstOrDefault(c => c.Id == id);
         }
-        public UserAccount GetUserAccount(int id)
-        {
-            int AccountId = GetCEById(id).AccountId;
-            return _bddContext.UserAccounts.FirstOrDefault(u => u.Id == AccountId);
-        }
-
+     
         // Ajoute un nouveau CE avec son compte utilisateur associé
         public int CreateCE(string contactName, int numberOfEmployees, bool isContributionPaid,
                   string email, string password, string name, string address, string phone)
         {
-            // 1. Crée d'abord le compte utilisateur associé
-            int userAccountId = _userAccountDal.CreateUserAccount(address, email, phone, name, password);
             
-            // 2. Crée le CE et l'associe au compte utilisateur
             CE ce = new CE()
             {
                 ContactName = contactName,
                 NumberOfEmployees = numberOfEmployees,
                 IsContributionPaid = isContributionPaid,
-                AccountId = userAccountId
+                Account = new UserAccount()
+                {
+                    Address = address,
+                    Email = email,
+                    Phone = phone,
+                    Name = name,
+                    Password = Encode.EncodeMD5(password)
+                }
             };
 
             // 3. Ajoute le CE à la base de données
@@ -69,9 +70,9 @@ namespace AMAPG4.Models.User
                 _bddContext.SaveChanges();
 
                 // Mettre à jour le compte utilisateur associé
-                if (_userAccountDal.GetUserAccount(ce.AccountId) != null)
+                if (ce.Account != null)
                 {
-                    _userAccountDal.UpdateUserAccount(ce.AccountId, account.Address, account.Email, account.Phone, account.Name, account.Password);
+                    _userAccountDal.UpdateUserAccount(ce.Account.Id, account.Address, account.Email, account.Phone, account.Name, account.Password);
                 }
             }
         }
@@ -102,7 +103,7 @@ namespace AMAPG4.Models.User
 
         public CE GetCEByUserAccount(int userAccountId)
         {
-            return _bddContext.CEs.FirstOrDefault(ce => ce.AccountId == userAccountId);
+            return _bddContext.CEs.FirstOrDefault(ce => ce.Account.Id == userAccountId);
         }
 
 

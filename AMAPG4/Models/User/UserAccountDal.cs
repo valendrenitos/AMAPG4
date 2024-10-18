@@ -40,15 +40,6 @@ namespace AMAPG4.Models.User
             _bddContext.Dispose();
         }
 
-        public int CreateUserAccount(string address, string email, string phone, string name, string password)
-        {
-            string encodedPassword = EncodeMD5(password);
-            UserAccount userAccount = new UserAccount() { Address = address, Email = email, Phone = phone, Name = name, Password = encodedPassword };
-            _bddContext.UserAccounts.Add(userAccount);
-            _bddContext.SaveChanges();
-            return userAccount.Id;
-        }
-
         public void UpdateUserAccount(int id, string address, string email, string phone, string name, string password)
         {
             UserAccount userAccount = _bddContext.UserAccounts.Find(id);

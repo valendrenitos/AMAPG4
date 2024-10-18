@@ -6,7 +6,7 @@ using System.Security.Cryptography.X509Certificates;
 
 namespace AMAPG4.Models.Catalog
 {
-    public class ProductDal
+    public class ProductDal : IProductDal
     {
         private MyDBContext _bddContext;
         public ProductDal()

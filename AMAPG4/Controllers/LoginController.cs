@@ -39,9 +39,11 @@ namespace AMAPG4.Controllers
                     ModelState.Remove(key);
                 }
             }
+
             //On ne vérifie que les champs Email et Password
             if (ModelState.IsValid)
             {
+    
                 using (UserAccountDal userAccountDal = new UserAccountDal())
                 {   //On vérifie qu'un utilisateur avec ce Nom + MDP existe en allant le chercher dans la BDD
                     UserAccount userAccount =
@@ -60,23 +62,21 @@ namespace AMAPG4.Controllers
                         ClaimsPrincipal userPrincipal = new ClaimsPrincipal(new[] { claimsIdentity });
 
                         HttpContext.SignInAsync(userPrincipal);
-
                     }
                     else
                     {
                         ModelState.AddModelError("UserAccount.Email", "Email et/ou mot de passe incorrect(s)");
-
                     }
-
                 }
                 if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
                 {
+
                     return Redirect(returnUrl);
                 }
 
-
                 return Redirect("/");
             }
+
             return View(viewModel);
         }
 
