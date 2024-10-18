@@ -14,7 +14,7 @@
 	<nav>
 		<div class="nav-element">@Html.ActionLink("Accueil", "Index", "Home", new { @id = 1 }, new { @class = "nav-link" })</div>
 		<div class="nav-element">@Html.ActionLink("Catalogue", "Index", "Catalog", null, new { @class = "nav-link" })</div>
-		<div class="nav-element"><div class="nav-text">Nos Producteurs</div></div>
+        <div class="nav-element">@Html.ActionLink("Nos Producteurs", "Index", "Producers", null, new { @class = "nav-link" })</div>
 		<div class="nav-element"><div class="nav-text">L'Association</div></div>
 		<div class="nav-element"><div class="nav-text">Contact</div></div>
 	</nav>
@@ -41,8 +41,8 @@
 <footer class="footer">
     <div class="footer-top">
         <div class="footer-links">
-            <<div class="footer-nav-element">@Html.ActionLink("Accueil", "Index", "Home", new { @id = 1 })</div>
-            <div class="footer-nav-element">@Html.ActionLink("Catalogue", "Index", "Catalog")</div>
+            <div class="footer-nav-element">@Html.ActionLink("Accueil", "Index", "Home", new { @id = 1 }, new { @class = "btn-link-footer" })</div>
+            <div class="footer-nav-element">@Html.ActionLink("Catalogue", "Index", "Catalog", new { @class = "btn-link-footer" })</div>
         </div>
 
         <img class="footer-logo" src="~/images/logo.png" />

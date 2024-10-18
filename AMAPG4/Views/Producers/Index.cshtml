@@ -1,48 +1,47 @@
-﻿@@using System.Globalization
+﻿@using System.Globalization
 
 @model IEnumerable<AMAPG4.Models.User.Producer>
 @{
     ViewBag.Title = "Catalogue des Producteurs";
-    Layout = "_layout";
+    Layout = "_Layout";
 }
 
 <head>
     <link rel="stylesheet" href="~/css/styles.css" />
 </head>
 
-<div> 
-    <p>
-        Ces producteurs collaborent avec Mon Panier Paysan pour créer un réseau local d'approvisionnement, permettant aux membres de bénéficier de produits frais, de qualité, et de soutenir une agriculture durable et respectueuse de l'environnement.
-        Nos producteurs sont situés à moins de 50 km de notre lieu de distribution (35 km à vol d'oiseau), et les livraisons sont regroupées pour minimiser leurs trajets.
-     </p>
-</div>
 <div class="producer-body">
-    <div class="column-container">
-        <div class="top-bar">
-            <form method="get" action="@Url.Action("Index", "Producers")">
-                <div class="producer-search">
-                    <input type="text" name="searchString" placeholder="Rechercher un producteur..." />
-                    <button type="submit">Rechercher</button>
-                </div>
-                <div class="order-by">  </div>
-            </form>
-        </div>
 
-        <div class="row-container">
-            <div class="filters"></div>
-
-            <div class="catalog-container">
-                @foreach (AMAPG4.Models.User.Producer producer in Model)
-                {
-                    <div class="product-card">
-                        <img class="producer-photo" src="~/images/ProducerImages/poule.png">
-                        <div class="producer-name">@producer.ContactName</div>                      
-                        <div class="details">
-                            <a href="@Url.Action("ProducerView", "Producers", new { id = producer.Id })">Détails</a>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
+    <div class="presentation-producer">
+        <p>
+            Ces producteurs collaborent avec Mon Panier Paysan pour créer un réseau local d'approvisionnement, permettant aux membres de bénéficier de produits frais, de qualité, et de soutenir une agriculture durable et respectueuse de l'environnement.
+            Nos producteurs sont situés à moins de 50 km de notre lieu de distribution (35 km à vol d'oiseau), et les livraisons sont regroupées pour minimiser leurs trajets.
+        </p>
     </div>
+    <div class="presentation-producer-bottom">
+    <div class="left-container-producer">
+
+        <form method="get" action="@Url.Action("Index", "Producers")">
+            <!-- Search bar -->
+            <input type="text" name="searchString" class="search-bar" placeholder="Rechercher un producteur..." />
+        </form>
+        </div>
+
+    <!-- Producers -->
+    <div class="producer-container">
+
+        @foreach (AMAPG4.Models.User.Producer producer in Model)
+        {
+            <div class="producer-card">
+                <a href="@Url.Action("ProducerView", "Producers", new { id = producer.Id })">
+                    <img class="producer-photo" src="~/images/ProducerImages/producteuroeufs.png" />
+                </a>
+                <div class="producer-name">@producer.ContactName</div>
+            </div>
+
+        }
+
+            </div>
+
+     </div>
 </div>

@@ -1,68 +1,71 @@
 ﻿@model AMAPG4.ViewModels.CreateUserAccountViewModel
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
-    <title>Page</title>
-</head>
-
-<h1>
-    Veuillez remplir les champs pour créer votre compte en tant que particulier :
-</h1>
-
-<h3> Vous êtes un producteur ou un Comité d'Entreprise ? <br /> Et vous souhaitez vous inscrire ? <br />  Il vous suffit de compléter le formulaire de contact et nous reprendrons contact avec vous dans les plus brefs délais!</h3>
-@using (Html.BeginForm())
-{
-        <div class="user-info">
-        @Html.LabelFor(m => m.UserAccount.Name, "Nom")
-        @Html.TextBoxFor(m => m.UserAccount.Name, new { @placeholder = "Nom" })
-        @Html.ValidationMessageFor(m => m.UserAccount.Name)
-    </div>
-    <div>
-        @Html.LabelFor(m => m.Individual.FirstName, "Prénom")
-        @Html.TextBoxFor(m => m.Individual.FirstName, new { @placeholder = "Prénom" })
-        @Html.ValidationMessageFor(m => m.Individual.FirstName)
-    </div>
-
-    <div>
-        @Html.LabelFor(m => m.UserAccount.Email, "Email")
-        @Html.TextBoxFor(m => m.UserAccount.Email, new { @placeholder = "Adresse email" })
-        @Html.ValidationMessageFor(m => m.UserAccount.Email)
-    </div>
-    <div>
-        @Html.LabelFor(m => m.UserAccount.Address, "Adresse")
-        @Html.TextBoxFor(m => m.UserAccount.Address, new { @placeholder = "Numéro et nom de rue, Code postal Commune" })
-        @Html.ValidationMessageFor(m => m.UserAccount.Address)
-    </div>
-    <div>
-        @Html.LabelFor(m => m.UserAccount.Phone, "Téléphone")
-        @Html.TextBoxFor(m => m.UserAccount.Phone, new { @placeholder = "0707070707" })
-        @Html.ValidationMessageFor(m => m.UserAccount.Phone)
-    </div>
-    <div>
-        @Html.Label("Voulez-vous être bénévole ?")
-        <p>
-         En tant que bénévole, vous serez chargé de l'accueil, de la réception des productions, de la préparation des paniers maraîchers, ainsi que de diverses tâches administratives. Votre engagement peut réellement faire la différence !
-        </p>
-        <div>
-            @Html.RadioButtonFor(m => m.Individual.IsVolunteer, true, new { id = "volunteerYes" })
-            @Html.Label("volunteerYes", "Oui")
-        </div>
-        <div>
-            @Html.RadioButtonFor(m => m.Individual.IsVolunteer, false, new { id = "volunteerNo" })
-            @Html.Label("volunteerNo", "Non")
-        </div>
-    </div>
-    <div>
-        @Html.LabelFor(m => m.UserAccount.Password, "Mot de passe")
-        @Html.PasswordFor(m => m.UserAccount.Password, new { @placeholder = "Mot de passe" })
-        @Html.ValidationMessageFor(m => m.UserAccount.Password)
-    </div>
-    <div>
-        @Html.LabelFor(m => m.ConfirmPassword, "Confirmez votre mot de passe")
-        @Html.PasswordFor(m => m.ConfirmPassword, new { @placeholder = "Confirmez votre mot de passe" })
-        @Html.ValidationMessageFor(m => m.ConfirmPassword)
-    </div>
-    <input type="submit" value="Créer" />
-    <p>En cliquant sur "Créer", vous serez redirigé vers une page de paiement pour régler votre cotisation annuelle de 15 €.</p>
+@{
+    ViewBag.Title = "Inscription";
+    Layout = "_Layout";
 }
+<div class="user-profile">
+    <div class="titre-remplissage">
+               <h2>Veuillez remplir les champs pour créer votre compte en tant que particulier </h2>
+    </div>
+    <div class="text-cas-particulier">
+    <p> Vous êtes un producteur ou un Comité d'Entreprise ? <br /> Et vous souhaitez vous inscrire ? <br />  Il vous suffit de compléter le formulaire de contact et nous reprendrons contact avec vous dans les plus brefs délais!</p>
+        </div>
+    <div>
+    @using (Html.BeginForm())
+    {
+        <div>
+            @Html.LabelFor(m => m.UserAccount.Name, "Nom")
+            @Html.TextBoxFor(m => m.UserAccount.Name, new { @placeholder = "Nom" })
+            @Html.ValidationMessageFor(m => m.UserAccount.Name)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.Individual.FirstName, "Prénom")
+            @Html.TextBoxFor(m => m.Individual.FirstName, new { @placeholder = "Prénom" })
+            @Html.ValidationMessageFor(m => m.Individual.FirstName)
+        </div>
+
+        <div>
+            @Html.LabelFor(m => m.UserAccount.Email, "Email")
+            @Html.TextBoxFor(m => m.UserAccount.Email, new { @placeholder = "Adresse email" })
+            @Html.ValidationMessageFor(m => m.UserAccount.Email)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.UserAccount.Address, "Adresse")
+            @Html.TextBoxFor(m => m.UserAccount.Address, new { @placeholder = "Numéro et nom de rue, Code postal Commune" })
+            @Html.ValidationMessageFor(m => m.UserAccount.Address)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.UserAccount.Phone, "Téléphone")
+            @Html.TextBoxFor(m => m.UserAccount.Phone, new { @placeholder = "0707070707" })
+            @Html.ValidationMessageFor(m => m.UserAccount.Phone)
+        </div>
+        <div>
+            @Html.Label("Voulez-vous être bénévole ?")
+            <p>
+                En tant que bénévole, vous serez chargé de l'accueil, de la réception des productions, de la préparation des paniers maraîchers, ainsi que de diverses tâches administratives. Votre engagement peut réellement faire la différence !
+            </p>
+            <div>
+                @Html.RadioButtonFor(m => m.Individual.IsVolunteer, true, new { id = "volunteerYes" })
+                @Html.Label("volunteerYes", "Oui")
+            </div>
+            <div>
+                @Html.RadioButtonFor(m => m.Individual.IsVolunteer, false, new { id = "volunteerNo" })
+                @Html.Label("volunteerNo", "Non")
+            </div>
+        </div>
+        <div>
+            @Html.LabelFor(m => m.UserAccount.Password, "Mot de passe")
+            @Html.PasswordFor(m => m.UserAccount.Password, new { @placeholder = "Mot de passe" })
+            @Html.ValidationMessageFor(m => m.UserAccount.Password)
+        </div>
+        <div>
+            @Html.LabelFor(m => m.ConfirmPassword, "Confirmez votre mot de passe")
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @placeholder = "Confirmez votre mot de passe" })
+            @Html.ValidationMessageFor(m => m.ConfirmPassword)
+        </div>
+
+        <input type="submit" value="Créer" />
+        <p>En cliquant sur "Créer", vous serez redirigé vers une page de paiement pour régler votre cotisation annuelle de 15 €.</p>
+    }
+    </div>
+</div>

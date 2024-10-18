@@ -10,7 +10,11 @@ namespace AMAPG4.Controllers
 	public class ProducerController : Controller
 	{
 		private ProducerDal _producerDal;
-		public IActionResult Index(string searchString)
+        public ProducerController()
+        {
+            _producerDal = new ProducerDal();
+        }
+        public IActionResult Index(string searchString)
 		{
 			List<Producer> producers =_producerDal.GetAllProducers();
 

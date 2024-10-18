@@ -2,14 +2,14 @@
 
 @{
 	ViewBag.Title = @Model.ContactName;
-	Layout = "_layout";
+	Layout = "_Layout";
 }
 
 
-<div class="product-container">
-	<img class="producer-photo" src="~/images//ProducerImages/poule.png" />
+<div class="producer-container">
+	<img class="producer-photo" src="~/images//ProducerImages/producteuroeufs.png" />
 
-	<div class="product-details">
+	<div class="producer-details">
 		<h2>@Model.ContactName</h2>
 		<p>
 			< Située au cœur des paysages pittoresques de Savoie, Les Jardins de Savoie est une ferme biologique qui s'engage à cultiver des légumes de saison. 
@@ -21,4 +21,4 @@
 	</div>
 
 </div>
-<a href="@Url.Action("Index", "Catalog")">Retour à la Liste des Produits</a>
+<a href="@Url.Action("Index", "Producers")">Retour à la Liste des Produits</a>
