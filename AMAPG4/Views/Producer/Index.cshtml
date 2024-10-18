@@ -21,7 +21,7 @@
     <div class="presentation-producer-bottom">
     <div class="left-container-producer">
 
-        <form method="get" action="@Url.Action("Index", "Producers")">
+        <form method="get" action="@Url.Action("Index", "Producer")">
             <!-- Search bar -->
             <input type="text" name="searchString" class="search-bar" placeholder="Rechercher un producteur..." />
         </form>
@@ -33,7 +33,7 @@
         @foreach (AMAPG4.Models.User.Producer producer in Model)
         {
             <div class="producer-card">
-                <a href="@Url.Action("ProducerView", "Producers", new { id = producer.Id })">
+                <a href="@Url.Action("ProducerView", "Producer", new { id = producer.Id })">
                     <img class="producer-photo" src="~/images/ProducerImages/producteuroeufs.png" />
                 </a>
                 <div class="producer-name">@producer.ContactName</div>
