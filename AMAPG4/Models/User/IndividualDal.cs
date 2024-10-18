@@ -32,6 +32,11 @@ namespace AMAPG4.Models.User
         {
             return _bddContext.Individuals.FirstOrDefault(i => i.Id == id);
         }
+        public UserAccount GetUserAccount(int id)
+        {
+            int AccountId = GetIndividualById(id).AccountId;
+            return _bddContext.UserAccounts.FirstOrDefault(u => u.Id == AccountId);
+        }
 
         // Ajoute un nouvel individu avec son compte utilisateur associé
         public int CreateIndividual(string firstName, DateTime inscriptionDate, bool isContributionPaid, bool isVolunteer,
