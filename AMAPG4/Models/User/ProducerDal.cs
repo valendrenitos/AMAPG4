@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 using System.Linq;
 using System.Security.Principal;
 
@@ -18,7 +19,7 @@ namespace AMAPG4.Models.User
         // Récupère tous les producteurs
         public List<Producer> GetAllProducers()
         {
-            return _bddContext.Producers.ToList();
+            return _bddContext.Producers.Include(i => i.Account).ToList();
         }
 
         // Récupère un producteur par son Id
@@ -26,26 +27,24 @@ namespace AMAPG4.Models.User
         {
             return _bddContext.Producers.FirstOrDefault(p => p.Id == id);
         }
-        public UserAccount GetUserAccount(int id)
-        {
-            int AccountId = GetProducerById(id).AccountId;
-            return _bddContext.UserAccounts.FirstOrDefault(u => u.Id == AccountId);
-        }
 
         // Ajoute un nouveau producteur avec son compte utilisateur associé
         public int CreateProducer(string siret, string contactName, string rib,
                              string email, string password, string name, string address, string phone)
         {
-            // 1. Crée d'abord le compte utilisateur associé
-            int userAccountId = _userAccountDal.CreateUserAccount(address, email, phone, name, password);
-            
-            // 2. Crée le producteur et l'associe au compte utilisateur
             Producer producer = new Producer()
             {
                 Siret = siret,
                 ContactName = contactName,
                 RIB = rib,
-                AccountId = userAccountId
+                Account = new UserAccount()
+                {
+                    Address = address,
+                    Email = email,
+                    Phone = phone,
+                    Name = name,
+                    Password = password
+                }
             };
 
             // 3. Ajoute le producteur à la base de données
@@ -69,9 +68,9 @@ namespace AMAPG4.Models.User
                 _bddContext.SaveChanges();
 
                 // Mettre à jour le compte utilisateur associé
-                if (_userAccountDal.GetUserAccount(producer.AccountId) != null)
+                if (producer.Account != null)
                 {
-                    _userAccountDal.UpdateUserAccount(producer.AccountId, account.Address, account.Email, account.Phone, account.Name, account.Password);
+                    _userAccountDal.UpdateUserAccount(producer.Account.Id, account.Address, account.Email, account.Phone, account.Name, account.Password);
                 }
             }
         }
@@ -101,7 +100,7 @@ namespace AMAPG4.Models.User
         }
         public Producer GetProducerByUserAccount(int userAccountId)
         {
-            return _bddContext.Producers.FirstOrDefault(p => p.AccountId == userAccountId);
+            return _bddContext.Producers.FirstOrDefault(p => p.Account.Id == userAccountId);
         }
 
 

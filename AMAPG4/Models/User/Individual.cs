@@ -10,6 +10,6 @@ namespace AMAPG4.Models.User
         public DateTime InscriptionDate { get; set; }
         public bool IsContributionPaid { get; set; }
         public bool IsVolunteer { get; set; }
-        public virtual int AccountId { get; set; }
+        public virtual UserAccount Account { get; set; }
     }
 }

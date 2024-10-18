@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -24,7 +25,7 @@ namespace AMAPG4.Models.User
         // Récupère tous les individus
         public List<Individual> GetAllIndividuals()
         {
-            return _bddContext.Individuals.ToList();
+            return _bddContext.Individuals.Include(i => i.Account).ToList();
         }
 
         // Récupère un individu par son Id
@@ -32,27 +33,24 @@ namespace AMAPG4.Models.User
         {
             return _bddContext.Individuals.FirstOrDefault(i => i.Id == id);
         }
-        public UserAccount GetUserAccount(int id)
-        {
-            int AccountId = GetIndividualById(id).AccountId;
-            return _bddContext.UserAccounts.FirstOrDefault(u => u.Id == AccountId);
-        }
-
+  
         // Ajoute un nouvel individu avec son compte utilisateur associé
         public int CreateIndividual(string firstName, DateTime inscriptionDate, bool isContributionPaid, bool isVolunteer,
                                  string email, string password, string name, string address, string phone)
         {
-            // 1. Crée d'abord le compte utilisateur associé
-            int userAccountId = _userAccountDal.CreateUserAccount(address, email, phone, name, password);
-            
-            // 2. Crée l'individu et l'associe au compte utilisateur
             Individual individual = new Individual()
             {
                 FirstName = firstName,
                 InscriptionDate = inscriptionDate,
                 IsContributionPaid = isContributionPaid,
                 IsVolunteer = isVolunteer,
-                AccountId = userAccountId
+                Account = new UserAccount(){
+                    Address = address,
+                    Email = email,
+                    Phone = phone,
+                    Name = name,
+                    Password = password
+                }
             };
 
             // 3. Ajoute l'individu à la base de données
@@ -79,9 +77,9 @@ namespace AMAPG4.Models.User
                 _bddContext.SaveChanges();
 
                 // 2. Mettre à jour le compte utilisateur associé
-                if (_userAccountDal.GetUserAccount(individual.AccountId) != null)
+                if (individual.Account != null)
                 {
-                    _userAccountDal.UpdateUserAccount(individual.AccountId, account.Address, account.Email, account.Phone, account.Name, account.Password);
+                    _userAccountDal.UpdateUserAccount(individual.Account.Id, account.Address, account.Email, account.Phone, account.Name, account.Password);
                 }
             }
         }
@@ -111,7 +109,7 @@ namespace AMAPG4.Models.User
         }
         public Individual GetIndividualByUserAccount(int userAccountId)
         {
-            return _bddContext.Individuals.FirstOrDefault(i => i.AccountId == userAccountId);
+            return _bddContext.Individuals.FirstOrDefault(i => i.Account.Id == userAccountId);
         }
 
 

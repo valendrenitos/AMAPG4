@@ -17,6 +17,6 @@ namespace AMAPG4.Models.User
         [StringLength(23, MinimumLength = 2, ErrorMessage = "Le RIB doit comporter 23 caractères.")]
         [RegularExpression(@"^[A-Za-z0-9]{23}$", ErrorMessage = "Le RIB doit contenir exactement 23 caractères alphanumériques.")]
         public string RIB { get; set; }
-        public virtual int AccountId { get; set; }
+        public virtual UserAccount Account { get; set; }
     }
 }

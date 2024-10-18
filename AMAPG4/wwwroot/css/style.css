@@ -143,3 +143,47 @@ input[type="submit"] {
         grid-template-columns: 1fr;
     }
 }
+.dashboard-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.dashboard-block {
+    width: 45%;
+    height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    padding: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.table-container {
+    height: 100%;
+}
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .dashboard-table th, .dashboard-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .dashboard-table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+
+    .dashboard-table td {
+        word-wrap: break-word;
+    }
+
+.dashboard-block h2 {
+    text-align: center;
+}

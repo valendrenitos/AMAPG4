@@ -39,14 +39,17 @@ namespace AMAPG4.Controllers
                     ModelState.Remove(key);
                 }
             }
+            Console.WriteLine("1");
             //On ne vérifie que les champs Email et Password
             if (ModelState.IsValid)
             {
+                Console.WriteLine("2");
                 using (UserAccountDal userAccountDal = new UserAccountDal())
                 {   //On vérifie qu'un utilisateur avec ce Nom + MDP existe en allant le chercher dans la BDD
                     UserAccount userAccount =
                         userAccountDal.Authentication(viewModel.UserAccount.Email, viewModel.UserAccount.Password);
-                   
+                    Console.WriteLine("3");
+                    Console.WriteLine(viewModel.UserAccount.Email +" " + viewModel.UserAccount.Password +" "+ userAccount);
                     if (userAccount != null)
                     {
                         List<Claim> userClaims = new List<Claim>()
@@ -60,23 +63,25 @@ namespace AMAPG4.Controllers
                         ClaimsPrincipal userPrincipal = new ClaimsPrincipal(new[] { claimsIdentity });
 
                         HttpContext.SignInAsync(userPrincipal);
-                        
+                        Console.WriteLine("4"); 
                     }
                     else
                     {
                         ModelState.AddModelError("UserAccount.Email", "Email et/ou mot de passe incorrect(s)");
-                     
+                        Console.WriteLine("5");
                     }
-
+                    Console.WriteLine("6");
                 }
                 if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
                 {
+                    Console.WriteLine("7");
                     return Redirect(returnUrl);
                 }
-                    
 
+                Console.WriteLine("8");
                 return Redirect("/");
             }
+            Console.WriteLine("9");
             return View(viewModel);
         }
 

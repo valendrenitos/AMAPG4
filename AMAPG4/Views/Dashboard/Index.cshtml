@@ -1,0 +1,210 @@
+﻿@model AMAPG4.ViewModels.DashboardViewModel
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <title>Dashboard</title>
+</head>
+
+<div class="dashboard-container">
+
+    <!-- Bloc pour les Individuals -->
+    <div class="dashboard-block">
+        <h2>Individus</h2>
+        <div class="table-container">
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Date d'inscription</th>
+                        <th>Bénévole</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var individual in Model.Individuals)
+                    {
+                        <tr>
+                            <td>@individual.Account.Name</td>
+                            <td>@individual.FirstName</td>
+                            <td>@individual.Account.Email</td>
+                            <td>@individual.Account.Phone</td>
+                            <td>@individual.InscriptionDate.ToShortDateString()</td>
+                            <td>@individual.IsVolunteer</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bloc pour les Producers -->
+    <div class="dashboard-block">
+        <h2>Producteurs</h2>
+        <div class="table-container">
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Nom du contact</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>SIRET</th>
+                        <th>RIB</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var producer in Model.Producers)
+                    {
+                        <tr>
+                            <td>@producer.Account.Name</td>
+                            <td>@producer.ContactName</td>
+                            <td>@producer.Account.Email</td>
+                            <td>@producer.Account.Phone</td>
+                            <td>@producer.Siret</td>
+                            <td>@producer.RIB</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bloc pour les CEs -->
+    <div class="dashboard-block">
+        <h2>Comités d'entreprise (CE)</h2>
+        <div class="table-container">
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Nom du contact</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Nombre d'employés</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var ce in Model.CEs)
+                    {
+                        <tr>
+                            <td>@ce.Account.Name</td>
+                            <td>@ce.ContactName</td>
+                            <td>@ce.Account.Email</td>
+                            <td>@ce.Account.Phone</td>
+                            <td>@ce.NumberOfEmployees</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bloc pour les Products -->
+    <div class="dashboard-block">
+        <h2>Produits</h2>
+        <div class="table-container">
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Nom du produit</th>
+                        <th>Description</th>
+                        <th>Prix</th>
+                        <th>Stock</th>
+                        <th>Disponible</th>
+                        <th>Date limite</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var product in Model.Products)
+                    {
+                        <tr>
+                            <td>@product.ProductName</td>
+                            <td>@product.Description</td>
+                            <td>@product.Price</td>
+                            <td>@product.Stock</td>
+                            <td>@product.IsAvailable</td>
+                            <td>@product.LimitDate.ToShortDateString()</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+
+@section Styles {
+    <style>
+        .dashboard-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: space-around;
+        }
+
+        .dashboard-block {
+            width: 45%;
+            height: 300px;
+            overflow-y: auto;
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 10px;
+            background-color: #f9f9f9;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+            .dashboard-block h2 {
+                text-align: center;
+                color: #333;
+                font-size: 1.5em;
+                margin-bottom: 10px;
+                border-bottom: 2px solid #007bff;
+                padding-bottom: 5px;
+            }
+
+        .table-container {
+            height: 100%;
+        }
+
+        .dashboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: #fff;
+        }
+
+            .dashboard-table th, .dashboard-table td {
+                border: 1px solid #ddd;
+                padding: 8px;
+                text-align: left;
+            }
+
+            .dashboard-table th {
+                background-color: #007bff;
+                color: white;
+                font-weight: bold;
+            }
+
+            .dashboard-table td {
+                word-wrap: break-word;
+                color: #333;
+            }
+
+        .dashboard-block::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .dashboard-block::-webkit-scrollbar-thumb {
+            background-color: #007bff;
+            border-radius: 10px;
+        }
+
+        .dashboard-block::-webkit-scrollbar-track {
+            background-color: #f1f1f1;
+        }
+    </style>
+}
