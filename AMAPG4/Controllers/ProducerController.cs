@@ -26,7 +26,7 @@ namespace AMAPG4.Controllers
 			return View(producers);
 
 		}
-		public IActionResult ProductView(int id)
+		public IActionResult ProducerView(int id)
 		{
 			Producer producer = _producerDal.GetAllProducers().FirstOrDefault(p => p.Id == id);
 			if (producer == null)

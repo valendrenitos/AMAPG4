@@ -1,60 +1,62 @@
 ﻿
-<div class="nav-element">@Html.ActionLink("Accueil", "Index", "Home", new { @id = 1 }, new { @class = "nav-link" })</div>
-<div class="nav-element">@Html.ActionLink("Catalogue", "Index", "Catalog", null, new { @class = "nav-link" })</div>
-<div class="nav-element">@Html.ActionLink("Nos Producteurs", "Index", "Producer", null, new { @class = "nav-link" })</div>
-<div class="nav-element">@Html.ActionLink("L'Association", "Index", "Organization", null, new { @class = "nav-link" })</div>
-<div class="nav-element">@Html.ActionLink("Contact", "Index", "Contact", null, new { @class = "nav-link" })</div>
+    <!-- Navigation principale -->
+    <div class="nav-element">@Html.ActionLink("Accueil", "Index", "Home", new { @id = 1 }, new { @class = "nav-link" })</div>
+    <div class="nav-element">@Html.ActionLink("Catalogue", "Index", "Catalog", null, new { @class = "nav-link" })</div>
+    <div class="nav-element">@Html.ActionLink("Nos Producteurs", "Index", "Producer", null, new { @class = "nav-link" })</div>
+    <div class="nav-element">@Html.ActionLink("L'Association", "Index", "Organization", null, new { @class = "nav-link" })</div>
+    <div class="nav-element">@Html.ActionLink("Contact", "Index", "Contact", null, new { @class = "nav-link" })</div>
 
+   
 
+    <!-- Navigation conditionnelle en fonction du ViewModel -->
+    <div class="navbar-nav">
+        @if (Model.IsProducer)
+        {
+            <div class="nav-element"><div class="nav-text">Mes Produits</div></div>
+            <!--<li class="nav-item">
+                <a class="nav-link" href="/Product/MesProduits">Mes Produits</a>
+            </li>   -->
+        }
+        @if (Model.IsIndividual)
+        {
+            <div class="nav-element"><div class="nav-text">Mon compte Individuel</div></div>
+            <!--  <li class="nav-item">
+                <a class="nav-link" href="/Account/Individual">Mon Compte Individuel</a>
+            </li>  -->
+        }
+        @if (Model.IsCE)
+        {
 
-<div class="navbar-nav">
-    @if (Model.IsProducer)
-    {
-        <div class="nav-element"><div class="nav-text">Mes Produits</div></div>
-        <!--<li class="nav-item">
-            <a class="nav-link" href="/Product/MesProduits">Mes Produits</a>
-        </li>   -->
-    }
-    @if (Model.IsIndividual)
-    {
-        <div class="nav-element"><div class="nav-text">Mon compte Individuel</div></div>
-        <!--  <li class="nav-item">
-            <a class="nav-link" href="/Account/Individual">Mon Compte Individuel</a>
-        </li>  -->
-        
-    }
-    @if (Model.IsCE)
-    {
+            <div class="nav-element"><div class="nav-text">Compte CE</div></div>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="/Account/CE">Compte CE</a>
+            </li>   -->
+        }
 
-        <div class="nav-element"><div class="nav-text">Compte CE</div></div>
-        <!-- <li class="nav-item">
-            <a class="nav-link" href="/Account/CE">Compte CE</a>
-        </li>   -->
-    }
+        <!-- Liens basés sur les rôles, sans passer par le ViewModel -->
+        @if (User.IsInRole("Admin"))
+        {
+            <div class="nav-element"><div class="nav-text">Admin Dashboard</div></div>
 
-    <!-- Liens basés sur les rôles, sans passer par le ViewModel -->
-    @if (User.IsInRole("Admin"))
-    {
-        <div class="nav-element"><div class="nav-text">Admin Dashboard</div></div>
+            <!-- <li class="nav-item">
+                <a class="nav-link" href="/Admin">Admin Dashboard</a>
+            </li>   -->
+        }
+        @if (User.IsInRole("Manager"))
+        {
 
-        <!-- <li class="nav-item">
-            <a class="nav-link" href="/Admin">Admin Dashboard</a>
-        </li>   -->
-    }
-    @if (User.IsInRole("Manager"))
-    {
+            <div class="nav-element"><div class="nav-text">Manager Dashboard</div></div>
+            <!--   <li class="nav-item">
+                <a class="nav-link" href="/Manager">Manager Dashboard</a>
+            </li>   -->
+        }
+        @if (User.IsInRole("Utilisateur"))
+        {
 
-        <div class="nav-element"><div class="nav-text">Manager Dashboard</div></div>
-        <!--   <li class="nav-item">
-            <a class="nav-link" href="/Manager">Manager Dashboard</a>
-        </li>   -->
-    }
-    @if (User.IsInRole("Utilisateur"))
-    {
+            <div class="nav-element"><div class="nav-text">Mon compte</div></div>
+            <!--   <li class="nav-item">
+                <a class="nav-link" href="/Account">Mon Compte</a>
+            </li>  -->
+        }
+    </div>
 
-        <div class="nav-element"><div class="nav-text">Mon compte</div></div>
-        <!--   <li class="nav-item">
-            <a class="nav-link" href="/Account">Mon Compte</a>
-        </li>  -->
-    }
-</div>
