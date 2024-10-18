@@ -34,22 +34,22 @@ namespace AMAPG4
 
             // Initialisation des données
             
-                UserAccountDal userAccountDal = new UserAccountDal();
-                userAccountDal.InitializeDataBase();
+            IndividualDal individualDal = new IndividualDal();
+            individualDal.Initialize();
 
-                IndividualDal individualDal = new IndividualDal();
-                individualDal.Initialize();
+            CEDal ceDal = new CEDal();
+            ceDal.Initialize();
 
-                CEDal ceDal = new CEDal();
-                ceDal.Initialize();
+            ProducerDal producerDal = new ProducerDal();
+            producerDal.Initialize();
 
-                ProducerDal producerDal = new ProducerDal();
-                producerDal.Initialize();
+            ProductDal productDal = new ProductDal();
+            productDal.InitializeDataBase();
 
-                ProductDal productDal = new ProductDal();
-                productDal.InitializeDataBase();
-            
-                OrderLineDal orderLineDal = new OrderLineDal();
+            UserAccountDal userAccountDal = new UserAccountDal();
+            userAccountDal.InitializeDataBase();
+
+            OrderLineDal orderLineDal = new OrderLineDal();
                 orderLineDal.Initialize();
 
             app.UseRouting();
