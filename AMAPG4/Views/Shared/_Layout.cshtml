@@ -24,6 +24,7 @@
 		@if (User.Identity.IsAuthenticated)
 		{
 			<div class="btn-account"><div class="btn-text">@Html.ActionLink("Mon Compte", "Index", "Account", null, new { @class = "btn-link" })</div></div>
+            <div class="btn-account"><div class="btn-text">@Html.ActionLink("Mon Panier", "Index", "Order", null, new { @class = "btn-link" })</div></div>
 			<div class="btn-logout"><div class="btn-text">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, new { @class = "btn-link" })</div></div>
 		}
 		else
