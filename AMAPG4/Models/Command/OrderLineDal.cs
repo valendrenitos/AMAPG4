@@ -81,26 +81,45 @@ namespace AMAPG4.Models.Command
                 orderLineType = OrderLineType.Reserved,
                 CommandId = TempCommandId,
             };
-
+            product.Stock = product.Stock - quantity;
             _bddContext.OrderLines.Add(orderLine);
             _bddContext.SaveChanges();
             return orderLine.Id;
         }
         // fonction permettant d'update une orderline
-        public void UpdateOrderLine(OrderLine orderline, int qantity)
+        public void UpdateOrderLine(OrderLine orderline, int quantity)
         {
-            orderline.Quantity = qantity;
-         if (orderline.Quantity > orderline.Product.Stock) {     
-                orderline.Quantity = orderline.Product.Stock;
-            }
-            if (orderline.Quantity <= 0)
+
+
+
+            //OrderLine order = _bddContext.OrderLines.First(od => od.Id == orderline.Id);
+            if (quantity > orderline.Product.Stock)
             {
-                _bddContext.Remove(orderline);
+                quantity = orderline.Product.Stock;
+                orderline.Quantity = orderline.Quantity + quantity;
+                quantity = 0;
+                UpdateStockFromOrder(orderline.Product, quantity);
+
+
             }
+            else if (orderline.Quantity <= 0)
+            {
+                quantity = orderline.Product.Stock + orderline.Quantity;
+                UpdateStockFromOrder(orderline.Product, quantity);
+                _bddContext.Remove(orderline);
+
+            }
+            else
+            {
+				orderline.Quantity = orderline.Quantity + quantity;
+                quantity= orderline.Product.Stock - quantity;
+                UpdateStockFromOrder(orderline.Product, quantity);
+			}
+    
+			_bddContext.SaveChanges();
 
 
-
-        }
+		}
 
 
         // Fonction permettant de récupérer un numéro de commande ou d'en générer un
@@ -144,7 +163,7 @@ namespace AMAPG4.Models.Command
         // fonction rattacher au bouton d'ajout d'un produit
          public void CheckOrderLine(int useraccountId, int quantity, int productid)
         {
-            OrderLine orderLine = _bddContext.OrderLines.FirstOrDefault(orderline =>
+            OrderLine orderLine = _bddContext.OrderLines.Include(od => od.Product).FirstOrDefault(orderline =>
                 (orderline.orderLineType == OrderLineType.Reserved) && (orderline.UserAccountId == useraccountId) && (orderline.Product.Id == productid));
             if (orderLine == null)
             {
@@ -152,11 +171,42 @@ namespace AMAPG4.Models.Command
             }
             else
             {
-                
+                Console.Write(orderLine.Product.Stock);
                 UpdateOrderLine(orderLine, quantity);
             }
 
         }
-
+        public void UpdateStockFromOrder(Product product, int quantity)
+        {
+            ProductDal productDal = new ProductDal();
+            productDal.UpdateProduct(product.Id, product.ProductName, product.Description, product.IsAvailable, product.Price, quantity, product.LimitDate, product.ProductType);
+        }
+        public void UpdateQuantityFromCart(OrderLine orderline, int quantity)
+        {
+            int diff = quantity- orderline.Quantity;
+            if (diff > orderline.Product.Stock)
+            {
+                quantity = orderline.Product.Stock;
+                orderline.Quantity = orderline.Quantity + quantity;
+                quantity = 0;
+                UpdateStockFromOrder(orderline.Product, quantity);
+            }
+            else if (quantity == 0)
+            {
+                _bddContext.Remove(orderline);
+            }
+            else
+            {
+                orderline.Quantity = quantity;
+                quantity= orderline.Product.Stock-diff;
+                UpdateStockFromOrder(orderline.Product, quantity);
+            }
+            _bddContext.SaveChanges();  
+        }
+        public OrderLine GetOrderLineById(int id)
+        {
+            return _bddContext.OrderLines.Include(od => od.Product).FirstOrDefault(orderline =>
+                (orderline.Id == id));
+        }
 
 } }

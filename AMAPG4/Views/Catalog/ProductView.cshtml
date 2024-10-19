@@ -10,11 +10,35 @@
 	<img class="product-photo" src="~/images//ProductImages/cheese.png" />
 
 	<div class="product-details">
-		<h2>@Model.ProductName</h2>
-		<p><strong>Prix :</strong> @Model.Price.ToString("C")</p>
-		<p><strong>Description :</strong> @Model.Description</p>
-		<p><strong>Disponibilité :</strong> @(Model.IsAvailable ? "En Stock" : "Hors Stock")</p>
-		<button class="btn-add-to-basket">Ajouter</button>
+			@using (Html.BeginForm()){
+			
+				<h2>@Model.ProductName</h2>
+				<p><strong>Prix :</strong> @Model.Price.ToString("C")</p>
+				<p><strong>Description :</strong> @Model.Description</p>
+				
+					@if (Model.IsAvailable == true) {
+					<p>
+						<strong>Disponibilité :</strong> En Stock
+					</p>
+					}
+					else
+					{
+					<p>
+						<strong>Disponibilité :</strong> Hors Stock
+					</p>
+					}
+					
+				<hidden>@Html.HiddenFor(m => m.ProductName)</hidden>
+				<p> @Html.LabelFor(m => m.Quantity,"Quantité")</p>
+				<p> @Html.TextBoxFor(m => m.Quantity, new { type = "number", min = "1", max = @Model.Stock })</p>
+				
+                <input type="submit" value="Ajouter Au Panier" />
+				
+				<br />
+			
+			}
+			
+        
 	</div>
 
 </div>

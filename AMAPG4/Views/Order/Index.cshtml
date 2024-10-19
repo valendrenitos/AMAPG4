@@ -2,6 +2,11 @@
 @using AMAPG4.Models.Command
 
 @model AMAPG4.ViewModels.OrderLineViewModel
+
+@{
+  
+    Layout = "_layout";
+}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,25 +16,54 @@
 <h3>
     Id utilisateur login :
     @Model.UserActualId
-</h3>
 
-
-@if (Model.OrderLinesCurrent != null)
+    @if (Model.OrderLinesCurrent != null)
 {
-    <div> Votre panier contient : </div>
+        <div> Votre panier contient : </div>
     @foreach (OrderLine orderLine in Model.OrderLinesCurrent)
     {
-        <p>@orderLine.Product.ProductName @orderLine.Quantity @orderLine.Total </p>
+
+            <p>@orderLine.Product.ProductName @orderLine.Quantity @orderLine.Total </p>
+
+
+            
+        @using (Html.BeginForm())
+            {
+                Model.OrderLine = orderLine;
+                Model.OrderLineId = Model.OrderLine.Id; 
+                <hidden>  @Html.HiddenFor(m => m.OrderLineId)</hidden>
+                <p> @Html.LabelFor(m => m.NewQuantity, "Quantité : ")
+                     @Html.TextBoxFor(m => m.NewQuantity, new { type = "number", min = "0", max = @Model.OrderLine.Product.Stock + @Model.OrderLine.Quantity, @placeholder = @Model.OrderLine.Quantity , OrderLine = orderLine})
+                </p>
+              
+            <input type="submit" value="Changer la quantité" />
+            }
+
+            @using (Html.BeginForm())
+            {
+                Model.OrderLine = orderLine;
+                Model.OrderLineId = Model.OrderLine.Id;
+                Model.NewQuantity = 0;
+                <hidden>  @Html.HiddenFor(m => m.OrderLineId)</hidden>
+                <hidden>  @Html.HiddenFor(m => m.NewQuantity)</hidden>
+
+                <input type="submit" value="Supprimer" />
+            }
     }
 
 }
-else 
+else
 {
 
-    <div>
-        Le panier est Vide !
-    </div>
-    
+        <div>
+            Le panier est Vide !
+        </div>
 
 
-}
+    }
+</h3>
+
+
+
+
+<div class="nav-element">@Html.ActionLink("Continuer mes achats", "Index", "Catalog", new { @class = "return-catalog" })</div>
