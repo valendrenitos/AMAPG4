@@ -404,3 +404,54 @@
 .dashboard-block h2 {
     text-align: center;
 }
+
+
+
+/*******************************************************************/
+/**************************STYLES FOR LA FERME**********************/
+/*******************************************************************/
+
+.la-ferme-index {
+    display: flex;
+    justify-content: center;
+    align-items:center;
+
+}
+
+.la-ferme-links-container {
+    display: flex;
+    margin-top: 3rem;
+    margin-bottom:4rem;
+}
+
+.la-ferme-link {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin:1rem;
+    width: 21rem;
+    height: 34rem;
+}
+
+.la-ferme-img {
+    width: 18rem;
+    height: 18rem;
+    margin: 1rem;
+    border-radius: 5rem;
+    align-content: center;
+    transition: transform 0.3s ease;
+}
+.la-ferme-link:hover .la-ferme-img {
+    transform: scale(1.05);
+}
+
+.la-ferme-link h2 {
+    text-align: center;
+    color: #285146;
+}
+
+.la-ferme-txt {
+    text-align: center;
+    font-size: 1.05rem;
+    color: #285146;
+}

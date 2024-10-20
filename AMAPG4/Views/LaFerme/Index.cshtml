@@ -1,0 +1,46 @@
+﻿@{
+	ViewBag.Title = "La Ferme";
+	Layout = "_Layout";
+}
+
+<head>
+	<link rel="stylesheet" href="~/css/styles.css" />
+</head>
+
+<div class="la-ferme-index">
+
+	
+
+	<div class="la-ferme-links-container">
+		<div class="la-ferme-link">
+			<a href="@Url.Action("", "LaFerme")">
+				<img class="la-ferme-img" src="~/images/lafermeimages/panier_3.jpg" />
+			</a>
+			<h2>Les paniers</h2>
+			<div class="la-ferme-txt">Le panier propose des produits frais et locaux, sélectionnés auprès de nos producteurs 
+				partenaires. Chaque semaine, il varie selon les récoltes et les saisons. Commandez en ligne et récupérez-le 
+				lors de la distribution hebdomadaire.</div>
+		</div>
+
+		<div class="la-ferme-link">
+			<a href="@Url.Action("", "LaFerme")">
+				<img class="la-ferme-img" src="~/images/lafermeimages/cheese_bread.jpeg" />
+			</a>
+			<h2>Produits non maraîchers</h2>
+			<div class="la-ferme-txt">Nous offrons une gamme variée de produits non maraîchers, tels que des confitures artisanales, 
+				du miel local, des œufs frais et des produits d’épicerie fine. Tous proviennent de producteurs locaux engagés 
+				dans une démarche durable.</div>
+		</div>
+
+		<div class="la-ferme-link">
+			<a href="@Url.Action("", "LaFerme")">
+				<img class="la-ferme-img" src="~/images/lafermeimages/activity.png" />
+			</a>
+			<h2>Ateliers</h2>
+			<div class="la-ferme-txt">Nos ateliers sont des moments d’échange conviviaux, ouverts à tous ceux qui souhaitent découvrir 
+				l’agriculture durable, la cuisine de saison ou le jardinage écologique. Encadrés par des experts, ils permettent 
+d’apprendre de nouvelles pratiques tout en contribuant à la transition écologique.</div>
+		</div>
+	</div>
+</div>
+
