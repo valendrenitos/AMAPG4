@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using AMAPG4.Models.ContactForm;
 
 
 namespace AMAPG4
@@ -51,6 +52,9 @@ namespace AMAPG4
 
             OrderLineDal orderLineDal = new OrderLineDal();
                 orderLineDal.Initialize();
+
+            ContactService contactService = new ContactService();
+            contactService.InitializeDataBase();
 
 
 

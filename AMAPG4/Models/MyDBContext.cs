@@ -3,6 +3,7 @@ using AMAPG4.Models.Catalog;
 using AMAPG4.Models.Command;
 using Microsoft.EntityFrameworkCore;
 using AMAPG4.Models.Command;
+using AMAPG4.Models.ContactForm;
 
 namespace AMAPG4.Models
 {
@@ -14,6 +15,7 @@ namespace AMAPG4.Models
         public DbSet<UserAccount> UserAccounts { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<OrderLine> OrderLines { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
 
         
 

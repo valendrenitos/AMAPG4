@@ -17,6 +17,7 @@
         {
             <div class="btn-account"><div class="btn-text">@Html.ActionLink("Mon Compte manager", "Index", "Account", null, new { @class = "btn-link" })</div></div>
             <div class="btn-logout"><div class="btn-text">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, new { @class = "btn-link" })</div></div>
+            <div class="nav-element">@Html.ActionLink("Mon tableau de bord", "IndexManager", "DashBoard", null, new { @class = "nav-link" })</div>
         }
         else if (User.Identity.IsAuthenticated && User.IsInRole("Utilisateur"))
         {
