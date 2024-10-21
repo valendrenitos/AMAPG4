@@ -1,5 +1,6 @@
 ﻿using AMAPG4.Models;
 using AMAPG4.Models.Catalog;
+using AMAPG4.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
@@ -19,30 +20,31 @@ namespace AMAPG4.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            NewProductViewModel newProductViewModel = new NewProductViewModel();
+            return View(newProductViewModel);
         }
 
     
 
         [HttpPost]
-        public IActionResult SubmitNewProduct(NewProduct newProduct)
+        public IActionResult Index(NewProductViewModel newProductVM)
         {
+           
+            NewProduct newProduct = newProductVM.NewProduct;
+            
             // Vérifie si le modèle est valide
             if (ModelState.IsValid)
             {
                 try
                 {
                     newProduct.SubmissionStatus = SubmissionStatus.Pending; // État en attente
-                    _newProductService.CreateNewProduct(newProduct.ProductName, newProduct.Description, newProduct.IsAvailable, newProduct.Price, newProduct.Stock, newProduct.LimitDate, newProduct.ProductType, newProduct.SubmissionStatus);
-
-                    _bddContext.NewProducts.Add(newProduct); // Ajouter le produit à la base de données
-                    _bddContext.SaveChanges(); // Enregistrer les modifications    
+                    _newProductService.CreateNewProduct(newProduct.ProductName, newProduct.Description, newProduct.IsAvailable, newProduct.Price, newProduct.Stock, newProduct.LimitDate, newProduct.ProductType, newProduct.SubmissionStatus);                
 
                     // Marquer le produit comme soumis
 
                     ViewBag.Message = "Votre message a été enregistré avec succès.";
 
-                    return RedirectToAction("Dashboard");
+                    return RedirectToAction("Index", "Home");
                 }
                 catch (Exception ex)
                 {
@@ -56,7 +58,7 @@ namespace AMAPG4.Controllers
             }
 
             // Retourner à la vue avec le modèle pour réafficher les erreurs
-            return View("Index", newProduct);
+            return View(newProductVM);
 
         }
 

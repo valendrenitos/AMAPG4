@@ -36,6 +36,10 @@ namespace AMAPG4.Controllers
             {
                 dashboardVM.Contacts = contactService.GetAllContacts();
             }
+            using (NewProductService newProductService = new NewProductService())
+            {
+                dashboardVM.NewProducts = newProductService.GetAllNewProducts();
+            }
 
             return View(dashboardVM);
 
@@ -62,7 +66,7 @@ namespace AMAPG4.Controllers
             return RedirectToAction("Index");
         }
 
-        // Proposition de produit par le producteur
+      
 
 
     }

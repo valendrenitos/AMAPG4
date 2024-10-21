@@ -30,7 +30,7 @@
                 <tbody>
                     @foreach (var individual in Model.Individuals)
                     {
-                        
+
                         <tr>
                             <td>@individual.Account.Name</td>
                             <td>@individual.FirstName</td>
@@ -155,41 +155,41 @@
                         <th>Statut</th>
                         <th>Actions</th>
 
-                    
+
                     </tr>
                 </thead>
                 <tbody>
                     @if (Model != null && Model.Contacts != null && Model.Contacts.Any())
                     {
-                    @foreach (var contact in Model.Contacts)
-                    {
-                        <tr>
-                            <td>@contact.Name</td>
-                            <td>@contact.FirstName</td>
-                            <td>@contact.Email</td>
-                            <td>@contact.PhoneNumber</td>
-                            <td>@contact.Message</td>
-                            <td>@contact.DateSent</td>
-                            <td>@contact.Status</td>
-                            <td>
-                                @if (contact.Status == ContactStatus.NonTraite)
-                                {
-                                    <form asp-action="MarkAsTraite" asp-route-id="@contact.Id" method="post">
-                                        <button type="submit">Marquer comme Traité</button>
-                                    </form>
-                                }
-                                   
-                            </td>
-                                
-                    
-                        </tr>
-                    }
+                        @foreach (var contact in Model.Contacts)
+                        {
+                            <tr>
+                                <td>@contact.Name</td>
+                                <td>@contact.FirstName</td>
+                                <td>@contact.Email</td>
+                                <td>@contact.PhoneNumber</td>
+                                <td>@contact.Message</td>
+                                <td>@contact.DateSent</td>
+                                <td>@contact.Status</td>
+                                <td>
+                                    @if (contact.Status == ContactStatus.NonTraite)
+                                    {
+                                        <form asp-action="MarkAsTraite" asp-route-id="@contact.Id" method="post">
+                                            <button type="submit">Marquer comme Traité</button>
+                                        </form>
+                                    }
+
+                                </td>
+
+
+                            </tr>
+                        }
                     }
                     else
                     {
-                    <tr>
-                        <td colspan="7">Aucun contact disponible.</td>
-                    </tr>
+                        <tr>
+                            <td colspan="7">Aucun contact disponible.</td>
+                        </tr>
                     }
                 </tbody>
             </table>
@@ -215,41 +215,43 @@
                 </thead>
                 <tbody>
                     @if (Model != null && Model.NewProducts != null && Model.NewProducts.Any())
+                    {
                         @foreach (var newProduct in Model.NewProducts)
                         {
                             <tr>
-                            <td>@newProduct.ProductName</td>
-                            <td>@newProduct.Description</td>
-                            <td>@newProduct.Price.ToString("C2")</td>
-                            <td>@newProduct.Stock</td>
-                            <td>@newProduct.LimitDate.ToShortDateString()</td>
-                            <td>@newProduct.SubmissionStatus.ToString()</td>
-                            
+                                <td>@newProduct.ProductName</td>
+                                <td>@newProduct.Description</td>
+                                <td>@newProduct.Price.ToString("C2")</td>
+                                <td>@newProduct.Stock</td>
+                                <td>@newProduct.LimitDate.ToShortDateString()</td>
+                                <td>@newProduct.SubmissionStatus.ToString()</td>
+
                                 <td>
-                                @if (newProduct.SubmissionStatus == SubmissionStatus.Pending)
+                                    @if (newProduct.SubmissionStatus == SubmissionStatus.Pending)
                                     {
-                                    <form asp-action="ValidateProduct" method="post">
-                                        <input type="hidden" name="id" value="@newProduct.Id" />
-                                        <button type="submit" class="btn btn-success">Valider</button>
+                                        <form asp-action="ValidateProduct" method="post">
+                                            <input type="hidden" name="id" value="@newProduct.Id" />
+                                            <button type="submit" class="btn btn-success">Valider</button>
                                         </form>
-                                    <form asp-action="RejectProduct" method="post">
-                                        <input type="hidden" name="id" value="@newProduct.Id" />
-                                        <button type="submit" class="btn btn-success">Rejeter</button>
-                                    </form>
+                                        <form asp-action="RejectProduct" method="post">
+                                            <input type="hidden" name="id" value="@newProduct.Id" />
+                                            <button type="submit" class="btn btn-success">Rejeter</button>
+                                        </form>
                                     }
 
                                 </td>
-
-
                             </tr>
                         }
-                           }
-                         else
-                          {
-                        <tr>
-                            <td colspan="7">Aucun nouveau produit à valider.</td>
-                        </tr>
-                            }
+                    }
+                    else
+                    {
+                        <tr> 
+                    <td colspan="7">Aucun nouveau produit à valider.</td>
+
+
+                    
+                    </tr>
+                    }
                 </tbody>
             </table>
         </div>
