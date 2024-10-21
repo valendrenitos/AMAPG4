@@ -13,6 +13,7 @@ namespace AMAPG4.Models.Command
         public virtual Product Product { get; set; }
         
         public int Quantity { get; set; }
+        [Column(TypeName = "decimal(10,2)")]
         public decimal Total { get; set; }
         public int UserAccountId { get; set; }
         public OrderLineType orderLineType { get; set; }
