@@ -61,7 +61,7 @@ namespace AMAPG4.Controllers
 				UserName = HttpContext.User.Identity.Name
 			};
 
-			return View(viewModel);
+			return View("/Views/LaFerme/Catalog/Index.cshtml", viewModel);
 		}
 
 		public IActionResult ProductView(int id)
@@ -83,13 +83,10 @@ namespace AMAPG4.Controllers
 
 			};
 
-			return View(productViewModel);
+			return View("/Views/LaFerme/Catalog/ProductView.cshtml", productViewModel);
 
 
 		}
-
-
-
 
 
 		[HttpPost]
@@ -126,7 +123,7 @@ namespace AMAPG4.Controllers
 
 			};
 
-			return View(productViewModel);
+			return View("/Views/LaFerme/Catalog/ProductView.cshtml", productViewModel);
 		}
 	}
 }

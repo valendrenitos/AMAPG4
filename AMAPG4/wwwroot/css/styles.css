@@ -420,7 +420,7 @@
 
 .la-ferme-links-container {
     display: flex;
-    margin-top: 3rem;
+    margin-top: 2rem;
     margin-bottom:4rem;
 }
 
@@ -429,13 +429,13 @@
     flex-direction: column;
     align-items: center;
     margin:1rem;
-    width: 21rem;
-    height: 34rem;
+    width: 19rem;
+    height: 31rem;
 }
 
 .la-ferme-img {
-    width: 18rem;
-    height: 18rem;
+    width: 16rem;
+    height: 16rem;
     margin: 1rem;
     border-radius: 5rem;
     align-content: center;
@@ -452,6 +452,6 @@
 
 .la-ferme-txt {
     text-align: center;
-    font-size: 1.05rem;
+    font-size: 1.03rem;
     color: #285146;
 }
