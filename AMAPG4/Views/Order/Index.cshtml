@@ -1,35 +1,84 @@
 ﻿@using AMAPG4.Models.Catalog
 @using AMAPG4.Models.Command
+@using static AMAPG4.ViewModels.CommandViewModel
 
 @model AMAPG4.ViewModels.OrderLineViewModel
+
+@{
+  
+    Layout = "_layout";
+}
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/global.css">
     <title>Panier</title>
 </head>
 <h3>
     Id utilisateur login :
     @Model.UserActualId
+
+    @if (Model.OrderLinesCurrent != null)
+{
+        <div> Votre panier contient : </div>
+    @foreach (OrderLine orderLine in Model.OrderLinesCurrent)
+    {
+
+            <p>@orderLine.Product.ProductName @orderLine.Quantity @orderLine.Total </p>
+
+
+
+             Model.OrderLineId = @orderLine.Id;
+      
+            @using (Html.BeginForm("Index", "Order"))
+            {
+
+
+
+
+
+
+                <input type="hidden" name ="OrderLineId" value="@Model.OrderLineId"/> 
+              
+                
+               
+                <p> @Html.LabelFor(m => m.NewQuantity, "Quantité : ")
+                   
+                    <input type="number" name="NewQuantity" value="@orderLine.Quantity" min="1" max="(Model.OrderLine.Product.Stock + Model.OrderLine.Quantity)" step="1">
+                    
+                </p>
+                
+            <input type="submit" value="Changer la quantité" />
+            }
+
+            @using (Html.BeginForm("Index", "Order"))
+            {
+       
+ 
+                <input type="hidden" name="OrderLineId" value="@Model.OrderLineId" />
+
+                <input type="hidden" name="NewQuantity" value="0" />
+
+
+                <input type="submit" value="Supprimer" />
+            }
+    }
+    <p>Total : @Model.Total</p>
+}
+else
+{
+
+        <div>
+            Le panier est Vide !
+        </div>
+
+
+    }
+
 </h3>
 
 
-@if (Model.OrderLinesCurrent != null)
-{
-    <div> Votre panier contient : </div>
-    @foreach (OrderLine orderLine in Model.OrderLinesCurrent)
-    {
-        <p>@orderLine.Product.ProductName @orderLine.Quantity @orderLine.Total </p>
-    }
-
-}
-else 
-{
-
-    <div>
-        Le panier est Vide !
-    </div>
-    
 
 
-}
+<div class="nav-element">@Html.ActionLink("Continuer mes achats", "Index", "Catalog", new { @class = "return-catalog" })</div>
+<div class="nav-element">@Html.ActionLink("Payement", "Index", "Catalog", new { @class = "return-catalog" })</div>

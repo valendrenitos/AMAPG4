@@ -14,6 +14,9 @@ namespace AMAPG4.ViewModels
         public List<OrderLine> OrderLinesCurrent { get; set; }
         public List<string> OrderLinesCurrentList { get; set; }
         public Product product { get; set; }
+        public int NewQuantity { get; set; }
+        public int OrderLineId { get; set; }
+        public decimal Total { get; set; }
     }
     }
     

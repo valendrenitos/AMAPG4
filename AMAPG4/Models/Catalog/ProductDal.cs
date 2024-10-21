@@ -83,9 +83,18 @@ namespace AMAPG4.Models.Catalog
             {
                 product.ProductName = productName;
                 product.Description = description;
-                product.IsAvailable = isAvailable;
+				product.Stock = stock;
+                if (stock != 0)
+                {
+                    product.IsAvailable = true;
+                }
+                else
+                {
+                    product.IsAvailable = false;
+                }
+				
                 product.Price = price;
-                product.Stock = stock;
+                
                 product.LimitDate = limitDate;
                 product.ProductType = productType;
                 _bddContext.SaveChanges();
@@ -101,6 +110,10 @@ namespace AMAPG4.Models.Catalog
                 _bddContext.SaveChanges();
             }
         }
-
+        public Product GetProductByName(string name)
+        {
+            Product product;
+            return _bddContext.Products.FirstOrDefault(product=>product.ProductName==name);
+        }
     }
 }

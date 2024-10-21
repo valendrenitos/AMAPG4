@@ -1,19 +1,22 @@
-﻿using AMAPG4.Models.Catalog;
+﻿using AMAPG4.Models;
+using AMAPG4.Models.Catalog;
 using AMAPG4.Models.Command;
 using AMAPG4.Models.User;
 using AMAPG4.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AMAPG4.Controllers
 {
-	[Authorize(Roles = "Manager")]
+	[Authorize]
 	public class CatalogController : Controller
 	{
+		public MyDBContext _bddContext;
 		private ProductDal _productDal;
 
 		public CatalogController()
@@ -58,7 +61,7 @@ namespace AMAPG4.Controllers
 				UserName = HttpContext.User.Identity.Name
 			};
 
-			return View(viewModel);
+			return View("/Views/LaFerme/Catalog/Index.cshtml", viewModel);
 		}
 
 		public IActionResult ProductView(int id)
@@ -76,23 +79,28 @@ namespace AMAPG4.Controllers
 				Price = product.Price,
 				Description = product.Description,
 				IsAvailable = product.IsAvailable,
+				Stock =product.Stock,
 
 			};
 
-			return View(productViewModel);
+			return View("/Views/LaFerme/Catalog/ProductView.cshtml", productViewModel);
 
 
 		}
 
 
-
-
-
 		[HttpPost]
-		public IActionResult AddOrder(int quantity, int id)
+		public IActionResult ProductView(ProductDetailViewModel productView)
 		{
-			List<Product> products = _productDal.GetAllProducts();
 
+			int quantity = (productView.Quantity );
+			;
+			Console.Write(quantity);
+			Console.Write(productView.ProductName);
+			
+			Product product = _productDal.GetProductByName(productView.ProductName);
+			int id = product.Id;
+			
 
 			UserAccountViewModel UserAccountViewModel =
 		new UserAccountViewModel();
@@ -104,7 +112,18 @@ namespace AMAPG4.Controllers
 			{
 				orderLineDal.CheckOrderLine(UserAccountViewModel.UserAccount.Id, quantity, id);
 			}
-			return View(products);
+
+			ProductDetailViewModel productViewModel = new ProductDetailViewModel
+			{
+				ProductName = product.ProductName,
+				Price = product.Price,
+				Description = product.Description,
+				IsAvailable = product.IsAvailable,
+				Stock = product.Stock,
+
+			};
+
+			return View("/Views/LaFerme/Catalog/ProductView.cshtml", productViewModel);
 		}
 	}
 }

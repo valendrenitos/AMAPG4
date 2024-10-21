@@ -1,0 +1,52 @@
+﻿@model AMAPG4.ViewModels.ProductDetailViewModel
+
+@{
+	ViewBag.Title = @Model.ProductName;
+	Layout = "_layout";
+}
+
+<head>
+	<link rel="stylesheet" href="~/css/styles.css" />
+</head>
+
+
+<div class="product-detail-body">
+<div class="product-container">
+	<img class="product-photo" src="~/images//ProductImages/cheese.png" />
+
+	<div class="product-details">
+			@using (Html.BeginForm()){
+			
+				<h2>@Model.ProductName</h2>
+				<p><strong>Prix :</strong> @Model.Price.ToString("C")</p>
+				<p><strong>Description :</strong> @Model.Description</p>
+				
+					@if (Model.IsAvailable == true) {
+					<p>
+						<strong>Disponibilité :</strong> En Stock
+					</p>
+					}
+					else
+					{
+					<p>
+						<strong>Disponibilité :</strong> Hors Stock
+					</p>
+					}
+					
+				<hidden>@Html.HiddenFor(m => m.ProductName)</hidden>
+				<p> @Html.LabelFor(m => m.Quantity,"Quantité")</p>
+				<p> @Html.TextBoxFor(m => m.Quantity, new { type = "number", min = "1", max = @Model.Stock })</p>
+				
+                <input type="submit" value="Ajouter Au Panier" />
+				
+				<br />
+			
+			}
+			
+        
+	</div>
+
+</div>
+</div>
+<div class="nav-element">@Html.ActionLink("Retour au catalogue", "Index", "Catalog", new { @class = "return-catalog" })</div>
+

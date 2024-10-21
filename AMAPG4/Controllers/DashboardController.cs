@@ -1,4 +1,5 @@
 ﻿using AMAPG4.Models.Catalog;
+using AMAPG4.Models.ContactForm;
 using AMAPG4.Models.User;
 using AMAPG4.ViewModels;
 using Microsoft.AspNetCore.Mvc;
@@ -7,6 +8,7 @@ namespace AMAPG4.Controllers
 {
     public class DashboardController : Controller
     {
+      
         public IActionResult Index()
         {
             DashboardViewModel dashboardVM = new DashboardViewModel();
@@ -30,7 +32,31 @@ namespace AMAPG4.Controllers
             {
                 dashboardVM.Products = productDal.GetAllProducts();
             }
+            using (ContactService contactService = new ContactService())
+            {
+                dashboardVM.Contacts = contactService.GetAllContacts();
+            }
+
             return View(dashboardVM);
+
+            
+        }
+
+        [HttpPost]
+        public IActionResult MarkAsTraite(int id)
+        {
+            using (ContactService contactService = new ContactService())
+            {
+                // Récupérer le contact par son ID
+                var contact = contactService.GetContactById(id);
+                if (contact != null)
+                {
+                    // Changer l'état du traitement à "Traité"
+                    contact.Status = ContactStatus.Traite;
+                    contactService.UpdateContact(contact);
+                }
+            }
+            return RedirectToAction("Index");
         }
 
         public IActionResult Individual(int id)
@@ -43,4 +69,6 @@ namespace AMAPG4.Controllers
            return View(ind); 
         }
     }
+
+
 }
