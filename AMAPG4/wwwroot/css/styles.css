@@ -142,6 +142,7 @@
     font-weight: 500;
     padding: 5px 50px 5px 50px;
     border: none;
+    text-decoration: none;
 }
 
 /*******************************************************************/
@@ -195,6 +196,9 @@
     margin-bottom: 2rem;
 }
 
+a {
+    text-decoration:none;
+}
 
 
 
