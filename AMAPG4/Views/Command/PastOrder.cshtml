@@ -1,0 +1,38 @@
+﻿@using AMAPG4.Models.Catalog
+@using AMAPG4.Models.Command
+
+
+@model AMAPG4.ViewModels.CommandViewModel
+
+@{
+
+    Layout = "_layout";
+}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/global.css">
+    <title>Panier</title>
+</head>
+<h3>
+    <p>Votre historique de commande :</p>
+    @foreach (CommandLine commandLine in Model.AllFromUser)
+    {
+        <p> @commandLine.CommandId @commandLine.DateTimeOrdered @commandLine.Total</p>
+        @using (Html.BeginForm("PastOrder", "Command")){
+            <input type="hidden" name="CommandToLookAt" value="@commandLine.CommandId" />
+
+
+            <input type="submit" value="Dévelloper" />
+        }
+        if (Model.CommandToLookAt == @commandLine.CommandId)
+        {
+            foreach (OrderLine orderLine in Model.ListOrderline)
+            {
+                <p> @orderLine.Product.ProductName @orderLine.Quantity @orderLine.Total </p>
+            }
+        }
+    }
+    <h3/>
+    <div class="nav-element">@Html.ActionLink("Retour a mon compte", "Index", "Account", new { @class = "return-catalog" })</div>
+    <div class="nav-element">@Html.ActionLink("Retour a l'accueil", "Index", "Home", new { @class = "return-catalog" })</div>

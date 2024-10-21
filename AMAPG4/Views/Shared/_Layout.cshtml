@@ -17,6 +17,7 @@
         @if (User.Identity.IsAuthenticated && User.IsInRole("Manager"))
         {
             <div class="btn btn-account"><div class="btn-text">@Html.ActionLink("Mon Compte manager", "Index", "Account", null, new { @class = "btn-link" })</div></div>
+            <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Mon Panier", "Index", "Order", null, new { @class = "btn-link" })</div></div>
             <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, new { @class = "btn-link" })</div></div>
             <div class="btn btn-account">@Html.ActionLink("Mon tableau de bord", "IndexManager", "DashBoard", null, new { @class = "nav-link" })</div>
         }
@@ -31,6 +32,7 @@
         else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
         {   <div>
             <div class="btn btn-account"><div class="btn-text">@Html.ActionLink("Mon Compte Administrateur", "Index", "Account", null, new { @class = "btn-link" })</div></div>
+                <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Mon Panier", "Index", "Order", null, new { @class = "btn-link" })</div></div>
             <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, new { @class = "btn-link" })</div></div>
             </div>
         

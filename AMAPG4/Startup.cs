@@ -37,7 +37,7 @@ namespace AMAPG4
             
             IndividualDal individualDal = new IndividualDal();
             individualDal.Initialize();
-
+            CommandLineService commandLineService = new CommandLineService();
             CEDal ceDal = new CEDal();
             ceDal.Initialize();
 

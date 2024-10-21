@@ -16,8 +16,8 @@ namespace AMAPG4.Models
         public DbSet<Product> Products { get; set; }
         public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<Contact> Contacts { get; set; }
+        public DbSet<CommandLine> CommandLines { get; set; }
 
-        
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

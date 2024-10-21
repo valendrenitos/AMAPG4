@@ -83,6 +83,8 @@ namespace AMAPG4.Models.Command
             };
             product.Stock = product.Stock - quantity;
             _bddContext.OrderLines.Add(orderLine);
+            CommandLineService commandLineService = new CommandLineService();
+            commandLineService.CreateCommandLine(orderLine.Total, orderLine.CommandId, orderLine.UserAccountId);
             _bddContext.SaveChanges();
             return orderLine.Id;
         }

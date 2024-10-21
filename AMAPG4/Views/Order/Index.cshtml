@@ -33,22 +33,18 @@
             @using (Html.BeginForm("Index", "Order"))
             {
 
+                <input type="hidden" name ="OrderLineId" value="@Model.OrderLineId"/>
 
-
-
-
-
-                <input type="hidden" name ="OrderLineId" value="@Model.OrderLineId"/> 
-              
+                <input type="hidden" name="totalStack" value="@orderLine.Quantity + @orderLine.Product.Stock" />
                 
-               
+
                 <p> @Html.LabelFor(m => m.NewQuantity, "Quantité : ")
+
+                    <input type="number" name="NewQuantity" value="@orderLine.Quantity" min="1" max="@orderLine.Product.Stock" step="1" onchange="this.form.submit()">
                    
-                    <input type="number" name="NewQuantity" value="@orderLine.Quantity" min="1" max="(Model.OrderLine.Product.Stock + Model.OrderLine.Quantity)" step="1">
-                    
                 </p>
                 
-            <input type="submit" value="Changer la quantité" />
+           
             }
 
             @using (Html.BeginForm("Index", "Order"))
@@ -81,4 +77,4 @@ else
 
 
 <div class="nav-element">@Html.ActionLink("Continuer mes achats", "Index", "Catalog", new { @class = "return-catalog" })</div>
-<div class="nav-element">@Html.ActionLink("Payement", "Index", "Catalog", new { @class = "return-catalog" })</div>
+<div class="nav-element">@Html.ActionLink("Payement", "Index", "Command", new { @class = "return-catalog" })</div>
