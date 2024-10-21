@@ -1,4 +1,5 @@
-﻿@model AMAPG4.ViewModels.DashboardViewModel
+﻿@using AMAPG4.Models.ContactForm
+@model AMAPG4.ViewModels.DashboardViewModel
 
 <head>
     <meta charset="UTF-8">
@@ -28,6 +29,7 @@
                 <tbody>
                     @foreach (var individual in Model.Individuals)
                     {
+                        
                         <tr>
                             <td>@individual.Account.Name</td>
                             <td>@individual.FirstName</td>
@@ -130,6 +132,60 @@
                             <td>@product.IsAvailable</td>
                             <td>@product.LimitDate.ToShortDateString()</td>
                         </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Bloc pour les Contact -->
+    <div class="dashboard-block">
+        <h2>Formulaire de contact</h2>
+        <div class="table-container">
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Message</th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+
+                    
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.Contacts != null && Model.Contacts.Any())
+                    {
+                    @foreach (var contact in Model.Contacts)
+                    {
+                        <tr>
+                            <td>@contact.Name</td>
+                            <td>@contact.FirstName</td>
+                            <td>@contact.Email</td>
+                            <td>@contact.PhoneNumber</td>
+                            <td>@contact.Message</td>
+                            <td>@contact.Status</td>
+                            <td>
+                                @if (contact.Status == ContactStatus.NonTraite)
+                                {
+                                    <form asp-action="MarkAsTraite" asp-route-id="@contact.Id" method="post">
+                                        <button type="submit">Marquer comme Traité</button>
+                                    </form>
+                                }
+
+                            </td>
+                    
+                        </tr>
+                    }
+                    }
+                    else
+                    {
+                    <tr>
+                        <td colspan="7">Aucun contact disponible.</td>
+                    </tr>
                     }
                 </tbody>
             </table>
