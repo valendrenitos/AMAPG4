@@ -67,10 +67,6 @@ namespace AMAPG4
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-
-					    name: "laferme",
-		                pattern: "LaFerme/{controller=LaFerme}/{action=Index}/{id?}");
 
 				endpoints.MapControllerRoute(
 						name: "default",

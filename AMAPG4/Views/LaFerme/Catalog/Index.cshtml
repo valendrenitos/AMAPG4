@@ -32,7 +32,7 @@
             </div>
 
             <!-- Product Type Filter -->
-            <label>
+                    <!--  <label>
                 <input type="checkbox" name="showAll" value="true" onchange="this.form.submit()" /> Tous les Produits
             </label>
             <label>
@@ -43,7 +43,7 @@
             </label>
             <label>
                 <input type="checkbox" name="productTypes" value="Activity" onchange="this.form.submit()" /> Activité
-            </label>
+                    </label>-->
         </form>
 
     </div>
@@ -64,8 +64,11 @@
                 <div class="info-row">
                     <div class="product-price">@product.Price.ToString("C2", new CultureInfo("fr-FR"))</div>
                 </div>
-                 
-                <button class="btn-add-to-basket">Ajouter</button>
+                        <a href="@Url.Action("ProductView", "Catalog", new { id = product.Id })">
+                            <div class="btn-add-to-basket">Détails</div>
+                        </a>
+
+                        
             </div>
         }
     </div>
