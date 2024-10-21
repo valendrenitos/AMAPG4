@@ -24,20 +24,14 @@ namespace AMAPG4.Controllers
 			_productDal = new ProductDal();
 		}
 
-		public IActionResult Index(string searchString, string sortOrder, string[] productTypes, bool? showAll)
+		public IActionResult Index(string searchString, string sortOrder, bool? showAll)
 		{
-			List<Product> products = _productDal.GetAllProducts();
+			List<Product> products = _productDal.GetAllUnitaryProducts();
 
 			// Search using the search bar
 			if (!string.IsNullOrEmpty(searchString))
 			{
 				products = products.Where(p => p.ProductName.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
-			}
-
-			// If showAll is not checked, filter by product type
-			if (showAll != true && productTypes != null && productTypes.Length > 0)
-			{
-				products = products.Where(p => productTypes.Contains(p.ProductType.ToString())).ToList();
 			}
 
 			// Sorting by price

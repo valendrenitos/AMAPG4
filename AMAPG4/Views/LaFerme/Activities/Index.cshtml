@@ -1,0 +1,23 @@
+﻿@using AMAPG4.Models.Catalog
+@using System.Globalization
+@model AMAPG4.ViewModels.ActivitiesViewModel
+@{
+    ViewBag.Title = "Ateliers";
+    Layout = "_Layout";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/global.css" />
+    <link rel="stylesheet" href="~/css/styles.css" />
+</head>
+
+<div class="activities-container">
+    @foreach (Product product in Model.Products)
+    {
+        <div class="product-card product-basket">
+            <img class="catalog-photo" src="~/images/LaFermeImages/activity.png" />
+            <div class="product-name">@product.ProductName</div>
+            <div class="product-price">@product.Price.ToString("C2", new CultureInfo("fr-FR"))</div>
+        </div>
+    }
+</div>

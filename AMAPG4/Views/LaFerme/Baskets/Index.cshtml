@@ -1,0 +1,33 @@
+﻿@using AMAPG4.Models.Catalog
+@using System.Globalization
+@model AMAPG4.ViewModels.BasketsViewModel
+@{
+    ViewBag.Title = "Abonnements";
+    Layout = "_Layout";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/global.css" />
+    <link rel="stylesheet" href="~/css/styles.css" />
+</head>
+
+
+<div class="baskets-body">
+
+<h2>Nos Abonnements</h2>
+<p class="txt-intro">Découvrez nos abonnements hebdomadaires, conçus pour vous offrir la fraîcheur des produits locaux 
+    directement à votre table. En choisissant l'un de nos paniers, vous soutenez l'agriculture durable 
+    tout en profitant de saveurs inégalées. Chaque semaine, vous aurez la possibilité de retirer votre 
+    panier rempli de délices saisonniers.</p>
+<div class="baskets-container">
+    @foreach (Product product in Model.Products)
+    {
+        <div class="product-basket">
+            <img class="basket-photo" src="~/images/LaFermeImages/panier_3.jpg" />
+            <div class="basket-name">@product.ProductName</div>
+            <div class="basket-description">@product.Description</div>
+            <div class="basket-price">@product.Price.ToString("C2", new CultureInfo("fr-FR"))</div>
+        </div>
+    }
+</div>
+</div>

@@ -1,4 +1,5 @@
 ﻿@using System.Globalization
+@using AMAPG4.Models.Catalog
 @model AMAPG4.ViewModels.CatalogViewModel
 @{
     ViewBag.Title = "Catalogue de Produits";
@@ -52,7 +53,7 @@
     <div class="catalog-container">
 
         
-        @foreach (var product in Model.Products)
+        @foreach (Product product in Model.Products)
         {
             <div class="product-card">
                 <a href="@Url.Action("ProductView", "Catalog", new { id = product.Id })">
