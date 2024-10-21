@@ -159,7 +159,7 @@ namespace AMAPG4.Models.Command
             CreateOrderLine(3, 2, 1);
             CreateOrderLine(1, 2, 1);
             CreateOrderLine(2, 1, 4);
-            CreateOrderLine(1, 2, 4);
+            CreateOrderLine(1, 2, 8);
             CreateOrderLine(6, 1, 3);
             CreateOrderLine(3, 1, 4);
         }
