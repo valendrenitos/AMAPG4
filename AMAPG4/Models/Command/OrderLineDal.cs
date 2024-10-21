@@ -97,6 +97,7 @@ namespace AMAPG4.Models.Command
             {
                 quantity = orderline.Product.Stock;
                 orderline.Quantity = orderline.Quantity + quantity;
+                orderline.Total = orderline.Quantity * orderline.Product.Price;
                 quantity = 0;
                 UpdateStockFromOrder(orderline.Product, quantity);
 
@@ -105,6 +106,7 @@ namespace AMAPG4.Models.Command
             else if (orderline.Quantity <= 0)
             {
                 quantity = orderline.Product.Stock + orderline.Quantity;
+               
                 UpdateStockFromOrder(orderline.Product, quantity);
                 _bddContext.Remove(orderline);
 
@@ -113,6 +115,7 @@ namespace AMAPG4.Models.Command
             {
 				orderline.Quantity = orderline.Quantity + quantity;
                 quantity= orderline.Product.Stock - quantity;
+                orderline.Total = orderline.Quantity * orderline.Product.Price;
                 UpdateStockFromOrder(orderline.Product, quantity);
 			}
     
@@ -188,6 +191,7 @@ namespace AMAPG4.Models.Command
             {
                 quantity = orderline.Product.Stock;
                 orderline.Quantity = orderline.Quantity + quantity;
+                orderline.Total = orderline.Quantity * orderline.Product.Price;
                 quantity = 0;
                 UpdateStockFromOrder(orderline.Product, quantity);
             }
@@ -199,6 +203,7 @@ namespace AMAPG4.Models.Command
             {
                 orderline.Quantity = quantity;
                 quantity= orderline.Product.Stock-diff;
+                orderline.Total = orderline.Quantity * orderline.Product.Price;
                 UpdateStockFromOrder(orderline.Product, quantity);
             }
             _bddContext.SaveChanges();  

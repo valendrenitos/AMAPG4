@@ -16,6 +16,7 @@ namespace AMAPG4.ViewModels
         public Product product { get; set; }
         public int NewQuantity { get; set; }
         public int OrderLineId { get; set; }
+        public decimal Total { get; set; }
     }
     }
     

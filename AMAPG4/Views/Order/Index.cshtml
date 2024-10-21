@@ -1,5 +1,6 @@
 ﻿@using AMAPG4.Models.Catalog
 @using AMAPG4.Models.Command
+@using static AMAPG4.ViewModels.CommandViewModel
 
 @model AMAPG4.ViewModels.OrderLineViewModel
 
@@ -26,31 +27,43 @@
             <p>@orderLine.Product.ProductName @orderLine.Quantity @orderLine.Total </p>
 
 
-            
-        @using (Html.BeginForm())
+
+             Model.OrderLineId = @orderLine.Id;
+      
+            @using (Html.BeginForm("Index", "Order"))
             {
-                Model.OrderLine = orderLine;
-                Model.OrderLineId = Model.OrderLine.Id; 
-                <hidden>  @Html.HiddenFor(m => m.OrderLineId)</hidden>
-                <p> @Html.LabelFor(m => m.NewQuantity, "Quantité : ")
-                     @Html.TextBoxFor(m => m.NewQuantity, new { type = "number", min = "0", max = @Model.OrderLine.Product.Stock + @Model.OrderLine.Quantity, @placeholder = @Model.OrderLine.Quantity , OrderLine = orderLine})
-                </p>
+
+
+
+
+
+
+                <input type="hidden" name ="OrderLineId" value="@Model.OrderLineId"/> 
               
+                
+               
+                <p> @Html.LabelFor(m => m.NewQuantity, "Quantité : ")
+                   
+                    <input type="number" name="NewQuantity" value="@orderLine.Quantity" min="1" max="(Model.OrderLine.Product.Stock + Model.OrderLine.Quantity)" step="1">
+                    
+                </p>
+                
             <input type="submit" value="Changer la quantité" />
             }
 
-            @using (Html.BeginForm())
+            @using (Html.BeginForm("Index", "Order"))
             {
-                Model.OrderLine = orderLine;
-                Model.OrderLineId = Model.OrderLine.Id;
-                Model.NewQuantity = 0;
-                <hidden>  @Html.HiddenFor(m => m.OrderLineId)</hidden>
-                <hidden>  @Html.HiddenFor(m => m.NewQuantity)</hidden>
+       
+ 
+                <input type="hidden" name="OrderLineId" value="@Model.OrderLineId" />
+
+                <input type="hidden" name="NewQuantity" value="0" />
+
 
                 <input type="submit" value="Supprimer" />
             }
     }
-
+    <p>Total : @Model.Total</p>
 }
 else
 {
@@ -61,9 +74,11 @@ else
 
 
     }
+
 </h3>
 
 
 
 
 <div class="nav-element">@Html.ActionLink("Continuer mes achats", "Index", "Catalog", new { @class = "return-catalog" })</div>
+<div class="nav-element">@Html.ActionLink("Payement", "Index", "Catalog", new { @class = "return-catalog" })</div>
