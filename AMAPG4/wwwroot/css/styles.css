@@ -490,8 +490,9 @@ a {
 
 
 /*******************************************************************/
-/**********************STYLES FOR BASKETS PAGE**********************/
+/**************STYLES FOR BASKETS AND ACTIVITIES PAGE***************/
 /*******************************************************************/
+.activity-body, 
 .baskets-body {
     display: flex;
     flex-direction: column;
@@ -500,7 +501,8 @@ a {
     width: 100%;
 }
 
-.baskets-container {
+.baskets-container,
+.activities-container {
     display: flex;
     justify-content: space-around;
 }
@@ -536,6 +538,7 @@ a {
     margin: 1rem;
     border-radius: 1rem;
 }
+.activity-name,
 .basket-name {
     font-size: 1.2rem;
     width: 16rem;
@@ -557,6 +560,7 @@ a {
     margin: 1rem;
 }
 
+.activities-body h2, 
 .baskets-body h2 {
     font-weight: bold;
     font-size: 2.2rem;
@@ -565,6 +569,7 @@ a {
     margin-top: 2rem;
 }
 
+.activities-body p,
 .baskets-body p {
     font-size: 1.5rem;
     text-align: center;
@@ -576,3 +581,53 @@ a {
 /*******************************************************************/
 /*******************STYLES FOR ACTIVITIES PAGE**********************/
 /*******************************************************************/
+
+.activities-container {
+    flex-wrap: wrap;
+}
+
+.product-activity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 40rem;
+    height: 30rem;
+    margin: 2rem;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px 2px #285146;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+    transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    border: 0;
+    border-radius: 1rem;
+}
+
+.product-activity:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}
+
+.activity-photo {
+    margin: 1rem;
+    width: 14rem;
+    height: auto;
+    align-content: center;
+    margin: 1rem;
+    border-radius: 1rem;
+}
+
+.activity-price {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #285146;
+    margin: 1rem;
+}
+
+.activity-description {
+    text-align: center;
+    color: #285146;
+    padding: 1rem;
+}
