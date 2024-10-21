@@ -26,7 +26,7 @@ namespace AMAPG4.Controllers
 
 		public IActionResult Index(string searchString, string sortOrder, string[] productTypes, bool? showAll)
 		{
-			List<Product> products = _productDal.GetAllProducts();
+			List<Product> products = _productDal.GetAllUnitaryProducts();
 
 			// Search using the search bar
 			if (!string.IsNullOrEmpty(searchString))
