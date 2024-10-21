@@ -1,0 +1,74 @@
+﻿@model AMAPG4.Models.User.Individual
+@{
+    ViewBag.Title = "Compte Individuel";
+    Layout = "_Layout";
+}
+
+<div class="user-profile">
+    <h1>Compte Individuel</h1>
+
+    <div class="user-info">
+        <label>Nom :</label>
+        <span>@Model.Account.Name</span>
+        <button class="btn-edit">Modifier</button>
+        <button class="btn-save" style="display:none;">Enregistrer</button>
+        <button class="btn-cancel" style="display:none;">Annuler</button>
+    </div>
+
+    <div class="user-info">
+        <label>Prénom :</label>
+        <span>@Model.FirstName</span>
+        <button class="btn-edit">Modifier</button>
+        <button class="btn-save" style="display:none;">Enregistrer</button>
+        <button class="btn-cancel" style="display:none;">Annuler</button>
+    </div>
+
+    <div class="user-info">
+        <label>Adresse :</label>
+        <span>@Model.Account.Address</span>
+        <button class="btn-edit">Modifier</button>
+        <button class="btn-save" style="display:none;">Enregistrer</button>
+        <button class="btn-cancel" style="display:none;">Annuler</button>
+    </div>
+
+    <div class="user-info">
+        <label>Email :</label>
+        <span>@Model.Account.Email</span>
+        <button class="btn-edit">Modifier</button>
+        <button class="btn-save" style="display:none;">Enregistrer</button>
+        <button class="btn-cancel" style="display:none;">Annuler</button>
+    </div>
+
+    <div class="user-info">
+        <label>Téléphone :</label>
+        <span>@Model.Account.Phone</span>
+        <button class="btn-edit">Modifier</button>
+        <button class="btn-save" style="display:none;">Enregistrer</button>
+        <button class="btn-cancel" style="display:none;">Annuler</button>
+    </div>
+
+        
+    <div class="user-info">
+        <label>Date d'inscription :</label>
+        <span>@Model.InscriptionDate.ToShortDateString()</span>
+        <button class="btn-edit">Modifier</button>
+        <button class="btn-save" style="display:none;">Enregistrer</button>
+        <button class="btn-cancel" style="display:none;">Annuler</button>
+    </div>
+
+    <div class="user-info">
+        <label>Contribution payée :</label>
+        <span>@(Model.IsContributionPaid ? "Oui" : "Non")</span>
+        <button class="btn-edit">Modifier</button>
+        <button class="btn-save" style="display:none;">Enregistrer</button>
+        <button class="btn-cancel" style="display:none;">Annuler</button>
+    </div>
+
+    <div class="user-info">
+        <label>Bénévole :</label>
+        <span>@(Model.IsVolunteer ? "Oui" : "Non")</span>
+        <button class="btn-edit">Modifier</button>
+        <button class="btn-save" style="display:none;">Enregistrer</button>
+        <button class="btn-cancel" style="display:none;">Annuler</button>
+    </div>
+</div>

@@ -32,5 +32,15 @@ namespace AMAPG4.Controllers
             }
             return View(dashboardVM);
         }
+
+        public IActionResult Individual(int id)
+        {
+            Individual ind;
+            using (IndividualDal individualDal = new IndividualDal())
+            {
+                ind = individualDal.GetIndividualById(id);
+            }
+           return View(ind); 
+        }
     }
 }
