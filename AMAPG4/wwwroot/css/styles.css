@@ -149,6 +149,7 @@
 /*******************************************************************/
 .product-detail-body {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -187,9 +188,11 @@
 }
 
 .return-catalog {
-    color: #e5701d;
+    display: inline-block;
+    color: #285146;
     font-size: 1.4rem;
     text-decoration: none;
+    margin-bottom: 2rem;
 }
 
 
