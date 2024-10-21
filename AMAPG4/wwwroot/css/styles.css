@@ -435,6 +435,18 @@ a {
 .dashboard-block::-webkit-scrollbar-track {
     background-color: #f1f1f1;
 }
+.btn-connection {
+    background-color: #e5701d;
+    white-space: nowrap;
+    width: auto;
+    padding: 0.4rem 1rem;
+}
+.btn-success {
+    background-color:#a1cf59;
+    white-space: nowrap;
+    width: auto;
+    padding: 0.4rem 1rem;
+}
 
 
 

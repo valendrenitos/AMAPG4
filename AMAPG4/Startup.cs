@@ -47,6 +47,9 @@ namespace AMAPG4
             ProductDal productDal = new ProductDal();
             productDal.InitializeDataBase();
 
+            NewProductService newProductService = new NewProductService();
+            newProductService.InitializeDataBase();
+
             UserAccountDal userAccountDal = new UserAccountDal();
             userAccountDal.InitializeDataBase();
 

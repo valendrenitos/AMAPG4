@@ -29,7 +29,7 @@ namespace AMAPG4.Controllers
                 {
                     _contactService.CreateContact(model.Contact.Name, model.Contact.FirstName, model.Contact.Email, model.Contact.PhoneNumber, model.Contact.Message, model.Contact.Status);
 
-                    ViewBag.Message = "Votre message a été enregistré avec succès.";
+                    ViewBag.Message = "Votre message a été envoyé avec succès.";
                 }
                 catch (Exception ex)
                 {
@@ -40,6 +40,25 @@ namespace AMAPG4.Controllers
             }
 
             return View("Index", model);
+        }
+
+        // Formulaire de contact
+
+        [HttpPost]
+        public IActionResult MarkAsTraite(int id)
+        {
+            //using (ContactService contactService = new ContactService())
+            {
+                // Récupérer le contact par son ID
+                var contact = _contactService.GetContactById(id);
+                if (contact != null)
+                {
+                    // Changer l'état du traitement à "Traité"
+                    contact.Status = ContactStatus.Traite;
+                    _contactService.UpdateContact(contact);
+                }
+            }
+            return RedirectToAction("Index", "Dashboard");
         }
     }
 
