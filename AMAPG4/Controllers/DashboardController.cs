@@ -42,6 +42,9 @@ namespace AMAPG4.Controllers
             
         }
 
+
+        // Formulaire de contact
+
         [HttpPost]
         public IActionResult MarkAsTraite(int id)
         {
@@ -58,6 +61,10 @@ namespace AMAPG4.Controllers
             }
             return RedirectToAction("Index");
         }
+
+        // Proposition de produit par le producteur
+
+
     }
 
 

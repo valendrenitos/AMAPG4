@@ -23,8 +23,8 @@ namespace AMAPG4.Models.ContactForm
         public void InitializeDataBase()
         {
             //DeleteCreateDatabase();
-            CreateContact("Delacoste", "Martin", "martin.delascoste@example.fr", "0706369874", "J'ai une question à vous poser");
-            CreateContact("Revillard", "Pierre", "pierre.revillard@example.fr", "0706369885", "Je souhaite m'inscrire en tant que CE");
+            CreateContact("Delacoste", "Martin", "martin.delascoste@example.fr", "0706369874", "J'ai une question à vous poser", ContactStatus.NonTraite);
+            CreateContact("Revillard", "Pierre", "pierre.revillard@example.fr", "0706369885", "Je souhaite m'inscrire en tant que CE", ContactStatus.Traite);
 
 
         }
@@ -39,7 +39,7 @@ namespace AMAPG4.Models.ContactForm
             _bddContext.Dispose();
         }
 
-        public int CreateContact(string name, string firstName, string email, string phoneNumber, string message)
+        public int CreateContact(string name, string firstName, string email, string phoneNumber, string message, ContactStatus status )
         {
             Contact contact = new Contact()
             {
@@ -48,7 +48,8 @@ namespace AMAPG4.Models.ContactForm
                 Email = email,
                 PhoneNumber = phoneNumber,
                 Message = message,
-                Status = ContactStatus.NonTraite,
+                DateSent = DateTime.Now,
+                Status = status
             };
             _bddContext.Contacts.Add(contact);
             _bddContext.SaveChanges();

@@ -44,7 +44,7 @@
                
                 <p> @Html.LabelFor(m => m.NewQuantity, "Quantité : ")
                    
-                    <input type="number" name="NewQuantity" value="@orderLine.Quantity" min="1" max="(Model.OrderLine.Product.Stock + Model.OrderLine.Quantity)" step="1">
+                    <input type="number" name="NewQuantity" value="@orderLine.Quantity" min="1" max="(Model.OrderLine.Product.Stock + Model.OrderLine.Quantity)" step="1" onchange="this.form.submit()">
                     
                 </p>
                 
