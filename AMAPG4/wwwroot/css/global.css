@@ -1,0 +1,217 @@
+﻿/*******************************************************************/
+/******************************SITE STYLES**************************/
+/*******************************************************************/
+
+html, body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+/*    background-color: #f9e9d3;*/
+    display: flex;
+    flex-direction: column;
+}
+
+body {
+    min-height: 100vh;
+}
+
+    body > *:not(footer) {
+        flex-grow: 1; 
+    }
+
+/*******************************************************************/
+/***************************STYLES FOR HEADER***********************/
+/*******************************************************************/
+header {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f7f7f7;
+    width: 96%;
+    justify-content: space-between;
+    align-items: center;
+    display: flex;
+    padding: 32px;
+    height: 5rem;
+    flex-shrink: 0;
+    flex-grow: 0;
+}
+#header-logo {
+    width: 22rem;
+}
+
+/*Navigation elements*/
+nav {
+    width: 34%;
+    justify-content: space-between;
+    display: flex;
+    border-radius: 0.6rem;
+    padding: 0.2rem;
+}
+
+.nav-element {
+    color: #1e1e1e;
+    width: auto;
+    height: auto;
+    font-size: 1rem;
+    font-weight: normal;
+    justify-content: center;
+    text-align: center;
+    padding: 8px;
+}
+
+.nav-link {
+    color: #1e1e1e;
+    text-decoration: none;
+    font-weight: normal;
+}
+
+.nav-element:hover {
+    transform: scale(1.04);
+    transition: transform 0.1s ease-in-out;
+}
+
+
+/* Buttons on the right*/
+.nav-right-btns {
+    width: 28%;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.btn {
+    border-radius: 16px;
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+    text-decoration: none;
+    display: inline-block;
+    transition: transform 0.3s ease-in-out;
+    background-color: #285146;
+}
+
+.btn:hover {
+    transform: scale(1.05);
+}
+
+.btn-connection {
+    background-color: #285146;
+    white-space: nowrap;
+    width: auto;
+    padding: 0.4rem 1rem;
+}
+
+.btn-register,
+.btn-logout {
+    background-color: #e5701d;
+}
+
+.btn-link {
+    color: white;
+    text-decoration: none;
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align:center;
+    width: 6rem;
+}
+
+
+
+/*******************************************************************/
+/***************************STYLES FOR FOOTER***********************/
+/*******************************************************************/
+footer {
+    display: flex;
+    flex-direction: column;
+    background-color: #285146;
+}
+
+.footer-top {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1.6rem;
+}
+
+.footer-links {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+    .footer-links * {
+        color: #f9e9d3;
+        text-decoration: none;
+        display: flex;
+        justify-content: center;
+        width: 6rem;
+        margin: 0.3rem;
+    }
+
+.footer-logo {
+    width: 20%;
+    height: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+
+.footer-contact {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: #f9e9d3;
+    margin: 0.3rem;
+}
+
+    .footer-contact * {
+        margin: 0.2rem;
+    }
+
+.footer-bottom {
+    color: #f9e9d3;
+    text-align: center;
+}
+
+/*******************************************************************/
+/***************************STYLES FOR FORMS***********************/
+/*******************************************************************/
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    max-width: 400px;
+    margin: 20px auto;
+}
+
+input::placeholder {
+    font-style: italic;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="submit"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    width: 100%;
+}
+
+input[type="submit"] {
+    background-color: #a1cf59;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    padding: 12px;
+}
+
+    input[type="submit"]:hover {
+        background-color: #285146;
+    }
+.error {
+    color: red;
+    font-size: 0.9rem;
+}
+
