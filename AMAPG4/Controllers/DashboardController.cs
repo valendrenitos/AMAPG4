@@ -36,11 +36,18 @@ namespace AMAPG4.Controllers
             {
                 dashboardVM.Contacts = contactService.GetAllContacts();
             }
+            using (NewProductService newProductService = new NewProductService())
+            {
+                dashboardVM.NewProducts = newProductService.GetAllNewProducts();
+            }
 
             return View(dashboardVM);
 
             
         }
+
+
+        // Formulaire de contact
 
         [HttpPost]
         public IActionResult MarkAsTraite(int id)
@@ -58,6 +65,10 @@ namespace AMAPG4.Controllers
             }
             return RedirectToAction("Index");
         }
+
+      
+
+
     }
 
 

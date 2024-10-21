@@ -15,35 +15,35 @@
 <div class="container">
     <div class="formulaire">
         <h2>Le formulaire</h2>
-        @using (Html.BeginForm("EnvoyerMessage", "Contact", FormMethod.Post))
+        @using (Html.BeginForm("SendMessage", "Contact", FormMethod.Post))
         {
             <div>
-                @Html.LabelFor(m => m.Name, "Nom")
-                @Html.TextBoxFor(m => m.Name, new { @class = "input-field", placeholder = "Votre nom" })
-                @Html.ValidationMessageFor(m => m.Name)
+                @Html.LabelFor(m => m.Contact.Name, "Nom")
+                @Html.TextBoxFor(m => m.Contact.Name, new { @class = "input-field", placeholder = "Votre nom" })
+                @Html.ValidationMessageFor(m => m.Contact.Name)
             </div>
 
             <div>
-                @Html.LabelFor(m => m.FirstName, "Prénom")
-                @Html.TextBoxFor(m => m.FirstName, new { @class = "input-field", placeholder = "Votre prénom" })
-                @Html.ValidationMessageFor(m => m.FirstName)
+                @Html.LabelFor(m => m.Contact.FirstName, "Prénom")
+                @Html.TextBoxFor(m => m.Contact.FirstName, new { @class = "input-field", placeholder = "Votre prénom" })
+                @Html.ValidationMessageFor(m => m.Contact.FirstName)
             </div>
 
             <div>
-                @Html.LabelFor(m => m.Email, "Email")
-                @Html.TextBoxFor(m => m.Email, new { @class = "input-field", placeholder = "Votre email", type = "email" })
-                @Html.ValidationMessageFor(m => m.Email)
+                @Html.LabelFor(m => m.Contact.Email, "Email")
+                @Html.TextBoxFor(m => m.Contact.Email, new { @class = "input-field", placeholder = "Votre email", type = "email" })
+                @Html.ValidationMessageFor(m => m.Contact.Email)
             </div>
             <div>
-                @Html.LabelFor(m => m.PhoneNumber, "Numéro de téléphone")
-                @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "input-field", placeholder = "Votre numéro de téléphone", type = "tel" })
-                @Html.ValidationMessageFor(m => m.PhoneNumber)
+                @Html.LabelFor(m => m.Contact.PhoneNumber, "Numéro de téléphone")
+                @Html.TextBoxFor(m => m.Contact.PhoneNumber, new { @class = "input-field", placeholder = "Votre numéro de téléphone", type = "tel" })
+                @Html.ValidationMessageFor(m => m.Contact.PhoneNumber)
             </div>
 
 
             <div>
-                @Html.LabelFor(m => m.Message, "Message")
-                @Html.TextAreaFor(m => m.Message, new { @class = "input-field", placeholder = "Votre message", rows = 4 })
+                @Html.LabelFor(m => m.Contact.Message, "Message")
+                @Html.TextAreaFor(m => m.Contact.Message, new { @class = "input-field", placeholder = "Votre message", rows = 4 })
             </div>
 
             <div>

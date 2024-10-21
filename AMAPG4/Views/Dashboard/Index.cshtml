@@ -1,4 +1,5 @@
 ﻿@using AMAPG4.Models.ContactForm
+@using AMAPG4.Models.Catalog
 @model AMAPG4.ViewModels.DashboardViewModel
 
 <head>
@@ -29,7 +30,7 @@
                 <tbody>
                     @foreach (var individual in Model.Individuals)
                     {
-                        
+
                         <tr>
                             <td>@individual.Account.Name</td>
                             <td>@individual.FirstName</td>
@@ -150,118 +151,111 @@
                         <th>Email</th>
                         <th>Téléphone</th>
                         <th>Message</th>
+                        <th>Date d'envoi</th>
                         <th>Statut</th>
                         <th>Actions</th>
 
-                    
+
                     </tr>
                 </thead>
                 <tbody>
                     @if (Model != null && Model.Contacts != null && Model.Contacts.Any())
                     {
-                    @foreach (var contact in Model.Contacts)
-                    {
-                        <tr>
-                            <td>@contact.Name</td>
-                            <td>@contact.FirstName</td>
-                            <td>@contact.Email</td>
-                            <td>@contact.PhoneNumber</td>
-                            <td>@contact.Message</td>
-                            <td>@contact.Status</td>
-                            <td>
-                                @if (contact.Status == ContactStatus.NonTraite)
-                                {
-                                    <form asp-action="MarkAsTraite" asp-route-id="@contact.Id" method="post">
-                                        <button type="submit">Marquer comme Traité</button>
-                                    </form>
-                                }
+                        @foreach (var contact in Model.Contacts)
+                        {
+                            <tr>
+                                <td>@contact.Name</td>
+                                <td>@contact.FirstName</td>
+                                <td>@contact.Email</td>
+                                <td>@contact.PhoneNumber</td>
+                                <td>@contact.Message</td>
+                                <td>@contact.DateSent</td>
+                                <td>@contact.Status</td>
+                                <td>
+                                    @if (contact.Status == ContactStatus.NonTraite)
+                                    {
+                                        <form asp-action="MarkAsTraite" asp-route-id="@contact.Id" method="post">
+                                            <button type="submit">Marquer comme Traité</button>
+                                        </form>
+                                    }
 
-                            </td>
-                    
-                        </tr>
-                    }
+                                </td>
+
+
+                            </tr>
+                        }
                     }
                     else
                     {
+                        <tr>
+                            <td colspan="7">Aucun contact disponible.</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!-- Bloc pour les propositions de produits -->
+    <div class="dashboard-block">
+        <h2>Proposition de produit à valider ou pas</h2>
+        <div class="table-container">
+            <table class="dashboard-table">
+                <thead>
                     <tr>
-                        <td colspan="7">Aucun contact disponible.</td>
+                        <th>Nom du produit</th>
+                        <th>Description</th>
+                        <th>Prix</th>
+                        <th>Stock</th>
+                        <th>Date Limite</th>
+                        <th>Statut</th>
+                        <th>Actions</th>
+
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (Model != null && Model.NewProducts != null && Model.NewProducts.Any())
+                    {
+                        @foreach (var newProduct in Model.NewProducts)
+                        {
+                            <tr>
+                                <td>@newProduct.ProductName</td>
+                                <td>@newProduct.Description</td>
+                                <td>@newProduct.Price.ToString("C2")</td>
+                                <td>@newProduct.Stock</td>
+                                <td>@newProduct.LimitDate.ToShortDateString()</td>
+                                <td>@newProduct.SubmissionStatus.ToString()</td>
+
+                                <td>
+                                    @if (newProduct.SubmissionStatus == SubmissionStatus.Pending)
+                                    {
+                                        <form asp-action="ValidateProduct" method="post">
+                                            <input type="hidden" name="id" value="@newProduct.Id" />
+                                            <button type="submit" class="btn btn-success">Valider</button>
+                                        </form>
+                                        <form asp-action="RejectProduct" method="post">
+                                            <input type="hidden" name="id" value="@newProduct.Id" />
+                                            <button type="submit" class="btn btn-success">Rejeter</button>
+                                        </form>
+                                    }
+
+                                </td>
+                            </tr>
+                        }
+                    }
+                    else
+                    {
+                        <tr> 
+                    <td colspan="7">Aucun nouveau produit à valider.</td>
+
+
+                    
                     </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
-
 </div>
 
-@section Styles {
-    <style>
-        .dashboard-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: space-around;
-        }
 
-        .dashboard-block {
-            width: 45%;
-            height: 300px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            padding: 15px;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-            .dashboard-block h2 {
-                text-align: center;
-                color: #333;
-                font-size: 1.5em;
-                margin-bottom: 10px;
-                border-bottom: 2px solid #007bff;
-                padding-bottom: 5px;
-            }
-
-        .table-container {
-            height: 100%;
-        }
-
-        .dashboard-table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #fff;
-        }
-
-            .dashboard-table th, .dashboard-table td {
-                border: 1px solid #ddd;
-                padding: 8px;
-                text-align: left;
-            }
-
-            .dashboard-table th {
-                background-color: #007bff;
-                color: white;
-                font-weight: bold;
-            }
-
-            .dashboard-table td {
-                word-wrap: break-word;
-                color: #333;
-            }
-
-        .dashboard-block::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .dashboard-block::-webkit-scrollbar-thumb {
-            background-color: #007bff;
-            border-radius: 10px;
-        }
-
-        .dashboard-block::-webkit-scrollbar-track {
-            background-color: #f1f1f1;
-        }
-    </style>
-}

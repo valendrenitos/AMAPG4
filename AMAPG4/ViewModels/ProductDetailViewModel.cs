@@ -1,4 +1,7 @@
-﻿namespace AMAPG4.ViewModels
+﻿using AMAPG4.Models.Catalog;
+using System;
+
+namespace AMAPG4.ViewModels
 {
 	public class ProductDetailViewModel
 	{
@@ -8,5 +11,10 @@
 		public bool IsAvailable { get; set; }
 		public int Quantity { get; set; }
 		public int Stock { get; set; }
-	}
+        public DateTime LimitDate { get; set; }
+
+        public ProductType ProductType { get; set; }
+
+        public SubmissionStatus SubmissionStatus { get; set; }
+    }
 }

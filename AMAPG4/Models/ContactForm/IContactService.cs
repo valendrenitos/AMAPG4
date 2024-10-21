@@ -8,7 +8,7 @@ namespace AMAPG4.Models.ContactForm
     {
               
             List<Contact> GetAllContacts();
-            int CreateContact(string name, string firstName, string email, string phoneNumber, string message);
+            int CreateContact(string name, string firstName, string email, string phoneNumber, string message, ContactStatus status);
         
 
     }

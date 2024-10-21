@@ -14,6 +14,7 @@ namespace AMAPG4.Models
         public DbSet<Producer> Producers { get; set; }
         public DbSet<UserAccount> UserAccounts { get; set; }
         public DbSet<Product> Products { get; set; }
+        public DbSet<NewProduct> NewProducts { get; set; }
         public DbSet<OrderLine> OrderLines { get; set; }
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<CommandLine> CommandLines { get; set; }

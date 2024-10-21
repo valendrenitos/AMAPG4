@@ -119,5 +119,6 @@ namespace AMAPG4.Controllers
 
 			return View("/Views/LaFerme/Catalog/ProductView.cshtml", productViewModel);
 		}
-	}
+       
+    }
 }

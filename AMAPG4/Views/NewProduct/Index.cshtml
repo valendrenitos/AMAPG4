@@ -1,0 +1,52 @@
+﻿
+@model AMAPG4.ViewModels.NewProductViewModel
+@{
+    ViewBag.Title = "Formulaire de proposition produit";
+    Layout = "_Layout";
+}
+
+<div class="container">
+    <div class="formulaire">
+        <h2>Le formulaire</h2>
+        @using (Html.BeginForm())
+        {
+            <div>
+                @Html.LabelFor(m => m.NewProduct.ProductName, "Nom")
+                @Html.TextBoxFor(m => m.NewProduct.ProductName, new { @class = "input-field", placeholder = "Nom du produit" })
+                @Html.ValidationMessageFor(m => m.NewProduct.ProductName)
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.NewProduct.Description, "Description")
+                @Html.TextAreaFor(m => m.NewProduct.Description, new { @class = "input-field", placeholder = "Description", rows = 4, cols = 50 })
+                @Html.ValidationMessageFor(m => m.NewProduct.Description)
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.NewProduct.Price, "Prix unitaire")
+                @Html.TextBoxFor(m => m.NewProduct.Price, new { @class = "input-field", placeholder = "prix unitaire" })
+                @Html.ValidationMessageFor(m => m.NewProduct.Price)
+            </div>
+            <div>
+                @Html.LabelFor(m => m.NewProduct.Stock, "Quantité en stock à proposer")
+                @Html.TextBoxFor(m => m.NewProduct.Stock, new { @class = "input-field", placeholder = "Quantité en stock", type = "number", min = "0" })
+                @Html.ValidationMessageFor(m => m.NewProduct.Stock)
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.NewProduct.LimitDate, "Date limite")
+                @Html.TextBoxFor(m => m.NewProduct.LimitDate, new { @class = "input-field", type = "date" })
+                @Html.ValidationMessageFor(m => m.NewProduct.LimitDate)
+            </div>
+
+            <div>
+                @Html.LabelFor(m => m.NewProduct.ProductType, "Type de produit")
+                @Html.TextBoxFor(m => m.NewProduct.ProductType, new { @class = "input-field", placeholder = "Type de produit" })
+                @Html.ValidationMessageFor(m => m.NewProduct.ProductType)
+            </div>
+            <div>
+                <button type="submit" class="submit-button">Envoyer</button>
+            </div>
+        }
+    </div>
+</div>
