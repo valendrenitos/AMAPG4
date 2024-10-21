@@ -463,3 +463,93 @@ a {
     font-size: 1.03rem;
     color: #285146;
 }
+
+
+
+/*******************************************************************/
+/**********************STYLES FOR BASKETS PAGE**********************/
+/*******************************************************************/
+.baskets-body {
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.baskets-container {
+    display: flex;
+    justify-content: space-around;
+}
+
+.product-basket {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 22rem;
+    height: 38rem;
+    margin: 2rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px 2px #285146;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+    transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    border: 0;
+    border-radius: 1rem;
+}
+
+.product-basket:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}
+
+.basket-photo {
+    margin: 1rem;
+    width: 14rem;
+    height: auto;
+    align-content: center;
+    margin: 1rem;
+    border-radius: 1rem;
+}
+.basket-name {
+    font-size: 1.2rem;
+    width: 16rem;
+    text-align: center;
+    font-weight: 600;
+    color: #285146;
+}
+
+.basket-description {
+    text-align: center;
+    color: #285146;
+    padding: 1rem;
+}
+
+.basket-price {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #285146;
+    margin: 1rem;
+}
+
+.baskets-body h2 {
+    font-weight: bold;
+    font-size: 2.2rem;
+    text-align: center;
+    color: #285146;
+    margin-top: 2rem;
+}
+
+.baskets-body p {
+    font-size: 1.5rem;
+    text-align: center;
+    color: #285146;
+    max-width: 80rem;
+    margin: 0 auto;
+}
+
+/*******************************************************************/
+/*******************STYLES FOR ACTIVITIES PAGE**********************/
+/*******************************************************************/
