@@ -27,21 +27,27 @@
     @foreach (Product product in Model.Products)
     {
         <div class="product-activity">
+
+            <div class="photo-name">
             <img class="activity-photo" src="~/images/LaFermeImages/activity.png" />
             <div class="activity-name">@product.ProductName</div>
+            </div>
+
             <div class="activity-description">@product.Description</div>
             <div class="activity-date">@product.LimitDate</div>
             <div class="activity-price">@product.Price.ToString("C2", new CultureInfo("fr-FR"))</div>
 
+                <div class="add-row-activity">
                 @using (Html.BeginForm())
                 {
                     <input type="hidden" name="ProductName" value="@product.ProductName" />
-                    <p> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
+                        <p class="quantity-txt quantity-txt-activity"> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
                     <p> @Html.TextBoxFor(m => m.Quantity, new { type = "number", min = "1", max = @product.Stock })</p>
 
-                    <input type="submit" value="Ajouter Au Panier" />
+                        <input class="activity-add-to-basket" type="submit" value="Ajouter Au Panier" />
                 }
-
+                </div>
+              
         </div>
     }
 </div>
