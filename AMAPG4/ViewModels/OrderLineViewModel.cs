@@ -9,7 +9,7 @@ namespace AMAPG4.ViewModels
     {
 
         public int UserActualId { get; set; }
-   
+         public OrderLine orderLine { get; set; } 
         public List<OrderLine> OrderLinesTotal { get; set; }
         public List<OrderLine> OrderLinesCurrent { get; set; }
         public List<string> OrderLinesCurrentList { get; set; }
