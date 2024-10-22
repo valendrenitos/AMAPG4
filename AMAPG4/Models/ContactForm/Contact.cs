@@ -10,8 +10,9 @@ namespace AMAPG4.Models.ContactForm
         public string Email { get; set; }
         public string PhoneNumber { get; set; }
         public string Message { get; set; }
+        public UserType userType { get; set; }
         public DateTime DateSent { get; set; }
-        public ContactStatus Status { get; set; } = ContactStatus.NonTraite; // Par défaut à "Non traité"
+        public ContactStatus Status { get; set; } = ContactStatus.Pending; // Par défaut à "Non traité"
     }
 
     

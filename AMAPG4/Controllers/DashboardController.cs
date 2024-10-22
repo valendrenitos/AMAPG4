@@ -36,7 +36,7 @@ namespace AMAPG4.Controllers
             }
             using (ContactService contactService = new ContactService())
             {
-                dashboardVM.Contacts = contactService.GetAllContacts();
+                dashboardVM.PendingContacts = contactService.GetAllPendingContacts();
             }
             using (NewProductService newProductService = new NewProductService())
             {
@@ -75,6 +75,15 @@ namespace AMAPG4.Controllers
             using (CEDal ceDal = new CEDal())
             {
                 dashboardVM.CEs = ceDal.GetAllCEs();
+            }
+            return View(dashboardVM);
+        }
+        public IActionResult Contacts() {
+            DashboardViewModel dashboardVM = new DashboardViewModel();
+            using (ContactService contactService = new ContactService())
+            {
+                dashboardVM.PendingContacts = contactService.GetAllPendingContacts();
+                dashboardVM.DoneContacts = contactService.GetAllDoneContacts();
             }
             return View(dashboardVM);
         }

@@ -1,0 +1,47 @@
+﻿@model AMAPG4.Models.ContactForm.Contact
+
+@{
+    ViewBag.Title = "Détails du Contact";
+    Layout = "_BackOfficeLayout";
+}
+
+<h1 class="bo-entity">Détails du formulaire de contact n°@Model.Id</h1>
+
+<div class="user-profile">
+    <div class="user-info">
+        <label>Nom :</label>
+        <span>@Model.Name</span>
+    </div>
+
+    <div class="user-info">
+        <label>Prénom :</label>
+        <span>@Model.FirstName</span>
+    </div>
+
+    <div class="user-info">
+        <label>Email :</label>
+        <span>@Model.Email</span>
+    </div>
+
+    <div class="user-info">
+        <label>Téléphone :</label>
+        <span>@Model.PhoneNumber</span>
+    </div>
+
+    <div class="user-info">
+        <label>Message :</label>
+        <span>@Model.Message</span>
+    </div>
+
+    <div class="user-info">
+        <label>Statut :</label>
+        <span>@Model.Status</span>
+    </div>
+
+    <div class="user-actions">
+        <a href="@Url.Action("Update", "Contact", new { id = Model.Id })" class="btn-save">Modifier</a>
+        <form method="post" action="@Url.Action("Delete", "Contact", new { id = Model.Id })" style="display:inline;">
+            <button type="submit" class="btn-delete">Supprimer</button>
+        </form>
+    </div>
+</div>

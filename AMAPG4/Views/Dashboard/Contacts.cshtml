@@ -1,0 +1,93 @@
+﻿@using AMAPG4.Models.ContactForm
+@model AMAPG4.ViewModels.DashboardViewModel
+@{
+    ViewBag.Title = "Gestion des Demandes de Contact";
+    Layout = "_BackOfficeLayout";
+}
+
+<div class="back-office-entity-category">
+
+    <!-- Tableau pour les demandes à traiter -->
+    <div class="category-block">
+        <div class="section-header">
+            <h2 class="section-title"><a href="@Url.Action("PendingContacts", "Contact")">Demandes de contact à traiter</a></h2>
+        </div>
+
+        <div class="table-container">
+            <table class="category-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Message</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Contact contact in Model.PendingContacts)
+                    {
+                        <tr>
+                            <td>@contact.Name</td>
+                            <td>@contact.FirstName</td>
+                            <td>@contact.Email</td>
+                            <td>@contact.PhoneNumber</td>
+                            <td>@contact.Message</td>
+                            <td class="td-btn-actions">
+                                <form method="post" action="@Url.Action("ChangeStatus", "Contact", new { id = contact.Id })" style="display:inline;">
+                                    <button type="submit" class="btn-action btn-update">Traité</button>
+                                </form>
+                                <form method="post" action="@Url.Action("Delete", "Contact", new { id = contact.Id })" style="display:inline;">
+                                    <button type="submit" class="btn-action btn-delete">Supprimer</button>
+                                </form>
+                                <a href="@Url.Action("Read", "Contact", new { id = contact.Id })" class="btn-action btn-update">Lire</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Tableau pour les demandes traitées -->
+    <div class="category-block">
+        <div class="section-header">
+            <h2 class="section-title"><a href="@Url.Action("DoneContacts", "Contact")">Demandes de ontact Traitées</a></h2>
+        </div>
+
+        <div class="table-container">
+            <table class="category-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Message</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Contact contact in Model.DoneContacts)
+                    {
+                        <tr>
+                            <td>@contact.Name</td>
+                            <td>@contact.FirstName</td>
+                            <td>@contact.Email</td>
+                            <td>@contact.PhoneNumber</td>
+                            <td>@contact.Message</td>
+                            <td class="td-btn-actions">
+                                <a href="@Url.Action("Read", "Contact", new { id = contact.Id })" class="btn-action btn-update">Lire</a>
+                                <form method="post" action="@Url.Action("Delete", "Contact", new { id = contact.Id })" style="display:inline;">
+                                    <button type="submit" class="btn-action btn-delete">Supprimer</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
