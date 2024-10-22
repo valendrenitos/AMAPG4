@@ -12,6 +12,8 @@ namespace AMAPG4.Models.User
         [Required(ErrorMessage = "Le nom est obligatoire.")]
         [MinLength(2), MaxLength(50)]
         public string ContactName { get; set; }
+        public string Description { get; set; }
+        public string ProductionType { get; set; }
 
         [Required(ErrorMessage = "Le RIB est obligatoire.")]
         [RegularExpression(@"^[A-Za-z0-9]{23}$", ErrorMessage = "Le RIB doit contenir exactement 23 caractères alphanumériques.")]

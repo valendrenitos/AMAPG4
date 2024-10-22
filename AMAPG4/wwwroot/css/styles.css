@@ -473,7 +473,8 @@ a {
     box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
 }
 
-.basket-photo {
+.basket-photo, 
+.producer-photo {
     margin: 1rem;
     width: 14rem;
     height: auto;
@@ -482,7 +483,8 @@ a {
     border-radius: 1rem;
 }
 .activity-name,
-.basket-name {
+.basket-name,
+.producer-name {
     font-size: 1.2rem;
     width: 16rem;
     text-align: center;
@@ -504,7 +506,9 @@ a {
 }
 
 .activities-body h2, 
-.baskets-body h2 {
+.baskets-body h2,
+.producer-body h2, 
+.login-body h2 {
     font-weight: bold;
     font-size: 2.2rem;
     text-align: center;
@@ -513,7 +517,9 @@ a {
 }
 
 .activities-body p,
-.baskets-body p {
+.baskets-body p,
+.producer-body p, 
+.login-body p {
     font-size: 1.5rem;
     text-align: center;
     color: #285146;
@@ -569,7 +575,8 @@ a {
     margin: 1rem;
 }
 
-.activity-description {
+.activity-description, 
+.producer-type {
     text-align: center;
     color: #285146;
     padding: 1rem;

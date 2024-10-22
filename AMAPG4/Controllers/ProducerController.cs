@@ -4,37 +4,54 @@ using System.Collections.Generic;
 using System;
 using System.Linq;
 using AMAPG4.Models.Catalog;
+using AMAPG4.ViewModels;
+using AspNetCore;
 
 namespace AMAPG4.Controllers
 {
 	public class ProducerController : Microsoft.AspNetCore.Mvc.Controller
 	{
 
-		private ProducerDal _producerDal;
+		public ProducerDal _producerDal;
         public ProducerController()
         {
             _producerDal = new ProducerDal();
         }
+
         public IActionResult Index(string searchString)
 		{
-			List<Producer> producers =_producerDal.GetAllProducers();
-
+            ProducerViewModel viewModel = new ProducerViewModel();
+            viewModel.ProducersList=_producerDal.GetAllProducers();
+             
+           
 			// Search using the search bar
 			if (!string.IsNullOrEmpty(searchString))
 			{
-				producers = producers.Where(p => p.ContactName.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
+                viewModel.ProducersList = viewModel.ProducersList.Where(p => p.ContactName.Contains(searchString, StringComparison.OrdinalIgnoreCase)).ToList();
 			}
-			return View(producers);
+			return View(viewModel);
 
 		}
+     
 		public IActionResult ProducerView(int id)
 		{
-			Producer producer = _producerDal.GetAllProducers().FirstOrDefault(p => p.Id == id);
+
+
+            Producer producer =_producerDal.GetProducerById(id);
+            Console.WriteLine(producer.Id);
+
+           
+
 			if (producer == null)
 			{
 				return NotFound();
 			}
-			return View(producer);
+            ProducerViewModel model = new ProducerViewModel
+            {
+                Producers = producer,
+                Id = id
+            };
+            return View(model);
 		}
 
 
@@ -65,6 +82,8 @@ namespace AMAPG4.Controllers
                 {
                     producer.Siret = model.Siret;
                     producer.ContactName = model.ContactName;
+                    producer.Description = model.Description;
+                    producer.ProductionType = model.ProductionType;
                     producer.RIB = model.RIB;
                     producer.Account.Address = model.Account.Address;
                     producer.Account.Email = model.Account.Email;
@@ -121,6 +140,8 @@ namespace AMAPG4.Controllers
                 int newId = _producerDal.CreateProducer(
                     model.Siret,
                     model.ContactName,
+                    model.Description,
+                    model.ProductionType,
                     model.RIB,
                     model.Account.Email,
                     model.Account.Password,
