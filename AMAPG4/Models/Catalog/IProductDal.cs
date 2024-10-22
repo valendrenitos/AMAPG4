@@ -8,6 +8,6 @@ namespace AMAPG4.Models.Catalog
     public interface IProductDal : IDisposable
     {
         List<Product> GetAllProducts();
-        int CreateProduct(string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType);
+        int CreateProduct(string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, int producerId);
     }
 }

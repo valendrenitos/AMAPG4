@@ -1,4 +1,7 @@
 ﻿using AMAPG4.Helpers;
+using AMAPG4.Models.Catalog;
+using AMAPG4.ViewModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,6 +12,7 @@ namespace AMAPG4.Models.User
     public class ProducerDal : IProducerDal
     {
         private MyDBContext _bddContext;
+
 
         public ProducerDal()
         {
@@ -38,6 +42,7 @@ namespace AMAPG4.Models.User
         {
             return GetAllProducers().FirstOrDefault(p => p.Account.Id == userAccountId);
         }
+
 
         // Ajoute un nouveau producteur avec son compte utilisateur associé
         public int CreateProducer(string siret, string contactName, string description, string productionType, string rib, string email, string password, string name, string address, string phone, Role role = Role.Utilisateur)

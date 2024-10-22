@@ -13,11 +13,14 @@
     <title>Page</title>
 </head>
 
+
+
 <div class="container">
     <div class="formulaire">
         <h2>Votre formulaire de demande d'ajout d'un nouveau produit</h2>
         @using (Html.BeginForm())
         {
+            
             <div>
                 @Html.LabelFor(m => m.NewProduct.ProductName, "Nom")
                 @Html.TextBoxFor(m => m.NewProduct.ProductName, new { @class = "input-field", placeholder = "Nom du produit" })
@@ -57,6 +60,8 @@
                 Text = e.ToString()
             }), "Value", "Text"), "Sélectionnez un type", new { @class = "form-control" })
             </div>
+
+          
               
             <div>
                 <input type="submit" value="Envoyer" />

@@ -2,12 +2,11 @@
 using AMAPG4.Models.Catalog;
 using AMAPG4.Models.Command;
 using Microsoft.EntityFrameworkCore;
-using AMAPG4.Models.Command;
 using AMAPG4.Models.ContactForm;
 
 namespace AMAPG4.Models
 {
-    public class MyDBContext : DbContext
+	public class MyDBContext : DbContext
     {
         public DbSet<Individual> Individuals { get; set; }
         public DbSet<CE> CEs { get; set; }

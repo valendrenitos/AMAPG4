@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System;
+using AMAPG4.Models.User;
+using Microsoft.EntityFrameworkCore;
 
 namespace AMAPG4.Models.Catalog
 {
@@ -23,7 +25,7 @@ namespace AMAPG4.Models.Catalog
 
         public void InitializeDataBase()
         {
-            CreateNewProduct("Fleurs", "MAgnifique", true, 15m, 10, DateTime.Now.AddDays(7), ProductType.Unitary, SubmissionStatus.Pending);
+            CreateNewProduct("Fleurs", "MAgnifique", true, 15m, 10, DateTime.Now.AddDays(7), ProductType.Unitary, SubmissionStatus.Pending, 1);
         }
 
             public List<NewProduct> GetAllNewProducts()
@@ -38,9 +40,10 @@ namespace AMAPG4.Models.Catalog
 
             //*******************CRUD**********************//
 
-            public int CreateNewProduct(string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, SubmissionStatus status )
+            public int CreateNewProduct(string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, SubmissionStatus status, int producerId)
             {
-                NewProduct newProduct = new NewProduct()
+            Producer producer = _bddContext.Producers.Include(p => p.Account).FirstOrDefault(p => p.Id == producerId);
+            NewProduct newProduct = new NewProduct()
                 {
                     ProductName = productName,
                     Description = description,
@@ -49,7 +52,8 @@ namespace AMAPG4.Models.Catalog
                     Stock = stock,
                     LimitDate = limitDate,
                     ProductType = productType,
-                    SubmissionStatus = status
+                    SubmissionStatus = status,
+                    Producer = producer
 
                 };
                 _bddContext.NewProducts.Add(newProduct);

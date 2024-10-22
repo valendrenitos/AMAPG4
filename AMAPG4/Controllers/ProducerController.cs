@@ -5,11 +5,11 @@ using System;
 using System.Linq;
 using AMAPG4.Models.Catalog;
 using AMAPG4.ViewModels;
-using AspNetCore;
+using Microsoft.AspNetCore.Http;
 
 namespace AMAPG4.Controllers
 {
-	public class ProducerController : Microsoft.AspNetCore.Mvc.Controller
+	public class ProducerController : Controller
 	{
 
 		public ProducerDal _producerDal;

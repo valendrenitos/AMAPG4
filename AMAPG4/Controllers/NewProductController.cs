@@ -1,5 +1,6 @@
 ﻿using AMAPG4.Models;
 using AMAPG4.Models.Catalog;
+using AMAPG4.Models.User;
 using AMAPG4.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -35,21 +36,28 @@ namespace AMAPG4.Controllers
             // Vérifie si le modèle est valide
             if (ModelState.IsValid)
             {
-                try
-                {
+                Producer producer = new Producer();
+
+                   using (UserAccountDal userAccountDal = new UserAccountDal())
+                    {
+                        producer.Account = userAccountDal.GetUserAccount(HttpContext.User.Identity.Name);
+                    }
+                   
+                    using (ProducerDal producerDal = new ProducerDal())
+                    {
+                       producer = producerDal.GetProducerByUserAccount(producer.Account.Id);
+                    }
+
+
                     newProduct.SubmissionStatus = SubmissionStatus.Pending; // État en attente
-                    _newProductService.CreateNewProduct(newProduct.ProductName, newProduct.Description, newProduct.IsAvailable, newProduct.Price, newProduct.Stock, newProduct.LimitDate, newProduct.ProductType, newProduct.SubmissionStatus);                
+                    _newProductService.CreateNewProduct(newProduct.ProductName, newProduct.Description, newProduct.IsAvailable, newProduct.Price, newProduct.Stock, newProduct.LimitDate, newProduct.ProductType, newProduct.SubmissionStatus, producer.Id);                
 
                     // Marquer le produit comme soumis
 
                     ViewBag.Message = "Votre demande d'ajout d'un nouveau produit a été envoyé avec succès.";
 
                     //return RedirectToAction("Index", "Home");
-                }
-                catch (Exception ex)
-                {
-                    ViewBag.Message = "Erreur lors de l'enregistrement du message : " + ex.Message;
-                }
+
             }
             else
             {
