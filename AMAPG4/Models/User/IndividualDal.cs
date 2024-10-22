@@ -82,7 +82,7 @@ namespace AMAPG4.Models.User
                 existingIndividual.Account = individual.Account;
              
                 _bddContext.SaveChanges();
-                        }
+            }
         }
 
         // Supprime un individu et son UserAccount associé
