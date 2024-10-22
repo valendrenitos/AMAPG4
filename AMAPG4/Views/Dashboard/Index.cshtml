@@ -37,7 +37,7 @@
                             <td>@(individual.IsVolunteer ? "Oui" : "Non")</td>
                             <td class="td-btn-actions">
                                 <a href="@Url.Action("Update", "Individual", new { id = individual.Id })" class="btn-action btn-update">Modifier</a>
-                                <form method="post" action="@Url.Action("Delete", "Producer", new { id = individual.Id })">
+                                <form method="post" action="@Url.Action("Delete", "Individual", new { id = individual.Id })">
                                     <button type="submit" class="btn-action btn-delete">Supprimer</button>
                                 </form>
                             </td>
@@ -112,7 +112,7 @@
                             <td>@ce.NumberOfEmployees</td>
                             <td class="td-btn-actions">
                                 <a href="@Url.Action("Update", "CE", new { id = ce.Id })" class="btn-action btn-update">Modifier</a>
-                                <form method="post" action="@Url.Action("Delete", "Producer", new { id = ce.Id })">
+                                <form method="post" action="@Url.Action("Delete", "CE", new { id = ce.Id })">
                                     <button type="submit" class="btn-action btn-delete">Supprimer</button></form>
                             </td>
                         </tr>
