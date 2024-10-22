@@ -13,6 +13,7 @@ namespace AMAPG4.ViewModels
         public List<Producer> Producers { get; set; }
         public List<Product> Products { get; set; }
         public List<NewProduct> NewProducts { get; set; }
-        public List<Contact> Contacts { get; set; }
+        public List<Contact> PendingContacts { get; set; }
+        public List<Contact> DoneContacts { get; set; }
     }
 }

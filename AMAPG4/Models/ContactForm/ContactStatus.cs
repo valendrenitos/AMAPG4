@@ -2,9 +2,8 @@
 {
     public enum ContactStatus
     {
-
-        NonTraite,
-        Traite
+        Pending,
+        Done
     }
 }
 
