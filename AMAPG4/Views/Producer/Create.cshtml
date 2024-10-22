@@ -1,0 +1,58 @@
+﻿@model AMAPG4.Models.User.Producer
+
+@{
+    ViewBag.Title = "Créer un nouveau compte Producteur";
+    Layout = "_BackOfficeLayout";
+}
+
+<h1 class="bo-entity">Créer un nouveau compte Producteur</h1>
+
+@using (Html.BeginForm("Create", "Producer", FormMethod.Post))
+{
+    <div class="user-info">
+        @Html.LabelFor(m => m.Account.Name, "Nom de l'exploitation")
+        @Html.TextBoxFor(model => model.Account.Name, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Account.Name)
+    </div>
+
+    <div class="user-info">
+        <label>Nom du contact :</label>
+        @Html.TextBoxFor(model => model.ContactName, new { @class = "form-control" })
+    </div>
+
+    <div class="user-info">
+        <label>Email :</label>
+        @Html.TextBoxFor(model => model.Account.Email, new { @class = "form-control" })
+    </div>
+
+    <div class="user-info">
+        <label>Téléphone :</label>
+        @Html.TextBoxFor(model => model.Account.Phone, new { @class = "form-control" })
+    </div>
+
+    <div class="user-info">
+        <label>Adresse :</label>
+        @Html.TextBoxFor(model => model.Account.Address, new { @class = "form-control" })
+    </div>
+
+    <div class="user-info">
+        @Html.LabelFor(m => m.Siret, "Numéro de SIRET")
+        @Html.TextBoxFor(model => model.Siret, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.Siret)
+    </div>
+
+    <div class="user-info">
+        @Html.LabelFor(m => m.RIB, "RIB")
+        @Html.TextBoxFor(model => model.RIB, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.RIB)
+    </div>
+
+    <div class="user-info">
+        <label>Mot de passe :</label>
+        @Html.PasswordFor(model => model.Account.Password, new { @class = "form-control" })
+    </div>
+
+    <div class="user-actions">
+        <button type="submit" class="btn-save">Créer</button>
+    </div>
+}

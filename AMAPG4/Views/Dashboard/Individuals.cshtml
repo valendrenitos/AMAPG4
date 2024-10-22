@@ -1,0 +1,54 @@
+﻿@using AMAPG4.Models.User
+@model AMAPG4.ViewModels.DashboardViewModel
+@{
+    ViewBag.Title = "Gestion des comptes personnels";
+    Layout = "_BackOfficeLayout";
+}
+
+<div class="back-office-entity-category">
+    <div class="category-block">
+
+        
+        <div class="section-header">
+            <h2 class="section-title">Adhérents</h2>
+            <a href="@Url.Action("Create", "Individual")" class="btn-add">Ajouter un adhérent</a>
+        </div>
+
+        <div class="table-container">
+            <table class="category-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Date d'inscription</th>
+                        <th>Bénévole</th>
+                        <th>Contribution payée</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Individual individual in Model.Individuals)
+                    {
+                        <tr class="@(individual.IsContributionPaid ? "" : "unpaid-user")">
+                            <td>@individual.Account.Name</td>
+                            <td>@individual.FirstName</td>
+                            <td>@individual.Account.Email</td>
+                            <td>@individual.Account.Phone</td>
+                            <td>@individual.InscriptionDate.ToShortDateString()</td>
+                            <td>@(individual.IsVolunteer ? "Oui" : "Non")</td>
+                            <td>@(individual.IsContributionPaid ? "Oui" : "Non")</td>
+                            <td class="td-btn-actions">
+                               
+                                <a href="@Url.Action("Update", "Individual", new { id = individual.Id })" class="btn-action btn-update">Modifier</a>
+                                <form method="post" action="@Url.Action("Delete", "Producer", new { id = individual.Id })">
+                                    <button type="submit" class="btn-action btn-delete">Supprimer</button></form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

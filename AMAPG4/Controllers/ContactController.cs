@@ -7,7 +7,7 @@ using XAct.Library.Settings;
 
 namespace AMAPG4.Controllers
 {
-    public class ContactController : Controller
+    public class ContactController : Microsoft.AspNetCore.Mvc.Controller
     {
         private ContactService _contactService;
         public ContactController()

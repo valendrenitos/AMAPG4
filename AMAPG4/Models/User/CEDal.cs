@@ -1,39 +1,47 @@
 ﻿using AMAPG4.Helpers;
 using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Principal;
 
 namespace AMAPG4.Models.User
 {
     public class CEDal : ICEDal
     {
         private MyDBContext _bddContext;
-        private UserAccountDal _userAccountDal;
 
         public CEDal()
         {
             _bddContext = new MyDBContext();
-            _userAccountDal = new UserAccountDal();
         }
 
-        // Récupère toutes les entreprises (CE)
+        public void DeleteCreateDatabase()
+        {
+            _bddContext.Database.EnsureDeleted();
+            _bddContext.Database.EnsureCreated();
+        }
+
+        // Récupère tous les CEs
         public List<CE> GetAllCEs()
         {
-            return _bddContext.CEs.Include(i => i.Account).ToList();
+            return _bddContext.CEs.Include(c => c.Account).ToList();
         }
 
         // Récupère un CE par son Id
         public CE GetCEById(int id)
         {
-            return _bddContext.CEs.FirstOrDefault(c => c.Id == id);
+            return GetAllCEs().FirstOrDefault(c => c.Id == id);
         }
-     
-        // Ajoute un nouveau CE avec son compte utilisateur associé
-        public int CreateCE(string contactName, int numberOfEmployees, bool isContributionPaid,
-                  string email, string password, string name, string address, string phone)
+
+        // Récupère un CE par son Account.Id
+        public CE GetCEByUserAccount(int userAccountId)
         {
-            
+            return GetAllCEs().FirstOrDefault(c => c.Account.Id == userAccountId);
+        }
+
+        // Ajoute un nouveau CE avec son compte utilisateur associé
+        public int CreateCE(string contactName, int numberOfEmployees, bool isContributionPaid, string email, string password, string name, string address, string phone, Role role = Role.Utilisateur)
+        {
             CE ce = new CE()
             {
                 ContactName = contactName,
@@ -45,67 +53,50 @@ namespace AMAPG4.Models.User
                     Email = email,
                     Phone = phone,
                     Name = name,
-                    Password = Encode.EncodeMD5(password)
+                    Password = Encode.EncodeMD5(password),
+                    Role = role
                 }
             };
 
-            // 3. Ajoute le CE à la base de données
+            // Ajoute le CE à la base de données
             _bddContext.CEs.Add(ce);
             _bddContext.SaveChanges();
 
             return ce.Id;
         }
 
-
-        // Met à jour un CE existant et son compte utilisateur associé
-        public void UpdateCE(int ceId, string contactName, int numberOfEmployees, bool isContributionPaid, UserAccount account)
+        // Méthode pour mettre à jour un CE
+        public void UpdateCE(CE ce)
         {
-            // Mettre à jour le CE
-            CE ce = _bddContext.CEs.FirstOrDefault(c => c.Id == ceId);
-            if (ce != null)
+            CE existingCE = GetCEById(ce.Id);
+            if (existingCE != null)
             {
-                ce.ContactName = contactName;
-                ce.NumberOfEmployees = numberOfEmployees;
-                ce.IsContributionPaid = isContributionPaid;
-                _bddContext.SaveChanges();
+                // Mise à jour des informations du CE
+                existingCE.ContactName = ce.ContactName;
+                existingCE.NumberOfEmployees = ce.NumberOfEmployees;
+                existingCE.IsContributionPaid = ce.IsContributionPaid;
+                existingCE.Account = ce.Account;
 
-                // Mettre à jour le compte utilisateur associé
-                if (ce.Account != null)
-                {
-                    _userAccountDal.UpdateUserAccount(ce.Account.Id, account.Address, account.Email, account.Phone, account.Name, account.Password);
-                }
+                _bddContext.SaveChanges();
             }
         }
 
-        //// Supprime un CE et son compte utilisateur associé
-        //public void DeleteCE(int id)
-        //{
-        //    var ce = _bddContext.CEs.FirstOrDefault(c => c.Id == id);
-        //    if (ce != null)
-        //    {
-        //        // Supprime le compte utilisateur associé
-        //        if (ce.Account != null)
-        //        {
-        //            _userAccountDal.DeleteUserAccount(ce.Account.Id);
-        //        }
+        // Supprime un CE et son UserAccount associé
+        public void DeleteCE(int id)
+        {
+            CE ce = GetCEById(id);
+            if (ce != null)
+            {
+                _bddContext.CEs.Remove(ce);
+                _bddContext.SaveChanges();
+            }
+        }
 
-        //        // Supprime le CE
-        //        _bddContext.CEs.Remove(ce);
-        //        _bddContext.SaveChanges();
-        //    }
-        //}
-
-        // Libère les ressources
+        // Méthode pour libérer les ressources
         public void Dispose()
         {
             _bddContext.Dispose();
         }
-
-        public CE GetCEByUserAccount(int userAccountId)
-        {
-            return _bddContext.CEs.FirstOrDefault(ce => ce.Account.Id == userAccountId);
-        }
-
 
         public void Initialize()
         {
@@ -119,4 +110,3 @@ namespace AMAPG4.Models.User
     }
 
 }
-

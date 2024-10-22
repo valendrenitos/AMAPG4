@@ -1,0 +1,48 @@
+﻿@using AMAPG4.Models.User
+@model AMAPG4.ViewModels.DashboardViewModel
+@{
+    ViewBag.Title = "Gestion des Comités d'Entreprise";
+    Layout = "_BackOfficeLayout";
+}
+
+<div class="back-office-entity-category">
+    <div class="category-block">
+
+        <div class="section-header">
+            <h2 class="section-title">Comités d'Entreprise</h2>
+            <a href="@Url.Action("Create", "CE")" class="btn-add">Ajouter un CE</a>
+        </div>
+
+        <div class="table-container">
+            <table class="category-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Nom du contact</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Nombre d'employés</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (CE ce in Model.CEs)
+                    {
+                        <tr>
+                            <td>@ce.Account.Name</td>
+                            <td>@ce.ContactName</td>
+                            <td>@ce.Account.Email</td>
+                            <td>@ce.Account.Phone</td>
+                            <td>@ce.NumberOfEmployees</td>
+                            <td class="td-btn-actions">
+                                <a href="@Url.Action("Update", "CE", new { id = ce.Id })" class="btn-action btn-update">Modifier</a>
+                                <form method="post" action="@Url.Action("Delete", "Producer", new { id = ce.Id })">
+                                    <button type="submit" class="btn-action btn-delete">Supprimer</button></form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

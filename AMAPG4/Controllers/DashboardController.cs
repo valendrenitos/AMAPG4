@@ -3,10 +3,12 @@ using AMAPG4.Models.ContactForm;
 using AMAPG4.Models.User;
 using AMAPG4.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace AMAPG4.Controllers
 {
-    public class DashboardController : Controller
+    public class DashboardController : Microsoft.AspNetCore.Mvc.Controller
     {
       
         public IActionResult Index()
@@ -66,8 +68,33 @@ namespace AMAPG4.Controllers
             return RedirectToAction("Index");
         }
 
-      
-
+        public IActionResult Individuals()
+        {
+            DashboardViewModel dashboardVM = new DashboardViewModel();
+            using (IndividualDal individualDal = new IndividualDal())
+            {
+                dashboardVM.Individuals = individualDal.GetAllIndividuals();
+            }
+            return View(dashboardVM);
+        }
+        public IActionResult Producers()
+        {
+            DashboardViewModel dashboardVM = new DashboardViewModel();
+            using (ProducerDal producerDal = new ProducerDal())
+            {
+                dashboardVM.Producers = producerDal.GetAllProducers();
+            }
+            return View(dashboardVM);
+        }
+        public IActionResult CEs()
+        {
+            DashboardViewModel dashboardVM = new DashboardViewModel();
+            using (CEDal ceDal = new CEDal())
+            {
+                dashboardVM.CEs = ceDal.GetAllCEs();
+            }
+            return View(dashboardVM);
+        }
 
     }
 

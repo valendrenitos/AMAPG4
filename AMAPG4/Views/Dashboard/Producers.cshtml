@@ -1,0 +1,50 @@
+﻿@using AMAPG4.Models.User
+@model AMAPG4.ViewModels.DashboardViewModel
+@{
+    ViewBag.Title = "Gestion des Producteurs";
+    Layout = "_BackOfficeLayout";
+}
+
+<div class="back-office-entity-category">
+    <div class="category-block">
+
+        <div class="section-header">
+            <h2 class="section-title">Producteurs</h2>
+            <a href="@Url.Action("Create", "Producer")" class="btn-add">Ajouter un producteur</a>
+        </div>
+
+        <div class="table-container">
+            <table class="category-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Nom du contact</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>SIRET</th>
+                        <th>RIB</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Producer producer in Model.Producers)
+                    {
+                        <tr>
+                            <td>@producer.Account.Name</td>
+                            <td>@producer.ContactName</td>
+                            <td>@producer.Account.Email</td>
+                            <td>@producer.Account.Phone</td>
+                            <td>@producer.Siret</td>
+                            <td>@producer.RIB</td>
+                            <td class="td-btn-actions">
+                                <a href="@Url.Action("Update", "Producer", new { id = producer.Id })" class="btn-action btn-update">Modifier</a>
+                                <form method="post" action="@Url.Action("Delete", "Producer", new { id = producer.Id })">
+                                    <button type="submit" class="btn-action btn-delete">Supprimer</button></form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,52 @@
+﻿@model AMAPG4.Models.User.Producer
+
+@{
+    ViewBag.Title = "Détails du Producteur";
+    Layout = "_BackOfficeLayout";
+}
+
+<h1 class="bo-entity">Détails du Producteur n°@Model.Id</h1>
+
+<div class="user-profile">
+    <div class="user-info">
+        <label>Nom :</label>
+        <span>@Model.Account.Name</span>
+    </div>
+
+    <div class="user-info">
+        <label>Nom du contact :</label>
+        <span>@Model.ContactName</span>
+    </div>
+
+    <div class="user-info">
+        <label>Email :</label>
+        <span>@Model.Account.Email</span>
+    </div>
+
+    <div class="user-info">
+        <label>Téléphone :</label>
+        <span>@Model.Account.Phone</span>
+    </div>
+
+    <div class="user-info">
+        <label>Adresse :</label>
+        <span>@Model.Account.Address</span>
+    </div>
+
+    <div class="user-info">
+        <label>SIRET :</label>
+        <span>@Model.Siret</span>
+    </div>
+
+    <div class="user-info">
+        <label>RIB :</label>
+        <span>@Model.RIB</span>
+    </div>
+
+    <div class="user-actions">
+        <a href="@Url.Action("Update", "Producer", new { id = Model.Id })" class="btn-save">Modifier</a>
+        <form method="post" action="@Url.Action("Delete", "Producer", new { id = Model.Id })">
+            <button type="submit" class="btn-delete">Supprimer</button>
+        </form>
+    </div>
+</div>

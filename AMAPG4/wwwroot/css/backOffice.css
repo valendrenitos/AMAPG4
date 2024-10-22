@@ -1,0 +1,147 @@
+﻿body {
+    background-color: forestgreen;
+}
+
+header {
+    background-color: chocolate ;
+}
+
+/*******************************************************************/
+/*************************STYLES FOR DASHBOARD**********************/
+/*******************************************************************/
+
+.dashboard-container, .table-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 20px;
+    overflow-x: auto;
+    width: 100%;
+}
+
+.dashboard-block {
+    margin-bottom: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-table, .category-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+   .dashboard-table td,.category-table td {
+        border: 1px solid #ddd;
+        padding: 5px;
+        text-align: left;
+    }
+
+    .dashboard-table th, .category-table th {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+
+    .category-table td {
+        background-color: #ffffff;
+    }
+
+/*******************************************************************/
+/**************************STYLES FOR BACK OFFICE*******************/
+/*******************************************************************/
+
+.back-office-entity-category {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.section-title {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+    color: #333;
+    text-align: center;
+}
+
+/* Classe pour les utilisateurs non contributeurs */
+.unpaid-user {
+    color: red;
+    }
+
+/*******************************************************************/
+/**************************BUTTON STYLES****************************/
+/*******************************************************************/
+
+.btn-add, .btn-action {
+    display: inline-block;
+    padding: 8px 12px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 14px;
+    margin-right: 5px;
+}
+
+.btn-add {
+    background-color: #4CAF50; /* Vert pour ajouter */
+}
+
+    .btn-add:hover {
+        background-color: #45a049;
+    }
+
+.btn-update {
+    background-color: #4CAF50; /* Vert pour modifier */
+}
+
+    .btn-update:hover {
+        background-color: #45a049;
+    }
+
+.btn-delete {
+    background-color: #f44336; /* Rouge pour supprimer */
+}
+
+    .btn-delete:hover {
+        background-color: #d32f2f;
+    }
+
+.details-link {
+    color: #007bff;
+}
+
+    .details-link:hover {
+        text-decoration: underline;
+    }
+
+.td-btn-actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+td.td-btn-actions form {
+    margin: 0;
+    gap: 0;
+    }
+    /*******************************************************************/
+    /**************************STYLES FOR FORMS***************************/
+    /*******************************************************************/
+    h1 .bo-entity {
+    text-align: center;
+    margin-bottom: 20px;
+}

@@ -2,7 +2,7 @@
 
 namespace AMAPG4.Controllers
 {
-    public class LaFermeController : Controller
+    public class LaFermeController : Microsoft.AspNetCore.Mvc.Controller
     {
         public IActionResult Index()
         {

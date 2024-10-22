@@ -9,7 +9,7 @@ using System;
 
 namespace AMAPG4.Controllers
 {
-    public class OrderController : Controller
+    public class OrderController : Microsoft.AspNetCore.Mvc.Controller
     {
         public IActionResult Index()
         {
