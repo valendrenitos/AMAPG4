@@ -21,7 +21,10 @@ namespace AMAPG4.Models.Catalog
                 _bddContext.Database.EnsureCreated();
             }
 
-           
+        public void InitializeDataBase()
+        {
+            CreateNewProduct("Fleurs", "MAgnifique", true, 15m, 10, DateTime.Now.AddDays(7), ProductType.Unitary, SubmissionStatus.Pending);
+        }
 
             public List<NewProduct> GetAllNewProducts()
             {
@@ -61,7 +64,52 @@ namespace AMAPG4.Models.Catalog
             }
 
 
-            public void UpdateNewProduct(int id, string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, SubmissionStatus status)
+        public void UpdateNewProduct(int newProductId, SubmissionStatus status)
+        {
+            // Récupérer le produit par son ID dans la table NewProduct
+            var newProduct = _bddContext.NewProducts.Find(newProductId);
+            if (newProduct != null)
+            {
+                // Mettre à jour le statut du produit
+                newProduct.SubmissionStatus = status;
+
+                // Sauvegarder les modifications
+                _bddContext.SaveChanges();
+            }
+        }
+
+        public void MoveNewProductToProduct(int newProductId)
+        {
+            // Récupérer le produit de la table NewProduct
+            var newProduct = _bddContext.NewProducts.Find(newProductId);
+            if (newProduct != null && newProduct.SubmissionStatus == SubmissionStatus.Approved)
+            {
+                // Créer un nouvel objet Product basé sur les données de NewProduct
+                Product product = new Product
+                {
+                    ProductName = newProduct.ProductName,
+                    Description = newProduct.Description,
+                    IsAvailable = newProduct.IsAvailable,
+                    Price = newProduct.Price,
+                    Stock = newProduct.Stock,
+                    LimitDate = newProduct.LimitDate,
+                    ProductType = newProduct.ProductType,
+                   
+                };
+
+                // Ajouter le produit à la table Product
+                _bddContext.Products.Add(product);
+
+                // Supprimer le produit de la table NewProduct
+                _bddContext.NewProducts.Remove(newProduct);
+
+                // Sauvegarder les modifications
+                _bddContext.SaveChanges();
+            }
+        }
+
+
+        public void UpdateNewProduct(int id, string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, SubmissionStatus status)
             {
                 NewProduct newProduct = _bddContext.NewProducts.Find(id);
                 if (newProduct != null)

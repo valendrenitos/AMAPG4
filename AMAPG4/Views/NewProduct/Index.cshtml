@@ -1,13 +1,21 @@
-﻿
+﻿@using AMAPG4.Models.Catalog
+
 @model AMAPG4.ViewModels.NewProductViewModel
+
 @{
     ViewBag.Title = "Formulaire de proposition produit";
     Layout = "_Layout";
 }
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/global.css">
+    <title>Page</title>
+</head>
 
 <div class="container">
     <div class="formulaire">
-        <h2>Le formulaire</h2>
+        <h2>Votre formulaire de demande d'ajout d'un nouveau produit</h2>
         @using (Html.BeginForm())
         {
             <div>
@@ -38,15 +46,26 @@
                 @Html.TextBoxFor(m => m.NewProduct.LimitDate, new { @class = "input-field", type = "date" })
                 @Html.ValidationMessageFor(m => m.NewProduct.LimitDate)
             </div>
-
+         
+        
             <div>
                 @Html.LabelFor(m => m.NewProduct.ProductType, "Type de produit")
-                @Html.TextBoxFor(m => m.NewProduct.ProductType, new { @class = "input-field", placeholder = "Type de produit" })
-                @Html.ValidationMessageFor(m => m.NewProduct.ProductType)
+                @Html.DropDownListFor(model => model.ProductType,
+                         new SelectList(Enum.GetValues(typeof(ProductType)).Cast<ProductType>().Select(e => new SelectListItem
+            {
+                Value = e.ToString(),
+                Text = e.ToString()
+            }), "Value", "Text"), "Sélectionnez un type", new { @class = "form-control" })
             </div>
+              
             <div>
-                <button type="submit" class="submit-button">Envoyer</button>
+                <input type="submit" value="Envoyer" />
             </div>
+
+            @if (ViewBag.Message != null)
+            {
+                <p>@ViewBag.Message</p>
+            }
         }
     </div>
 </div>
