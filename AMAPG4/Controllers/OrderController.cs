@@ -24,13 +24,13 @@ namespace AMAPG4.Controllers
             }
 
             OrderLineDal orderLineDal = new OrderLineDal();
- 
+
             OrderLineViewModel.UserActualId = UserAccountViewModel.UserAccount.Id;
             OrderLineViewModel.OrderLinesTotal = orderLineDal.GetPastOrderLines(UserAccountViewModel.UserAccount.Id, OrderLineType.Paid);
             OrderLineViewModel.OrderLinesCurrent = orderLineDal.GetCurrentOrderLines(UserAccountViewModel.UserAccount.Id, OrderLineType.Reserved);
-           foreach (OrderLine orderLine in OrderLineViewModel.OrderLinesCurrent)
+            foreach (OrderLine orderLine in OrderLineViewModel.OrderLinesCurrent)
             {
-                OrderLineViewModel.Total = orderLine.Total+OrderLineViewModel.Total;
+                OrderLineViewModel.Total = orderLine.Total + OrderLineViewModel.Total;
             }
 
 
@@ -39,7 +39,7 @@ namespace AMAPG4.Controllers
         [HttpPost]
         public IActionResult Index(OrderLineViewModel orderLineViewModel)
         {
-     
+
             OrderLineDal orderLineDal = new OrderLineDal();
             OrderLine orderLine = orderLineDal.GetOrderLineById(orderLineViewModel.OrderLineId);
             orderLineDal.UpdateQuantityFromCart(orderLine, orderLineViewModel.NewQuantity);
@@ -51,27 +51,27 @@ namespace AMAPG4.Controllers
                 UserAccountViewModel.UserAccount = userAccountDal.GetUserAccount(HttpContext.User.Identity.Name);
 
             }
-   
-            
+
+
 
             orderLineViewModel.UserActualId = UserAccountViewModel.UserAccount.Id;
             orderLineViewModel.OrderLinesTotal = orderLineDal.GetPastOrderLines(UserAccountViewModel.UserAccount.Id, OrderLineType.Paid);
             orderLineViewModel.OrderLinesCurrent = orderLineDal.GetCurrentOrderLines(UserAccountViewModel.UserAccount.Id, OrderLineType.Reserved);
             //orderLineViewModel1.OrderLine = null;
 
-          
+
             // Calcul du total
             foreach (OrderLine orderline in orderLineViewModel.OrderLinesCurrent)
             {
                 orderLineViewModel.Total = orderline.Total + orderLineViewModel.Total;
             }
 
-           
 
-       
+
+
             return View(orderLineViewModel);
         }
 
-  
+
     }
 }
