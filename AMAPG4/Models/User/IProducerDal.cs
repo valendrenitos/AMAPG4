@@ -13,10 +13,10 @@ namespace AMAPG4.Models.User
 
         // Ajoute un nouveau producteur avec son compte utilisateur associé
         int CreateProducer(string siret, string contactName, string rib,
-                             string email, string password, string name, string address, string phone);
+                             string email, string password, string name, string address, string phone, Role role);
 
         // Met à jour un producteur existant et son compte utilisateur associé
-        void UpdateProducer(int producerId, string siret, string contactName, string rib, UserAccount account);
+        void UpdateProducer(Producer producer);
 
         //// Supprime un producteur et son compte utilisateur associé
         //void DeleteProducer(int id);

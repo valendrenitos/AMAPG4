@@ -40,17 +40,21 @@ namespace AMAPG4.Models.User
             _bddContext.Dispose();
         }
 
+         // Méthode pour mettre à jour un compte utilisateur
         public void UpdateUserAccount(int id, string address, string email, string phone, string name, string password)
         {
-            UserAccount userAccount = _bddContext.UserAccounts.Find(id);
+            var userAccount = _bddContext.UserAccounts.Find(id);
 
             if (userAccount != null)
             {
+                // Mise à jour des informations du compte utilisateur
                 userAccount.Address = address;
                 userAccount.Email = email;
                 userAccount.Phone = phone;
                 userAccount.Name = name;
                 userAccount.Password = password;
+
+                // Sauvegarde des modifications
                 _bddContext.SaveChanges();
             }
         }
@@ -75,6 +79,7 @@ namespace AMAPG4.Models.User
                 _bddContext.SaveChanges();  // Sauvegarde les modifications dans la base de données
             }
         }
+
 
 
 
@@ -109,6 +114,18 @@ namespace AMAPG4.Models.User
         {
             string encodedPasswordSalt = "TP_Authentification" + encodedPassword + "ASP.NET MVC";
             return BitConverter.ToString(new MD5CryptoServiceProvider().ComputeHash(ASCIIEncoding.Default.GetBytes(encodedPasswordSalt)));
+        }
+
+        public void DeleteUserAccount(int id)
+        {
+            UserAccount userToDelete = GetUserAccount(id);
+
+            if (userToDelete != null)
+            {                
+                _bddContext.UserAccounts.Remove(userToDelete);
+                                
+                _bddContext.SaveChanges();
+            }
         }
     }
 }

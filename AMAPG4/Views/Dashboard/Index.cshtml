@@ -1,20 +1,17 @@
 ﻿@using AMAPG4.Models.ContactForm
 @using AMAPG4.Models.Catalog
+@using AMAPG4.Models.User
 @model AMAPG4.ViewModels.DashboardViewModel
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="~/css/styles.css" />
-    <title>Dashboard</title>
-</head>
+@{
+    ViewBag.Title = "Accueil Back Office";
+    Layout = "_BackOfficeLayout";
+}
 
 <div class="dashboard-container">
 
     <!-- Bloc pour les Individuals -->
     <div class="dashboard-block">
-        <h2>Individus</h2>
+        <h2><a href="@Url.Action("Individuals")">Adhérents</a></h2>
         <div class="table-container">
             <table class="dashboard-table">
                 <thead>
@@ -25,19 +22,25 @@
                         <th>Téléphone</th>
                         <th>Date d'inscription</th>
                         <th>Bénévole</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var individual in Model.Individuals)
+                    @foreach (Individual individual in Model.Individuals)
                     {
-
                         <tr>
                             <td>@individual.Account.Name</td>
                             <td>@individual.FirstName</td>
                             <td>@individual.Account.Email</td>
                             <td>@individual.Account.Phone</td>
                             <td>@individual.InscriptionDate.ToShortDateString()</td>
-                            <td>@individual.IsVolunteer</td>
+                            <td>@(individual.IsVolunteer ? "Oui" : "Non")</td>
+                            <td class="td-btn-actions">
+                                <a href="@Url.Action("Update", "Individual", new { id = individual.Id })" class="btn-action btn-update">Modifier</a>
+                                <form method="post" action="@Url.Action("Delete", "Producer", new { id = individual.Id })">
+                                    <button type="submit" class="btn-action btn-delete">Supprimer</button>
+                                </form>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -47,7 +50,7 @@
 
     <!-- Bloc pour les Producers -->
     <div class="dashboard-block">
-        <h2>Producteurs</h2>
+        <h2><a href="@Url.Action("Producers")">Producteurs</a></h2>
         <div class="table-container">
             <table class="dashboard-table">
                 <thead>
@@ -58,10 +61,11 @@
                         <th>Téléphone</th>
                         <th>SIRET</th>
                         <th>RIB</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var producer in Model.Producers)
+                    @foreach (Producer producer in Model.Producers)
                     {
                         <tr>
                             <td>@producer.Account.Name</td>
@@ -70,6 +74,11 @@
                             <td>@producer.Account.Phone</td>
                             <td>@producer.Siret</td>
                             <td>@producer.RIB</td>
+                            <td class="td-btn-actions">
+                                <a href="@Url.Action("Update", "Producer", new { id = producer.Id })" class="btn-action btn-update">Modifier</a>
+                                <form method="post" action="@Url.Action("Delete", "Producer", new { id = producer.Id })">
+                                    <button type="submit" class="btn-action btn-delete">Supprimer</button></form>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -79,7 +88,7 @@
 
     <!-- Bloc pour les CEs -->
     <div class="dashboard-block">
-        <h2>Comités d'entreprise (CE)</h2>
+        <h2><a href="@Url.Action("CEs")">Comités d'entreprise (CE)</a></h2>
         <div class="table-container">
             <table class="dashboard-table">
                 <thead>
@@ -89,10 +98,11 @@
                         <th>Email</th>
                         <th>Téléphone</th>
                         <th>Nombre d'employés</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var ce in Model.CEs)
+                    @foreach (CE ce in Model.CEs)
                     {
                         <tr>
                             <td>@ce.Account.Name</td>
@@ -100,6 +110,11 @@
                             <td>@ce.Account.Email</td>
                             <td>@ce.Account.Phone</td>
                             <td>@ce.NumberOfEmployees</td>
+                            <td class="td-btn-actions">
+                                <a href="@Url.Action("Update", "CE", new { id = ce.Id })" class="btn-action btn-update">Modifier</a>
+                                <form method="post" action="@Url.Action("Delete", "Producer", new { id = ce.Id })">
+                                    <button type="submit" class="btn-action btn-delete">Supprimer</button></form>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -123,7 +138,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var product in Model.Products)
+                    @foreach (Product product in Model.Products)
                     {
                         <tr>
                             <td>@product.ProductName</td>
@@ -257,5 +272,3 @@
         </div>
     </div>
 </div>
-
-

@@ -1,0 +1,72 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/global.css" />
+    <link rel="stylesheet" href="~/css/styles.css" />
+    <link rel="stylesheet" href="~/css/backOffice.css" />
+</head>
+
+
+<header>
+    <img id="header-logo" src="~/images/logo.png" />
+
+    <nav>
+        
+        <div class="nav-element">@Html.ActionLink("Tableau de bord", "Index", "DashBoard", null, new { @class = "nav-link" })</div>
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <div class="nav-element">@Html.ActionLink("Comptes adhérents", "Individuals", "DashBoard", null, new { @class = "nav-link" })</div>
+            <div class="nav-element">@Html.ActionLink("Comptes de CE", "CEs", "DashBoard", null, new { @class = "nav-link" })</div>
+            <div class="nav-element">@Html.ActionLink("Comptes producteurs", "Producers", "DashBoard", null, new { @class = "nav-link" })</div>
+        }
+                 
+    </nav>
+
+
+    <div class="nav-right-btns">
+       
+        <div class="btn btn-front-office"><div class="btn-text">@Html.ActionLink("Front Office", "Index", "Home", null, new { @class = "btn-link" })</div></div>
+        <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, new { @class = "btn-link" })</div></div>
+    </div>
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Manager"))
+    {
+        <div class="header-role">Manager</div>
+    }
+        else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+        <div class="header-role">Admin</div>
+    }
+    
+
+
+</header>
+
+<body>
+    @RenderBody()
+</body>
+
+<footer class="footer">
+    <div class="footer-top">
+        <div class="footer-links">
+            <div class="footer-nav-element">@Html.ActionLink("Accueil", "Index", "Home", new { @id = 1 }, new { @class = "btn-link-footer" })</div>
+            <div class="footer-nav-element">@Html.ActionLink("Catalogue", "Index", "Catalog", new { @class = "btn-link-footer" })</div>
+        </div>
+
+        <img class="footer-logo" src="~/images/logo.png" />
+
+        <div class="footer-contact">
+            <p>Site de distribution :</p>
+            <p>36 rue de Château Rouge<br>73000 CHAMBERY</p>
+            <p>monpanierpaysan@amap.fr</p>
+            <p>Tél : 04 79 00 12 68</p>
+        </div>
+    </div>
+
+
+    <div class="footer-bottom">
+        <p>Mentions légales – Politique de confidentialité &copy; 2024 - Mon Panier Paysan</p>
+    </div>
+</footer>
+</html>

@@ -11,13 +11,28 @@
     <link rel="stylesheet" href="~/css/styles.css" />
 </head>
 
-<div class="activities-container">
+
+<div class="activities-body">
+
+    <h2>Les Ateliers</h2>
+    <p class="txt-intro">
+        Participez à nos ateliers interactifs et découvrez des savoir-faire locaux qui mettent en avant l'éco-responsabilité
+        et la durabilité. Que vous soyez intéressé par la cuisine, le jardinage, ou l'artisanat, nos ateliers vous
+        offrent une expérience enrichissante. Chaque session vous permettra d'acquérir des compétences pratiques tout en
+        soutenant les initiatives locales et les producteurs de votre région.
+    </p>
+
+
+    <div class="activities-container">
     @foreach (Product product in Model.Products)
     {
-        <div class="product-card product-basket">
-            <img class="catalog-photo" src="~/images/LaFermeImages/activity.png" />
-            <div class="product-name">@product.ProductName</div>
-            <div class="product-price">@product.Price.ToString("C2", new CultureInfo("fr-FR"))</div>
+        <div class="product-activity">
+            <img class="activity-photo" src="~/images/LaFermeImages/activity.png" />
+            <div class="activity-name">@product.ProductName</div>
+            <div class="activity-description">@product.Description</div>
+            <div class="activity-date">@product.LimitDate</div>
+            <div class="activity-price">@product.Price.ToString("C2", new CultureInfo("fr-FR"))</div>
         </div>
     }
+</div>
 </div>

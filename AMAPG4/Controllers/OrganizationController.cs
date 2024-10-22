@@ -2,7 +2,7 @@
 
 namespace AMAPG4.Controllers
 {
-    public class OrganizationController : Controller
+    public class OrganizationController : Microsoft.AspNetCore.Mvc.Controller
     {
         public IActionResult Index()
         {

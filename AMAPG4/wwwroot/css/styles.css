@@ -223,7 +223,7 @@ a {
 
     .user-info label {
         font-weight: bold;
-        width: 10rem;
+        width: 15rem;
     }
 
     .user-info span {
@@ -233,24 +233,37 @@ a {
         border: 1px solid #c1d5a4;
         border-radius: 5px;
     }
+.form-radio-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
 
-.btn-edit, .btn-save, .btn-cancel {
-    background-color: #80b347;
+    .form-radio-group label {
+        margin-right: 15px;
+    }
+
+.btn-save {
+    background-color: #4CAF50;
     color: white;
+    padding: 10px 15px;
     border: none;
-    padding: 5px 10px;
-    margin-left: 10px;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.btn-save, .btn-cancel {
-    display: none;
+.btn-delete {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.btn-edit:hover, .btn-save:hover, .btn-cancel:hover {
-    background-color: #66a236;
-}
+    .btn-save:hover, .btn-delete:hover {
+        opacity: 0.9;
+    }
 
 
 /*******************************************************************/
@@ -365,80 +378,6 @@ a {
 }
 
 /*******************************************************************/
-/*************************STYLES FOR DASHBOARD**********************/
-/*******************************************************************/
-
-.dashboard-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-around;
-}
-
-.dashboard-block {
-    width: 45%;
-    height: 300px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 15px;
-    border-radius: 10px;
-    background-color: #f9f9f9;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-    .dashboard-block h2 {
-        text-align: center;
-        color: #333;
-        font-size: 1.5em;
-        margin-bottom: 10px;
-        border-bottom: 2px solid #007bff;
-        padding-bottom: 5px;
-    }
-
-.table-container {
-    height: 100%;
-}
-
-.dashboard-table {
-    width: 100%;
-    border-collapse: collapse;
-    background-color: #fff;
-}
-
-    .dashboard-table th, .dashboard-table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-
-    .dashboard-table th {
-        background-color: #007bff;
-        color: white;
-        font-weight: bold;
-    }
-
-    .dashboard-table td {
-        word-wrap: break-word;
-        color: #333;
-    }
-
-.dashboard-block::-webkit-scrollbar {
-    width: 8px;
-}
-
-.dashboard-block::-webkit-scrollbar-thumb {
-    background-color: #007bff;
-    border-radius: 10px;
-}
-
-.dashboard-block::-webkit-scrollbar-track {
-    background-color: #f1f1f1;
-}
-
-
-
-/*******************************************************************/
 /**************************STYLES FOR LA FERME**********************/
 /*******************************************************************/
 
@@ -488,10 +427,10 @@ a {
 }
 
 
-
 /*******************************************************************/
-/**********************STYLES FOR BASKETS PAGE**********************/
+/**************STYLES FOR BASKETS AND ACTIVITIES PAGE***************/
 /*******************************************************************/
+.activity-body, 
 .baskets-body {
     display: flex;
     flex-direction: column;
@@ -500,7 +439,8 @@ a {
     width: 100%;
 }
 
-.baskets-container {
+.baskets-container,
+.activities-container {
     display: flex;
     justify-content: space-around;
 }
@@ -536,6 +476,7 @@ a {
     margin: 1rem;
     border-radius: 1rem;
 }
+.activity-name,
 .basket-name {
     font-size: 1.2rem;
     width: 16rem;
@@ -557,6 +498,7 @@ a {
     margin: 1rem;
 }
 
+.activities-body h2, 
 .baskets-body h2 {
     font-weight: bold;
     font-size: 2.2rem;
@@ -565,6 +507,7 @@ a {
     margin-top: 2rem;
 }
 
+.activities-body p,
 .baskets-body p {
     font-size: 1.5rem;
     text-align: center;
@@ -576,3 +519,54 @@ a {
 /*******************************************************************/
 /*******************STYLES FOR ACTIVITIES PAGE**********************/
 /*******************************************************************/
+
+.activities-container {
+    flex-wrap: wrap;
+}
+
+.product-activity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 40rem;
+    height: 30rem;
+    margin: 2rem;
+    padding: 1.5rem;
+    background-color: white;
+    border-radius: 10px;
+    box-shadow: 0px 2px 8px 2px #285146;
+    background: #fff;
+    box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
+    transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
+    border: 0;
+    border-radius: 1rem;
+}
+
+.product-activity:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
+}
+
+.activity-photo {
+    margin: 1rem;
+    width: 14rem;
+    height: auto;
+    align-content: center;
+    margin: 1rem;
+    border-radius: 1rem;
+}
+
+.activity-price {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: #285146;
+    margin: 1rem;
+}
+
+.activity-description {
+    text-align: center;
+    color: #285146;
+    padding: 1rem;
+}
+

@@ -14,7 +14,7 @@ using System.Linq;
 namespace AMAPG4.Controllers
 {
 	[Authorize]
-	public class CatalogController : Controller
+	public class CatalogController : Microsoft.AspNetCore.Mvc.Controller
 	{
 		public MyDBContext _bddContext;
 		private ProductDal _productDal;

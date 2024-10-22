@@ -1,0 +1,51 @@
+﻿@model AMAPG4.Models.User.Producer
+
+@{
+    ViewBag.Title = "Modifier le Producteur";
+    Layout = "_BackOfficeLayout";
+}
+
+<h1 class="bo-entity">Modifier le Producteur n°@Model.Id</h1>
+
+@using (Html.BeginForm("Update", "Producer", FormMethod.Post)) 
+{
+    @Html.HiddenFor(model => model.Id)
+    <div class="user-info">
+        <label>Nom :</label>
+        @Html.TextBoxFor(model => model.Account.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="user-info">
+        <label>Nom du contact :</label>
+        @Html.TextBoxFor(model => model.ContactName, new { @class = "form-control" })
+    </div>
+
+    <div class="user-info">
+        <label>Email :</label>
+        @Html.TextBoxFor(model => model.Account.Email, new { @class = "form-control" })
+    </div>
+
+    <div class="user-info">
+        <label>Téléphone :</label>
+        @Html.TextBoxFor(model => model.Account.Phone, new { @class = "form-control" })
+    </div>
+
+    <div class="user-info">
+        <label>Adresse :</label>
+        @Html.TextBoxFor(model => model.Account.Address, new { @class = "form-control" })
+    </div>
+
+    <div class="user-info">
+        <label>SIRET :</label>
+        @Html.TextBoxFor(model => model.Siret, new { @class = "form-control" })
+    </div>
+
+    <div class="user-info">
+        <label>RIB :</label>
+        @Html.TextBoxFor(model => model.RIB, new { @class = "form-control" })
+    </div>
+
+    <div class="user-actions">
+        <button type="submit" class="btn-save">Modifier</button>
+    </div>
+}
