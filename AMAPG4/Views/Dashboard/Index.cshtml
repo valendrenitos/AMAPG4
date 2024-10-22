@@ -57,8 +57,10 @@
             <table class="dashboard-table">
                 <thead>
                     <tr>
-                        <th>Nom</th>
+                        <th>Nom de l'exploitation</th>
+                        <th>Type de production</th>
                         <th>Nom du contact</th>
+                        <th>Description</th>
                         <th>Email</th>
                         <th>Téléphone</th>
                         <th>SIRET</th>
@@ -71,7 +73,9 @@
                     {
                         <tr>
                             <td>@producer.Account.Name</td>
+                            <td>@producer.ProductionType</td>
                             <td>@producer.ContactName</td>
+                            <td>@producer.Description</td>
                             <td>@producer.Account.Email</td>
                             <td>@producer.Account.Phone</td>
                             <td>@producer.Siret</td>
@@ -151,7 +155,7 @@
                             <td>@product.Stock</td>
                             <td>@product.IsAvailable</td>
                             <td>@product.LimitDate.ToShortDateString()</td>
-                            <td>@product.Producer</td>
+                            <td>@product.Producer.Account.Name</td>
                         </tr>
                     }
                 </tbody>

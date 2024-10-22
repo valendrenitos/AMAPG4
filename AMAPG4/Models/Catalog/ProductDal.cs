@@ -98,54 +98,56 @@ namespace AMAPG4.Models.Catalog
                 "techniques de saponification, l'utilisation des huiles essentielles, et la personnalisation de vos créations. Vous " +
                 "repartirez avec plusieurs savons faits main, idéaux pour offrir ou pour vous faire plaisir, tout en découvrant les " +
                 "bienfaits des ingrédients naturels.",
-                 true, 35.00m, 12, DateTime.Now.AddMonths(2), ProductType.Activity,1);
+                 true, 35.00m, 12, DateTime.Now.AddMonths(2), ProductType.Activité,1);
 
             CreateProduct("Visite de Jardin Botanique",
                 "Découvrez la diversité des plantes lors d'une visite guidée. Ce parcours vous plongera dans l'univers fascinant " +
                 "des espèces botaniques, avec un guide passionné qui vous expliquera l'histoire et les caractéristiques de chaque " +
                 "plante. Profitez d'une immersion en pleine nature et apprenez sur les efforts de conservation et de recherche en botanique.",
-                true, 18.00m, 40, DateTime.Now.AddMonths(4), ProductType.Activity,1);
+                true, 18.00m, 40, DateTime.Now.AddMonths(4), ProductType.Activité,1);
 
             CreateProduct("Cours de Jardinage Écologique",
                 "Apprenez les techniques de jardinage respectueuses de l'environnement. Ce cours interactif vous enseignera les " +
                 "bases du jardinage biologique, y compris la préparation du sol, le choix des plantes, la gestion des nuisibles " +
                 "sans produits chimiques, et l'importance de la biodiversité. Repartez avec des conseils pratiques et des compétences " +
                 "pour créer votre propre jardin durable.",
-                true, 25.00m, 15, DateTime.Now.AddMonths(3), ProductType.Activity,2);
+                true, 25.00m, 15, DateTime.Now.AddMonths(3), ProductType.Activité,2);
 
             CreateProduct("Randonnée au Clair de Lune",
                 "Une randonnée nocturne pour découvrir la nature sous les étoiles. Joignez-vous à nous pour une aventure unique où " +
                 "vous pourrez explorer des sentiers illuminés par la lumière de la lune. Votre guide vous partagera des anecdotes " +
                 "sur la faune nocturne et vous apprendrez à apprécier les sons et les senteurs de la nature la nuit. Un moment de " +
                 "calme et d'émerveillement garanti!",
-                true, 20.00m, 30, DateTime.Now.AddMonths(1), ProductType.Activity, 2);
+                true, 20.00m, 30, DateTime.Now.AddMonths(1), ProductType.Activité, 2);
 
             CreateProduct("Cours de Cuisine Végétarienne",
                 "Apprenez à préparer des plats végétariens savoureux et sains. Ce cours vous proposera une introduction aux " +
                 "recettes végétales, en mettant l'accent sur les ingrédients frais et de saison. Vous découvrirez des techniques de " +
                 "cuisson, des astuces de préparation, et des combinaisons de saveurs qui raviront vos papilles. À la fin, vous " +
                 "dégusterez vos créations dans une ambiance conviviale.",
-                true, 40.00m, 10, DateTime.Now.AddMonths(2), ProductType.Activity, 2);
+                true, 40.00m, 10, DateTime.Now.AddMonths(2), ProductType.Activité, 2);
 
             CreateProduct("Retraite de Bien-Être",
                 "Un week-end de détente avec yoga, méditation et nature. Cette retraite vous offre l'occasion de vous déconnecter " +
                 "du stress quotidien et de vous reconnecter avec vous-même. Vous participerez à des sessions de yoga adaptées à tous " +
                 "les niveaux, des pratiques de méditation guidée, et des activités en plein air. Profitez d'un environnement paisible " +
                 "pour vous ressourcer et découvrir des techniques pour un bien-être durable.",
-                true, 150.00m, 8, DateTime.Now.AddMonths(4), ProductType.Activity, 1);
+                true, 150.00m, 8, DateTime.Now.AddMonths(4), ProductType.Activité, 1);
 
         }
 
         public List<Product> GetAllProducts()
         {
-            return _bddContext.Products.Include(p => p.Producer).ToList();
+            return _bddContext.Products.Include(p => p.Producer).ThenInclude(pr => pr.Account).ToList();
 		
 		}
+       
 
         public List<Product> GetAllUnitaryProducts()
         {
             return _bddContext.Products.Where(p => p.ProductType == ProductType.Unitary).Include(p => p.Producer).ToList();
         }
+       
 
         public List<Product> GetAllBasketProducts()
         {
@@ -154,7 +156,7 @@ namespace AMAPG4.Models.Catalog
 
         public List<Product> GetAllActivityProducts()
         {
-            return _bddContext.Products.Where(p => p.ProductType == ProductType.Activity).Include(p => p.Producer).ToList();
+            return _bddContext.Products.Where(p => p.ProductType == ProductType.Activité).Include(p => p.Producer).ToList();
         }
 
 

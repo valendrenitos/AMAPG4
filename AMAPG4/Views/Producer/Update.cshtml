@@ -14,12 +14,18 @@
         <label>Nom :</label>
         @Html.TextBoxFor(model => model.Account.Name, new { @class = "form-control" })
     </div>
-
+    <div class="user-info">
+        <label>Type de production :</label>
+        @Html.TextBoxFor(model => model.ProductionType, new { @class = "form-control" })
+    </div>
     <div class="user-info">
         <label>Nom du contact :</label>
         @Html.TextBoxFor(model => model.ContactName, new { @class = "form-control" })
     </div>
-
+    <div class="user-info">
+        <label>Description :</label>
+        @Html.TextBoxFor(model => model.Description, new { @class = "form-control"})
+    </div>
     <div class="user-info">
         <label>Email :</label>
         @Html.TextBoxFor(model => model.Account.Email, new { @class = "form-control" })
