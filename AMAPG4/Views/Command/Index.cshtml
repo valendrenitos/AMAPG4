@@ -18,9 +18,13 @@
     <p>Résumé de la commande</p>
     @foreach (OrderLine orderLine in Model.ListOrderline)
     {
+
         <p>@orderLine.Product.ProductName @orderLine.Quantity @orderLine.Total </p>
+      
     }
+
     <p>Total :  @Model.Total</p>
+
 </h3>
-<div class="nav-element">@Html.ActionLink("Passer au payment", "Index", "Order", new { @class = "return-catalog" })</div>
+<div class="nav-element">@Html.ActionLink("Passer au payment", "Payment", "Command", new { @class = "return-catalog" })</div>
 <div class="nav-element">@Html.ActionLink("Retour au panier", "Index", "Order", new { @class = "return-catalog" })</div>

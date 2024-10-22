@@ -1,8 +1,10 @@
-﻿using AMAPG4.Models.Catalog;
+﻿
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.Design;
 using System.Linq;
+using XAct.Collections;
 
 namespace AMAPG4.Models.Command
 {
@@ -48,16 +50,37 @@ namespace AMAPG4.Models.Command
             _bddContext.SaveChanges();
           
         }
-        public void UpdateCommandLine(CommandLine command, CommandLineType commandLineType, decimal Total)
+        public void UpdateCommandLine(int CommandId, CommandLineType commandLineType)
         {
-            command.Total = Total;
-            command.CommandType = commandLineType;
+            CommandLine command = _bddContext.CommandLines.FirstOrDefault(c => c.CommandId == CommandId);
+            TimeSpan time = new TimeSpan(1, 0, 0, 0);
+            if (command.CommandType == CommandLineType.In_Progress && (DateTime.Now - command.DateTimeOrdered ) > time)
+            {
+                DeleteCommandLine(command);
+            }
+            else if (command.DateTimeDelivered == DateTime.Now && command.CommandType == CommandLineType.Paid)
+            {
+                command.CommandType = CommandLineType.Delivered;
+            }
+            else if (command.CommandType == CommandLineType.In_Progress && commandLineType == CommandLineType.Paid)
+            {
+                command.CommandType = CommandLineType.Paid;
+                command.DateTimeDelivered = GetDeliveryDate(command);
+            }
             _bddContext.SaveChanges();
-
+            
         }
         public void DeleteCommandLine(CommandLine command)
         {
+            List<OrderLine> CommandOrder = GetAllOrderLineFromCommand(command.CommandId);
+            foreach (OrderLine line in CommandOrder )
+                using(OrderLineDal orderline = new OrderLineDal())
+                {
+                   orderline.UpdateOrderLine(line, 0);
+                }
             _bddContext.Remove(command);
+            _bddContext.SaveChanges();
+
         }
         public List<CommandLine> GetAllCommandFromUser(int UserId)
         {
@@ -78,7 +101,30 @@ namespace AMAPG4.Models.Command
         {
             return _bddContext.OrderLines.Include(od => od.Product).Where(o => o.CommandId == CommandId).ToList();
         }
- 
+        public DateTime GetDeliveryDate(CommandLine command)
+        {
+            DateTime DateDelivery = new DateTime();
+            int day= (int)command.DateTimeOrdered.DayOfWeek;
+            if (day > 3)
+            {
+                TimeSpan DayToWait = new TimeSpan((12 - day), 0, 0, 0);
+                DateDelivery = command.DateTimeOrdered + DayToWait;
+            }
+            else
+            {
+                TimeSpan DayToWait = new TimeSpan((5 - day), 0, 0, 0);
+                 DateDelivery = command.DateTimeOrdered + DayToWait;
+            }
+            return DateDelivery;
+        }
+        public void UpdateAllCommandLine()
+        {
+            List<CommandLine> ListCommandLine = GetAllCommandLines();
+            foreach (CommandLine line in ListCommandLine)
+            {
+                UpdateCommandLine(line.CommandId, CommandLineType.In_Progress);
+            }
+        }
 
     }
 }
