@@ -49,24 +49,7 @@ namespace AMAPG4.Controllers
         }
 
 
-        // Formulaire de contact
-
-        [HttpPost]
-        public IActionResult MarkAsTraite(int id)
-        {
-            using (ContactService contactService = new ContactService())
-            {
-                // Récupérer le contact par son ID
-                var contact = contactService.GetContactById(id);
-                if (contact != null)
-                {
-                    // Changer l'état du traitement à "Traité"
-                    contact.Status = ContactStatus.Traite;
-                    contactService.UpdateContact(contact);
-                }
-            }
-            return RedirectToAction("Index");
-        }
+        
 
         public IActionResult Individuals()
         {

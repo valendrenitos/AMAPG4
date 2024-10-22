@@ -42,9 +42,9 @@ namespace AMAPG4.Controllers
 
                     // Marquer le produit comme soumis
 
-                    ViewBag.Message = "Votre message a été enregistré avec succès.";
+                    ViewBag.Message = "Votre demande d'ajout d'un nouveau produit a été envoyé avec succès.";
 
-                    return RedirectToAction("Index", "Home");
+                    //return RedirectToAction("Index", "Home");
                 }
                 catch (Exception ex)
                 {
@@ -62,9 +62,20 @@ namespace AMAPG4.Controllers
 
         }
 
+        [HttpPost]
+        public IActionResult ValidateAndAddProduct(int newProductId)
+        {
+            // Mettre à jour le statut du produit
+            _newProductService.UpdateNewProduct(newProductId, SubmissionStatus.Approved);
 
+            // Transférer le produit vers la table Product
+            _newProductService.MoveNewProductToProduct(newProductId);
 
-            [HttpPost]
+            // Rediriger vers le catalogue
+            return RedirectToAction("Index", "Catalog", "Laferme");
+        }
+
+        [HttpPost]
             [ValidateAntiForgeryToken]
             public IActionResult RejectNewProduct(int id)
             {
@@ -78,6 +89,8 @@ namespace AMAPG4.Controllers
                 return RedirectToAction("Dashboard"); // Retourner au tableau de bord
             }
         }
+
+
 
 
     }

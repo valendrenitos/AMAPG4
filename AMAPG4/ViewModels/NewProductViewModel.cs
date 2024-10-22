@@ -5,5 +5,6 @@ namespace AMAPG4.ViewModels
     public class NewProductViewModel
     {
         public NewProduct NewProduct {  get; set; }
+        public ProductType ProductType { get; set; }
     }
 }

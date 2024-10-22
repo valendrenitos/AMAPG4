@@ -2,10 +2,12 @@
 @using AMAPG4.Models.Catalog
 @using AMAPG4.Models.User
 @model AMAPG4.ViewModels.DashboardViewModel
+
 @{
     ViewBag.Title = "Accueil Back Office";
     Layout = "_BackOfficeLayout";
 }
+
 
 <div class="dashboard-container">
 
@@ -190,7 +192,7 @@
                                     @if (contact.Status == ContactStatus.NonTraite)
                                     {
                                         <form asp-action="MarkAsTraite" asp-route-id="@contact.Id" method="post">
-                                            <button type="submit">Marquer comme Traité</button>
+                                            <button type="submit" class="btn btn-success">Marquer comme Traité</button>
                                         </form>
                                     }
 
@@ -231,7 +233,7 @@
                 <tbody>
                     @if (Model != null && Model.NewProducts != null && Model.NewProducts.Any())
                     {
-                        @foreach (var newProduct in Model.NewProducts)
+                        @foreach (NewProduct newProduct in Model.NewProducts)
                         {
                             <tr>
                                 <td>@newProduct.ProductName</td>
@@ -244,9 +246,9 @@
                                 <td>
                                     @if (newProduct.SubmissionStatus == SubmissionStatus.Pending)
                                     {
-                                        <form asp-action="ValidateProduct" method="post">
+                                        <form asp-action="ValidateAndAddProduct" method="post">
                                             <input type="hidden" name="id" value="@newProduct.Id" />
-                                            <button type="submit" class="btn btn-success">Valider</button>
+                                            <button type="submit" class="btn btn-connection">Valider</button>
                                         </form>
                                         <form asp-action="RejectProduct" method="post">
                                             <input type="hidden" name="id" value="@newProduct.Id" />
