@@ -1,154 +1,146 @@
-﻿body {
-    background-color: forestgreen;
-}
-
-header {
-    background-color: chocolate ;
-}
-
-/*******************************************************************/
-/*************************STYLES FOR DASHBOARD**********************/
-/*******************************************************************/
-
-.dashboard-container, .table-container {
+﻿/* Global styles for header */
+.bo-header {
     display: flex;
-    flex-wrap: wrap;
     justify-content: space-between;
-    gap: 20px;
-    overflow-x: auto;
-    width: 100%;
-}
-
-.dashboard-block {
-    margin-bottom: 20px;
-    border: 1px solid #ddd;
+    align-items: center;
     padding: 15px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: #f0f0f0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
 }
 
-.dashboard-table, .category-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
+/* Left part with the logo */
+.bo-header-left {
+    flex: 1;
 }
 
-   .dashboard-table td,.category-table td {
-        border: 1px solid #ddd;
-        padding: 5px;
-        text-align: left;
+.bo-logo {
+    width: 12vw; /* Adjusted for larger screens */
+    height: auto;
+    border-radius: 50%; /* Makes the logo round */
+}
+
+/* Centered navigation */
+.bo-header-middle {
+    flex: 2;
+    text-align: center;
+}
+
+.bo-nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.bo-nav li {
+    display: inline;
+    margin: 0 15px;
+}
+
+.bo-nav a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+/* Right part with buttons and role badge */
+.bo-header-right {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    flex: 1;
+}
+
+/* Badge role (admin, manager) */
+.bo-role-badge {
+    position: absolute;
+    top: 10px; /* Adjusts distance from top */
+    right: 15px; /* Adjusts distance from right */
+}
+
+.badge-admin, .badge-manager {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #ff6347; /* Color for Admin badge */
+    color: white;
+    font-weight: bold;
+    border-radius: 50%; /* Round shape */
+    font-size: 1rem;
+    text-align: center;
+}
+
+/* Button styles */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    margin: 5px;
+}
+
+/* Color for Front Office button */
+.btn-front-office {
+    background-color: #4CAF50; /* Green */
+}
+
+    .btn-front-office:hover {
+        background-color: #45a049;
     }
 
-    .dashboard-table th, .category-table th {
-        border: 1px solid #ddd;
-        padding: 10px;
-        text-align: left;
-        background-color: #f4f4f4;
-        font-weight: bold;
+/* Color for Logout button */
+.btn-logout {
+    background-color: #ff6347; /* Tomato red */
+}
+
+    .btn-logout:hover {
+        background-color: #ff4500;
     }
 
-    .category-table td {
-        background-color: #ffffff;
-    }
-
-/*******************************************************************/
-/**************************STYLES FOR BACK OFFICE*******************/
-/*******************************************************************/
-
-.back-office-entity-category {
-    width: 80%;
-    margin: 20px auto;
+/* Main content area */
+.bo-main {
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
-.section-header {
+/* Footer */
+.bo-footer {
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    text-align: center;
+}
+
+.footer-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    padding: 15px;
 }
 
-.section-title {
-    font-size: 1.8em;
-    margin-bottom: 15px;
-    color: #333;
-    text-align: center;
+.footer-links {
+    display: flex;
+    gap: 20px;
 }
 
-/* Classe pour les utilisateurs non contributeurs */
-.unpaid-user {
-    color: red;
-    }
-
-/*******************************************************************/
-/**************************BUTTON STYLES****************************/
-/*******************************************************************/
-
-.btn-add, .btn-action {
-    display: inline-block;
-    padding: 8px 12px;
-    text-decoration: none;
-    border-radius: 5px;
+.footer-link {
     color: white;
-    font-size: 14px;
-    margin-right: 5px;
+    text-decoration: none;
 }
 
-.btn-add {
-    background-color: #4CAF50; /* Vert pour ajouter */
+.footer-contact {
+    font-size: 0.9rem;
 }
 
-    .btn-add:hover {
-        background-color: #45a049;
-    }
-
-.btn-update {
-    background-color: #4CAF50; /* Vert pour modifier */
+.footer-logo img {
+    width: 60px;
+    height: auto;
 }
 
-    .btn-update:hover {
-        background-color: #45a049;
-    }
-
-.btn-delete {
-    background-color: #f44336; /* Rouge pour supprimer */
-}
-
-    .btn-delete:hover {
-        background-color: #d32f2f;
-    }
-
-.details-link {
-    color: #007bff;
-}
-
-    .details-link:hover {
-        text-decoration: underline;
-    }
-
-.td-btn-actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-}
-
-td.td-btn-actions form {
-    margin: 0;
-    gap: 0;
-    }
-
-.btn-actions-right-dash {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-}
-
-    /*******************************************************************/
-    /**************************STYLES FOR FORMS***************************/
-    /*******************************************************************/
-    h1 .bo-entity {
-    text-align: center;
-    margin-bottom: 20px;
+.footer-bottom {
+    margin-top: 10px;
+    font-size: 0.8rem;
 }
