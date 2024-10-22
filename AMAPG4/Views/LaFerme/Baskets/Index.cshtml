@@ -22,12 +22,24 @@
 <div class="baskets-container">
     @foreach (Product product in Model.Products)
     {
+
         <div class="product-basket">
             <img class="basket-photo" src="~/images/LaFermeImages/panier_3.jpg" />
             <div class="basket-name">@product.ProductName</div>
             <div class="basket-description">@product.Description</div>
             <div class="basket-price">@product.Price.ToString("C2", new CultureInfo("fr-FR"))</div>
+
+                <div class="add-row-basket">
+                    @using (Html.BeginForm())
+                    {
+                        <input type="hidden" name="ProductName" value="@product.ProductName" />
+                        <p class="quantity-txt quantity-txt-baskets"> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
+                        <p> @Html.TextBoxFor(m => m.Quantity, new { type = "number", min = "1", max = @product.Stock })</p>
+
+                        <input class="basket-add-to-basket" type="submit" value="Ajouter Au Panier" />
+                    }
+                </div>
         </div>
-    }
+        }
 </div>
 </div>

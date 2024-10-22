@@ -67,8 +67,13 @@
 <footer class="footer">
     <div class="footer-top">
         <div class="footer-links">
-            <div class="footer-nav-element">@Html.ActionLink("Accueil", "Index", "Home", new { @id = 1 }, new { @class = "btn-link-footer" })</div>
+
+            <div class="nav-element">@Html.ActionLink("Accueil", "Index", "Home", null, new { @class = "nav-link" })</div>
+            <div class="footer-nav-element">@Html.ActionLink("La Ferme", "Index", "LaFerme", new { @class = "btn-link-footer" })</div>
+            <div class="footer-nav-element">@Html.ActionLink("Nos Producteurs", "Index", "Producer", new { @class = "btn-link-footer" })</div>
+            <div class="footer-nav-element">@Html.ActionLink("L'Association", "Index", "Organization", new { @class = "btn-link-footer" })</div>         
             <div class="footer-nav-element">@Html.ActionLink("Catalogue", "Index", "Catalog", new { @class = "btn-link-footer" })</div>
+
         </div>
 
         <img class="footer-logo" src="~/images/logo.png" />

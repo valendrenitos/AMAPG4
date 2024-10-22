@@ -84,7 +84,7 @@ namespace AMAPG4.Controllers
 
 
 		[HttpPost]
-		public IActionResult ProductView(ProductDetailViewModel productView)
+		public IActionResult ProductView(BasketsViewModel productView)
 		{
 
 			int quantity = (productView.Quantity );
