@@ -131,12 +131,14 @@
             <table class="dashboard-table">
                 <thead>
                     <tr>
+
                         <th>Nom du produit</th>
                         <th>Description</th>
                         <th>Prix</th>
                         <th>Stock</th>
                         <th>Disponible</th>
                         <th>Date limite</th>
+                        <th>Producteur</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -149,6 +151,7 @@
                             <td>@product.Stock</td>
                             <td>@product.IsAvailable</td>
                             <td>@product.LimitDate.ToShortDateString()</td>
+                            <td>@product.Producer</td>
                         </tr>
                     }
                 </tbody>

@@ -1,8 +1,9 @@
-﻿@model AMAPG4.Models.User.Producer
+﻿@using AMAPG4.Models.User
+@model AMAPG4.ViewModels.ProducerViewModel
 
 @{
-	ViewBag.Title = @Model.ContactName;
-	Layout = "_Layout";
+	ViewBag.Title = "Détails des producteurs";
+	Layout = "_layout";
 }
 
 
@@ -10,13 +11,8 @@
 	<img class="producer-photo" src="~/images/ProducerImages/producteuroeufs.jpg" />
 
 	<div class="producer-details">
-		<h2>@Model.ContactName</h2>
-		<p>
-			< Située au cœur des paysages pittoresques de Savoie, Les Jardins de Savoie est une ferme biologique qui s'engage à cultiver des légumes de saison. 
-			En utilisant des méthodes de culture respectueuses de l'environnement, cette ferme favorise la biodiversité et la santé des sols. Chaque semaine, elle prépare des paniers 
-			de légumes frais pour les membres de Mon Panier Paysan, permettant ainsi aux consommateurs de savourer des produits locaux et de saison. Leurs récoltes comprennent 
-			une variété de légumes colorés, des herbes aromatiques et parfois des fleurs comestibles, offrant ainsi une expérience culinaire riche et diversifiée.
-		</p>
+		<h2>@Model.Account.Name</h2>
+		<p>@Model.Producers.Description</p>
 		
 	</div>
 

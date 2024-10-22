@@ -2,32 +2,16 @@
 <nav>
 
 
-        <div class="nav-element">@Html.ActionLink("Accueil", "Index", "Home", null, new { @class = "nav-link" })</div>
+     <div class="nav-element">@Html.ActionLink("Accueil", "Index", "Home", null, new { @class = "nav-link" })</div>
     <div class="nav-element">@Html.ActionLink("La Ferme", "Index", "LaFerme", null, new { @class = "nav-link" })</div>
     <div class="nav-element">@Html.ActionLink("Nos Producteurs", "Index", "Producer", null, new { @class = "nav-link" })</div>
     <div class="nav-element">@Html.ActionLink("L'Association", "Index", "Organization", null, new { @class = "nav-link" })</div>
-    @if (Model.IsIndividual)
-        {
-            <div class="nav-element">@Html.ActionLink("La Ferme", "Index", "LaFerme", null, new { @class = "nav-link" })</div>
-            <div class="nav-element">@Html.ActionLink("Nos Producteurs", "Index", "Producer", null, new { @class = "nav-link" })</div>
-            <div class="nav-element">@Html.ActionLink("L'Association", "Index", "Organization", null, new { @class = "nav-link" })</div>
-            
-        }
-        @if (Model.IsCE)
-        {
-            
-            <div class="nav-element">@Html.ActionLink("La Ferme", "Index", "LaFerme", null, new { @class = "nav-link" })</div>
-            <div class="nav-element">@Html.ActionLink("Nos Producteurs", "Index", "Producer", null, new { @class = "nav-link" })</div>
-            <div class="nav-element">@Html.ActionLink("L'Association", "Index", "Organization", null, new { @class = "nav-link" })</div>
-            
-            
-           
-        }
+  
 
         @if (Model.IsProducer)
-        {            
-            <div class="nav-element"><div class="nav-text">Proposer un nouveau produit</div></div>
-            <div class="nav-element">@Html.ActionLink("Mes produits", "Index", "XX", null, new { @class = "nav-link" })</div>            
+        {         
+        <div class="nav-element">@Html.ActionLink("Proposer un nouveau produit", "Index", "NewProduct", new { @id = 1 }, new { @class = "nav-link" })</div>﻿
+        <div class="nav-element">@Html.ActionLink("Mes produits", "Index", "XX", null, new { @class = "nav-link" })</div>
         }
 
     @if (!User.Identity.IsAuthenticated)

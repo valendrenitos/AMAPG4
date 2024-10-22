@@ -6,5 +6,7 @@ namespace AMAPG4.ViewModels
     {
         public NewProduct NewProduct {  get; set; }
         public ProductType ProductType { get; set; }
+
+        public int ProducerId { get; set; }
     }
 }

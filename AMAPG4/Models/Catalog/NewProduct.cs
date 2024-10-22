@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AMAPG4.Models.User;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AMAPG4.Models.Catalog
@@ -23,5 +24,6 @@ namespace AMAPG4.Models.Catalog
         public ProductType ProductType { get; set; }
 
         public SubmissionStatus SubmissionStatus { get; set; }
+        public virtual Producer Producer { get; set; }
     }
 }

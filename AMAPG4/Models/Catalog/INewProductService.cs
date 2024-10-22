@@ -7,7 +7,7 @@ namespace AMAPG4.Models.Catalog
     {
                 
         List<NewProduct> GetAllNewProducts();
-        int CreateNewProduct(string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, SubmissionStatus status);
+        int CreateNewProduct(string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, SubmissionStatus status, int producerId);
     }
 }
 

@@ -12,7 +12,7 @@ namespace AMAPG4.Models.User
         Producer GetProducerById(int id);
 
         // Ajoute un nouveau producteur avec son compte utilisateur associé
-        int CreateProducer(string siret, string contactName, string rib,
+        int CreateProducer(string siret, string contactName, string description, string productionType, string rib,
                              string email, string password, string name, string address, string phone, Role role);
 
         // Met à jour un producteur existant et son compte utilisateur associé
