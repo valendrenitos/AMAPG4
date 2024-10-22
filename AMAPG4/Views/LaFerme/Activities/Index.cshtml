@@ -32,6 +32,16 @@
             <div class="activity-description">@product.Description</div>
             <div class="activity-date">@product.LimitDate</div>
             <div class="activity-price">@product.Price.ToString("C2", new CultureInfo("fr-FR"))</div>
+
+                @using (Html.BeginForm())
+                {
+                    <input type="hidden" name="ProductName" value="@product.ProductName" />
+                    <p> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
+                    <p> @Html.TextBoxFor(m => m.Quantity, new { type = "number", min = "1", max = @product.Stock })</p>
+
+                    <input type="submit" value="Ajouter Au Panier" />
+                }
+
         </div>
     }
 </div>
