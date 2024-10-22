@@ -20,7 +20,7 @@
 
     @if (Model.OrderLinesCurrent != null)
 {
-        <div> Votre commande contient : </div>
+        <div> Votre panier contient : </div>
     @foreach (OrderLine orderLine in Model.OrderLinesCurrent)
     {
 
@@ -77,4 +77,4 @@ else
 
 
 <div class="nav-element">@Html.ActionLink("Continuer mes achats", "Index", "Catalog", new { @class = "return-catalog" })</div>
-<div class="nav-element">@Html.ActionLink("Paiement", "Index", "Command", new { @class = "return-catalog" })</div>
+<div class="nav-element">@Html.ActionLink("Payement", "Index", "Command", new { @class = "return-catalog" })</div>
