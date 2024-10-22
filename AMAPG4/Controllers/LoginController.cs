@@ -89,19 +89,7 @@ namespace AMAPG4.Controllers
         {
             Console.WriteLine("1");
             
-            foreach (string key in ModelState.Keys.ToList())
-            {
-                bool isValid = !ModelState[key].Errors.Any();
-
-                if (isValid)
-                {
-                    Console.WriteLine($"{key}: true");
-                }
-                else
-                {
-                    Console.WriteLine($"{key}: false");
-                }
-            }
+        
                                 
                 if (ModelState.IsValid)
             {

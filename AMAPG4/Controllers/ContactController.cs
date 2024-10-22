@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace AMAPG4.Controllers
 {
-    public class ContactController : Controller
+    public class ContactController : Microsoft.AspNetCore.Mvc.Controller
     {
        
         public IActionResult Index()

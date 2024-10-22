@@ -1,0 +1,54 @@
+﻿@model AMAPG4.Models.User.Individual
+
+@{
+    ViewBag.Title = "Modifier l'individu";
+    Layout = "_BackOfficeLayout";
+}
+
+<h1 class="bo-entity">Modifier l'adhérent n° @Model.Id</h1>
+
+@using (Html.BeginForm("Update", "Individual", FormMethod.Post))
+{
+    @Html.HiddenFor(model => model.Id)
+
+    <div class="user-info">
+        <label>Nom :</label>
+        @Html.TextBoxFor(model => model.Account.Name, new { @class = "form-control" })
+    </div>
+
+    <div class="user-info">
+        <label>Prénom :</label>
+        @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+    </div>
+
+    <div class="user-info">
+        <label>Email :</label>
+        @Html.TextBoxFor(model => model.Account.Email, new { @class = "form-control" })
+    </div>
+
+    <div class="user-info">
+        <label>Téléphone :</label>
+        @Html.TextBoxFor(model => model.Account.Phone, new { @class = "form-control" })
+    </div>
+
+    <div class="user-info">
+        <label>Adresse :</label>
+        @Html.TextBoxFor(model => model.Account.Address, new { @class = "form-control" })
+    </div>
+
+    <div class="user-info">
+        <label>Contribution payée :</label>
+        @Html.RadioButtonFor(model => model.IsContributionPaid, true) Oui
+        @Html.RadioButtonFor(model => model.IsContributionPaid, false) Non
+    </div>
+
+    <div class="user-info">
+        <label>Bénévole :</label>
+        @Html.RadioButtonFor(model => model.IsVolunteer, true) Oui
+        @Html.RadioButtonFor(model => model.IsVolunteer, false) Non
+    </div>
+
+    <div class="user-actions">
+        <button type="submit" class="btn-save">Modifier</button>
+    </div>
+}

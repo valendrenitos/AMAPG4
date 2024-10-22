@@ -21,66 +21,47 @@
             <div class="user-info">
                 <label>Nom :</label>
                 <span>@Model.UserAccount.Name</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
+                
             </div>
 
             <div class="user-info">
                 <label>Prénom :</label>
                 <span>@Model.Individual.FirstName</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
+          
             </div>
 
             <div class="user-info">
                 <label>Adresse :</label>
                 <span>@Model.UserAccount.Address</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
+             
             </div>
 
             <div class="user-info">
                 <label>Email :</label>
                 <span>@Model.UserAccount.Email</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
+            
             </div>
 
             <div class="user-info">
                 <label>Téléphone :</label>
                 <span>@Model.UserAccount.Phone</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
+               
             </div>
 
-            <!-- Informations spécifiques à Individual -->
             <div class="user-info">
                 <label>Date d'inscription :</label>
                 <span>@Model.Individual.InscriptionDate.ToShortDateString()</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
+              
             </div>
 
             <div class="user-info">
                 <label>Contribution payée :</label>
                 <span>@(Model.Individual.IsContributionPaid ? "Oui" : "Non")</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
 
             <div class="user-info">
                 <label>Bénévole :</label>
                 <span>@(Model.Individual.IsVolunteer ? "Oui" : "Non")</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
         </div>
     }
@@ -93,58 +74,37 @@
             <div class="user-info">
                 <label>Nom :</label>
                 <span>@Model.UserAccount.Name</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
 
             <div class="user-info">
                 <label>Adresse :</label>
                 <span>@Model.UserAccount.Address</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
 
             <div class="user-info">
                 <label>Email :</label>
                 <span>@Model.UserAccount.Email</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
 
             <div class="user-info">
                 <label>Téléphone :</label>
                 <span>@Model.UserAccount.Phone</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
 
             <!-- Informations spécifiques à Producer -->
             <div class="user-info">
                 <label>Nom du contact :</label>
                 <span>@Model.Producer.ContactName</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
 
             <div class="user-info">
                 <label>SIRET :</label>
                 <span>@Model.Producer.Siret</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
 
             <div class="user-info">
                 <label>RIB :</label>
                 <span>@Model.Producer.RIB</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
         </div>
     }
@@ -157,58 +117,37 @@
             <div class="user-info">
                 <label>Nom :</label>
                 <span>@Model.UserAccount.Name</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
 
             <div class="user-info">
                 <label>Adresse :</label>
                 <span>@Model.UserAccount.Address</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
 
             <div class="user-info">
                 <label>Email :</label>
                 <span>@Model.UserAccount.Email</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
 
             <div class="user-info">
                 <label>Téléphone :</label>
                 <span>@Model.UserAccount.Phone</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
 
             <!-- Informations spécifiques à CE -->
             <div class="user-info">
                 <label>Nom du contact :</label>
                 <span>@Model.CE.ContactName</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
 
             <div class="user-info">
                 <label>Nombre d'employés :</label>
                 <span>@Model.CE.NumberOfEmployees</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
 
             <div class="user-info">
                 <label>Contribution payée :</label>
                 <span>@(Model.CE.IsContributionPaid ? "Oui" : "Non")</span>
-                <button class="btn-edit">Modifier</button>
-                <button class="btn-save" style="display:none;">Enregistrer</button>
-                <button class="btn-cancel" style="display:none;">Annuler</button>
             </div>
         </div>
     }

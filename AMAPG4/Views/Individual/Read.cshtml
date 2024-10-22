@@ -1,0 +1,54 @@
+﻿@model AMAPG4.Models.User.Individual
+
+@{
+    ViewBag.Title = "Détails Individu n° " + Model.Id;
+    Layout = "_BackOfficeLayout";
+}
+
+<div class="user-profile">
+    <h1 class="bo-entity">Détails de l'Individu n° @Model.Id</h1>
+
+    <!-- Affichage des informations de l'individu -->
+    <div class="user-info">
+        <label>Nom :</label>
+        <span>@Model.Account.Name</span>
+    </div>
+
+    <div class="user-info">
+        <label>Prénom :</label>
+        <span>@Model.FirstName</span>
+    </div>
+
+    <div class="user-info">
+        <label>Adresse :</label>
+        <span>@Model.Account.Address</span>
+    </div>
+
+    <div class="user-info">
+        <label>Email :</label>
+        <span>@Model.Account.Email</span>
+    </div>
+
+    <div class="user-info">
+        <label>Téléphone :</label>
+        <span>@Model.Account.Phone</span>
+    </div>
+
+    <div class="user-info">
+        <label>Rôle :</label>
+        <span>@Model.Account.Role</span>
+    </div>
+
+    <div class="user-info">
+        <label>Contribution payée :</label>
+        <span>@(Model.IsContributionPaid ? "Oui" : "Non")</span>
+    </div>
+
+    <div class="user-info">
+        <label>Bénévole :</label>
+        <span>@(Model.IsVolunteer ? "Oui" : "Non")</span>
+    </div>
+
+    <!-- Lien retour -->
+    <a href="@Url.Action("Index", "Dashboard")">Retour au tableau de bord</a>
+</div>

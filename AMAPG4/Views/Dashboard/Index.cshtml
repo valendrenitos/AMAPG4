@@ -1,19 +1,17 @@
-﻿@using AMAPG4.Models.ContactForm
+﻿@using AMAPG4.Models.Catalog
+@using AMAPG4.Models.ContactForm
+@using AMAPG4.Models.User
 @model AMAPG4.ViewModels.DashboardViewModel
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/global.css">
-    <link rel="stylesheet" href="~/css/styles.css" />
-    <title>Dashboard</title>
-</head>
+@{
+    ViewBag.Title = "Accueil Back Office";
+    Layout = "_BackOfficeLayout";
+}
 
 <div class="dashboard-container">
 
     <!-- Bloc pour les Individuals -->
     <div class="dashboard-block">
-        <h2>Individus</h2>
+        <h2><a href="@Url.Action("Individuals")">Adhérents</a></h2>
         <div class="table-container">
             <table class="dashboard-table">
                 <thead>
@@ -24,19 +22,25 @@
                         <th>Téléphone</th>
                         <th>Date d'inscription</th>
                         <th>Bénévole</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var individual in Model.Individuals)
+                    @foreach (Individual individual in Model.Individuals)
                     {
-                        
                         <tr>
                             <td>@individual.Account.Name</td>
                             <td>@individual.FirstName</td>
                             <td>@individual.Account.Email</td>
                             <td>@individual.Account.Phone</td>
                             <td>@individual.InscriptionDate.ToShortDateString()</td>
-                            <td>@individual.IsVolunteer</td>
+                            <td>@(individual.IsVolunteer ? "Oui" : "Non")</td>
+                            <td class="td-btn-actions">
+                                <a href="@Url.Action("Update", "Individual", new { id = individual.Id })" class="btn-action btn-update">Modifier</a>
+                                <form method="post" action="@Url.Action("Delete", "Producer", new { id = individual.Id })">
+                                    <button type="submit" class="btn-action btn-delete">Supprimer</button>
+                                </form>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -46,7 +50,7 @@
 
     <!-- Bloc pour les Producers -->
     <div class="dashboard-block">
-        <h2>Producteurs</h2>
+        <h2><a href="@Url.Action("Producers")">Producteurs</a></h2>
         <div class="table-container">
             <table class="dashboard-table">
                 <thead>
@@ -57,10 +61,11 @@
                         <th>Téléphone</th>
                         <th>SIRET</th>
                         <th>RIB</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var producer in Model.Producers)
+                    @foreach (Producer producer in Model.Producers)
                     {
                         <tr>
                             <td>@producer.Account.Name</td>
@@ -69,6 +74,11 @@
                             <td>@producer.Account.Phone</td>
                             <td>@producer.Siret</td>
                             <td>@producer.RIB</td>
+                            <td class="td-btn-actions">
+                                <a href="@Url.Action("Update", "Producer", new { id = producer.Id })" class="btn-action btn-update">Modifier</a>
+                                <form method="post" action="@Url.Action("Delete", "Producer", new { id = producer.Id })">
+                                    <button type="submit" class="btn-action btn-delete">Supprimer</button></form>
+                            </td>
                         </tr>
                     }
                 </tbody>
@@ -78,7 +88,7 @@
 
     <!-- Bloc pour les CEs -->
     <div class="dashboard-block">
-        <h2>Comités d'entreprise (CE)</h2>
+        <h2><a href="@Url.Action("CEs")">Comités d'entreprise (CE)</a></h2>
         <div class="table-container">
             <table class="dashboard-table">
                 <thead>
@@ -88,10 +98,11 @@
                         <th>Email</th>
                         <th>Téléphone</th>
                         <th>Nombre d'employés</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var ce in Model.CEs)
+                    @foreach (CE ce in Model.CEs)
                     {
                         <tr>
                             <td>@ce.Account.Name</td>
@@ -99,12 +110,19 @@
                             <td>@ce.Account.Email</td>
                             <td>@ce.Account.Phone</td>
                             <td>@ce.NumberOfEmployees</td>
+                            <td class="td-btn-actions">
+                                <a href="@Url.Action("Update", "CE", new { id = ce.Id })" class="btn-action btn-update">Modifier</a>
+                                <form method="post" action="@Url.Action("Delete", "Producer", new { id = ce.Id })">
+                                    <button type="submit" class="btn-action btn-delete">Supprimer</button></form>
+                            </td>
                         </tr>
                     }
                 </tbody>
             </table>
         </div>
     </div>
+</div>
+
 
     <!-- Bloc pour les Products -->
     <div class="dashboard-block">
@@ -122,7 +140,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (var product in Model.Products)
+                    @foreach (Product product in Model.Products)
                     {
                         <tr>
                             <td>@product.ProductName</td>
@@ -193,75 +211,3 @@
     </div>
 
 </div>
-
-@section Styles {
-    <style>
-        .dashboard-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 20px;
-            justify-content: space-around;
-        }
-
-        .dashboard-block {
-            width: 45%;
-            height: 300px;
-            overflow-y: auto;
-            border: 1px solid #ccc;
-            padding: 15px;
-            border-radius: 10px;
-            background-color: #f9f9f9;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            margin-bottom: 20px;
-        }
-
-            .dashboard-block h2 {
-                text-align: center;
-                color: #333;
-                font-size: 1.5em;
-                margin-bottom: 10px;
-                border-bottom: 2px solid #007bff;
-                padding-bottom: 5px;
-            }
-
-        .table-container {
-            height: 100%;
-        }
-
-        .dashboard-table {
-            width: 100%;
-            border-collapse: collapse;
-            background-color: #fff;
-        }
-
-            .dashboard-table th, .dashboard-table td {
-                border: 1px solid #ddd;
-                padding: 8px;
-                text-align: left;
-            }
-
-            .dashboard-table th {
-                background-color: #007bff;
-                color: white;
-                font-weight: bold;
-            }
-
-            .dashboard-table td {
-                word-wrap: break-word;
-                color: #333;
-            }
-
-        .dashboard-block::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .dashboard-block::-webkit-scrollbar-thumb {
-            background-color: #007bff;
-            border-radius: 10px;
-        }
-
-        .dashboard-block::-webkit-scrollbar-track {
-            background-color: #f1f1f1;
-        }
-    </style>
-}

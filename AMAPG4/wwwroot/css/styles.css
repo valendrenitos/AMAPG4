@@ -216,7 +216,7 @@
 
     .user-info label {
         font-weight: bold;
-        width: 10rem;
+        width: 15rem;
     }
 
     .user-info span {
@@ -226,24 +226,37 @@
         border: 1px solid #c1d5a4;
         border-radius: 5px;
     }
+.form-radio-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
 
-.btn-edit, .btn-save, .btn-cancel {
-    background-color: #80b347;
+    .form-radio-group label {
+        margin-right: 15px;
+    }
+
+.btn-save {
+    background-color: #4CAF50;
     color: white;
+    padding: 10px 15px;
     border: none;
-    padding: 5px 10px;
-    margin-left: 10px;
     border-radius: 5px;
     cursor: pointer;
 }
 
-.btn-save, .btn-cancel {
-    display: none;
+.btn-delete {
+    background-color: #f44336;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
 }
 
-.btn-edit:hover, .btn-save:hover, .btn-cancel:hover {
-    background-color: #66a236;
-}
+    .btn-save:hover, .btn-delete:hover {
+        opacity: 0.9;
+    }
 
 
 /*******************************************************************/
@@ -356,56 +369,6 @@
     display: flex;
     flex-direction: column;
 }
-
-/*******************************************************************/
-/*************************STYLES FOR DASHBOARD**********************/
-/*******************************************************************/
-
-.dashboard-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-around;
-}
-
-.dashboard-block {
-    width: 45%;
-    height: 300px;
-    overflow-y: auto;
-    border: 1px solid #ccc;
-    padding: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
-}
-
-.table-container {
-    height: 100%;
-}
-
-.dashboard-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-    .dashboard-table th, .dashboard-table td {
-        border: 1px solid #ddd;
-        padding: 8px;
-        text-align: left;
-    }
-
-    .dashboard-table th {
-        background-color: #f4f4f4;
-        font-weight: bold;
-    }
-
-    .dashboard-table td {
-        word-wrap: break-word;
-    }
-
-.dashboard-block h2 {
-    text-align: center;
-}
-
 
 
 /*******************************************************************/
