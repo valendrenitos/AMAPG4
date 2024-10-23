@@ -40,7 +40,7 @@ namespace AMAPG4.Controllers
             }
             using (NewProductService newProductService = new NewProductService())
             {
-                dashboardVM.NewProducts = newProductService.GetAllNewProducts();
+                dashboardVM.NewProducts = newProductService.GetAllPendingNewProducts();
             }
 
             return View(dashboardVM);
@@ -87,7 +87,15 @@ namespace AMAPG4.Controllers
             }
             return View(dashboardVM);
         }
-
+        public IActionResult NewProducts()
+        {
+            DashboardViewModel dashboardVM = new DashboardViewModel();
+            using (NewProductService newProductService = new NewProductService())
+            {
+                dashboardVM.NewProducts = newProductService.GetAllNewProducts();
+            }
+            return View(dashboardVM);
+        }
     }
 
 

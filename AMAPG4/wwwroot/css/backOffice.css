@@ -9,18 +9,16 @@
     position: relative;
 }
 
-/* Left part with the logo */
 .bo-header-left {
     flex: 1;
 }
 
 .bo-logo {
-    width: 12vw; /* Adjusted for larger screens */
+    width: 12vw;
     height: auto;
-    border-radius: 50%; /* Makes the logo round */
+    border-radius: 50%;
 }
 
-/* Centered navigation */
 .bo-header-middle {
     flex: 2;
     text-align: center;
@@ -44,7 +42,6 @@
     font-size: 1.2rem;
 }
 
-/* Right part with buttons and role badge */
 .bo-header-right {
     display: flex;
     flex-direction: column;
@@ -52,20 +49,19 @@
     flex: 1;
 }
 
-/* Badge role (admin, manager) */
 .bo-role-badge {
     position: absolute;
-    top: 10px; /* Adjusts distance from top */
-    right: 15px; /* Adjusts distance from right */
+    top: 10px;
+    right: 15px;
 }
 
 .badge-admin, .badge-manager {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #ff6347; /* Color for Admin badge */
+    background-color: #ff6347;
     color: white;
     font-weight: bold;
-    border-radius: 50%; /* Round shape */
+    border-radius: 50%;
     font-size: 1rem;
     text-align: center;
 }
@@ -83,18 +79,16 @@
     margin: 5px;
 }
 
-/* Color for Front Office button */
 .btn-front-office {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50;
 }
 
     .btn-front-office:hover {
         background-color: #45a049;
     }
 
-/* Color for Logout button */
 .btn-logout {
-    background-color: #ff6347; /* Tomato red */
+    background-color: #ff6347;
 }
 
     .btn-logout:hover {
@@ -143,4 +137,235 @@
 .footer-bottom {
     margin-top: 10px;
     font-size: 0.8rem;
+}
+
+/* Dashboard section container */
+.dashboard-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+}
+
+.dashboard-block {
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.section-title {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.dashboard-table, .category-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+    .dashboard-table th, .category-table th,
+    .dashboard-table td, .category-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: left;
+    }
+
+    .dashboard-table th, .category-table th {
+        background-color: #f4f4f4;
+        font-weight: bold;
+    }
+
+
+/* Button actions inside the tables */
+.td-btn-actions {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Aligner verticalement */
+    gap: 10px; /* Espacement entre les boutons */
+    margin: 0; /* Supprimer les marges supplémentaires */
+    height: 100%;
+}
+
+/* Correction des boutons */
+.btn-action {
+    display: inline-block;
+    padding: 8px 12px;
+    background-color: #27ae60; /* Vert pour les boutons Modifier */
+    color: white;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    text-align: center;
+    width: 100px; /* Uniformiser la largeur pour éviter les décalages */
+}
+
+    .btn-action:hover {
+        background-color: #229954;
+    }
+
+.btn-delete {
+    background-color: #e74c3c;
+    margin-left: 0; /* Supprimer les marges supplémentaires */
+    width: 100px; /* Uniformiser la largeur pour éviter les décalages */
+}
+
+    .btn-delete:hover {
+        background-color: #c0392b;
+    }
+
+.btn-add {
+    background-color: #28a745;
+}
+
+    .btn-add:hover {
+        background-color: #218838;
+    }
+
+.btn-validate {
+    background-color: #28a745; /* Vert pour valider */
+}
+
+    .btn-validate:hover {
+        background-color: #218838;
+    }
+
+.btn-reject {
+    background-color: #e74c3c; /* Rouge pour rejeter */
+}
+
+    .btn-reject:hover {
+        background-color: #c0392b;
+    }
+
+
+/* For unpaid users */
+.unpaid-user {
+    color: red;
+    font-weight: bold;
+}
+
+/* Navigation links (for sections) */
+.section-navigation a {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #3498db;
+    color: white;
+    border-radius: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 10px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+    .section-navigation a:hover {
+        background-color: #2980b9;
+        transform: scale(1.05);
+    }
+
+/* Responsive design for the tables */
+@media (max-width: 768px) {
+    .dashboard-table th, .dashboard-table td {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    .btn-action {
+        padding: 6px 10px;
+        font-size: 12px;
+    }
+
+    .btn-add {
+        padding: 8px 15px;
+        font-size: 14px;
+    }
+}
+
+/* Style global pour les formulaires */
+.user-profile {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    max-width: 800px; /* Limit form width */
+    margin: 0 auto; /* Center form horizontally */
+}
+
+.user-info {
+    margin-bottom: 15px;
+}
+
+    .user-info label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 5px;
+        color: #333;
+    }
+
+.form-control {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.form-radio-group {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.user-actions {
+    text-align: center;
+    margin-top: 20px;
+}
+
+    .user-actions .btn-save {
+        background-color: #28a745;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+        .user-actions .btn-save:hover {
+            background-color: #218838;
+        }
+
+/* Style responsive pour les formulaires */
+@media (max-width: 768px) {
+    .user-info label {
+        font-size: 0.9rem;
+    }
+
+    .form-control {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .user-actions .btn-save {
+        font-size: 1rem;
+        padding: 8px 15px;
+    }
 }

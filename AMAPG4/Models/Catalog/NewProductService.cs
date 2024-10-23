@@ -30,13 +30,18 @@ namespace AMAPG4.Models.Catalog
 
             public List<NewProduct> GetAllNewProducts()
             {
-                return _bddContext.NewProducts.ToList();
+                return _bddContext.NewProducts.Include(n => n.Producer).Include(n => n.Producer.Account).ToList();
             }
 
-            public void Dispose()
+        public List<NewProduct> GetAllPendingNewProducts()
+        {
+            return _bddContext.NewProducts.Where(n => n.SubmissionStatus == SubmissionStatus.Pending).Include(n => n.Producer).Include(n => n.Producer.Account).ToList();
+        }
+        public void Dispose()
             {
                 _bddContext.Dispose();
             }
+
 
             //*******************CRUD**********************//
 
@@ -63,7 +68,7 @@ namespace AMAPG4.Models.Catalog
 
             public NewProduct GetNewProductById(int id)
             {
-                NewProduct newproduct = _bddContext.NewProducts.Find(id);
+                NewProduct newproduct = GetAllNewProducts().FirstOrDefault(n => n.Id ==  id);
                 return newproduct;
             }
 
@@ -71,7 +76,7 @@ namespace AMAPG4.Models.Catalog
         public void UpdateNewProduct(int newProductId, SubmissionStatus status)
         {
             // Récupérer le produit par son ID dans la table NewProduct
-            var newProduct = _bddContext.NewProducts.Find(newProductId);
+            NewProduct newProduct = _bddContext.NewProducts.Find(newProductId);
             if (newProduct != null)
             {
                 // Mettre à jour le statut du produit
