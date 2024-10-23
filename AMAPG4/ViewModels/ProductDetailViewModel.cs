@@ -15,8 +15,8 @@ namespace AMAPG4.ViewModels
         public DateTime LimitDate { get; set; }
 		public bool IsAuthenticated { get; set; }
 		public ProductType ProductType { get; set; }
-
-        public SubmissionStatus SubmissionStatus { get; set; }
+		public SubmissionStatus SubmissionStatus { get; set; }
         public StatusType status { get; set; }
-    }
+		public string ImagePath { get; set; }
+	}
 }

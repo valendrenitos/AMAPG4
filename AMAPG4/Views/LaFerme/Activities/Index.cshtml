@@ -1,4 +1,5 @@
 ﻿@using AMAPG4.Models.Catalog
+@using AMAPG4.Helpers
 @using System.Globalization
 @model AMAPG4.ViewModels.ActivitiesViewModel
 @{
@@ -33,8 +34,9 @@
             <div class="photo-name">
             
                     <div class="center-cropped">
-                        <img class="activity-photo" src="~/images/LaFermeImages/Activities/bee_keeping.jpg" alt="Activity" />
+                        <img class="product-photo" src="@Url.Content(ImageHelper.GetActivityImagePath(product.ImagePath))" />
                     </div>
+
             </div>
               
             <div class="activity-name">@product.ProductName</div>

@@ -24,6 +24,7 @@ namespace AMAPG4.Models.Catalog
         public ProductType ProductType { get; set; }
 
         public SubmissionStatus SubmissionStatus { get; set; }
+        public string ImagePath { get; set; }
         public virtual Producer Producer { get; set; }
     }
 }

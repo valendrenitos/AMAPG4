@@ -1,9 +1,10 @@
 ﻿@using System.Globalization
+@using AMAPG4.Helpers
 @model AMAPG4.ViewModels.ProductDetailViewModel
 
 @{
-	ViewBag.Title = @Model.ProductName;
-	Layout = "_layout";
+    ViewBag.Title = Model.ProductName;
+    Layout = "_layout";
 }
 
 <link rel="stylesheet" href="~/css/laFerme.css" />
@@ -11,59 +12,49 @@
 
 @if (Model.status == AMAPG4.Models.StatusType.Success)
 {
-	<p class="ValidationMessage"> @Model.ProductName a/ont bien été ajouté au panier !</p>
+    <p class="ValidationMessage">@Model.ProductName a/ont bien été ajouté au panier !</p>
 }
 
 <div class="product-detail-body">
-	<div class="product-container">
-		<img class="product-photo" src="~/images//ProductImages/cheese.png" />
+    <div class="product-container">
+        <img class="product-photo" src="@Url.Content(ImageHelper.GetUnitaryImagePath(Model.ImagePath))" />
+        <div class="product-details">
+            <h2>@Model.ProductName</h2>
 
-		<div class="product-details">
+            <p class="product-view-description"><strong>Description :</strong> @Model.Description</p>
 
-			<h2>@Model.ProductName</h2>
+            @if (Model.IsAvailable)
+            {
+                <p class="product-view-available"><strong>Disponibilité :</strong> En Stock</p>
+            }
+            else
+            {
+                <p class="product-view-available"><strong>Disponibilité :</strong> Hors Stock</p>
+            }
 
-			<p class="product-view-description"><strong>Description :</strong> @Model.Description</p>
+            <p class="product-view-price">@Model.Price.ToString("C2", new CultureInfo("fr-FR"))</p>
 
-			@if (Model.IsAvailable == true)
-			{
-				<p class="product-view-available"><strong>Disponibilité :</strong>En Stock</p>
-			}
-			else
-			{
-				<p class="product-view-available"><strong>Disponibilité :</strong>Hors Stock</p>
-			}
+            <div class="bottom-product-details">
+                @using (Html.BeginForm())
+                {
+                    <input type="hidden" name="ProductName" value="@Model.ProductName" />
 
+                    <div class="add-row-product-view">
+                        <p class="quantity-txt-products">@Html.LabelFor(m => m.Quantity, "Quantité")</p>
+                        <input class="styled-input" type="number" name="Quantity" value="1" min="1" max="@Model.Stock" step="1" />
 
-
-			<div class="bottom-product-details">
-				@using (Html.BeginForm())
-				{
-					<input type="hidden" name="ProductName" value="@Model.ProductName">
-
-					<p class="product-view-price">@Model.Price.ToString("C2", new CultureInfo("fr-FR"))</p>
-
-					<div class="add-row-product-view">
-						<p class="quantity-txt-products"> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
-						<input type="hidden" name="ProductName" value="@Model.ProductName">
-						<input class="styled-input" type="number" name="Quantity" value="1" min="1" max="@Model.Stock" step="1">
-						@if (Model.IsAuthenticated)
-						{
-							<input class="product-view-btn-add" type="submit" value="Ajouter Au Panier" />
-						}
-						else
-						{
-							<a href="@Url.Action("Index", "Login")" class="product-view-btn-add">Ajouter Au Panier</a>
-						}
-
-					</div>
-				}
-			</div>
-
-
-		</div>
-
-	</div>
-	<div>@Html.ActionLink("Retour au catalogue", "Index", "Catalog", null, new { @class = "return-catalog" })</div>
+                        @if (Model.IsAuthenticated)
+                        {
+                            <input class="product-view-btn-add" type="submit" value="Ajouter Au Panier" />
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Index", "Login")" class="product-view-btn-add">Ajouter Au Panier</a>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+    <div>@Html.ActionLink("Retour au catalogue", "Index", "Catalog", null, new { @class = "return-catalog" })</div>
 </div>
-
-

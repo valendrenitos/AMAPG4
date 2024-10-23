@@ -1,5 +1,6 @@
 ﻿@using AMAPG4.Models.Catalog
 @using System.Globalization
+@using AMAPG4.Helpers
 @model AMAPG4.ViewModels.BasketsViewModel
 @{
     ViewBag.Title = "Abonnements";
@@ -25,7 +26,7 @@
     {
 
         <div class="product-basket">
-            <img class="basket-photo" src="~/images/LaFermeImages/panier_3.jpg" />
+           <img class="product-photo" src="@Url.Content(ImageHelper.GetBasketImagePath(product.ImagePath))" />
             <div class="basket-name">@product.ProductName</div>
             <div class="basket-description">@product.Description</div>
             <div class="basket-price">@product.Price.ToString("C2", new CultureInfo("fr-FR"))</div>
