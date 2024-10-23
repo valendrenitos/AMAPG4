@@ -6,11 +6,8 @@
     Layout = "_Layout";
 }
 
-
     <link rel="stylesheet" href="~/css/global.css" />
     <link rel="stylesheet" href="~/css/laFerme.css" />
-
-
 
 <div class="baskets-body">
 
@@ -38,9 +35,9 @@
                     {
                         <input type="hidden" name="ProductName" value="@product.ProductName" />
                         <p class="quantity-txt quantity-txt-baskets"> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
-                        <p> <input type="number" name="Quantity" value="1" min="1" max="@product.Stock" step="1"></p>
+                        <input class="styled-input"  type="number" name="Quantity" value="1" min="1" max="@product.Stock" step="1">
 
-                        <input class="basket-add-to-basket" type="submit" value="Ajouter Au Panier" />
+                        <input class="baskets-btn-add" type="submit" value="Ajouter" />
                     }
                 </div>
         </div>

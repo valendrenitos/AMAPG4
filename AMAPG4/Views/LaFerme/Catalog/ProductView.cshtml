@@ -5,52 +5,52 @@
 	Layout = "_layout";
 }
 
-
-	<link rel="stylesheet" href="~/css/laFerme.css" />
+<link rel="stylesheet" href="~/css/laFerme.css" />
 
 @if (Model.status == AMAPG4.Models.StatusType.Success)
 {
-    <p> @Model.ProductName a/ont bien été ajouté au panier !</p>
+	<p> @Model.ProductName a/ont bien été ajouté au panier !</p>
 }
 
 <div class="product-detail-body">
-<div class="product-container">
-	<img class="product-photo" src="~/images//ProductImages/cheese.png" />
+	<div class="product-container">
+		<img class="product-photo" src="~/images//ProductImages/cheese.png" />
 
-	<div class="product-details">
-			@using (Html.BeginForm()){
-			
-				<h2>@Model.ProductName</h2>
-				<p><strong>Prix :</strong> @Model.Price.ToString("C")</p>
-				<p><strong>Description :</strong> @Model.Description</p>
-				
-					@if (Model.IsAvailable == true) {
-					<p>
-						<strong>Disponibilité :</strong> En Stock
-					</p>
-					}
-					else
-					{
-					<p>
-						<strong>Disponibilité :</strong> Hors Stock
-					</p>
-					}
-					
-				<hidden>@Html.HiddenFor(m => m.ProductName)</hidden>
-				<p> @Html.LabelFor(m => m.Quantity,"Quantité")</p>
-				<p> <input type="number" name="Quantity" value="1" min="1" max="@Model.Stock" step="1" ></p>
-				
-                <input type="submit" value="Ajouter Au Panier" />
-				
-				<br />
-			
+		<div class="product-details">
+
+			<h2>@Model.ProductName</h2>
+
+			<p class="product-view-description"><strong>Description :</strong> @Model.Description</p>
+
+			@if (Model.IsAvailable == true)
+			{
+				<p class="product-view-available"><strong>Disponibilité :</strong>En Stock</p>
 			}
-			
-        
-	</div>
+			else
+			{
+				<p class="product-view-available"><strong>Disponibilité :</strong>Hors Stock</p>
+			}
 
-</div>
-<div>@Html.ActionLink("Retour au catalogue", "Index", "Catalog", null, new { @class = "return-catalog" })</div>
+
+
+			@using (Html.BeginForm())
+			{
+				<div class="bottom-product-details">
+					<p class="product-view-price">@Model.Price.ToString("C")</p>
+					<div class="add-row-product-view">
+					<p class="quantity-txt-products"> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
+					<input class="styled-input" type="number" name="Quantity" value="1" min="1" max="@Model.Stock" step="1">
+					<input class="product-view-btn-add" type="submit" value="Ajouter Au Panier" />
+					</div>
+				</div>
+
+			}
+
+
+		</div>
+
+	</div>
+	<div>@Html.ActionLink("Retour au catalogue", "Index", "Catalog", null, new { @class = "return-catalog" })</div>
 </div>
 
 
