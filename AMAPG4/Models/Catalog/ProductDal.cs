@@ -33,6 +33,12 @@ namespace AMAPG4.Models.Catalog
                 "pot est le résultat d'un savoir-faire artisanal, sans conservateurs ni additifs. Savourez-le nature ou agrémenté de fruits frais et de miel " +
                 "pour une collation saine et nourrissante, riche en probiotiques pour le bien-être intestinal.", true, 2.50m, 100, DateTime.Now.AddMonths(2), 
                 ProductType.Unitary,2);
+                    CreateProduct("Pain Boule Bio",
+            "Ce pain boule bio est préparé à partir de farine biologique de blé complet, offrant une texture dense et une saveur riche en grains. " +
+            "Cuit au four à bois, il développe une croûte épaisse et croustillante, avec une mie moelleuse. Parfait pour accompagner vos repas ou " +
+            "comme base pour vos sandwiches gourmands, ce pain est à la fois sain et délicieux.",
+            true, 3.50m, 40, DateTime.Now.AddDays(3), ProductType.Unitary, 3);
+
             CreateProduct("Baguette Traditionnelle", "Cette baguette est fraîchement cuite au four à bois, selon des méthodes artisanales. Avec sa croûte dorée " +
                 "et croustillante et sa mie aérée, elle est parfaite pour accompagner tous vos repas. Que ce soit pour un petit déjeuner avec du beurre et de la " +
                 "confiture ou pour un dîner élégant, notre baguette traditionnelle est un incontournable qui ravira vos papilles.", true, 1.20m, 60, DateTime.Now.AddDays(1), 
@@ -49,6 +55,14 @@ namespace AMAPG4.Models.Catalog
                 "leur saveur. Chaque pot est rempli de fruits entiers et de sucre naturel, sans conservateurs ni additifs. Parfaite pour tartiner sur vos " +
                 "pains, pancakes ou pour rehausser vos desserts, cette confiture vous offre une expérience gustative authentique et réconfortante.", true, 
                 5.60m, 80, DateTime.Now.AddMonths(12), ProductType.Unitary,2);
+            CreateProduct("Panier de Confitures Bio",
+                "Offrez-vous un assortiment gourmand avec ce panier de confitures bio. Chaque panier contient trois pots de confitures artisanales " +
+                "préparées avec des fruits biologiques cueillis à maturité. Vous trouverez des saveurs classiques comme la fraise, l'abricot, et la framboise, " +
+                "ainsi que des mélanges plus audacieux. Sans conservateurs ni additifs, ces confitures sont parfaites pour accompagner vos petits-déjeuners " +
+                "ou desserts.",
+                true, 18.50m, 50, DateTime.Now.AddMonths(12), ProductType.Unitary, 2);
+
+
             CreateProduct("Jus de Pomme Bio", "Notre jus de pomme bio est pressé à froid à partir de pommes soigneusement sélectionnées, garantissant une " +
                 "fraîcheur et un goût inégalés. Sans sucres ajoutés ni conservateurs, chaque gorgée de ce jus vous transporte dans un verger ensoleillé. " +
                 "Idéal pour le petit déjeuner ou comme rafraîchissement tout au long de la journée, il est également riche en vitamines et antioxydants.",
@@ -61,6 +75,13 @@ namespace AMAPG4.Models.Catalog
                 "Sa texture crémeuse et son goût délicat en font un délice à déguster seul ou en accompagnement de salades et de plats chauds. Que ce soit " +
                 "sur un plateau de fromages ou dans une recette, ce fromage apportera une touche gourmande à toutes vos créations culinaires.", true, 6.00m, 
                 70, DateTime.Now.AddMonths(1), ProductType.Unitary,2);
+            CreateProduct("Assortiment de 5 Miels",
+                "Découvrez un assortiment de 5 miels artisanaux issus de différentes fleurs et terroirs. Cet assortiment inclut " +
+                "du miel d'acacia, de châtaignier, de lavande, de tilleul, et de montagne. Chaque pot est soigneusement sélectionné " +
+                "pour sa qualité exceptionnelle, offrant un goût unique et riche en saveurs naturelles. Un cadeau parfait pour les amateurs " +
+                "de miel ou pour varier les plaisirs au quotidien.",
+                true, 45.00m, 30, DateTime.Now.AddMonths(2), ProductType.Unitary, 1);
+
             CreateProduct("Pesto de Basilic", "Notre pesto frais fait maison est préparé à partir de basilic aromatique, d'huile d'olive de première qualité " +
                 "et de pignons de pin. Idéal pour vos pâtes, sandwichs ou comme condiment pour vos viandes et légumes, ce pesto apporte une explosion de saveurs " +
                 "méditerranéennes à vos plats. Sans conservateurs, chaque pot est un voyage culinaire vers le sud de l'Italie.", true, 5.50m, 60, DateTime.Now.AddMonths(4), 
@@ -133,6 +154,21 @@ namespace AMAPG4.Models.Catalog
                 "les niveaux, des pratiques de méditation guidée, et des activités en plein air. Profitez d'un environnement paisible " +
                 "pour vous ressourcer et découvrir des techniques pour un bien-être durable.",
                 true, 150.00m, 8, DateTime.Now.AddMonths(4), ProductType.Activité, 1);
+            CreateProduct("Atelier d'Apiculture",
+            "Découvrez le monde fascinant des abeilles et apprenez les bases de l'apiculture lors de cet atelier pratique. " +
+            "Sous la supervision d'un apiculteur expérimenté, vous apprendrez comment entretenir une ruche, récolter le miel " +
+            "et comprendre l'importance des abeilles dans notre écosystème. Cet atelier est idéal pour les amateurs de nature " +
+            "et ceux qui souhaitent se lancer dans l'apiculture de loisir. Aucune expérience préalable requise.",
+            true, 75.00m, 12, DateTime.Now.AddMonths(2), ProductType.Activité, 1);
+            CreateProduct("Atelier Cosmétiques Naturels et Fabrication de Cire d'Abeille",
+            "Découvrez comment fabriquer vos propres cosmétiques naturels et apprenez à utiliser la cire d'abeille. " +
+            "Cet atelier vous guidera à travers les étapes de création de baumes, crèmes et autres produits de beauté faits maison, " +
+            "en utilisant des ingrédients simples et naturels. Vous apprendrez également à transformer la cire d'abeille " +
+            "en produits utiles et écologiques. Un atelier créatif et enrichissant pour ceux qui souhaitent prendre soin de leur peau " +
+            "et de l'environnement.",
+            true, 110.00m, 12, DateTime.Now.AddMonths(3), ProductType.Activité, 1);
+
+
 
         }
 
