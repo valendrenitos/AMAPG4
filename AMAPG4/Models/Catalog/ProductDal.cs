@@ -28,16 +28,16 @@ namespace AMAPG4.Models.Catalog
             CreateProduct("Miel de Fleurs Sauvages", "Ce miel pur et naturel est délicatement récolté à partir des fleurs sauvages de nos prairies. Chaque pot " +
                 "renferme une douceur authentique, fruit du travail acharné des abeilles. Avec ses arômes floraux subtils et sa texture veloutée, il constitue " +
                 "un excellent ajout à vos tisanes, pains ou desserts, tout en apportant des bienfaits naturels à votre santé.", true, 9.00m, 80, DateTime.Now.AddMonths(6), 
-                ProductType.Unitary,1);
+                ProductType.Unitary,1,null);
             CreateProduct("Yaourt de Brebis", "Notre yaourt crémeux est élaboré à partir de lait de brebis bio, offrant une texture riche et onctueuse. Chaque " +
                 "pot est le résultat d'un savoir-faire artisanal, sans conservateurs ni additifs. Savourez-le nature ou agrémenté de fruits frais et de miel " +
                 "pour une collation saine et nourrissante, riche en probiotiques pour le bien-être intestinal.", true, 2.50m, 100, DateTime.Now.AddMonths(2), 
-                ProductType.Unitary,2);
+                ProductType.Unitary,2, null);
             CreateProduct("Baguette Traditionnelle", "Cette baguette est fraîchement cuite au four à bois, selon des méthodes artisanales. Avec sa croûte dorée " +
                 "et croustillante et sa mie aérée, elle est parfaite pour accompagner tous vos repas. Que ce soit pour un petit déjeuner avec du beurre et de la " +
                 "confiture ou pour un dîner élégant, notre baguette traditionnelle est un incontournable qui ravira vos papilles.", true, 1.20m, 60, DateTime.Now.AddDays(1), 
-                ProductType.Unitary,3);
-            CreateProduct("Beurre Fermier", "Notre beurre doux et crémeux est fabriqué à partir de la crème la plus fraîche, issue de la laiterie fermière " +
+                ProductType.Unitary,3, null);
+            /*CreateProduct("Beurre Fermier", "Notre beurre doux et crémeux est fabriqué à partir de la crème la plus fraîche, issue de la laiterie fermière " +
                 "locale. Avec son goût riche et sa texture fondante, il est idéal pour cuisiner ou tartiner sur du pain frais. En choisissant notre beurre fermier, " +
                 "vous soutenez une agriculture durable et bénéficiez d'un produit de qualité supérieure, sans additifs ni conservateurs.", true, 3.50m, 70, 
                 DateTime.Now.AddMonths(3), ProductType.Unitary,4);
@@ -132,7 +132,7 @@ namespace AMAPG4.Models.Catalog
                 "du stress quotidien et de vous reconnecter avec vous-même. Vous participerez à des sessions de yoga adaptées à tous " +
                 "les niveaux, des pratiques de méditation guidée, et des activités en plein air. Profitez d'un environnement paisible " +
                 "pour vous ressourcer et découvrir des techniques pour un bien-être durable.",
-                true, 150.00m, 8, DateTime.Now.AddMonths(4), ProductType.Activité, 1);
+                true, 150.00m, 8, DateTime.Now.AddMonths(4), ProductType.Activité, 1);*/
 
         }
 
@@ -169,7 +169,7 @@ namespace AMAPG4.Models.Catalog
 
         //*******************CRUD**********************//
 
-        public int CreateProduct(string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, int producerId)
+        public int CreateProduct(string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, int producerId, byte[] photodata)
         {
             Producer producer = _bddContext.Producers.Include(p => p.Account).FirstOrDefault(p => p.Id == producerId);
             if (producer != null)
@@ -185,9 +185,10 @@ namespace AMAPG4.Models.Catalog
                     Stock = stock,
                     LimitDate = limitDate,
                     ProductType = productType,
-                    Producer = producer
+                    Producer = producer,
+                    PhotoData = photodata
 
-                };
+                }; 
                 _bddContext.Products.Add(product);
                 _bddContext.SaveChanges();
                 return product.Id;

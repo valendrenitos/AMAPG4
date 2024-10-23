@@ -3,6 +3,9 @@ using AMAPG4.Models.Catalog;
 using AMAPG4.Models.User;
 using AMAPG4.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.IO;
+using XAct.Users;
 
 
 namespace AMAPG4.Controllers
@@ -23,8 +26,60 @@ namespace AMAPG4.Controllers
             return View(newProductViewModel);
         }
 
-    
+        [HttpPost]
+        public IActionResult SaveFile (FileUpload fileObj)
+        {
+            
+            NewProductViewModel newProductViewModel = JsonConvert.DeserializeObject<NewProductViewModel>(fileObj.NewProductViewModel);
+            NewProduct newProduct = newProductViewModel.NewProduct;
 
+
+            // Vérifie si le modèle est valide
+            if (ModelState.IsValid)
+            {
+                Producer producer = new Producer();
+
+                using (UserAccountDal userAccountDal = new UserAccountDal())
+                {
+                    producer.Account = userAccountDal.GetUserAccount(HttpContext.User.Identity.Name);
+                }
+
+                using (ProducerDal producerDal = new ProducerDal())
+                {
+                    producer = producerDal.GetProducerByUserAccount(producer.Account.Id);
+                }
+
+                
+                newProduct.SubmissionStatus = SubmissionStatus.Pending; // État en attente
+                
+                
+                if (fileObj.file.Length > 0)
+                {
+                    using (MemoryStream ms = new MemoryStream())
+                    {
+                        fileObj.file.CopyTo(ms);
+                        byte[] fileBytes = ms.ToArray();
+                        newProduct.PhotoData = fileBytes;
+                        _newProductService.CreateNewProduct(newProduct.ProductName, newProduct.Description, newProduct.IsAvailable, newProduct.Price, newProduct.Stock, newProduct.LimitDate, newProduct.ProductType, newProduct.SubmissionStatus, producer.Id, newProduct.PhotoData);
+                    }
+                }
+                // Marquer le produit comme soumis
+
+                ViewBag.Message = "Votre demande d'ajout d'un nouveau produit a été envoyé avec succès.";
+
+                //return RedirectToAction("Index", "Home");
+
+            }
+            else
+            {
+                // En cas de modèle invalide, ajoutez un message d'erreur
+                ViewBag.Message = "Veuillez corriger les erreurs dans le formulaire.";
+            }
+
+            // Retourner à la vue avec le modèle pour réafficher les erreurs
+            return View(newProductViewModel);
+
+        }
         [HttpPost]
         public IActionResult Index(NewProductViewModel newProductVM)
         {
@@ -48,7 +103,7 @@ namespace AMAPG4.Controllers
 
 
                     newProduct.SubmissionStatus = SubmissionStatus.Pending; // État en attente
-                    _newProductService.CreateNewProduct(newProduct.ProductName, newProduct.Description, newProduct.IsAvailable, newProduct.Price, newProduct.Stock, newProduct.LimitDate, newProduct.ProductType, newProduct.SubmissionStatus, producer.Id);                
+                    _newProductService.CreateNewProduct(newProduct.ProductName, newProduct.Description, newProduct.IsAvailable, newProduct.Price, newProduct.Stock, newProduct.LimitDate, newProduct.ProductType, newProduct.SubmissionStatus, producer.Id, null);                
 
                     // Marquer le produit comme soumis
 

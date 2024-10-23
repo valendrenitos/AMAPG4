@@ -25,5 +25,6 @@ namespace AMAPG4.Models.Catalog
 
         public SubmissionStatus SubmissionStatus { get; set; }
         public virtual Producer Producer { get; set; }
+        public byte[] PhotoData { get; set; }
     }
 }

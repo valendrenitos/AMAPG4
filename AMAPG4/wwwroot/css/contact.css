@@ -1,80 +1,72 @@
-﻿.contact-page {
-
-    margin: 10px; 
+﻿/* Style général de la page */
+.contact-page {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 20px;
-    background-color: #f9f9f9;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
     .contact-page h2 {
-        text-align: center;
-        color: #333;
+        font-size: 2rem;
         margin-bottom: 20px;
     }
 
+/* Conteneur pour le formulaire et l'adresse */
+.contact-container {
+    display: flex;
+    flex-direction : row;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-top: 20px;
+}
+
+/* Formulaire de contact (à gauche) */
+.contact-form-section {
+    
+    margin-right: 20px;
+}
+
+/* Informations de contact (à droite) */
+.contact-info-section {
+    flex: 1;
+    margin-left: 20px;
+    text-align: left;
+}
+
+/* Style du formulaire */
 .contact-form-group {
     margin-bottom: 15px;
 }
 
-    .contact-form-group label {
-        display: block;
-        margin-bottom: 5px;
-        font-weight: bold;
-    }
-
-    .contact-form-group .form-control {
-        width: 100%;
-        padding: 10px;
-        border-radius: 5px;
-        border: 1px solid #ccc;
-        box-sizing: border-box;
-    }
-
-    .contact-form-group .text-danger {
-        color: red;
-    }
-
-.contact-form-radio-group {
-    margin-bottom: 15px;
-}
-
-.contact-form-group .contact-textarea-message {
+.form-control {
     width: 100%;
     padding: 10px;
-    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+textarea.form-control {
+    height: 150px;
 }
 
 .btn-primary {
-    background-color: #4CAF50;
+    background-color: #e5701d;
     color: white;
-    padding: 10px 20px;
     border: none;
-    border-radius: 5px;
+    padding: 10px 15px;
     cursor: pointer;
+    border-radius: 5px;
 }
 
-    .btn-primary:hover {
-        background-color: #45a049;
+/* Pour les petits écrans : layout en colonne */
+@media screen and (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
     }
 
-.adresse-contenu {
-    margin-top: 40px;
-    font-size: 1.1em;
-    color: #333;
-}
-
-    .adresse-contenu p {
-        margin-bottom: 10px;
+    .contact-form-section,
+    .contact-info-section {
+        margin: 0;
+        margin-bottom: 20px;
     }
-
-.social-icons img {
-    width: 32px;
-    margin-right: 10px;
-}
-
-form.contact-form {
-    gap: 10px;
-    max-width: 500px;
-    margin: 10px auto;
 }

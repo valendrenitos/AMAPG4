@@ -22,6 +22,7 @@ namespace AMAPG4.Models.Catalog
 
         public ProductType ProductType { get; set; }
         public virtual Producer Producer { get; set; }
+        public byte[] PhotoData { get; set; }
 
 
     }

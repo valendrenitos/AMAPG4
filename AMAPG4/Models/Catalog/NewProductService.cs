@@ -25,7 +25,7 @@ namespace AMAPG4.Models.Catalog
 
         public void InitializeDataBase()
         {
-            CreateNewProduct("Fleurs", "MAgnifique", true, 15m, 10, DateTime.Now.AddDays(7), ProductType.Unitary, SubmissionStatus.Pending, 1);
+            CreateNewProduct("Fleurs", "MAgnifique", true, 15m, 10, DateTime.Now.AddDays(7), ProductType.Unitary, SubmissionStatus.Pending, 1,null);
         }
 
             public List<NewProduct> GetAllNewProducts()
@@ -40,22 +40,22 @@ namespace AMAPG4.Models.Catalog
 
             //*******************CRUD**********************//
 
-            public int CreateNewProduct(string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, SubmissionStatus status, int producerId)
+            public int CreateNewProduct(string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, SubmissionStatus status, int producerId, byte[] photodata)
             {
             Producer producer = _bddContext.Producers.Include(p => p.Account).FirstOrDefault(p => p.Id == producerId);
             NewProduct newProduct = new NewProduct()
-                {
-                    ProductName = productName,
-                    Description = description,
-                    IsAvailable = isAvailable,
-                    Price = price,
-                    Stock = stock,
-                    LimitDate = limitDate,
-                    ProductType = productType,
-                    SubmissionStatus = status,
-                    Producer = producer
-
-                };
+            {
+                ProductName = productName,
+                Description = description,
+                IsAvailable = isAvailable,
+                Price = price,
+                Stock = stock,
+                LimitDate = limitDate,
+                ProductType = productType,
+                SubmissionStatus = status,
+                Producer = producer,
+                PhotoData = photodata
+            };
                 _bddContext.NewProducts.Add(newProduct);
                 _bddContext.SaveChanges();
                 return newProduct.Id;
