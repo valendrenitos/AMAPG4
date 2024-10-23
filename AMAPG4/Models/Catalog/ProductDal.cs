@@ -193,7 +193,7 @@ namespace AMAPG4.Models.Catalog
                 _bddContext.SaveChanges();
                 return product.Id;
             }
-            return 0;
+            return producer.Id;
         }
 
         public Product GetProductById(int id)

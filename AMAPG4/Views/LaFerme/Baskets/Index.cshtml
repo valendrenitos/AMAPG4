@@ -36,8 +36,15 @@
                         <input type="hidden" name="ProductName" value="@product.ProductName" />
                         <p class="quantity-txt quantity-txt-baskets"> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
                         <input class="styled-input"  type="number" name="Quantity" value="1" min="1" max="@product.Stock" step="1">
-
-                        <input class="baskets-btn-add" type="submit" value="Ajouter" />
+                        @if (Model.IsAuthenticated)
+                        {
+                            <input class="baskets-btn-add" type="submit" value="Ajouter" />
+                        }
+                        else
+                        {
+                            <a href="@Url.Action("Index", "Login")" class="btn baskets-btn-add">Ajouter Au Panier</a>
+                        }
+                    
                     }
                 </div>
         </div>

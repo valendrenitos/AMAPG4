@@ -180,7 +180,8 @@
 
 
 .table-product {
-   
+    margin-left: 20px;
+    margin-right: auto;
     width: 60%;
     border-collapse: collapse;
 }
@@ -267,12 +268,14 @@ tfoot th {
 }
 
 tfoot th:nth-child(1) {
+
     width: 30%;
 }
 
 
 
-    tfoot th:nth-last-child(-n+2) {
+    tfoot th:nth-last-child(-n+2) 
+    {
         width: 8%;
         border-radius: 10% 0% 0% 10%;
         background-color: #e3e6e8;
@@ -286,20 +289,23 @@ tfoot th:nth-child(1) {
 
 
 .ValidationMessage {
-    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
     border: 3px solid green;
-    padding: 10px;
-    margin: 10px;
+    padding: 20px;
     text-align: center;
     align-content: center;
     background-color: lightgreen;
     border-radius: 10px;
 }
+
 .RejectedMessage {
-    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 500px;
     border: 3px solid red;
     padding: 10px;
-    margin: 10px;
     text-align: center;
     align-content: center;
     background-color: lightcoral;

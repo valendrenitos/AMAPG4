@@ -21,15 +21,22 @@ namespace AMAPG4.Controllers
 
         public IActionResult Index()
         {
-            List<Product> products = _productDal.GetAllActivityProducts();
+
+
+			List<Product> products = _productDal.GetAllActivityProducts();
 
             ActivitiesViewModel viewModel = new ActivitiesViewModel
             {
                 Products = products,
-                status = StatusType.Waiting
-            };
+                status = StatusType.Waiting,
 
-            return View("/Views/LaFerme/Activities/Index.cshtml", viewModel);
+				IsAuthenticated = HttpContext.User.Identity.IsAuthenticated,
+
+
+			};
+
+
+			return View("/Views/LaFerme/Activities/Index.cshtml", viewModel);
         }
 
         [HttpPost]

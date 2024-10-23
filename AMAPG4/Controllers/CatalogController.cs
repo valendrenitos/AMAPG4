@@ -55,6 +55,7 @@ namespace AMAPG4.Controllers
 				UserName = HttpContext.User.Identity.Name
 			};
 
+
 			return View("/Views/LaFerme/Catalog/Index.cshtml", viewModel);
 		}
 
@@ -117,6 +118,7 @@ namespace AMAPG4.Controllers
 				Stock = product.Stock,
 				status = StatusType.Success
             };
+
 
 			return View("/Views/LaFerme/Catalog/ProductView.cshtml", productViewModel);
 		}

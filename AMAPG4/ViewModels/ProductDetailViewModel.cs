@@ -13,8 +13,8 @@ namespace AMAPG4.ViewModels
 		public int Quantity { get; set; }
 		public int Stock { get; set; }
         public DateTime LimitDate { get; set; }
-
-        public ProductType ProductType { get; set; }
+		public bool IsAuthenticated { get; set; }
+		public ProductType ProductType { get; set; }
 
         public SubmissionStatus SubmissionStatus { get; set; }
         public StatusType status { get; set; }
