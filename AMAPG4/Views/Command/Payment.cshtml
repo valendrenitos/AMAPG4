@@ -7,6 +7,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/global.css">
     <title>Payment</title>
 </head>
@@ -15,7 +16,7 @@
 {
     if (Model.status == AMAPG4.Models.StatusType.Failed)
     {
-        <p>Le payment a été refusé</p>
+        <div class="ValidationMessage">Le payment a été refusé</div>
     }
    
         

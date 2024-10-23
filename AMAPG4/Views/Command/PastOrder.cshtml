@@ -11,23 +11,27 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/global.css">
     <title>Panier</title>
 </head>
 <h3>
     <p>Votre historique de commande :</p>
-    <table>
+    <table class="table-product">
+        <thead>
         <tr>
-           <td>Numéro de commande</td>
-            <td>Date de commande</td>
-            <td>Date de Livraison</td>
+           <th>Numéro de commande</th>
+            <th>Date de commande</th>
+            <th>Date de Livraison</th>
             
-            <td>Status de la Commande</td>
-            <td>Total</td>
-            <td></td>
+            <th>Status de la Commande</th>
+            <th>Total</th>
+            <th></th>
         </tr>
+        </thead>
     @foreach (CommandLine commandLine in Model.AllFromUser)
     {
+            <tbody>
             <tr>
                 <td>@commandLine.CommandId </td>
                 <td>@commandLine.DateTimeOrdered.ToShortDateString()</td>
@@ -60,28 +64,32 @@
         }
                 
             </tr>
-
+            </tbody>
         if (Model.CommandToLookAt == @commandLine.CommandId)
    
         {
+            <thead>
                 <tr>
-                    <td>Nom du Produit</td>
+                    <th>Nom du Produit</th>
 
-                    <td>Prix</td>
-                    <td>Quantité </td>
-                    <td> Total </td>
-                    <td></td>
+                    <th>Prix</th>
+                    <th>Quantité </th>
+                    <th> Total </th>
+                   
                 </tr>
+                </thead>
             foreach (OrderLine orderLine in Model.ListOrderline)
             {
+                <tbody>
                  <tr>
                 <td>@orderLine.Product.ProductName</td>
                         
                     <td>@orderLine.Product.Price €</td>
                         <td>@orderLine.Quantity </td>
                         <td> @orderLine.Total </td>
-                        <td></td>
+                       
                         </tr>
+                    </tbody>
             }
         }
     }

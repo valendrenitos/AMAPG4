@@ -9,8 +9,9 @@
 <title>Mes Produits</title>
 <link rel="stylesheet" href="~/css/global.css" />
 <link rel="stylesheet" href="~/css/styles.css" />
-
+<div>
 <table class="table-product">
+    
     <thead>
     <tr>
         <th>Nom du produit</th>
@@ -38,5 +39,6 @@
     }
         </tbody>
 </table>
+</div>
 <div class="nav-element">@Html.ActionLink("Retour a mon compte", "Index", "Account", new { @class = "return-catalog" })</div>
 <div class="nav-element">@Html.ActionLink("Retour a l'accueil", "Index", "Home", new { @class = "return-catalog" })</div>

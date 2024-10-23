@@ -84,7 +84,7 @@ namespace AMAPG4.Controllers
 
 
 		[HttpPost]
-		public IActionResult ProductView(BasketsViewModel productView)
+		public IActionResult ProductView(ProductDetailViewModel productView)
 		{
 
 			int quantity = (productView.Quantity );
@@ -93,6 +93,7 @@ namespace AMAPG4.Controllers
 			Console.Write(productView.ProductName);
 			
 			Product product = _productDal.GetProductByName(productView.ProductName);
+			Console.Write(product.Id);
 			int id = product.Id;
 			
 
