@@ -49,7 +49,10 @@
             <label>Producteur :</label>
             <span>@Model.Producer?.Account.Name</span>
         </div>
-
+        <div class="user-info">
+            <label>Image actuelle :</label>
+            <img src="@Model.ImagePath" alt="@Model.ProductName" width="200" />
+        </div>
         <!-- Actions: Modifier, Supprimer, Retour -->
         <div class="product-actions">
             <a href="@Url.Action("Update", "Product", new { id = Model.Id })" class="btn-action btn-update">Modifier</a>

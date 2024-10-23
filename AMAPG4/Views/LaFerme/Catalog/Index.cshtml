@@ -1,5 +1,6 @@
 ﻿@using System.Globalization
 @using AMAPG4.Models.Catalog
+@using AMAPG4.Helpers
 @model AMAPG4.ViewModels.CatalogViewModel
 @{
     ViewBag.Title = "Catalogue de Produits";
@@ -56,7 +57,7 @@
         {
             <div class="product-card">
                 <a href="@Url.Action("ProductView", "Catalog", new { id = product.Id })">
-                    <img class="catalog-photo" src="~/images/ProductImages/cheese.png" />
+                            <img class="product-photo" src="@Url.Content(ImageHelper.GetUnitaryImagePath(product.ImagePath))" />
                 </a>
 
                 <div class="product-name">@product.ProductName</div>
