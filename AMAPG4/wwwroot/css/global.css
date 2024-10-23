@@ -112,6 +112,12 @@ nav {
     width: 6rem;
 }
 
+.nav-right-btns .btn-basket-icon img {
+    width: 2.5rem;
+    height: auto;
+    object-fit: contain;
+}
+
 
 
 /*******************************************************************/

@@ -1,0 +1,64 @@
+﻿@model AMAPG4.Models.Catalog.Product
+
+@{
+    ViewBag.Title = "Détails du Produit n° " + Model.Id;
+    Layout = "_BackOfficeLayout";
+}
+
+<div class="product-details-container">
+    <div class="product-details">
+        <h1 class="bo-entity">Détails du Produit n° @Model.Id</h1>
+
+        <!-- Affichage des informations du produit -->
+        <div class="product-info">
+            <label>Nom du produit :</label>
+            <span>@Model.ProductName</span>
+        </div>
+
+        <div class="product-info">
+            <label>Description :</label>
+            <span>@Model.Description</span>
+        </div>
+
+        <div class="product-info">
+            <label>Prix :</label>
+            <span>@Model.Price.ToString("C2")</span>
+        </div>
+
+        <div class="product-info">
+            <label>Stock :</label>
+            <span>@Model.Stock</span>
+        </div>
+
+        <div class="product-info">
+            <label>Date limite :</label>
+            <span>@Model.LimitDate.ToShortDateString()</span>
+        </div>
+
+        <div class="product-info">
+            <label>Type de produit :</label>
+            <span>@Model.ProductType</span>
+        </div>
+
+        <div class="product-info">
+            <label>Disponible :</label>
+            <span>@(Model.IsAvailable ? "Oui" : "Non")</span>
+        </div>
+
+        <div class="product-info">
+            <label>Producteur :</label>
+            <span>@Model.Producer?.Account.Name</span>
+        </div>
+
+        <!-- Actions: Modifier, Supprimer, Retour -->
+        <div class="product-actions">
+            <a href="@Url.Action("Update", "Product", new { id = Model.Id })" class="btn-action btn-update">Modifier</a>
+
+            <form method="post" action="@Url.Action("Delete", "Product", new { id = Model.Id })" style="display:inline;">
+                <button type="submit" class="btn-action btn-delete">Supprimer</button>
+            </form>
+
+            <a href="@Url.Action("Index", "Dashboard")" class="btn-return">Retour au tableau de bord</a>
+        </div>
+    </div>
+</div>

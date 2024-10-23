@@ -6,68 +6,68 @@
     Layout = "_BackOfficeLayout";
 }
 
-<div class="user-profile">
-    <h1 class="bo-entity">Créer un nouvel Individu</h1>
+<div class="user-profile-form-container">
+    <div class="user-profile">
+        <h1 class="bo-entity">Créer un nouvel Individu</h1>
 
-    <!-- Formulaire pour créer un nouvel individu -->
-    @using (Html.BeginForm("Create", "Individual", FormMethod.Post))
-    {
-        <div class="user-info">
-            <label>Nom :</label>
-            @Html.TextBoxFor(model => model.Account.Name, new { @class = "form-control" })
-        </div>
-
-        <div class="user-info">
-            <label>Prénom :</label>
-            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
-        </div>
-
-        <div class="user-info">
-            <label>Adresse :</label>
-            @Html.TextBoxFor(model => model.Account.Address, new { @class = "form-control" })
-        </div>
-
-        <div class="user-info">
-            <label>Email :</label>
-            @Html.TextBoxFor(model => model.Account.Email, new { @class = "form-control" })
-        </div>
-
-        <div class="user-info">
-            <label>Téléphone :</label>
-            @Html.TextBoxFor(model => model.Account.Phone, new { @class = "form-control" })
-        </div>
-
-        <div class="user-info">
-            <label>Mot de passe :</label>
-            @Html.PasswordFor(model => model.Account.Password, new { @class = "form-control" })
-        </div>
-
-        <div class="user-info">
-            <label>Rôle :</label>
-            <div class="form-radio-group">
-                @Html.RadioButtonFor(model => model.Account.Role, Role.Utilisateur) Utilisateur
-                @Html.RadioButtonFor(model => model.Account.Role, Role.Manager) Manager
-                @Html.RadioButtonFor(model => model.Account.Role, Role.Admin) Admin
+        @using (Html.BeginForm("Create", "Individual", FormMethod.Post))
+        {
+            <div class="user-info">
+                <label>Nom :</label>
+                @Html.TextBoxFor(model => model.Account.Name, new { @class = "form-control" })
             </div>
-        </div>
 
-        <div class="user-info">
-            <label>Contribution payée :</label>
-            @Html.RadioButtonFor(model => model.IsContributionPaid, true) Oui
-            @Html.RadioButtonFor(model => model.IsContributionPaid, false) Non
-        </div>
+            <div class="user-info">
+                <label>Prénom :</label>
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+            </div>
 
-        <div class="user-info">
-            <label>Bénévole :</label>
-            @Html.RadioButtonFor(model => model.IsVolunteer, true) Oui
-            @Html.RadioButtonFor(model => model.IsVolunteer, false) Non
-        </div>
+            <div class="user-info">
+                <label>Adresse :</label>
+                @Html.TextBoxFor(model => model.Account.Address, new { @class = "form-control" })
+            </div>
 
-        <!-- Bouton pour soumettre la création -->
-        <div class="user-actions">
-            <button type="submit" class="btn-save">Créer</button>
-        </div>
-    }
+            <div class="user-info">
+                <label>Email :</label>
+                @Html.TextBoxFor(model => model.Account.Email, new { @class = "form-control" })
+            </div>
+
+            <div class="user-info">
+                <label>Téléphone :</label>
+                @Html.TextBoxFor(model => model.Account.Phone, new { @class = "form-control" })
+            </div>
+
+            <div class="user-info">
+                <label>Mot de passe :</label>
+                @Html.PasswordFor(model => model.Account.Password, new { @class = "form-control" })
+            </div>
+
+            <div class="user-info">
+                <label>Rôle :</label>
+                <div class="form-radio-group">
+                    @Html.RadioButtonFor(model => model.Account.Role, Role.Utilisateur) Utilisateur
+                    @Html.RadioButtonFor(model => model.Account.Role, Role.Manager) Manager
+                    @Html.RadioButtonFor(model => model.Account.Role, Role.Admin) Admin
+                </div>
+            </div>
+
+            <div class="user-info">
+                <label>Contribution payée :</label>
+                @Html.RadioButtonFor(model => model.IsContributionPaid, true) Oui
+                @Html.RadioButtonFor(model => model.IsContributionPaid, false) Non
+            </div>
+
+            <div class="user-info">
+                <label>Bénévole :</label>
+                @Html.RadioButtonFor(model => model.IsVolunteer, true) Oui
+                @Html.RadioButtonFor(model => model.IsVolunteer, false) Non
+            </div>
+
+            <div class="user-actions">
+                <button type="submit" class="btn-save">Créer</button>
+            </div>
+        }
+    </div>
 </div>
 
 <a href="@Url.Action("Index", "Dashboard")">Retour au tableau de bord</a>

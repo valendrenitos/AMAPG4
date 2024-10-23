@@ -33,9 +33,11 @@
 
 
 
+				<div class="bottom-product-details">
 			@using (Html.BeginForm())
 			{
-				<div class="bottom-product-details">
+			<input type="hidden" name="ProductName" value="@Model.ProductName">
+
 					<p class="product-view-price">@Model.Price.ToString("C")</p>
 					<div class="add-row-product-view">
 					<p class="quantity-txt-products"> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
@@ -43,9 +45,8 @@
 					<input class="styled-input" type="number" name="Quantity" value="1" min="1" max="@Model.Stock" step="1">
 					<input class="product-view-btn-add" type="submit" value="Ajouter Au Panier" />
 					</div>
-				</div>
-
 			}
+				</div>
 
 
 		</div>

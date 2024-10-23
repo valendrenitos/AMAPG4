@@ -138,8 +138,9 @@ namespace AMAPG4.Models.Catalog
 
         public List<Product> GetAllProducts()
         {
+
             return _bddContext.Products.Include(p => p.Producer).ThenInclude(pr => pr.Account).ToList();
-		
+            		
 		}
        
 
@@ -197,7 +198,7 @@ namespace AMAPG4.Models.Catalog
 
         public Product GetProductById(int id)
         {
-            Product product = _bddContext.Products.Find(id);
+            Product product = GetAllProducts().FirstOrDefault(p => p.Id == id);
             return product;
         }
 

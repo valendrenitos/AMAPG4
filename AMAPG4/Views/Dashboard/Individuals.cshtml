@@ -5,17 +5,16 @@
     Layout = "_BackOfficeLayout";
 }
 
-<div class="back-office-entity-category">
-    <div class="category-block">
-
-        
+<div class="dashboard-container">
+    <!-- Bloc pour les Adhérents -->
+    <div class="dashboard-block">
         <div class="section-header">
             <h2 class="section-title">Adhérents</h2>
-            <a href="@Url.Action("Create", "Individual")" class="btn-add">Ajouter un adhérent</a>
+            <a href="@Url.Action("Create", "Individual")" class="btn-action btn-add">Ajouter un adhérent</a>
         </div>
 
         <div class="table-container">
-            <table class="category-table">
+            <table class="dashboard-table">
                 <thead>
                     <tr>
                         <th>Nom</th>
@@ -40,10 +39,10 @@
                             <td>@(individual.IsVolunteer ? "Oui" : "Non")</td>
                             <td>@(individual.IsContributionPaid ? "Oui" : "Non")</td>
                             <td class="td-btn-actions">
-                               
                                 <a href="@Url.Action("Update", "Individual", new { id = individual.Id })" class="btn-action btn-update">Modifier</a>
-                                <form method="post" action="@Url.Action("Delete", "Producer", new { id = individual.Id })">
-                                    <button type="submit" class="btn-action btn-delete">Supprimer</button></form>
+                                <form method="post" action="@Url.Action("Delete", "Individual", new { id = individual.Id })" style="display:inline;">
+                                    <button type="submit" class="btn-action btn-delete">Supprimer</button>
+                                </form>
                             </td>
                         </tr>
                     }
