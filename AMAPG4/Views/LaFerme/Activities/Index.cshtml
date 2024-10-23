@@ -31,12 +31,16 @@
         <div class="product-activity">
 
             <div class="photo-name">
-            <img class="activity-photo" src="~/images/LaFermeImages/activity.png" />
-            <div class="activity-name">@product.ProductName</div>
+            
+                    <div class="center-cropped">
+                        <img class="activity-photo" src="~/images/LaFermeImages/Activities/bee_keeping.jpg" alt="Activity" />
+                    </div>
             </div>
+              
+            <div class="activity-name">@product.ProductName</div>
 
             <div class="activity-description">@product.Description</div>
-            <div class="activity-date">@product.LimitDate</div>
+                <div class="activity-date"><strong>Date : </strong>@product.LimitDate.ToString("dd/MM/yyyy HH:mm")</div>
             <div class="activity-price">@product.Price.ToString("C2", new CultureInfo("fr-FR"))</div>
 
                 <div class="add-row-activity">
@@ -47,11 +51,11 @@
                         <input class="styled-input" type="number" name="Quantity" value="1" min="1" max="@product.Stock" step="1">
                         @if (Model.IsAuthenticated)
                         {
-                            <input class="activity-add-to-basket" type="submit" value="Ajouter Au Panier" />
+                            <input class="activity-add-to-basket" type="submit" value="Réserver une place" />
                         }
                         else
                         {
-                            <a href="@Url.Action("Index", "Login")" class="btn activity-add-to-baske">Ajouter Au Panier</a>
+                            <a href="@Url.Action("Index", "Login")" class="btn activity-add-to-baske">Réserver une place</a>
                         }
                     }
                 </div>
