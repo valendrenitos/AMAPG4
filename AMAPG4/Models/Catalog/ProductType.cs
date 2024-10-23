@@ -4,6 +4,6 @@
     {
         Basket,
         Unitary,
-        Activity
+        Activité
     }
 }
