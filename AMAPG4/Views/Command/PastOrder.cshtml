@@ -16,23 +16,76 @@
 </head>
 <h3>
     <p>Votre historique de commande :</p>
+    <table>
+        <tr>
+           <td>Numéro de commande</td>
+            <td>Date de commande</td>
+            <td>Date de Livraison</td>
+            
+            <td>Status de la Commande</td>
+            <td>Total</td>
+            <td></td>
+        </tr>
     @foreach (CommandLine commandLine in Model.AllFromUser)
     {
-        <p> @commandLine.CommandId @commandLine.DateTimeOrdered @commandLine.Total</p>
+            <tr>
+                <td>@commandLine.CommandId </td>
+                <td>@commandLine.DateTimeOrdered.ToShortDateString()</td>
+              
+
+                @if (@commandLine.CommandType == CommandLineType.In_Progress)
+                {
+                    <td>A déterminer</td>
+                    <td>Commande dans le panier</td>
+                }
+                else if (@commandLine.CommandType == CommandLineType.Paid)
+                {
+                    <td>@commandLine.DateTimeDelivered.ToShortDateString()</td>
+                    <td>Commande en attente</td>
+                }
+                else
+                {
+                    <td>@commandLine.DateTimeDelivered.ToShortDateString()</td>
+                    <td>Commande terminée</td>
+                }
+                <td>@commandLine.Total</td>
+  
         @using (Html.BeginForm("PastOrder", "Command")){
             <input type="hidden" name="CommandToLookAt" value="@commandLine.CommandId" />
 
 
-            <input type="submit" value="Développer" />
+                    <td>
+                        <input type="submit" value="Développer" />
+                    </td>
         }
+                
+            </tr>
+
         if (Model.CommandToLookAt == @commandLine.CommandId)
+   
         {
+                <tr>
+                    <td>Nom du Produit</td>
+
+                    <td>Prix</td>
+                    <td>Quantité </td>
+                    <td> Total </td>
+                    <td></td>
+                </tr>
             foreach (OrderLine orderLine in Model.ListOrderline)
             {
-                <p> @orderLine.Product.ProductName @orderLine.Quantity @orderLine.Total </p>
+                 <tr>
+                <td>@orderLine.Product.ProductName</td>
+                        
+                    <td>@orderLine.Product.Price €</td>
+                        <td>@orderLine.Quantity </td>
+                        <td> @orderLine.Total </td>
+                        <td></td>
+                        </tr>
             }
         }
     }
+    </table>
     <h3/>
     <div class="nav-element">@Html.ActionLink("Retour a mon compte", "Index", "Account", new { @class = "return-catalog" })</div>
     <div class="nav-element">@Html.ActionLink("Retour a l'accueil", "Index", "Home", new { @class = "return-catalog" })</div>

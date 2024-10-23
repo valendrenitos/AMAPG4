@@ -120,8 +120,12 @@ namespace AMAPG4.Models.Command
                 orderline.Total = orderline.Quantity * orderline.Product.Price;
                 UpdateStockFromOrder(orderline.Product, quantity);
 			}
-    
-			_bddContext.SaveChanges();
+
+            using (CommandLineService command = new CommandLineService())
+            {
+                command.UpdateTotal(orderline.CommandId);
+            }
+            _bddContext.SaveChanges();
 
 
 		}
@@ -185,6 +189,7 @@ namespace AMAPG4.Models.Command
         {
             ProductDal productDal = new ProductDal();
             productDal.UpdateProduct(product.Id, product.ProductName, product.Description, product.IsAvailable, product.Price, quantity, product.LimitDate, product.ProductType);
+
         }
         public void UpdateQuantityFromCart(OrderLine orderline, int quantity)
         {
@@ -207,6 +212,10 @@ namespace AMAPG4.Models.Command
                 quantity= orderline.Product.Stock-diff;
                 orderline.Total = orderline.Quantity * orderline.Product.Price;
                 UpdateStockFromOrder(orderline.Product, quantity);
+            }
+            using (CommandLineService command = new CommandLineService())
+            {
+                command.UpdateTotal(orderline.CommandId);
             }
             _bddContext.SaveChanges();  
         }

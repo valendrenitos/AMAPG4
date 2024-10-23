@@ -20,6 +20,10 @@ namespace AMAPG4.Models.Command
         {
             return _bddContext.CommandLines.ToList();
         }
+        public CommandLine GetCommandFromId(int id)
+        {
+            return _bddContext.CommandLines.FirstOrDefault(c =>c.CommandId == id);
+        }
         public void Dispose()
         {
 
@@ -34,7 +38,7 @@ namespace AMAPG4.Models.Command
                 CommandLine commandLine = new CommandLine()
 
                 {
-
+                    Total = Total,
                     UserId = UserId,
                     CommandType = CommandLineType.In_Progress,
                     CommandId = CommandId,
@@ -124,6 +128,18 @@ namespace AMAPG4.Models.Command
             {
                 UpdateCommandLine(line.CommandId, CommandLineType.In_Progress);
             }
+        }
+        public void UpdateTotal(int CommandId)
+        {
+            CommandLine command = _bddContext.CommandLines.FirstOrDefault(c => c.CommandId == CommandId);
+            List<OrderLine> CommandOrder = GetAllOrderLineFromCommand(CommandId);
+            decimal total = 0;
+            foreach (OrderLine line in CommandOrder)
+            {
+                total += line.Total;
+            }
+            command.Total = total;
+            _bddContext.SaveChanges();
         }
 
     }

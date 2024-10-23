@@ -23,15 +23,18 @@ namespace AMAPG4.Controllers
 
             }
             CommandViewModel.ListOrderline = orderLineDal.GetCurrentOrderLines(CommandViewModel.UserId, OrderLineType.Reserved);
-
-            decimal total = 0;
-            foreach (OrderLine orderline in CommandViewModel.ListOrderline)
+            int CommandId=CommandViewModel.ListOrderline[1].CommandId;
+          CommandViewModel.CommandId = CommandId;
+        using (CommandLineService commandLine = new CommandLineService())
             {
-                total = total + orderline.Total;
-                CommandViewModel.CommandId = orderline.CommandId;
+
+                commandLine.UpdateTotal(CommandId);
+                CommandLine command = commandLine.GetCommandFromId(CommandId);
+                CommandViewModel.Total = command.Total;
+
             }
 
-            CommandViewModel.Total = total;
+          
             CommandViewModel.CommandToLookAt = 0;
 
             return View(CommandViewModel);
@@ -51,9 +54,13 @@ namespace AMAPG4.Controllers
             using (CommandLineService commandLineService = new CommandLineService())
             {
                 CommandViewModel.AllFromUser = commandLineService.GetAllCommandFromUser(CommandViewModel.UserId);
+                foreach (CommandLine command in CommandViewModel.AllFromUser)
+                {
+                    commandLineService.UpdateTotal(command.CommandId);
+                }
 
             }
-
+    
          
 
             return View(CommandViewModel);
@@ -73,14 +80,11 @@ namespace AMAPG4.Controllers
             {
                 CommandViewModel.AllFromUser = commandLineService.GetAllCommandFromUser(CommandViewModel.UserId);
                 CommandViewModel.ListOrderline = commandLineService.GetAllOrderLineFromCommand(CommandViewModel.CommandToLookAt);
+                
             }
             
-            decimal total = 0;
-            foreach (OrderLine orderline in CommandViewModel.ListOrderline)
-            {
-                total = total + orderline.Total;
-                CommandViewModel.CommandId = orderline.CommandId;
-            }
+
+      
             return View(CommandViewModel);
         }
         public IActionResult Payment(CommandViewModel commandViewModel)

@@ -5,15 +5,15 @@
 @model AMAPG4.ViewModels.OrderLineViewModel
 
 @{
-  
+
     Layout = "_layout";
 }
-<head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/global.css">
+<link rel="stylesheet" href="/css/global.css">
     <title>Panier</title>
-</head>
+
 <h3>
     Id utilisateur login :
     @Model.UserActualId
@@ -21,45 +21,63 @@
     @if (Model.OrderLinesCurrent != null)
 {
         <div> Votre panier contient : </div>
+        <table>
+        <tr> 
+            <td>Produit</td>
+            <td>Prix</td>
+            <td>Quantité</td>
+            <td>Total par produit</td>
+            <td> </td>
+        </tr>
     @foreach (OrderLine orderLine in Model.OrderLinesCurrent)
     {
-
-            <p>@orderLine.Product.ProductName @orderLine.Quantity @orderLine.Total </p>
+           
 
 
 
             Model.OrderLineId = @orderLine.Id;
             Model.orderLine = @orderLine;
+            <tr>
+                <td>@orderLine.Product.ProductName</td>
+                    <td>@orderLine.Product.Price €</td>
+                
+         
+
             @using (Html.BeginForm("Index", "Order"))
             {
 
                 <input type="hidden" name ="OrderLineId" value="@Model.OrderLineId"/>
 
                 <input type="hidden" name="totalStack" value="@orderLine.Quantity + @orderLine.Product.Stock" />
-                
 
-                <p> @Html.LabelFor(m => m.orderLine.Quantity, "Quantité : ")
+                    <td> <input type="number" name="NewQuantity" value="@orderLine.Quantity" min="1" max="@orderLine.Product.Stock" step="1" onchange="this.form.submit()"></td>
 
-                    <input type="number" name="NewQuantity" value="@orderLine.Quantity" min="1" max="@orderLine.Product.Stock" step="1" onchange="this.form.submit()">
-                  
-                </p>
-                
-           
+
+                        <td>@orderLine.Total €</td>
             }
 
             @using (Html.BeginForm("Index", "Order"))
             {
        
- 
+
                 <input type="hidden" name="OrderLineId" value="@Model.OrderLineId" />
 
                 <input type="hidden" name="NewQuantity" value="0" />
 
-
-                <input type="submit" value="Supprimer" />
+                    <td>
+                        <input type="submit" value="Supprimer" />
+                    </td>
             }
-    }
-    <p>Total : @Model.Total</p>
+            </tr>
+            } <tr>
+                <td></td>
+                <td></td>
+                <td>Total :</td>
+                <td>@Model.Total €</td>
+            </tr>
+        </table>
+        
+    <p> </p>
 }
 else
 {
