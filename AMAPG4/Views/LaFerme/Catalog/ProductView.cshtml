@@ -34,14 +34,15 @@
 						<strong>Disponibilité :</strong> Hors Stock
 					</p>
 					}
-					
 				<hidden>@Html.HiddenFor(m => m.ProductName)</hidden>
-				<p> @Html.LabelFor(m => m.Quantity,"Quantité")</p>
-				<p> <input type="number" name="Quantity" value="1" min="1" max="@Model.Stock" step="1" ></p>
+
+				<div class="add-row-product-view">
+				<p class="quantity-txt quantity-txt-baskets"> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
+				<input class="styled-input" type="number" name="Quantity" value="1" min="1" max="@Model.Stock" step="1">
 				
-                <input type="submit" value="Ajouter Au Panier" />
-				
+                <input class="product-view-btn-add" type="submit" value="Ajouter Au Panier" />
 				<br />
+				</div>
 			
 			}
 			
