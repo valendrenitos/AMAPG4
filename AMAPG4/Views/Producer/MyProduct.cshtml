@@ -10,18 +10,22 @@
 <link rel="stylesheet" href="~/css/global.css" />
 <link rel="stylesheet" href="~/css/styles.css" />
 
-<table>
+<table class="table-product">
+    <thead>
     <tr>
-        <td>Nom du produit</td>
+        <th>Nom du produit</th>
       
-        <td>Stock</td>
+        <th>Stock</th>
 
-        <td>Prix</td>
-        <td>Date Limite</td>
+        <th>Prix</th>
+        <th>Date Limite</th>
      
     </tr>
+    </thead>
+    <tbody>
     @foreach (Product product in Model.Products)
     {
+        
         <tr>
             <td>@product.ProductName</td>
      
@@ -32,6 +36,7 @@
 
         </tr>
     }
+        </tbody>
 </table>
 <div class="nav-element">@Html.ActionLink("Retour a mon compte", "Index", "Account", new { @class = "return-catalog" })</div>
 <div class="nav-element">@Html.ActionLink("Retour a l'accueil", "Index", "Home", new { @class = "return-catalog" })</div>
