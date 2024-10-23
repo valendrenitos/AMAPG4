@@ -75,8 +75,9 @@ namespace AMAPG4.Controllers
 				Description = product.Description,
 				IsAvailable = product.IsAvailable,
 				Stock =product.Stock,
-				status = StatusType.Waiting
-            };
+				status = StatusType.Waiting,
+				IsAuthenticated = HttpContext.User.Identity.IsAuthenticated,
+			};
 
 			return View("/Views/LaFerme/Catalog/ProductView.cshtml", productViewModel);
 
