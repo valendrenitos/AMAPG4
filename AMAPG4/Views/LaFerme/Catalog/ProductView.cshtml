@@ -1,4 +1,5 @@
-﻿@model AMAPG4.ViewModels.ProductDetailViewModel
+﻿@using System.Globalization
+@model AMAPG4.ViewModels.ProductDetailViewModel
 
 @{
 	ViewBag.Title = @Model.ProductName;
@@ -39,7 +40,7 @@
 			{
 			<input type="hidden" name="ProductName" value="@Model.ProductName">
 
-					<p class="product-view-price">@Model.Price.ToString("C")</p>
+					<p class="product-view-price">@Model.Price.ToString("C2", new CultureInfo("fr-FR"))</p>
 					<div class="add-row-product-view">
 					<p class="quantity-txt-products"> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
 					<input type="hidden" name="ProductName" value="@Model.ProductName">

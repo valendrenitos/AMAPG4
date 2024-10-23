@@ -88,7 +88,7 @@ namespace AMAPG4.Controllers
             NewProduct newProduct = _newProductService.GetNewProductById(id);
             
             if (newProduct == null)
-            {
+            { 
                 return NotFound();
             }
             

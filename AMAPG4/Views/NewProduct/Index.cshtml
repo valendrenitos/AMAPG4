@@ -49,7 +49,7 @@
         
             <div>
                 @Html.LabelFor(m => m.NewProduct.ProductType, "Type de produit")
-                @Html.DropDownListFor(model => model.ProductType,
+                @Html.DropDownListFor(m => m.NewProduct.ProductType,
                          new SelectList(Enum.GetValues(typeof(ProductType)).Cast<ProductType>().Select(e => new SelectListItem
             {
                 Value = e.ToString(),
