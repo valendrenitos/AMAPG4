@@ -5,50 +5,60 @@
     Layout = "_BackOfficeLayout";
 }
 
-<div class="user-profile">
-    <h1 class="bo-entity">Détails de l'Individu n° @Model.Id</h1>
+<div class="user-profile-form-container">
+    <div class="user-profile">
+        <h1 class="bo-entity">Détails de l'Individu n° @Model.Id</h1>
 
-    <!-- Affichage des informations de l'individu -->
-    <div class="user-info">
-        <label>Nom :</label>
-        <span>@Model.Account.Name</span>
+        <!-- Affichage des informations de l'individu -->
+        <div class="user-info">
+            <label>Nom :</label>
+            <span>@Model.Account.Name</span>
+        </div>
+
+        <div class="user-info">
+            <label>Prénom :</label>
+            <span>@Model.FirstName</span>
+        </div>
+
+        <div class="user-info">
+            <label>Adresse :</label>
+            <span>@Model.Account.Address</span>
+        </div>
+
+        <div class="user-info">
+            <label>Email :</label>
+            <span>@Model.Account.Email</span>
+        </div>
+
+        <div class="user-info">
+            <label>Téléphone :</label>
+            <span>@Model.Account.Phone</span>
+        </div>
+
+        <div class="user-info">
+            <label>Rôle :</label>
+            <span>@Model.Account.Role</span>
+        </div>
+
+        <div class="user-info">
+            <label>Contribution payée :</label>
+            <span>@(Model.IsContributionPaid ? "Oui" : "Non")</span>
+        </div>
+
+        <div class="user-info">
+            <label>Bénévole :</label>
+            <span>@(Model.IsVolunteer ? "Oui" : "Non")</span>
+        </div>
+
+        <!-- Actions : Modifier, Supprimer et Retour -->
+        <div class="user-actions">
+            <a href="@Url.Action("Update", "Individual", new { id = Model.Id })" class="btn-action btn-update">Modifier</a>
+
+            <form method="post" action="@Url.Action("Delete", "Individual", new { id = Model.Id })" style="display:inline;">
+                <button type="submit" class="btn-action btn-delete">Supprimer</button>
+            </form>
+
+            <a href="@Url.Action("Index", "Dashboard")">Retour au tableau de bord</a>
+        </div>
     </div>
-
-    <div class="user-info">
-        <label>Prénom :</label>
-        <span>@Model.FirstName</span>
-    </div>
-
-    <div class="user-info">
-        <label>Adresse :</label>
-        <span>@Model.Account.Address</span>
-    </div>
-
-    <div class="user-info">
-        <label>Email :</label>
-        <span>@Model.Account.Email</span>
-    </div>
-
-    <div class="user-info">
-        <label>Téléphone :</label>
-        <span>@Model.Account.Phone</span>
-    </div>
-
-    <div class="user-info">
-        <label>Rôle :</label>
-        <span>@Model.Account.Role</span>
-    </div>
-
-    <div class="user-info">
-        <label>Contribution payée :</label>
-        <span>@(Model.IsContributionPaid ? "Oui" : "Non")</span>
-    </div>
-
-    <div class="user-info">
-        <label>Bénévole :</label>
-        <span>@(Model.IsVolunteer ? "Oui" : "Non")</span>
-    </div>
-
-    <!-- Lien retour -->
-    <a href="@Url.Action("Index", "Dashboard")">Retour au tableau de bord</a>
 </div>

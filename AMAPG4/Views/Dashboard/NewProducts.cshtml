@@ -1,0 +1,53 @@
+﻿@using AMAPG4.Models.Catalog
+@model AMAPG4.ViewModels.DashboardViewModel
+@{
+    ViewBag.Title = "Gestion des nouveaux produits";
+    Layout = "_BackOfficeLayout";
+}
+
+<div class="dashboard-container">
+    <!-- Bloc pour les nouveaux produits -->
+    <div class="dashboard-block">
+        <div class="section-header">
+            <h2 class="section-title">Nouveaux Produits</h2>
+            <!-- Lien pour ajouter un nouveau produit si nécessaire -->
+            <a href="@Url.Action("Create", "NewProduct")" class="btn-action btn-add">Ajouter un produit</a>
+        </div>
+
+        <div class="table-container">
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Nom du produit</th>
+                        <th>Description</th>
+                        <th>Prix</th>
+                        <th>Stock</th>
+                        <th>Date limite</th>
+                        <th>Producteur</th>
+                        <th>Statut de soumission</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (NewProduct product in Model.NewProducts)
+                    {
+                        <tr>
+                            <td>@product.ProductName</td>
+                            <td>@product.Description</td>
+                            <td>@product.Price.ToString("C2")</td>
+                            <td>@product.Stock</td>
+                            <td>@product.LimitDate.ToShortDateString()</td>
+                            <td>@product.Producer.Account.Name</td>
+                            <td>@product.SubmissionStatus.ToString()</td>
+                            <td class="td-btn-actions">
+                                <a href="@Url.Action("Update", "NewProduct", new { id = product.Id })" class="btn-action btn-update">Modifier</a>
+                                <a href="@Url.Action("Validate", "NewProduct", new { id = product.Id })" class="btn-action btn-save">Valider</a>
+                                <a href="@Url.Action("Reject", "NewProduct", new { id = product.Id })" class="btn-action btn-delete">Rejeter</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

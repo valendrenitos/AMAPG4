@@ -70,19 +70,46 @@ namespace AMAPG4.Controllers
 
         }
 
-        [HttpPost]
-        public IActionResult ValidateAndAddProduct(int newProductId)
+        [HttpGet]
+        public IActionResult Read(int id)
         {
-            // Mettre à jour le statut du produit
-            _newProductService.UpdateNewProduct(newProductId, SubmissionStatus.Approved);
-
-            // Transférer le produit vers la table Product
-            _newProductService.MoveNewProductToProduct(newProductId);
-
-            // Rediriger vers le catalogue
-            return RedirectToAction("Index", "Catalog", "Laferme");
+            NewProduct newProduct = _newProductService.GetNewProductById(id);            
+            if (newProduct == null)
+            {
+                return NotFound();
+            }           
+            return View(newProduct);
         }
 
+
+        [HttpPost]
+        public IActionResult Create(int id)
+        {
+            NewProduct newProduct = _newProductService.GetNewProductById(id);
+            if (newProduct == null)
+            {
+                return NotFound();
+            }
+            
+            int newId;
+            using (ProductDal productDal = new ProductDal())
+            {
+                newId = productDal.CreateProduct(
+                    newProduct.ProductName,
+                    newProduct.Description,
+                    newProduct.IsAvailable,
+                    newProduct.Price,
+                    newProduct.Stock,
+                    newProduct.LimitDate,
+                    newProduct.ProductType,
+                    newProduct.Producer.Id
+                    );
+            }
+            _newProductService.UpdateNewProduct(newProduct.Id, SubmissionStatus.Approved);
+                
+            return RedirectToAction("Read", "Product", new { id = newId });
+        }
+        
         [HttpPost]
             [ValidateAntiForgeryToken]
             public IActionResult RejectNewProduct(int id)

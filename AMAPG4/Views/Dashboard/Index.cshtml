@@ -6,9 +6,7 @@
     ViewBag.Title = "Accueil Back Office";
     Layout = "_BackOfficeLayout";
 }
-@section Styles {
-    <link href="~/css/dashboard.css" rel="stylesheet" />
-}
+
 <div class="dashboard-container">
 
     <!-- Navigation menu -->
@@ -214,7 +212,7 @@
 
     <!-- Section for Product Proposals -->
     <div id="new-products-section" class="dashboard-block">
-        <h2>Proposition de produit à valider</h2>
+        <h2><a href="@Url.Action("NewProducts")">Proposition de produit à valider</a></h2>
         <div class="table-container">
             <table class="dashboard-table">
                 <thead>
@@ -241,14 +239,13 @@
                             <td>
                                 @if (newProduct.SubmissionStatus == SubmissionStatus.Pending)
                                 {
-                                    <form asp-action="ValidateAndAddProduct" method="post">
-                                        <input type="hidden" name="id" value="@newProduct.Id" />
-                                        <button type="submit" class="btn btn-connection">Valider</button>
-                                    </form>
-                                    <form asp-action="RejectProduct" method="post">
-                                        <input type="hidden" name="id" value="@newProduct.Id" />
-                                        <button type="submit" class="btn btn-success">Rejeter</button>
-                                    </form>
+                                    <form method="post" action="@Url.Action("Create", "NewProduct", new { id = newProduct.Id })" style="display:inline;">
+                                    <button type="submit" class="btn-action btn-update">Valider</button>
+                                </form>
+                                <form method="post" action="@Url.Action("Refuse", "NewProduct", new { id = newProduct.Id })" style="display:inline;">
+                                    <button type="submit" class="btn-action btn-delete">Refuser</button>
+                                </form>
+                                    <a href="@Url.Action("Read", "NewProduct", new { id = newProduct.Id })" class="btn-action btn-update">Lire</a>
                                 }
                             </td>
                         </tr>
