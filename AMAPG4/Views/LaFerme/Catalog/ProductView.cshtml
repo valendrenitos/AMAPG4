@@ -35,16 +35,17 @@
 
 
 
-				<div class="bottom-product-details">
-			@using (Html.BeginForm())
-			{
-			<input type="hidden" name="ProductName" value="@Model.ProductName">
+			<div class="bottom-product-details">
+				@using (Html.BeginForm())
+				{
+					<input type="hidden" name="ProductName" value="@Model.ProductName">
 
 					<p class="product-view-price">@Model.Price.ToString("C2", new CultureInfo("fr-FR"))</p>
+
 					<div class="add-row-product-view">
-					<p class="quantity-txt-products"> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
-					<input type="hidden" name="ProductName" value="@Model.ProductName">
-					<input class="styled-input" type="number" name="Quantity" value="1" min="1" max="@Model.Stock" step="1">
+						<p class="quantity-txt-products"> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
+						<input type="hidden" name="ProductName" value="@Model.ProductName">
+						<input class="styled-input" type="number" name="Quantity" value="1" min="1" max="@Model.Stock" step="1">
 						@if (Model.IsAuthenticated)
 						{
 							<input class="product-view-btn-add" type="submit" value="Ajouter Au Panier" />
@@ -53,10 +54,10 @@
 						{
 							<a href="@Url.Action("Index", "Login")" class="product-view-btn-add">Ajouter Au Panier</a>
 						}
-				
+
 					</div>
-			}
-				</div>
+				}
+			</div>
 
 
 		</div>
