@@ -270,24 +270,20 @@ tfoot th:nth-child(1) {
     width: 30%;
 }
 
-tfoot th:nth-child(2) {
-    width: 8%;
-}
 
-    tfoot th:nth-child(3) {
+
+    tfoot th:nth-last-child(-n+2) {
         width: 8%;
         border-radius: 10% 0% 0% 10%;
         background-color: #e3e6e8;
     }
 
-    tfoot th:nth-child(4) {
+    tfoot th:last-child {
         width: 8%;
         background-color: #e3e6e8;
         border-radius: 0% 10% 10% 0%;
     }
-    tfoot th:nth-child(5) {
-        width: 8%;
-    }
+
 
 .ValidationMessage {
     width: 300px;
@@ -297,6 +293,16 @@ tfoot th:nth-child(2) {
     text-align: center;
     align-content: center;
     background-color: lightgreen;
+    border-radius: 10px;
+}
+.RejectedMessage {
+    width: 300px;
+    border: 3px solid red;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    align-content: center;
+    background-color: lightcoral;
     border-radius: 10px;
 }
 

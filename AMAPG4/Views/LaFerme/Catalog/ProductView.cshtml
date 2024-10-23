@@ -6,10 +6,11 @@
 }
 
 <link rel="stylesheet" href="~/css/laFerme.css" />
+<link rel="stylesheet" href="~/css/styles.css" />
 
 @if (Model.status == AMAPG4.Models.StatusType.Success)
 {
-	<p> @Model.ProductName a/ont bien été ajouté au panier !</p>
+	<p class="ValidationMessage"> @Model.ProductName a/ont bien été ajouté au panier !</p>
 }
 
 <div class="product-detail-body">
