@@ -70,6 +70,8 @@ namespace AMAPG4.Controllers
 			// Create a view model for the product details
 			ProductDetailViewModel productViewModel = new ProductDetailViewModel
 			{
+				IsAuthenticated = HttpContext.User.Identity.IsAuthenticated,
+
 				ProductName = product.ProductName,
 				Price = product.Price,
 				Description = product.Description,
