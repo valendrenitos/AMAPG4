@@ -86,14 +86,16 @@ namespace AMAPG4.Controllers
         public IActionResult Create(int id)
         {
             NewProduct newProduct = _newProductService.GetNewProductById(id);
+            Console.WriteLine(newProduct.ProductType);
             if (newProduct == null)
-            {
+            { 
                 return NotFound();
             }
             
             int newId;
             using (ProductDal productDal = new ProductDal())
             {
+                newProduct.IsAvailable = true;
                 newId = productDal.CreateProduct(
                     newProduct.ProductName,
                     newProduct.Description,

@@ -39,6 +39,7 @@
                             <td>@product.LimitDate.ToShortDateString()</td>
                             <td>@product.Producer.Account.Name</td>
                             <td>@product.SubmissionStatus.ToString()</td>
+                            <td>@product.ProductType</td>
                             <td class="td-btn-actions">
                                 <a href="@Url.Action("Update", "NewProduct", new { id = product.Id })" class="btn-action btn-update">Modifier</a>
                                 <a href="@Url.Action("Validate", "NewProduct", new { id = product.Id })" class="btn-action btn-save">Valider</a>
