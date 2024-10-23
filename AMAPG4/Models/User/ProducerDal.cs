@@ -1,9 +1,5 @@
 ﻿using AMAPG4.Helpers;
-using AMAPG4.Models.Catalog;
-using AMAPG4.ViewModels;
-using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 

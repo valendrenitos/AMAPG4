@@ -7,16 +7,12 @@
     Layout = "_Layout";
 }
 
-
-
-
-
 <div class="container">
     <div class="formulaire">
         <h2>Votre formulaire de demande d'ajout d'un nouveau produit</h2>
         @using (Html.BeginForm())
         {
-            
+
             <div>
                 @Html.LabelFor(m => m.NewProduct.ProductName, "Nom")
                 @Html.TextBoxFor(m => m.NewProduct.ProductName, new { @class = "input-field", placeholder = "Nom du produit" })
@@ -45,8 +41,8 @@
                 @Html.TextBoxFor(m => m.NewProduct.LimitDate, new { @class = "input-field", type = "date" })
                 @Html.ValidationMessageFor(m => m.NewProduct.LimitDate)
             </div>
-         
-        
+
+
             <div>
                 @Html.LabelFor(m => m.NewProduct.ProductType, "Type de produit")
                 @Html.DropDownListFor(model => model.ProductType,
@@ -57,8 +53,8 @@
             }), "Value", "Text"), "Sélectionnez un type", new { @class = "form-control" })
             </div>
 
-          
-              
+
+
             <div>
                 <input type="submit" value="Envoyer" />
             </div>

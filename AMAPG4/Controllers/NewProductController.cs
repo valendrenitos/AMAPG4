@@ -3,9 +3,7 @@ using AMAPG4.Models.Catalog;
 using AMAPG4.Models.User;
 using AMAPG4.ViewModels;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using System;
-using System.Linq;
+
 
 namespace AMAPG4.Controllers
 {

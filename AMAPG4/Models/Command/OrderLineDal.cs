@@ -1,12 +1,10 @@
 ﻿
-using Microsoft.AspNetCore.Mvc;
+
 using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Authentication;
 
-using Microsoft.AspNetCore.Http;
 
-using AMAPG4.ViewModels;
 using AMAPG4.Models.Catalog;
 using System.Linq;
 using XAct;

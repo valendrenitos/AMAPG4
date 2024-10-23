@@ -1,11 +1,9 @@
 ﻿using AMAPG4.Models.User;
 using Microsoft.AspNetCore.Mvc;
-using System.Collections.Generic;
 using System;
 using System.Linq;
-using AMAPG4.Models.Catalog;
 using AMAPG4.ViewModels;
-using Microsoft.AspNetCore.Http;
+
 
 namespace AMAPG4.Controllers
 {
@@ -49,6 +47,7 @@ namespace AMAPG4.Controllers
             ProducerViewModel model = new ProducerViewModel
             {
                 Producers = producer,
+                Account = producer.Account,
                 Id = id
             };
             return View(model);
