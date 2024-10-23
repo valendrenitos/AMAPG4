@@ -1,4 +1,5 @@
-﻿using AMAPG4.Models.Catalog;
+﻿using AMAPG4.Models;
+using AMAPG4.Models.Catalog;
 using System;
 using System.Collections.Generic;
 
@@ -20,5 +21,6 @@ namespace AMAPG4.ViewModels
         public ProductType ProductType { get; set; }
 
         public SubmissionStatus SubmissionStatus { get; set; }
+        public StatusType status { get; set; }
     }
 }

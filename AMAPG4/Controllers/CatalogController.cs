@@ -74,8 +74,8 @@ namespace AMAPG4.Controllers
 				Description = product.Description,
 				IsAvailable = product.IsAvailable,
 				Stock =product.Stock,
-
-			};
+				status = StatusType.Waiting
+            };
 
 			return View("/Views/LaFerme/Catalog/ProductView.cshtml", productViewModel);
 
@@ -114,8 +114,8 @@ namespace AMAPG4.Controllers
 				Description = product.Description,
 				IsAvailable = product.IsAvailable,
 				Stock = product.Stock,
-
-			};
+				status = StatusType.Success
+            };
 
 			return View("/Views/LaFerme/Catalog/ProductView.cshtml", productViewModel);
 		}

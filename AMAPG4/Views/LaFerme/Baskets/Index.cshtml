@@ -6,10 +6,10 @@
     Layout = "_Layout";
 }
 
-<head>
+
     <link rel="stylesheet" href="~/css/global.css" />
     <link rel="stylesheet" href="~/css/laFerme.css" />
-</head>
+
 
 
 <div class="baskets-body">
@@ -20,6 +20,10 @@
     tout en profitant de saveurs inégalées. Chaque semaine, vous aurez la possibilité de retirer votre 
     panier rempli de délices saisonniers.</p>
 <div class="baskets-container">
+        @if (Model.status == AMAPG4.Models.StatusType.Success)
+        {
+            <p> L'abonnement à bien été ajouté au panier !</p>
+        }
     @foreach (Product product in Model.Products)
     {
 
@@ -34,7 +38,7 @@
                     {
                         <input type="hidden" name="ProductName" value="@product.ProductName" />
                         <p class="quantity-txt quantity-txt-baskets"> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
-                        <p> @Html.TextBoxFor(m => m.Quantity, new { type = "number", min = "1", max = @product.Stock })</p>
+                        <p> <input type="number" name="Quantity" value="1" min="1" max="@product.Stock" step="1"></p>
 
                         <input class="basket-add-to-basket" type="submit" value="Ajouter Au Panier" />
                     }

@@ -5,10 +5,13 @@
 	Layout = "_layout";
 }
 
-<head>
-	<link rel="stylesheet" href="~/css/laFerme.css" />
-</head>
 
+	<link rel="stylesheet" href="~/css/laFerme.css" />
+
+@if (Model.status == AMAPG4.Models.StatusType.Success)
+{
+    <p> @Model.ProductName a/ont bien été ajouté au panier !</p>
+}
 
 <div class="product-detail-body">
 <div class="product-container">

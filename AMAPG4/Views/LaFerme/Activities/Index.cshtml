@@ -24,7 +24,11 @@
 
 
     <div class="activities-container">
-    @foreach (Product product in Model.Products)
+        @if(Model.status == AMAPG4.Models.StatusType.Success)
+        {
+            <p> L'activité à bien été ajouté au panier !</p>
+        }
+        @foreach (Product product in Model.Products)
     {
         <div class="product-activity">
 
@@ -42,7 +46,7 @@
                 {
                     <input type="hidden" name="ProductName" value="@product.ProductName" />
                         <p class="quantity-txt quantity-txt-activity"> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
-                    <p> @Html.TextBoxFor(m => m.Quantity, new { type = "number", min = "1", max = @product.Stock })</p>
+                        <p> <input type="number" name="Quantity" value="1" min="1" max="@product.Stock" step="1"></p>
 
                         <input class="activity-add-to-basket" type="submit" value="Ajouter Au Panier" />
                 }

@@ -26,6 +26,7 @@ namespace AMAPG4.Controllers
             ActivitiesViewModel viewModel = new ActivitiesViewModel
             {
                 Products = products,
+                status = StatusType.Waiting
             };
 
             return View("/Views/LaFerme/Activities/Index.cshtml", viewModel);
@@ -61,6 +62,7 @@ namespace AMAPG4.Controllers
                 Description = product.Description,
                 IsAvailable = product.IsAvailable,
                 Stock = product.Stock,
+                
 
             };
             List<Product> products = _productDal.GetAllActivityProducts();
@@ -68,6 +70,7 @@ namespace AMAPG4.Controllers
             ActivitiesViewModel viewModel = new ActivitiesViewModel
             {
                 Products = products,
+                status = StatusType.Success
             };
 
             return View("/Views/LaFerme/Activities/Index.cshtml", viewModel);

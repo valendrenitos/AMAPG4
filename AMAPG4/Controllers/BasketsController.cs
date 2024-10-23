@@ -26,6 +26,7 @@ namespace AMAPG4.Controllers
             BasketsViewModel viewModel = new BasketsViewModel
             {
                 Products = products,
+                status = StatusType.Waiting
             };
 
             return View("/Views/LaFerme/Baskets/Index.cshtml", viewModel);
@@ -61,13 +62,14 @@ namespace AMAPG4.Controllers
                 Description = product.Description,
                 IsAvailable = product.IsAvailable,
                 Stock = product.Stock,
-
+                
             };
             List<Product> products = _productDal.GetAllBasketProducts();
 
             BasketsViewModel viewModel = new BasketsViewModel
             {
                 Products = products,
+                status = StatusType.Success,
             };
 
             return View("/Views/LaFerme/Baskets/Index.cshtml", viewModel);
