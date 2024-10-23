@@ -4,8 +4,8 @@
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
     <link rel="stylesheet" href="~/css/global.css" />
-    
-     @RenderSection("Styles", required: false)
+
+    @RenderSection("Styles", required: false)
 </head>
 <script>
     document.addEventListener("DOMContentLoaded", function (event) {
@@ -28,33 +28,35 @@
         @if (User.Identity.IsAuthenticated && User.IsInRole("Manager"))
         {
             <div class="btn btn-account"><div class="btn-text">@Html.ActionLink("Mon Compte manager", "Index", "Account", null, new { @class = "btn-link" })</div></div>
-            <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Mon Panier", "Index", "Order", null, new { @class = "btn-link" })</div></div>
+            <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Mon panier", "Index", "Order", null, new { @class = "btn-link" })</div></div>
             <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, new { @class = "btn-link" })</div></div>
             <div class="btn btn-account">@Html.ActionLink("Mon tableau de bord", "IndexManager", "DashBoard", null, new { @class = "nav-link" })</div>
         }
         else if (User.Identity.IsAuthenticated && User.IsInRole("Utilisateur"))
-        {   <div>
-            <div class="btn btn-account"><div class="btn-text">@Html.ActionLink("Mon Compte", "Index", "Account", null, new { @class = "btn-link" })</div></div>
-                <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Mon Panier", "Index", "Order", null, new { @class = "btn-link" })</div></div>
-            <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, new { @class = "btn-link" })</div></div>
-                <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Back-Office", "Index", "Dashboard", null, new { @class = "btn-link" })</div></div>
-        </div>
-        
+        {
+               <div>
+                <div class="btn btn-account"><div class="btn-text">@Html.ActionLink("Mon Compte", "Index", "Account", null, new { @class = "btn-link" })</div></div>
+                <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Mon panier", "Index", "Order", null, new { @class = "btn-link" })</div></div>
+                <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, new { @class = "btn-link" })</div></div>
+                
+            </div>
+
         }
         else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-        {   <div>
-            <div class="btn btn-account"><div class="btn-text">@Html.ActionLink("Mon Compte Administrateur", "Index", "Account", null, new { @class = "btn-link" })</div></div>
-                <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Mon Panier", "Index", "Order", null, new { @class = "btn-link" })</div></div>
-            <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, new { @class = "btn-link" })</div></div>
-            <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Back-Office", "Index", "Dashboard", null, new { @class = "btn-link" })</div></div>
-        </div>
-        
+        {
+               <div>
+                <div class="btn btn-account"><div class="btn-text">@Html.ActionLink("Mon Compte Administrateur", "Index", "Account", null, new { @class = "btn-link" })</div></div>
+                <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Mon panier", "Index", "Order", null, new { @class = "btn-link" })</div></div>
+                <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, new { @class = "btn-link" })</div></div>
+                <div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Back-Office", "Index", "Dashboard", null, new { @class = "btn-link" })</div></div>
+            </div>
+
         }
         else
         {
             <div class="default-right-btns">
-            <div class="btn btn-connection"><div class="btn-text">@Html.ActionLink("Se Connecter", "Index", "Login", null, new { @class = "btn-link" })</div></div>
-            <div class="btn btn-register"><div class="btn-text">@Html.ActionLink("S’inscrire", "Index", "CreateAccount", null, new { @class = "btn-link" })</div></div>
+                <div class="btn btn-connection"><div class="btn-text">@Html.ActionLink("Se Connecter", "Index", "Login", null, new { @class = "btn-link" })</div></div>
+                <div class="btn btn-register"><div class="btn-text">@Html.ActionLink("S’inscrire", "CreateIndividualAccount","Login", null, new { @class = "btn-link" })</div></div>
             </div>
         }
     </div>
@@ -69,13 +71,10 @@
 <footer class="footer">
     <div class="footer-top">
         <div class="footer-links">
-
             <div class="nav-element">@Html.ActionLink("Accueil", "Index", "Home", null, new { @class = "nav-link" })</div>
             <div class="footer-nav-element">@Html.ActionLink("La Ferme", "Index", "LaFerme", new { @class = "btn-link-footer" })</div>
             <div class="footer-nav-element">@Html.ActionLink("Nos Producteurs", "Index", "Producer", new { @class = "btn-link-footer" })</div>
-            <div class="footer-nav-element">@Html.ActionLink("L'Association", "Index", "Organization", new { @class = "btn-link-footer" })</div>         
-            <div class="footer-nav-element">@Html.ActionLink("Catalogue", "Index", "Catalog", new { @class = "btn-link-footer" })</div>
-
+            <div class="footer-nav-element">@Html.ActionLink("L'Association", "Index", "Organization", new { @class = "btn-link-footer" })</div>
         </div>
 
         <img class="footer-logo" src="~/images/logo.png" />

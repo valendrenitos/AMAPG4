@@ -425,7 +425,8 @@ a {
     color: #285146;
 }
 
-.la-ferme-txt {
+.la-ferme-txt,
+.txt-organization p {
     text-align: center;
     font-size: 1.03rem;
     color: #285146;
@@ -508,7 +509,8 @@ a {
 .activities-body h2, 
 .baskets-body h2,
 .producer-body h2, 
-.login-body h2 {
+.login-body h2,
+.txt-organization h2 {
     font-weight: bold;
     font-size: 2.2rem;
     text-align: center;
