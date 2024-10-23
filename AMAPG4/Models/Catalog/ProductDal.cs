@@ -238,8 +238,12 @@ namespace AMAPG4.Models.Catalog
         }
         public Product GetProductByName(string name)
         {
-            Product product;
+            
             return _bddContext.Products.FirstOrDefault(product=>product.ProductName==name);
+        }
+        public List<Product> GetAllProductByProducer(int producerId)
+        {
+            return _bddContext.Products.Where(p=>p.Producer.Id==producerId).ToList();
         }
     }
 }

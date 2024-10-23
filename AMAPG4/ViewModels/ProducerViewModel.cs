@@ -1,4 +1,5 @@
 ﻿using AMAPG4.Models.User;
+using AMAPG4.Models.Catalog;
 using System.Collections.Generic;
 
 namespace AMAPG4.ViewModels
@@ -10,6 +11,7 @@ namespace AMAPG4.ViewModels
         public Producer Producers { get; set; }
 
         public List<Producer> ProducersList { get; set; } 
+        public List<Product> Products { get; set; }
         public int Id { get; set; }
       
      

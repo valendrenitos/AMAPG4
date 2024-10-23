@@ -6,7 +6,7 @@ using AMAPG4.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -119,6 +119,7 @@ namespace AMAPG4.Controllers
 
 			return View("/Views/LaFerme/Catalog/ProductView.cshtml", productViewModel);
 		}
-       
+
+
     }
 }

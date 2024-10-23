@@ -5,6 +5,9 @@ using System;
 using System.Linq;
 
 using AMAPG4.ViewModels;
+using AMAPG4.Models.Command;
+using System.Collections.Generic;
+using AMAPG4.Models.Catalog;
 
 
 namespace AMAPG4.Controllers
@@ -168,6 +171,32 @@ namespace AMAPG4.Controllers
 
             return View(producer);
         }
+        public IActionResult MyProduct()
+        {
+
+            UserAccountViewModel UserAccountViewModel =
+        new UserAccountViewModel();
+            ProducerViewModel ProducerViewModel = new ProducerViewModel();
+            using (UserAccountDal userAccountDal = new UserAccountDal())
+            {
+                UserAccountViewModel.UserAccount = userAccountDal.GetUserAccount(HttpContext.User.Identity.Name);
+            }
+            using (ProducerDal producerDal = new ProducerDal())
+            {
+                Producer producer = producerDal.GetProducerByUserAccount(UserAccountViewModel.UserAccount.Id);
+                ProducerViewModel.Producers = producer;
+            }
+            using (ProductDal productDal = new ProductDal())
+            {
+                List<Product> products = productDal.GetAllProductByProducer(ProducerViewModel.Producers.Id);
+                ProducerViewModel.Products = products;
+            }
+
+
+
+            return View(ProducerViewModel);
+        }
+
     }
 }
 
