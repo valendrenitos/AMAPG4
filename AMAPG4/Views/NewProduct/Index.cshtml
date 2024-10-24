@@ -5,7 +5,8 @@
     Layout = "_Layout";
 }
 
-
+<link rel="stylesheet" href="~/css/forms.css" />
+<link rel="stylesheet" href="~/css/global.css" />
 
 
 
@@ -17,46 +18,47 @@
             @Html.HiddenFor(m => m.ProducerId)
 
             <!-- Nom du produit -->
-            <div>
+            <div class="proposition input-field">
                 @Html.LabelFor(m => m.NewProduct.ProductName, "Nom du produit")
-                @Html.TextBoxFor(m => m.NewProduct.ProductName, new { @class = "input-field", placeholder = "Nom du produit" })
+                @Html.TextBoxFor(m => m.NewProduct.ProductName, new { @class = "proposition input-field", placeholder = "Nom du produit" })
                 @Html.ValidationMessageFor(m => m.NewProduct.ProductName, "", new { @class = "error-message" })
+            </div>
+
+            <!-- Type de produit -->
+            <div>
+                @Html.LabelFor(m => m.NewProduct.ProductType, "Type de produit")
+                @Html.DropDownListFor(m => m.NewProduct.ProductType, new SelectList(Enum.GetValues(typeof(ProductType)).Cast<ProductType>().Select(e => new SelectListItem { Value = e.ToString(), Text = e.ToString() }), "Value", "Text"), "Sélectionnez un type", new { @class = "proposition input-field" })
+                @Html.ValidationMessageFor(m => m.NewProduct.ProductType, "", new { @class = "error-message" })
             </div>
 
             <!-- Description -->
             <div>
                 @Html.LabelFor(m => m.NewProduct.Description, "Description")
-                @Html.TextAreaFor(m => m.NewProduct.Description, new { @class = "input-field", placeholder = "Description", rows = 4 })
+                @Html.TextAreaFor(m => m.NewProduct.Description, new { @class = "proposition input-field", placeholder = "Description", rows = 4 })
                 @Html.ValidationMessageFor(m => m.NewProduct.Description, "", new { @class = "error-message" })
             </div>
 
             <!-- Prix unitaire -->
             <div>
                 @Html.LabelFor(m => m.NewProduct.Price, "Prix unitaire (€)")
-                @Html.TextBoxFor(m => m.NewProduct.Price, new { @class = "input-field", placeholder = "Prix unitaire" })
+                @Html.TextBoxFor(m => m.NewProduct.Price, new { @class = "proposition input-field", placeholder = "Prix unitaire" })
                 @Html.ValidationMessageFor(m => m.NewProduct.Price, "", new { @class = "error-message" })
             </div>
 
             <!-- Quantité en stock -->
             <div>
                 @Html.LabelFor(m => m.NewProduct.Stock, "Quantité en stock")
-                @Html.TextBoxFor(m => m.NewProduct.Stock, new { @class = "input-field", placeholder = "Quantité en stock", type = "number", min = "0" })
+                @Html.TextBoxFor(m => m.NewProduct.Stock, new { @class = "styled-input-proposition", type = "number", min = "0" })
                 @Html.ValidationMessageFor(m => m.NewProduct.Stock, "", new { @class = "error-message" })
             </div>
 
             <!-- Date limite -->
-            <div>
+            <div class="limit-date">
                 @Html.LabelFor(m => m.NewProduct.LimitDate, "Date limite")
-                @Html.TextBoxFor(m => m.NewProduct.LimitDate, new { @class = "input-field", type = "date" })
+                @Html.TextBoxFor(m => m.NewProduct.LimitDate, new { @class = "styled-input-proposition", type = "date" })
                 @Html.ValidationMessageFor(m => m.NewProduct.LimitDate, "", new { @class = "error-message" })
             </div>
 
-            <!-- Type de produit -->
-            <div>
-                @Html.LabelFor(m => m.NewProduct.ProductType, "Type de produit")
-                @Html.DropDownListFor(m => m.NewProduct.ProductType, new SelectList(Enum.GetValues(typeof(ProductType)).Cast<ProductType>().Select(e => new SelectListItem { Value = e.ToString(), Text = e.ToString() }), "Value", "Text"), "Sélectionnez un type", new { @class = "input-field" })
-                @Html.ValidationMessageFor(m => m.NewProduct.ProductType, "", new { @class = "error-message" })
-            </div>
 
             <!-- Image du produit -->
             <div>

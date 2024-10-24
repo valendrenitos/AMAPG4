@@ -1,0 +1,41 @@
+﻿/*******************************************************************/
+/****************STYLES FOR FORMS PROPOSE PRODUCT*******************/
+/*******************************************************************/
+.container {
+    margin: 3rem;
+}
+
+.styled-input-proposition {
+    border: 0.1rem solid #d9d9d9;
+    border-radius: 0.3rem;
+    padding: 0.4rem;
+    font-size: 1rem;
+    text-align: center;
+    width: 2.6rem;
+}
+
+.limit-date .styled-input-proposition {
+    width: 8rem;
+    font-family: 'Poppins', sans-serif;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-container * {
+    margin: 0.1rem;
+}
+
+    .form-container h2 {
+        color: #285146;
+        margin-top: 1rem;
+        margin-bottom: 2rem;
+    }
+
+/*******************************************************************/
+/****************STYLES FOR FORMS *******************/
+/*******************************************************************/
