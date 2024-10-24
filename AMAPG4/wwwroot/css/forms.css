@@ -21,22 +21,32 @@
 
 .form-container {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     align-items: center;
 }
 
-.form-container * {
-    margin: 0.1rem;
-}
+    .form-container * {
+        margin: 0.3rem;
+    }
 
     .form-container h2 {
-        font-weight:bold;
-        font-size:2.2rem;
+        font-weight: bold;
+        font-size: 2.2rem;
         color: #285146;
         margin-top: 1rem;
         margin-bottom: 2rem;
     }
+
+
+.txt-newproduct,
+.text-cas-particulier {
+    text-align: center;
+    font-size: 1.5rem;
+    color: #285146;
+    margin-bottom:50px; 
+}
+
 
 /*******************************************************************/
 /****************STYLES FOR FORMS *******************/
@@ -56,5 +66,5 @@
     border-radius: 30px; /* Bords arrondis */
     padding: 30px; /* Espacement intérieur */
     margin-bottom: 20px; /* Espace en bas du fieldset */
-
+    width: 120%;
 }
