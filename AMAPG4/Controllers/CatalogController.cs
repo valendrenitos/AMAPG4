@@ -70,13 +70,15 @@ namespace AMAPG4.Controllers
 			// Create a view model for the product details
 			ProductDetailViewModel productViewModel = new ProductDetailViewModel
 			{
+				IsAuthenticated = HttpContext.User.Identity.IsAuthenticated,
+
 				ProductName = product.ProductName,
 				Price = product.Price,
 				Description = product.Description,
 				IsAvailable = product.IsAvailable,
 				Stock =product.Stock,
 				status = StatusType.Waiting,
-				IsAuthenticated = HttpContext.User.Identity.IsAuthenticated,
+				ImagePath = product.ImagePath
 			};
 
 			return View("/Views/LaFerme/Catalog/ProductView.cshtml", productViewModel);
@@ -117,8 +119,9 @@ namespace AMAPG4.Controllers
 				Description = product.Description,
 				IsAvailable = product.IsAvailable,
 				Stock = product.Stock,
-				status = StatusType.Success
-            };
+				status = StatusType.Success,
+				ImagePath = product.ImagePath
+			};
 
 
 			return View("/Views/LaFerme/Catalog/ProductView.cshtml", productViewModel);

@@ -1,77 +1,65 @@
 ﻿@using System.Globalization
 @using AMAPG4.Models.Catalog
+@using AMAPG4.Helpers
 @model AMAPG4.ViewModels.CatalogViewModel
 @{
-    ViewBag.Title = "Catalogue de Produits";
-    Layout = "_layout";
+	ViewBag.Title = "Catalogue de Produits";
+	Layout = "_layout";
 }
 
-    <link rel="stylesheet" href="~/css/laFerme.css" />
+<link rel="stylesheet" href="~/css/laFerme.css" />
 
 
 <div class="catalog-body">
 
-    <div class="catalog-col-container">
-    <!-- Display User Information (Optional) -->
-    @if (Model.IsAuthenticated)
-    {
-        <p id="welcome-text">Bienvenue, @Model.UserName!</p>
-    }
+	<div class="catalog-col-container">
+		<!-- Display User Information (Optional) -->
+		@if (Model.IsAuthenticated)
+		{
+			<p class="welcome-text">Bienvenue, @Model.UserName, sur notre catalogue de produits!</p>
+		}
 
-    <div class="catalog-row-container">
-    <div class="left-container">
+		<div class="catalog-row-container">
+			<div class="left-container">
 
-        <form method="get" action="@Url.Action("Index", "Catalog")">
-            <!-- Search bar -->
-            <input type="text" name="searchString" class="search-bar" placeholder="Rechercher un produit..." />
+				<form method="get" action="@Url.Action("Index", "Catalog")">
+					<!-- Search bar -->
+					<input type="text" name="searchString" class="search-bar" placeholder="Rechercher un produit..." />
 
-            <!-- Order by price -->
-            <div class="order-by">
-                <button type="submit" name="sortOrder" value="ascending" class="btn-sort">Prix Croissant</button>
-                <button type="submit" name="sortOrder" value="descending" class="btn-sort">Prix Décroissant</button>
-            </div>
+					<!-- Order by price -->
+					<div class="order-by">
+						<button type="submit" name="sortOrder" value="ascending" class="btn-sort">Prix Croissant</button>
+						<button type="submit" name="sortOrder" value="descending" class="btn-sort">Prix Décroissant</button>
+					</div>
+				</form>
 
-            <!-- Product Type Filter -->
-                    <!--  <label>
-                <input type="checkbox" name="showAll" value="true" onchange="this.form.submit()" /> Tous les Produits
-            </label>
-            <label>
-                <input type="checkbox" name="productTypes" value="Basket" onchange="this.form.submit()" /> Panier
-            </label>
-            <label>
-                <input type="checkbox" name="productTypes" value="Unitary" onchange="this.form.submit()" /> Produit Non-Maraîcher
-            </label>
-            <label>
-                <input type="checkbox" name="productTypes" value="Activity" onchange="this.form.submit()" /> Activité
-                    </label>-->
-        </form>
+			</div>
 
-    </div>
+				<!-- Catalog -->
+				<div class="catalog-container">
 
-    <!-- Catalog -->
-    <div class="catalog-container">
 
-        
-        @foreach (Product product in Model.Products)
-        {
-            <div class="product-card">
-                <a href="@Url.Action("ProductView", "Catalog", new { id = product.Id })">
-                    <img class="catalog-photo" src="~/images/ProductImages/cheese.png" />
-                </a>
 
-                <div class="product-name">@product.ProductName</div>
+					@foreach (Product product in Model.Products)
+					{
+						<div class="product-card">
+							<a href="@Url.Action("ProductView", "Catalog", new { id = product.Id })">
+								 <img class="product-photo" src="@Url.Content(ImageHelper.GetUnitaryImagePath(product.ImagePath))" />
+							</a>
 
-                <div class="info-row">
-                    <div class="product-price">@product.Price.ToString("C2", new CultureInfo("fr-FR"))</div>
-                </div>
-                        <a href="@Url.Action("ProductView", "Catalog", new { id = product.Id })">
-                            <div class="btn-details">Détails</div>
-                        </a>
+							<div class="product-name">@product.ProductName</div>
 
-                        
-            </div>
-        }
-    </div>
-    </div>
-    </div>
+							<div class="info-row">
+								<div class="product-price">@product.Price.ToString("C2", new CultureInfo("fr-FR"))</div>
+							</div>
+							<a href="@Url.Action("ProductView", "Catalog", new { id = product.Id })">
+								<div class="btn-details">Détails</div>
+							</a>
+
+
+						</div>
+					}
+				</div>
+		</div>
+	</div>
 </div>

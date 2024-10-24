@@ -1,7 +1,5 @@
 ﻿@using AMAPG4.Models.Catalog
-
 @model AMAPG4.ViewModels.NewProductViewModel
-
 @{
     ViewBag.Title = "Formulaire de proposition produit";
     Layout = "_Layout";
@@ -12,60 +10,69 @@
 
 
 <div class="container">
-    <div class="formulaire">
-        <h2>Votre formulaire de demande d'ajout d'un nouveau produit</h2>
-        @using (Html.BeginForm())
+    <div class="form-container">
+        <h2>Demande d'ajout d'un nouveau produit</h2>
+        @using (Html.BeginForm("Index", "NewProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            
+            @Html.HiddenFor(m => m.ProducerId)
+
+            <!-- Nom du produit -->
             <div>
-                @Html.LabelFor(m => m.NewProduct.ProductName, "Nom")
+                @Html.LabelFor(m => m.NewProduct.ProductName, "Nom du produit")
                 @Html.TextBoxFor(m => m.NewProduct.ProductName, new { @class = "input-field", placeholder = "Nom du produit" })
-                @Html.ValidationMessageFor(m => m.NewProduct.ProductName)
+                @Html.ValidationMessageFor(m => m.NewProduct.ProductName, "", new { @class = "error-message" })
             </div>
 
+            <!-- Description -->
             <div>
                 @Html.LabelFor(m => m.NewProduct.Description, "Description")
-                @Html.TextAreaFor(m => m.NewProduct.Description, new { @class = "input-field", placeholder = "Description", rows = 4, cols = 50 })
-                @Html.ValidationMessageFor(m => m.NewProduct.Description)
+                @Html.TextAreaFor(m => m.NewProduct.Description, new { @class = "input-field", placeholder = "Description", rows = 4 })
+                @Html.ValidationMessageFor(m => m.NewProduct.Description, "", new { @class = "error-message" })
             </div>
 
+            <!-- Prix unitaire -->
             <div>
-                @Html.LabelFor(m => m.NewProduct.Price, "Prix unitaire")
-                @Html.TextBoxFor(m => m.NewProduct.Price, new { @class = "input-field", placeholder = "prix unitaire" })
-                @Html.ValidationMessageFor(m => m.NewProduct.Price)
+                @Html.LabelFor(m => m.NewProduct.Price, "Prix unitaire (€)")
+                @Html.TextBoxFor(m => m.NewProduct.Price, new { @class = "input-field", placeholder = "Prix unitaire" })
+                @Html.ValidationMessageFor(m => m.NewProduct.Price, "", new { @class = "error-message" })
             </div>
+
+            <!-- Quantité en stock -->
             <div>
-                @Html.LabelFor(m => m.NewProduct.Stock, "Quantité en stock à proposer")
+                @Html.LabelFor(m => m.NewProduct.Stock, "Quantité en stock")
                 @Html.TextBoxFor(m => m.NewProduct.Stock, new { @class = "input-field", placeholder = "Quantité en stock", type = "number", min = "0" })
-                @Html.ValidationMessageFor(m => m.NewProduct.Stock)
+                @Html.ValidationMessageFor(m => m.NewProduct.Stock, "", new { @class = "error-message" })
             </div>
 
+            <!-- Date limite -->
             <div>
                 @Html.LabelFor(m => m.NewProduct.LimitDate, "Date limite")
                 @Html.TextBoxFor(m => m.NewProduct.LimitDate, new { @class = "input-field", type = "date" })
-                @Html.ValidationMessageFor(m => m.NewProduct.LimitDate)
+                @Html.ValidationMessageFor(m => m.NewProduct.LimitDate, "", new { @class = "error-message" })
             </div>
-         
-        
+
+            <!-- Type de produit -->
             <div>
                 @Html.LabelFor(m => m.NewProduct.ProductType, "Type de produit")
-                @Html.DropDownListFor(m => m.NewProduct.ProductType,
-                         new SelectList(Enum.GetValues(typeof(ProductType)).Cast<ProductType>().Select(e => new SelectListItem
-            {
-                Value = e.ToString(),
-                Text = e.ToString()
-            }), "Value", "Text"), "Sélectionnez un type", new { @class = "form-control" })
+                @Html.DropDownListFor(m => m.NewProduct.ProductType, new SelectList(Enum.GetValues(typeof(ProductType)).Cast<ProductType>().Select(e => new SelectListItem { Value = e.ToString(), Text = e.ToString() }), "Value", "Text"), "Sélectionnez un type", new { @class = "input-field" })
+                @Html.ValidationMessageFor(m => m.NewProduct.ProductType, "", new { @class = "error-message" })
             </div>
 
-          
-              
+            <!-- Image du produit -->
             <div>
-                <input type="submit" value="Envoyer" />
+                @Html.Label("ProductImage", "Image du produit")
+                <input type="file" name="ProductImage" class="input-field" />
             </div>
 
+            <!-- Bouton d'envoi -->
+            <div>
+                <input type="submit" value="Envoyer" class="btn-submit" />
+            </div>
+
+            <!-- Message de confirmation -->
             @if (ViewBag.Message != null)
             {
-                <p>@ViewBag.Message</p>
+                <p class="confirmation-message">@ViewBag.Message</p>
             }
         }
     </div>

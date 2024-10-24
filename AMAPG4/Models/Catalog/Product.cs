@@ -21,8 +21,8 @@ namespace AMAPG4.Models.Catalog
         public DateTime LimitDate {  get; set; }    
 
         public ProductType ProductType { get; set; }
+        public string ImagePath { get; set; }
         public virtual Producer Producer { get; set; }
-
 
     }
 }
