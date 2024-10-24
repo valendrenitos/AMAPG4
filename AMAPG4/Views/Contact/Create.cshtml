@@ -4,71 +4,78 @@
     Layout = "_Layout";
 }
 @section Styles {
-    <link href="~/css/contact.css" rel="stylesheet" />
+
+    
+    <link rel="stylesheet" href="~/css/forms.css" />
+    <link rel="stylesheet" href="~/css/global.css" />
 }
 
-<div class="contact-page">
 
-<h2>Bienvenue sur la page de contact !</h2>
+<div class="container">
+    <div class="form-container">
+        <h2>Contactez-nous !</h2>
 
-    @if (TempData["SuccessMessage"] != null)
-    {
-        <div class="alert alert-success">
-            @TempData["SuccessMessage"]
-        </div>
-    }
-
-    @using (Html.BeginForm("Create", "Contact", FormMethod.Post, new { @class = "contact-form" }))
-    {
-        <div class="contact-form-group">
-            @Html.Label("Vous êtes un(e)")
-            <div class="contact-form-radio-group">
-                @foreach (var item in Enum.GetValues(typeof(AMAPG4.Models.ContactForm.UserType)))
-                {
-                    <label class="radio-inline">
-                        @Html.RadioButtonFor(model => model.userType, item) @item
-                    </label>
-                }
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
             </div>
-            @Html.ValidationMessageFor(model => model.userType, "", new { @class = "text-danger" })
+        }
+
+        @using (Html.BeginForm("Create", "Contact", FormMethod.Post, new { @class = "contact-form" }))
+        {
+            <fieldset class="fieldset-style">
+                <legend>Formulaire de contact</legend>
+            <div class="contact-form-group">
+                @Html.Label("Vous êtes un(e)")
+                <div class="contact-form-radio-group">
+                    @foreach (var item in Enum.GetValues(typeof(AMAPG4.Models.ContactForm.UserType)))
+                    {
+                        <label class="radio-inline">
+                            @Html.RadioButtonFor(model => model.userType, item) @item
+                        </label>
+                    }
+                </div>
+                @Html.ValidationMessageFor(model => model.userType, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="contact-form-group">
+                @Html.LabelFor(model => model.Name, "Nom")
+                @Html.TextBoxFor(model => model.Name, new { @class = "proposition input-field", placeholder = "Nom" })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="contact-form-group">
+                @Html.LabelFor(model => model.FirstName, "Prénom")
+                @Html.TextBoxFor(model => model.FirstName, new { @class = "proposition input-field", placeholder = "Prénom" })
+                @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="contact-form-group">
+                @Html.LabelFor(model => model.Email, "Email")
+                @Html.TextBoxFor(model => model.Email, new { @class = "proposition input-field", placeholder = "nom@example.fr" })
+                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="contact-form-group">
+                @Html.LabelFor(model => model.PhoneNumber, "Téléphone")
+                @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "proposition input-field", placeholder = "0707070707" })
+                @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="contact-form-group">
+                @Html.LabelFor(model => model.Message, "Message")
+                @Html.TextAreaFor(model => model.Message, new { @class = "form-control contact-textarea-message", placeholder = "Écrivez votre message" , rows = 4 })
+                @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+            </div>
+
+            <input type="submit" value="Envoyer" />
+
+            </fieldset>
+        }
         </div>
 
-        <div class="contact-form-group">
-            @Html.LabelFor(model => model.Name, "Nom")
-            @Html.TextBoxFor(model => model.Name, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-        </div>
 
-        <div class="contact-form-group">
-            @Html.LabelFor(model => model.FirstName, "Prénom")
-            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.FirstName, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="contact-form-group">
-            @Html.LabelFor(model => model.Email, "Email")
-            @Html.TextBoxFor(model => model.Email, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="contact-form-group">
-            @Html.LabelFor(model => model.PhoneNumber, "Téléphone")
-            @Html.TextBoxFor(model => model.PhoneNumber, new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="contact-form-group">
-            @Html.LabelFor(model => model.Message, "Message")
-            @Html.TextAreaFor(model => model.Message, new { @class = "form-control contact-textarea-message", rows = 4 })
-            @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
-        </div>
-
-        <div class="contact-form-group">
-            <button type="submit" class="btn btn-primary">Envoyer</button>
-        </div>
-    }
-
-        
     <div>
         <h2>L'adresse</h2>
         <div class="adresse-contenu">
