@@ -32,10 +32,12 @@
                 <p class="product-view-available"><strong>Disponibilité :</strong> Hors Stock</p>
             }
 
-            <p class="product-view-price">@Model.Price.ToString("C2", new CultureInfo("fr-FR"))</p>
 
             <div class="bottom-product-details">
-                @using (Html.BeginForm())
+
+            <p class="product-view-price">@Model.Price.ToString("C2", new CultureInfo("fr-FR"))</p>
+                
+            @using (Html.BeginForm())
                 {
                     <input type="hidden" name="ProductName" value="@Model.ProductName" />
 
