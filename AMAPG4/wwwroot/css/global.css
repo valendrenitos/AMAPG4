@@ -13,11 +13,12 @@ html, body {
 
 body {
     min-height: 100vh;
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),url('../images/bg04.png') no-repeat center center fixed;
 }
 
-    body > *:not(footer) {
-        flex-grow: 1;
-    }
+body > *:not(footer) {
+    flex-grow: 1;
+}
 
 /*******************************************************************/
 /***************************STYLES FOR HEADER***********************/
@@ -154,9 +155,10 @@ form {
     color: #285146;
     font-weight: 600;
 }
-form em{
-    font-size:0.8rem;
-}
+
+    form em {
+        font-size: 0.8rem;
+    }
 
 textarea::placeholder,
 date::placeholder {
