@@ -41,7 +41,7 @@ namespace AMAPG4.Controllers
                     }
                 }
             }
-                    
+
             return View(newProductViewModel);
         }
 
@@ -61,7 +61,7 @@ namespace AMAPG4.Controllers
         {
             // Récupère l'objet NewProduct depuis le ViewModel
             NewProduct newProduct = newProductVM.NewProduct;
-           
+
             if (ModelState.IsValid)
             {
                 // Gestion de l'image du produit
@@ -110,12 +110,12 @@ namespace AMAPG4.Controllers
         public IActionResult Create(int id)
         {
             NewProduct newProduct = _newProductService.GetNewProductById(id);
-            
+
             if (newProduct == null)
-            { 
+            {
                 return NotFound();
             }
-            
+
             int newId;
             using (ProductDal productDal = new ProductDal())
             {
@@ -132,27 +132,23 @@ namespace AMAPG4.Controllers
                     newProduct.ImagePath
                     );
             }
-            _newProductService.UpdateNewProduct(newProduct.Id, SubmissionStatus.Approved);
-                
+            _newProductService.DeleteNewProduct(newProduct.Id);
+
             return RedirectToAction("Read", "Product", new { id = newId });
         }
-        
         [HttpPost]
-            [ValidateAntiForgeryToken]
-            public IActionResult RejectNewProduct(int id)
-            {
-                var newProduct = _bddContext.NewProducts.Find(id);
-                if (newProduct != null)
-                {
-                    newProduct.SubmissionStatus = SubmissionStatus.Rejected; // Marquer comme rejeté
-                    _bddContext.SaveChanges(); // Enregistrer les modifications
-                }
-
-                return RedirectToAction("Dashboard"); // Retourner au tableau de bord
-            }
+        public IActionResult Refuse(int id)
+        {
+            _newProductService.UpdateNewProduct(id, SubmissionStatus.Rejected);
+            return RedirectToAction("NewProducts", "Dashboard");
         }
 
-
-
-
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            _newProductService.DeleteNewProduct(id);
+            return RedirectToAction("NewProducts", "Dashboard");
+        }
     }
+
+}

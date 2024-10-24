@@ -11,208 +11,26 @@
 
     <!-- Navigation menu -->
     <div class="section-navigation">
-        <a href="#individuals-section" class="btn-add">Adhérents</a>
-        <a href="#producers-section" class="btn-add">Producteurs</a>
-        <a href="#ce-section" class="btn-add">Comités d'entreprise</a>
-        <a href="#products-section" class="btn-add">Produits</a>
-        <a href="#contacts-section" class="btn-add">Demandes de contact</a>
         <a href="#new-products-section" class="btn-add">Propositions de produits</a>
-    </div>
-
-    <!-- Section for Individuals -->
-    <div id="individuals-section" class="dashboard-block">
-        <h2><a href="@Url.Action("Individuals")">Adhérents</a></h2>
-        <div class="table-container">
-            <table class="dashboard-table">
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Email</th>
-                        <th>Téléphone</th>
-                        <th>Date d'inscription</th>
-                        <th>Bénévole</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (Individual individual in Model.Individuals)
-                    {
-                        <tr>
-                            <td>@individual.Account.Name</td>
-                            <td>@individual.FirstName</td>
-                            <td>@individual.Account.Email</td>
-                            <td>@individual.Account.Phone</td>
-                            <td>@individual.InscriptionDate.ToShortDateString()</td>
-                            <td>@(individual.IsVolunteer ? "Oui" : "Non")</td>
-                            <td class="td-btn-actions">
-                                <a href="@Url.Action("Update", "Individual", new { id = individual.Id })" class="btn-action btn-update">Modifier</a>
-                                <form method="post" action="@Url.Action("Delete", "Individual", new { id = individual.Id })">
-                                    <button type="submit" class="btn-action btn-delete">Supprimer</button>
-                                </form>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Section for Producers -->
-    <div id="producers-section" class="dashboard-block">
-        <h2><a href="@Url.Action("Producers")">Producteurs</a></h2>
-        <div class="table-container">
-            <table class="dashboard-table">
-                <thead>
-                    <tr>
-                        <th>Nom de l'exploitation</th>
-                        <th>Type de production</th>
-                        <th>Nom du contact</th>
-                        <th>Description</th>
-                        <th>Email</th>
-                        <th>Téléphone</th>
-                        <th>SIRET</th>
-                        <th>RIB</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (Producer producer in Model.Producers)
-                    {
-                        <tr>
-                            <td>@producer.Account.Name</td>
-                            <td>@producer.ProductionType</td>
-                            <td>@producer.ContactName</td>
-                            <td>@producer.Description</td>
-                            <td>@producer.Account.Email</td>
-                            <td>@producer.Account.Phone</td>
-                            <td>@producer.Siret</td>
-                            <td>@producer.RIB</td>
-                            <td class="td-btn-actions">
-                                <a href="@Url.Action("Update", "Producer", new { id = producer.Id })" class="btn-action btn-update">Modifier</a>
-                                <form method="post" action="@Url.Action("Delete", "Producer", new { id = producer.Id })">
-                                    <button type="submit" class="btn-action btn-delete">Supprimer</button>
-                                </form>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Section for CEs -->
-    <div id="ce-section" class="dashboard-block">
-        <h2><a href="@Url.Action("CEs")">Comités d'entreprise (CE)</a></h2>
-        <div class="table-container">
-            <table class="dashboard-table">
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Nom du contact</th>
-                        <th>Email</th>
-                        <th>Téléphone</th>
-                        <th>Nombre d'employés</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (CE ce in Model.CEs)
-                    {
-                        <tr>
-                            <td>@ce.Account.Name</td>
-                            <td>@ce.ContactName</td>
-                            <td>@ce.Account.Email</td>
-                            <td>@ce.Account.Phone</td>
-                            <td>@ce.NumberOfEmployees</td>
-                            <td class="td-btn-actions">
-                                <a href="@Url.Action("Update", "CE", new { id = ce.Id })" class="btn-action btn-update">Modifier</a>
-                                <form method="post" action="@Url.Action("Delete", "CE", new { id = ce.Id })">
-                                    <button type="submit" class="btn-action btn-delete">Supprimer</button>
-                                </form>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Section for Products -->
-    <div id="products-section" class="dashboard-block">
-        <h2>Produits</h2>
-        <div class="table-container">
-            <table class="dashboard-table">
-                <thead>
-                    <tr>
-                        <th>Nom du produit</th>
-                        <th>Description</th>
-                        <th>Prix</th>
-                        <th>Stock</th>
-                        <th>Disponible</th>
-                        <th>Date limite</th>
-                        <th>Producteur</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (Product product in Model.Products)
-                    {
-                        <tr>
-                            <td>@product.ProductName</td>
-                            <td>@product.Description</td>
-                            <td>@product.Price</td>
-                            <td>@product.Stock</td>
-                            <td>@(product.IsAvailable ? "Oui" : "Non")</td>
-                            <td>@product.LimitDate.ToShortDateString()</td>
-                            <td>@product.Producer.Account.Name</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-    <!-- Section for Contacts -->
-    <div id="contacts-section" class="dashboard-block">
-        <h2>Demandes de contact</h2>
-        <div class="table-container">
-            <table class="dashboard-table">
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Prénom</th>
-                        <th>Email</th>
-                        <th>Téléphone</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (Contact contact in Model.PendingContacts)
-                    {
-                        <tr>
-                            <td>@contact.Name</td>
-                            <td>@contact.FirstName</td>
-                            <td>@contact.Email</td>
-                            <td>@contact.PhoneNumber</td>
-                            <td class="td-btn-actions">
-                                <form method="post" action="@Url.Action("ChangeStatus", "Contact", new { id = contact.Id })" style="display:inline;">
-                                    <button type="submit" class="btn-action btn-update">Traité</button>
-                                </form>
-                                <form method="post" action="@Url.Action("Delete", "Contact", new { id = contact.Id })" style="display:inline;">
-                                    <button type="submit" class="btn-action btn-delete">Supprimer</button>
-                                </form>
-                                <a href="@Url.Action("Read", "Contact", new { id = contact.Id })" class="btn-action btn-update">Lire</a>
-                            </td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-        </div>
+        <a href="#contacts-section" class="btn-add">Demandes de contact</a>
+        <a href="#products-section" class="btn-add">Produits</a>
+        @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+        {
+            <a href="#individuals-section" class="btn-add">Adhérents</a>
+            <a href="#ce-section" class="btn-add">Comités d'entreprise</a>
+            <a href="#producers-section" class="btn-add">Producteurs</a>
+        }
     </div>
 
     <!-- Section for Product Proposals -->
     <div id="new-products-section" class="dashboard-block">
         <h2><a href="@Url.Action("NewProducts")">Proposition de produit à valider</a></h2>
+        @if (Model.NewProducts.Count == 0)
+        {
+            <p>Aucune proposition de produit à valider.</p>
+        }
+        else
+        {
         <div class="table-container">
             <table class="dashboard-table">
                 <thead>
@@ -236,17 +54,105 @@
                             <td>@newProduct.Stock</td>
                             <td>@newProduct.LimitDate.ToShortDateString()</td>
                             <td>@newProduct.SubmissionStatus.ToString()</td>
-                            <td>
-                                @if (newProduct.SubmissionStatus == SubmissionStatus.Pending)
-                                {
+                            <td class="td-btn-actions">
+                                    <a href="@Url.Action("Read", "NewProduct", new { id = newProduct.Id })" class="btn-action btn-read">Voir</a>
                                     <form method="post" action="@Url.Action("Create", "NewProduct", new { id = newProduct.Id })" style="display:inline;">
-                                    <button type="submit" class="btn-action btn-update">Valider</button>
+                                        <button type="submit" class="btn-action btn-update">Valider</button>
+                                    </form>
+                                    <form method="post" action="@Url.Action("Refuse", "NewProduct", new { id = newProduct.Id })" style="display:inline;">
+                                        <button type="submit" class="btn-action btn-delete">Refuser</button>
+                                    </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+        }
+    </div>
+        
+
+    <!-- Section for Contacts -->
+    <div id="contacts-section" class="dashboard-block">
+        <h2><a href="@Url.Action("Contacts")">Demandes de contact</a></h2>
+        @if (Model.PendingContacts.Count == 0)
+        {
+            <p>Aucune demande de contact en attente.</p>
+        }
+        else
+        {
+        <div class="table-container">
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Nom</th>
+                        <th>Prénom</th>
+                        <th>Email</th>
+                        <th>Téléphone</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Contact contact in Model.PendingContacts)
+                    {
+                        <tr>
+                            <td>@contact.Name</td>
+                            <td>@contact.FirstName</td>
+                            <td>@contact.Email</td>
+                            <td>@contact.PhoneNumber</td>
+                            <td class="td-btn-actions">
+                                <a href="@Url.Action("Read", "Contact", new { id = contact.Id })" class="btn-action btn-read">Voir</a>
+                                <form method="post" action="@Url.Action("ChangeStatus", "Contact", new { id = contact.Id })" style="display:inline;">
+                                    <button type="submit" class="btn-action btn-update">Traité</button>
                                 </form>
-                                <form method="post" action="@Url.Action("Refuse", "NewProduct", new { id = newProduct.Id })" style="display:inline;">
-                                    <button type="submit" class="btn-action btn-delete">Refuser</button>
+                                <form method="post" action="@Url.Action("Delete", "Contact", new { id = contact.Id })" style="display:inline;">
+                                    <button type="submit" class="btn-action btn-delete">Supprimer</button>
                                 </form>
-                                    <a href="@Url.Action("Read", "NewProduct", new { id = newProduct.Id })" class="btn-action btn-update">Lire</a>
-                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+        }
+    </div>
+
+    <!-- Section for Products -->
+    <div id="products-section" class="dashboard-block">
+        <h2><a href="@Url.Action("Products")">Produits</a></h2>
+        <div class="table-container">
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Nom du produit</th>
+                        <th>Description</th>
+                        <th>Prix</th>
+                        <th>Stock</th>
+                        <th>Disponible</th>
+                        <th>Date limite</th>
+                        <th>Type de produit</th>
+                        <th>Producteur</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (Product product in Model.Products)
+                    {
+                        <tr>
+                            <td>@product.ProductName</td>
+                            <td>@product.Description</td>
+                            <td>@product.Price.ToString("C2")</td>
+                            <td>@product.Stock</td>
+                            <td>@(product.IsAvailable ? "Oui" : "Non")</td>
+                            <td>@product.LimitDate.ToShortDateString()</td>
+                            <td>@product.ProductType.ToString()</td>
+                            <td>@product.Producer.Account.Name</td>
+                            <td class="td-btn-actions">
+                                <a href="@Url.Action("Read", "Product", new { id = product.Id })" class="btn-action btn-read">Voir</a>
+                                <a href="@Url.Action("Update", "Product", new { id = product.Id })" class="btn-action btn-update">Modifier</a>
+                                <form method="post" action="@Url.Action("Delete", "Product", new { id = product.Id })" style="display:inline;">
+                                    <button type="submit" class="btn-action btn-delete">Supprimer</button>
+                                </form>
                             </td>
                         </tr>
                     }
@@ -254,4 +160,128 @@
             </table>
         </div>
     </div>
+
+    <!-- Section for Individuals -->
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <div id="individuals-section" class="dashboard-block">
+            <h2><a href="@Url.Action("Individuals")">Adhérents</a></h2>
+            <div class="table-container">
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>Date d'inscription</th>
+                            <th>Bénévole</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Individual individual in Model.Individuals)
+                        {
+                            <tr>
+                                <td>@individual.Account.Name</td>
+                                <td>@individual.FirstName</td>
+                                <td>@individual.Account.Email</td>
+                                <td>@individual.Account.Phone</td>
+                                <td>@individual.InscriptionDate.ToShortDateString()</td>
+                                <td>@(individual.IsVolunteer ? "Oui" : "Non")</td>
+                                <td class="td-btn-actions">
+                                    <a href="@Url.Action("Read", "Individual", new { id = individual.Id })" class="btn-action btn-read">Voir</a>
+                                    <a href="@Url.Action("Update", "Individual", new { id = individual.Id })" class="btn-action btn-update">Modifier</a>
+                                    <form method="post" action="@Url.Action("Delete", "Individual", new { id = individual.Id })" style="display:inline;">
+                                        <button type="submit" class="btn-action btn-delete">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Section for CEs -->
+        <div id="ce-section" class="dashboard-block">
+            <h2><a href="@Url.Action("CEs")">Comités d'entreprise (CE)</a></h2>
+            <div class="table-container">
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Nom du contact</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>Nombre d'employés</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (CE ce in Model.CEs)
+                        {
+                            <tr>
+                                <td>@ce.Account.Name</td>
+                                <td>@ce.ContactName</td>
+                                <td>@ce.Account.Email</td>
+                                <td>@ce.Account.Phone</td>
+                                <td>@ce.NumberOfEmployees</td>
+                                <td class="td-btn-actions">
+                                    <a href="@Url.Action("Read", "CE", new { id = ce.Id })" class="btn-action btn-read">Voir</a>
+                                    <a href="@Url.Action("Update", "CE", new { id = ce.Id })" class="btn-action btn-update">Modifier</a>
+                                    <form method="post" action="@Url.Action("Delete", "CE", new { id = ce.Id })" style="display:inline;">
+                                        <button type="submit" class="btn-action btn-delete">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Section for Producers -->
+        <div id="producers-section" class="dashboard-block">
+            <h2><a href="@Url.Action("Producers")">Producteurs</a></h2>
+            <div class="table-container">
+                <table class="dashboard-table">
+                    <thead>
+                        <tr>
+                            <th>Nom de l'exploitation</th>
+                            <th>Type de production</th>
+                            <th>Nom du contact</th>
+                            <th>Email</th>
+                            <th>Téléphone</th>
+                            <th>SIRET</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (Producer producer in Model.Producers)
+                        {
+                            <tr>
+                                <td>@producer.Account.Name</td>
+                                <td>@producer.ProductionType</td>
+                                <td>@producer.ContactName</td>                                
+                                <td>@producer.Account.Email</td>
+                                <td>@producer.Account.Phone</td>
+                                <td>@producer.Siret</td>
+                                <td class="td-btn-actions">
+                                    <a href="@Url.Action("Read", "Producer", new { id = producer.Id })" class="btn-action btn-read">Voir</a>
+                                    <a href="@Url.Action("Update", "Producer", new { id = producer.Id })" class="btn-action btn-update">Modifier</a>
+                                    <form method="post" action="@Url.Action("Delete", "Producer", new { id = producer.Id })" style="display:inline;">
+                                        <button type="submit" class="btn-action btn-delete">Supprimer</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+    }
 </div>
+

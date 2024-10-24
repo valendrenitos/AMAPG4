@@ -15,12 +15,15 @@
             <nav class="bo-nav">
                 <ul>
                     <li>@Html.ActionLink("Tableau de bord", "Index", "DashBoard")</li>
+                    <li>@Html.ActionLink("Nouveautés", "NewProducts", "DashBoard")</li>
+                    <li>@Html.ActionLink("Demandes de contact", "Contacts", "DashBoard")</li>
+                    <li>@Html.ActionLink("Produits", "Products", "DashBoard")</li>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
                     {
-                        <li>@Html.ActionLink("Comptes adhérents", "Individuals", "DashBoard")</li>
-                        <li>@Html.ActionLink("Comptes de CE", "CEs", "DashBoard")</li>
-                        <li>@Html.ActionLink("Comptes producteurs", "Producers", "DashBoard")</li>
-                    }
+                        <li>@Html.ActionLink("Adhérents", "Individuals", "DashBoard")</li>
+                        <li>@Html.ActionLink("Comités d'entreprise", "CEs", "DashBoard")</li>
+                        <li>@Html.ActionLink("Producteurs", "Producers", "DashBoard")</li>
+                    }                    
                 </ul>
             </nav>
         </div>
@@ -36,7 +39,7 @@
                 <div class="bo-role-badge">
                     @if (User.IsInRole("Admin"))
                     {
-                        <span class="badge-admin">Admin</span>
+                        <span class="badge-admin">Administrateur</span>
                     }
                     else if (User.IsInRole("Manager"))
                     {
