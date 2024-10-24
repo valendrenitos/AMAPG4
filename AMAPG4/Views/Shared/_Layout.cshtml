@@ -27,29 +27,26 @@
 	<div class="nav-right-btns">
 		@if (User.Identity.IsAuthenticated && User.IsInRole("Manager"))
 		{
-			<div class="btn btn-account"><div class="btn-text">@Html.ActionLink("Mon Compte manager", "Index", "Account", null, new { @class = "btn-link" })</div></div>
-			<div class="btn-basket-icon"><a href="@Url.Action("Index", "Order")" class="btn-link"><img src="~/images/logoPanier.png" alt="Mon panier" class="btn-icon" /></a></div>
-			<div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, new { @class = "btn-link" })</div></div>
-			<div class="btn btn-account">@Html.ActionLink("Mon tableau de bord", "IndexManager", "DashBoard", null, new { @class = "nav-link" })</div>
+			<div class="btn-account"><a href="@Url.Action("Index", "Account")" class="btn-link"><img src="~/images/icons/icon-account.png" alt="Mon account" class="btn-icon" /></a></div>
+			<div class="btn-basket-icon"><a href="@Url.Action("Index", "Order")" class="btn-link"><img src="~/images/icons/logoPanier.png" alt="Mon panier" class="btn-icon" /></a></div>
+			<div class="btn-account"><a href="@Url.Action("IndexManager", "DashBoard")" class="btn-link"><img src="~/images/icons/dashboard.png" alt="Mon tableau de bord" class="btn-icon" /></a></div>
+			<div class="btn-logout-icon"><a href="@Url.Action("Deconnexion", "Login")" class="btn-link"><img src="~/images/icons/logout01.png" alt="Déconnexion" class="btn-icon" /></a></div>
 		}
 		else if (User.Identity.IsAuthenticated && User.IsInRole("Utilisateur"))
 		{
-			<div>
-				<div class="btn btn-account"><div class="btn-text">@Html.ActionLink("Mon Compte", "Index", "Account", null, new { @class = "btn-link" })</div></div>
-				<div class="btn-basket-icon"><a href="@Url.Action("Index", "Order")" class="btn-link"><img src="~/images/logoPanier.png" alt="Mon panier" class="btn-icon" /></a></div>
-				<div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, new { @class = "btn-link" })</div></div>
-
-			</div>
+			<div class="btn-account"><a href="@Url.Action("Index", "Account")" class="btn-link"><img src="~/images/icons/icon-account.png" alt="Mon account" class="btn-icon" /></a></div>
+			<div class="btn-basket-icon"><a href="@Url.Action("Index", "Order")" class="btn-link"><img src="~/images/icons/logoPanier.png" alt="Mon panier" class="btn-icon" /></a></div>
+			<div class="btn-logout-icon"><a href="@Url.Action("Deconnexion", "Login")" class="btn-link"><img src="~/images/icons/logout01.png" alt="Déconnexion" class="btn-icon" /></a></div>
 
 		}
 		else if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
 		{
-			<div>
-				<div class="btn btn-account"><div class="btn-text">@Html.ActionLink("Mon Compte Administrateur", "Index", "Account", null, new { @class = "btn-link" })</div></div>
-				<div class="btn-basket-icon"><a href="@Url.Action("Index", "Order")" class="btn-link"><img src="~/images/logoPanier.png" alt="Mon panier" class="btn-icon" /></a></div>
-				<div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Déconnexion", "Deconnexion", "Login", null, new { @class = "btn-link" })</div></div>
-				<div class="btn btn-logout"><div class="btn-text">@Html.ActionLink("Back-Office", "Index", "Dashboard", null, new { @class = "btn-link" })</div></div>
-			</div>
+
+				<div class="btn-account"><a href="@Url.Action("Index", "Account")" class="btn-link"><img src="~/images/icons/icon-account.png" alt="Mon account" class="btn-icon" /></a></div>
+				<div class="btn-basket-icon"><a href="@Url.Action("Index", "Order")" class="btn-link"><img src="~/images/icons/logoPanier.png" alt="Mon panier" class="btn-icon" /></a></div>
+				<div class="btn-account"><a href="@Url.Action("IndexManager", "DashBoard")" class="btn-link"><img src="~/images/icons/dashboard.png" alt="Mon tableau de bord" class="btn-icon" /></a></div>
+				<div class="btn-logout-icon"><a href="@Url.Action("Deconnexion", "Login")" class="btn-link"><img src="~/images/icons/logout01.png" alt="Déconnexion" class="btn-icon" /></a></div>
+
 
 		}
 		else
@@ -70,8 +67,6 @@
 
 <footer class="footer">
 	<div class="footer-bottom">
-
-
 		<div class="distribution-footer">
 			<p><u>Site de distribution :</u></p>
 			<p>36 rue de Château Rouge<br>73000 CHAMBERY</p>
@@ -81,7 +76,6 @@
 			<p>monpanierpaysan@amap.fr</p>
 			<p>Tél : 04 79 00 12 68</p>
 		</div>
-		<img id="footer-logo" src="~/images/logo.png" />
 		<p>Mentions légales – Politique de confidentialité &copy; 2024 - Mon Panier Paysan</p>
 	</div>
 </footer>
