@@ -7,7 +7,10 @@
 
 .intro-section,
 .objectives-section,
-.pilars-section {
+.pilars-section, 
+.amapien-section, 
+.distribution-section, 
+.join-section {
     display: flex;
     margin: 1rem;
 }
@@ -27,7 +30,10 @@ p {
 
 .intro-section,
 .objectives-section,
-.pilars-section {
+.pilars-section,
+.amapien-section, 
+.distribution-section,
+.join-section {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -42,8 +48,15 @@ p {
     margin: 0.5rem auto;
 }
 
+
 .intro-section-image,
 .objectives-section-image {
+    width: 30rem;
+    height: auto;
+    border-radius: 1rem;
+    margin: 2rem;
+}
+img.amapien-section-image {
     width: 30rem;
     height: auto;
     border-radius: 1rem;
@@ -62,7 +75,8 @@ p {
 }
 
 .objectives-text p,
-.objectives-text h2 {
+.objectives-text h2, 
+.amapien-text h2 {
     margin: 0.8rem;
 }
 
@@ -84,4 +98,17 @@ p {
     font-size: 1.2rem;
     margin: 0.8rem 0;
     text-align: left;
+}
+
+.engagements ul {
+    list-style-type: none; /* Remove default list styling */
+    padding: 0;
+    margin: 0;
+}
+
+.engagements li {
+    color: #285146;
+    font-size: 1.2rem;
+    margin: 0.8rem 0;
+    text-align: center;
 }

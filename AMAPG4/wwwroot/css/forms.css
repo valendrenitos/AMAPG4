@@ -31,6 +31,8 @@
 }
 
     .form-container h2 {
+        font-weight:bold;
+        font-size:2.2rem;
         color: #285146;
         margin-top: 1rem;
         margin-bottom: 2rem;
@@ -39,3 +41,20 @@
 /*******************************************************************/
 /****************STYLES FOR FORMS *******************/
 /*******************************************************************/
+
+.volunteer-question {
+    margin-bottom: 20px;
+}
+
+.radio-button-group {
+    display: inline-flex; /* Use inline-flex to align items horizontally */
+    align-items: center; /* Aligns the text vertically in the middle */
+}
+
+.fieldset-style {
+    border: 1px solid #285146; /* Couleur de la bordure */
+    border-radius: 30px; /* Bords arrondis */
+    padding: 30px; /* Espacement intérieur */
+    margin-bottom: 20px; /* Espace en bas du fieldset */
+
+}
