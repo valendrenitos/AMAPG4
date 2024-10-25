@@ -93,7 +93,35 @@ namespace AMAPG4.Models.Catalog
         }
 
 
+        public void UpdateNewProductProposition(int id, string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, string? imagePath = null)
+            {
+                NewProduct newProduct = _bddContext.NewProducts.Find(id);
+                if (newProduct != null)
+                {
+                newProduct.ProductName = productName;
+                newProduct.Description = description;
+                newProduct.Stock = stock;
+                    if (stock != 0)
+                    {
+                    newProduct.IsAvailable = true;
+                    }
+                    else
+                    {
+                    newProduct.IsAvailable = false;
+                    }
 
+                newProduct.Price = price;
+
+                newProduct.LimitDate = limitDate;
+                newProduct.ProductType = productType;              
+                if (imagePath != null)
+                {
+                    newProduct.ImagePath = imagePath;
+                }
+
+                _bddContext.SaveChanges();
+                }
+            }
 
 
             public void DeleteNewProduct(int id)

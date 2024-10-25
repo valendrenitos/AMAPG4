@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using XAct.Library.Settings;
@@ -189,7 +190,7 @@ namespace AMAPG4.Controllers
             string imagePath = product.ImagePath; // Conserver l'image actuelle par défaut
             if (ProductImage != null && ProductImage.Length > 0)
             {
-                var supportedTypes = new[] { "image/jpeg", "image/png", "image/gif", "image/webp" };
+                String[] supportedTypes = new[] { "image/jpeg", "image/png", "image/gif", "image/webp" };
                 if (supportedTypes.Contains(ProductImage.ContentType))
                 {
                     var fileName = Path.GetFileName(ProductImage.FileName);
@@ -209,7 +210,9 @@ namespace AMAPG4.Controllers
                     ModelState.AddModelError("ProductImage", "Le fichier doit être une image valide.");
                 }
             }
-            Console.WriteLine($"ProductType sélectionné : {product.ProductType}");
+			
+
+			Console.WriteLine($"ProductType sélectionné : {product.ProductType}");
             if (!ModelState.IsValid)
             {
                 Console.WriteLine("ModelState invalide");
@@ -223,7 +226,7 @@ namespace AMAPG4.Controllers
                     ViewBag.Producers = producerDal.GetAllProducers();
                 }
 
-                return RedirectToAction("Read", "Product", new { id = product.Id });
+                return RedirectToAction("Update", "Product", new { id = product.Id });
             }
             Console.WriteLine($"ProductType sélectionné : {product.ProductType}");
             // Mise à jour en base de données

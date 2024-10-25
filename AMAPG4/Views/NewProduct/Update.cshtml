@@ -29,8 +29,9 @@
             </div>
 
             <div class="user-info">
-                <label>Prix :</label>
-                <input type="number" class="form-control" name="Price" step="0.01" value="@ViewBag.FormattedPrice" />
+                @Html.LabelFor(m => m.Price, "Prix unitaire (€)")
+                @Html.TextBoxFor(m => m.Price, new { @class = "form-control" })
+                @Html.ValidationMessageFor(m => m.Price, "", new { @class = "error-message" })
             </div>
 
             <div class="user-info">

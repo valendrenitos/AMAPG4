@@ -118,6 +118,7 @@ namespace AMAPG4.Controllers
                 );
 
                 ViewBag.Message = "Votre demande d'ajout d'un nouveau produit a été envoyée avec succès.";
+                return RedirectToAction("Index");
             }
             else
             {
@@ -173,6 +174,96 @@ namespace AMAPG4.Controllers
         {
             _newProductService.DeleteNewProduct(id);
             return RedirectToAction("NewProducts", "Dashboard");
+        }
+
+        [Authorize(Roles = "Admin,Manager")]
+        public IActionResult Update(int id)
+        {
+            NewProduct newProduct = _newProductService.GetNewProductById(id);
+
+            if (newProduct == null)
+            {
+                return NotFound();
+            }
+
+            // Formatage de la date et du prix
+            ViewBag.FormattedLimitDate = newProduct.LimitDate.ToString("yyyy-MM-dd"); // Format requis pour les champs de type date
+            ViewBag.FormattedPrice = newProduct.Price.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture); // Format décimal
+
+            return View(newProduct);
+        }
+
+        [Authorize(Roles = "Admin,Manager")]
+        [HttpPost]
+        public IActionResult Update(NewProduct newProduct, IFormFile ProductImage)
+        {
+            if (newProduct == null)
+            {
+                return BadRequest("Produit invalide.");
+            }
+
+            // Gestion de l'upload d'image
+            string imagePath = newProduct.ImagePath; // Conserver l'image actuelle par défaut
+            if (ProductImage != null && ProductImage.Length > 0)
+            {
+                String[] supportedTypes = new[] { "image/jpeg", "image/png", "image/gif", "image/webp" };
+                if (supportedTypes.Contains(ProductImage.ContentType))
+                {
+                    var fileName = Path.GetFileName(ProductImage.FileName);
+                    imagePath = Path.Combine("wwwroot/images/ProductImages", fileName);
+
+                    // Enregistre l'image dans le répertoire défini
+                    using (var stream = new FileStream(imagePath, FileMode.Create))
+                    {
+                        ProductImage.CopyTo(stream);
+                    }
+
+                    // Chemin relatif pour la base de données
+                    imagePath = "/images/ProductImages/" + fileName;
+                }
+                else
+                {
+                    ModelState.AddModelError("ProductImage", "Le fichier doit être une image valide.");
+                }
+            }
+
+
+            Console.WriteLine($"ProductType sélectionné : {newProduct.ProductType}");
+            if (!ModelState.IsValid)
+            {
+                Console.WriteLine("ModelState invalide");
+                foreach (var error in ModelState)
+                {
+                    Console.WriteLine($"Erreur dans {error.Key} : {string.Join(", ", error.Value.Errors.Select(e => e.ErrorMessage))}");
+                }
+
+                using (ProducerDal producerDal = new ProducerDal())
+                {
+                    ViewBag.Producers = producerDal.GetAllProducers();
+                }
+
+                return RedirectToAction("Update", "NewProduct", new { id = newProduct.Id });
+            }
+            Console.WriteLine($"ProductType sélectionné : {newProduct.ProductType}");
+            // Mise à jour en base de données
+            using (NewProductService newProductService = new NewProductService())
+            {
+                newProduct.ImagePath = imagePath; // Associe l'image
+
+                newProductService.UpdateNewProductProposition(
+                    newProduct.Id,
+                    newProduct.ProductName,
+                    newProduct.Description,
+                    newProduct.IsAvailable,
+                    newProduct.Price,
+                    newProduct.Stock,
+                    newProduct.LimitDate,
+                    newProduct.ProductType,
+                    newProduct.ImagePath
+                );
+
+                return RedirectToAction("Read", "NewProduct", new { id = newProduct.Id });
+            }
         }
     }
 

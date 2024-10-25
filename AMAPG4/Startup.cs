@@ -8,7 +8,6 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using AMAPG4.Models.ContactForm;
 
-
 namespace AMAPG4
 {
     public class Startup
@@ -22,11 +21,10 @@ namespace AMAPG4
             });
 
             services.AddControllersWithViews();
+			
+		}
 
-
-        }
-
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+		public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -55,12 +53,10 @@ namespace AMAPG4
             userAccountDal.InitializeDataBase();
 
             OrderLineDal orderLineDal = new OrderLineDal();
-                orderLineDal.Initialize();
+            orderLineDal.Initialize();
 
             ContactService contactService = new ContactService();
             contactService.InitializeDataBase();
-
-
 
 
             app.UseRouting();
@@ -71,7 +67,6 @@ namespace AMAPG4
 
             app.UseEndpoints(endpoints =>
             {
-
 				endpoints.MapControllerRoute(
 						name: "default",
 						pattern: "{controller=Home}/{action=Index}/{id?}");
