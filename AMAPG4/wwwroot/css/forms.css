@@ -45,7 +45,7 @@
 
 
 /*******************************************************************/
-/****************STYLES FOR FORMS *******************/
+/****************STYLES FOR FORMS **********************************/
 /*******************************************************************/
 
 .volunteer-question {
@@ -53,16 +53,16 @@
 }
 
 .radio-button-group {
-    display: inline-flex; /* Use inline-flex to align items horizontally */
-    align-items: center; /* Aligns the text vertically in the middle */
+    display: inline-flex; 
+    align-items: center;
 }
 
 .fieldset-style {
     margin-left: auto;
     margin-right: auto;
   
-    border-radius: 30px; /* Bords arrondis */
-    padding: 30px; /* Espacement intérieur */
-    margin-bottom: 20px; /* Espace en bas du fieldset */
+    border-radius: 30px;
+    padding: 30px;
+    margin-bottom: 20px;
     width: 100%;
 }

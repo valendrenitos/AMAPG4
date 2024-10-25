@@ -67,27 +67,34 @@
 
 
 /*******************************************************************/
-/***********************STYLES FOR CREATE ACCOUNT*******************/
+/***********************STYLES FOR ACCOUNT*******************/
 /*******************************************************************/
 
 .text-cas-particulier{
     font-style: italic; 
     color:#285146;
-    
+}
+
+.login-links * {
+    color: #285146;
+    font-size: 1rem;
+    text-decoration: none;
+    margin-top: 1rem;
 }
 
 /*******************************************************************/
 /*************************STYLES FOR PRODUCERS**********************/
 /*******************************************************************/
-
 .producer-body {
     display: flex;
-    flex-direction:column; 
+    flex-direction: column;
 }
 
 .presentation-producer-bottom {
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 /******Left bar*******/
@@ -113,10 +120,8 @@
 .producer-container {
     width: 80%;
     display: flex;
-    justify-content: flex-start;
-    flex-wrap: wrap;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin: 0.6rem 1rem 3rem 1rem;
+    justify-content: center;
 }
 
 .producer-card {
@@ -124,7 +129,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 18%;
+    width: 26%;
     margin: 10px;
     background-color: white;
     border-radius: 10px;
