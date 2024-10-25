@@ -98,6 +98,7 @@ body {
 
 .btn-front-office {
     background-color: #e5701d;
+    margin-right: 2em;
 }
 
 
@@ -472,6 +473,13 @@ h2 > a {
     text-decoration: none;
 }
 div.form-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+div.bo-buttons {
     display: flex;
     justify-content: space-between;
     align-items: center;

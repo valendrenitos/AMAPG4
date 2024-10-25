@@ -31,7 +31,7 @@
         <div class="bo-header-right">
             <div class="bo-buttons">
                 <a href="@Url.Action("Index", "Home")" class="btn btn-front-office">Front Office</a>
-                <a href="@Url.Action("Deconnexion", "Login")" class="btn btn-logout">Déconnexion</a>
+                <a href="@Url.Action("Deconnexion", "Login")" class="btn-link"><img src="~/images/icons/logout01.png" alt="Déconnexion" class="btn-icon" /></a>
             </div>
 
             @if (User.Identity.IsAuthenticated)
