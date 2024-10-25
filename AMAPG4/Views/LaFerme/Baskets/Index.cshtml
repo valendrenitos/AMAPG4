@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="~/css/global.css" />
 <link rel="stylesheet" href="~/css/laFerme.css" />
 <link rel="stylesheet" href="~/css/styles.css" />
+
 <div class="baskets-body">
 
 	<h2>Nos Abonnements</h2>
@@ -19,40 +20,42 @@
 		tout en profitant de saveurs inégalées. Chaque semaine, vous aurez la possibilité de retirer votre
 		panier rempli de délices saisonniers.
 	</p>
-	<div class="baskets-container">
-		@if (Model.status == AMAPG4.Models.StatusType.Success)
-		{
-			<p class="ValidationMessage"> L'abonnement à bien été ajouté au panier !</p>
-		}
+
+	@if (Model.status == AMAPG4.Models.StatusType.Success)
+	{
+						<p class="ValidationMessage"> L'abonnement à bien été ajouté au panier !</p>
+	}
+		<div class="baskets-container">
 		@foreach (Product product in Model.Products)
 		{
 
-			<div class="product-basket">
-				<div class="center-cropped-baskets">
-					<img class="basket-photo" src="@Url.Content(ImageHelper.GetBasketImagePath(product.ImagePath))" />
-				</div>
-				<div class="basket-name">@product.ProductName</div>
-				<div class="basket-description">@product.Description</div>
-				<div class="basket-price">@product.Price.ToString("C2", new CultureInfo("fr-FR"))</div>
+					<div class="product-basket">
+						<div class="center-cropped-baskets">
+							<img class="basket-photo" src="@Url.Content(ImageHelper.GetBasketImagePath(product.ImagePath))" />
+						</div>
+						<div class="basket-name">@product.ProductName</div>
+						<div class="basket-description">@product.Description</div>
+						<div class="basket-price">@product.Price.ToString("C2", new CultureInfo("fr-FR"))</div>
 
-				<div class="add-row-basket">
+						<div class="add-row-basket">
 					@using (Html.BeginForm())
 					{
-						<input type="hidden" name="ProductName" value="@product.ProductName" />
-						<p class="quantity-txt quantity-txt-baskets"> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
-						<input class="styled-input" type="number" name="Quantity" value="1" min="1" max="@product.Stock" step="1">
+										<input type="hidden" name="ProductName" value="@product.ProductName" />
+										<p class="quantity-txt quantity-txt-baskets"> @Html.LabelFor(m => m.Quantity, "Quantité")</p>
+										<input class="styled-input" type="number" name="Quantity" value="1" min="1" max="@product.Stock" step="1">
 						@if (Model.IsAuthenticated)
 						{
-							<input class="baskets-btn-add" type="submit" value="Ajouter" />
+													<input class="baskets-btn-add" type="submit" value="Ajouter" />
 						}
 						else
 						{
-							<a href="@Url.Action("Index", "Login")" class="baskets-btn-add">Ajouter</a>
+													<a href="@Url.Action("Index", "Login")" class="baskets-btn-add">Ajouter</a>
 						}
 
 					}
-				</div>
-			</div>
+						</div>
+					</div>
 		}
-	</div>
+		</div>
+		
 </div>

@@ -301,7 +301,7 @@ a {
 .la-ferme-txt,
 .txt-organization p {
     text-align: center;
-    font-size: 1.03rem;
+    font-size: 1.15rem;
     color: #285146;
 }
 
@@ -329,7 +329,7 @@ a {
     align-items: center;
     justify-content: space-around;
     width: 22rem;
-    height: 38rem;
+    height: 36rem;
     margin: 2rem;
     box-shadow: 0px 2px 8px 2px #285146;
     background: #fff;
@@ -362,28 +362,12 @@ a {
     border-radius: 2rem;
 }
 
-/*.center-cropped-baskets {
-    overflow: hidden;
-    border-radius: 2rem;
-    margin: 1rem;
-}*/
-
 .catalog-product-photo {
     width: 100%;
     height: auto;
     object-fit: cover;
     border-radius: 2rem;
 }
-
-
-
-
-
-
-
-
-
-
 
 .activity-name,
 .basket-name,
@@ -439,7 +423,7 @@ a {
     margin: 0.2rem;
 }
 
-.baskets-body .baskets-container .product-basket .baskets-btn-add {
+.baskets-body .baskets-container .product-basket .add-row-basket .baskets-btn-add {
     display: inline-block;
     text-align: center;
     text-decoration: none;
@@ -451,6 +435,7 @@ a {
     border-radius: 1rem;
     width: 6rem;
     padding: 0.4rem;
+    margin: 0;
 }
 
     .styled-input {
@@ -475,6 +460,18 @@ a {
 .styled-input:focus {
     border-color: #285146;
     outline: none;
+}
+
+.ValidationMessage {
+    color: #285146;
+    font-weight: bold;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    text-align: center;
+    align-content: center;
+    /*    background-color: #a1cf59;*/
+    border-radius: 1rem;
 }
 
 /*******************************************************************/
