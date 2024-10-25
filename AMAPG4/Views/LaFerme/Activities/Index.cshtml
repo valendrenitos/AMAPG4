@@ -21,14 +21,16 @@
         soutenant les initiatives locales et les producteurs de votre région.
     </p>
 
-
-    <div class="activities-container">
-        @if(Model.status == AMAPG4.Models.StatusType.Success)
-        {
-            <p class="ValidationMessage"> L'activité à bien été ajouté au panier !</p>
-        }
-        @foreach (Product product in Model.Products)
+    @if (Model.status == AMAPG4.Models.StatusType.Success)
     {
+        <p class="ValidationMessage"> L'activité à bien été ajouté au panier !</p>
+    }
+    <div class="activities-container">
+    @foreach (Product product in Model.Products)
+    {
+
+
+
         <div class="product-activity">
 
             <div class="photo-name">
