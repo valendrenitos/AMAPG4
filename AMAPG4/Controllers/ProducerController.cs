@@ -55,9 +55,14 @@ namespace AMAPG4.Controllers
             {
                 Producers = producer,
                 Id = id,
+         
                 
                 Account=producer.Account,
             };
+            using (ProductDal productDal = new ProductDal())
+            {
+                model.Products = productDal.GetAllProductByProducer(producer.Id);
+            }
             return View(model);
 		}
 

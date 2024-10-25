@@ -1,4 +1,5 @@
 ﻿@using AMAPG4.Models.User
+@using AMAPG4.Models.Catalog
 @model AMAPG4.ViewModels.ProducerViewModel
 
 @{
@@ -13,7 +14,10 @@
 	<div class="producer-details">
 		<h2>@Model.Account.Name</h2>
 		<p>@Model.Producers.Description</p>
-		
+		@foreach (Product product in Model.Products)
+		{
+			<p>@product.ProductName</p>
+		}
 	</div>
 
 </div>

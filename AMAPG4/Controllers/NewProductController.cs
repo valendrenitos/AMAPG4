@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore.Metadata.Conventions;
+using Microsoft.Extensions.ObjectPool;
 using System;
 using System.IO;
 using System.Linq;
@@ -25,7 +27,7 @@ namespace AMAPG4.Controllers
         public IActionResult Index()
         {
             NewProductViewModel newProductViewModel = new NewProductViewModel();
-
+            newProductViewModel.StatusType=StatusType.Waiting;
 			//Vérifier si l'utilisateur est connecté
 			if (!HttpContext.User.Identity.IsAuthenticated)
 			{
@@ -62,6 +64,7 @@ namespace AMAPG4.Controllers
 
             return View(newProductViewModel);
         }
+		
 		[Authorize(Roles = "Admin,Manager")]
 		[HttpGet]
         public IActionResult Read(int id)
@@ -115,10 +118,15 @@ namespace AMAPG4.Controllers
                     newProduct.SubmissionStatus,
                     newProductVM.ProducerId,
                     imagePath // Ajouter le chemin de l'image au produit
+                    
                 );
 
-                ViewBag.Message = "Votre demande d'ajout d'un nouveau produit a été envoyée avec succès.";
-                return View();
+
+
+                ModelState.Clear();
+                newProductVM.StatusType=StatusType.Success;
+                newProductVM.NewProduct = null;
+                return View(newProductVM);
             }
             else
             {

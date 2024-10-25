@@ -15,6 +15,11 @@
         <h2>Proposer un nouveau produit</h2>
         <div class="txt-newproduct">Pour proposer un nouveau produit, merci de compléter ce formulaire. Votre demande sera traitée dans les plus brefs délais!</div>
         <br />
+        @if (Model.StatusType == AMAPG4.Models.StatusType.Success)
+        {
+            <p>Votre demande d'ajout de produit à bien été prise en compte !</p>
+        
+        }
         @using (Html.BeginForm("Index", "NewProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
              <fieldset class="fieldset-style">

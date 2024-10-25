@@ -27,7 +27,7 @@ namespace AMAPG4.Models.Catalog
 
         public void InitializeDataBase()
         {
-            CreateNewProduct("Fleurs", "MAgnifique", true, 15m, 10, DateTime.Now.AddDays(7), ProductType.Unitary, SubmissionStatus.Pending, 1, "1");
+            CreateNewProduct("Fleurs", "Magnifique", true, 15m, 10, DateTime.Now.AddDays(7), ProductType.Unitary, SubmissionStatus.Pending, 1, "1");
         }
 
         public List<NewProduct> GetAllNewProducts()
