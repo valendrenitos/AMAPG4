@@ -15,7 +15,7 @@
             <nav class="bo-nav">
                 <ul>
                     <li>@Html.ActionLink("Tableau de bord", "Index", "DashBoard")</li>
-                    <li>@Html.ActionLink("Nouveautés", "NewProducts", "DashBoard")</li>
+                    <li>@Html.ActionLink("Nouveaux Produits", "NewProducts", "DashBoard")</li>
                     <li>@Html.ActionLink("Demandes de contact", "Contacts", "DashBoard")</li>
                     <li>@Html.ActionLink("Produits", "Products", "DashBoard")</li>
                     @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))

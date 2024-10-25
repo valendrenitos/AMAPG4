@@ -5,63 +5,70 @@
     Layout = "_BackOfficeLayout";
 }
 
-<div class="product-details-container">
-    <div class="product-details">
-        <h1 class="bo-entity">Détails du Produit n° @Model.Id</h1>
+<div class="user-profile-form-container">
+    <div class="user-profile">
+
+        <div class="form-header">
+            <h1 class="bo-entity">Détails du Produit n° @Model.Id</h1>
+            <a href="@Url.Action("Products", "Dashboard")" class="btn-action">Retour aux produits</a>
+        </div>
 
         <!-- Affichage des informations du produit -->
-        <div class="product-info">
+        <div class="user-info">
             <label>Nom du produit :</label>
             <span>@Model.ProductName</span>
         </div>
 
-        <div class="product-info">
+        <div class="user-info">
             <label>Description :</label>
             <span>@Model.Description</span>
         </div>
 
-        <div class="product-info">
+        <div class="user-info">
             <label>Prix :</label>
             <span>@Model.Price.ToString("C2")</span>
         </div>
 
-        <div class="product-info">
+        <div class="user-info">
             <label>Stock :</label>
             <span>@Model.Stock</span>
         </div>
 
-        <div class="product-info">
+        <div class="user-info">
             <label>Date limite :</label>
             <span>@Model.LimitDate.ToShortDateString()</span>
         </div>
 
-        <div class="product-info">
+        <div class="user-info">
             <label>Type de produit :</label>
             <span>@Model.ProductType</span>
         </div>
 
-        <div class="product-info">
+        <div class="user-info">
             <label>Disponible :</label>
             <span>@(Model.IsAvailable ? "Oui" : "Non")</span>
         </div>
 
-        <div class="product-info">
+        <div class="user-info">
             <label>Producteur :</label>
             <span>@Model.Producer?.Account.Name</span>
         </div>
-        <div class="user-info">
-            <label>Image actuelle :</label>
-            <img src="@Model.ImagePath" alt="@Model.ProductName" width="200" />
-        </div>
-        <!-- Actions: Modifier, Supprimer, Retour -->
-        <div class="product-actions">
+
+        @if (!string.IsNullOrEmpty(Model.ImagePath))
+        {
+            <div class="user-info">
+                <label>Image actuelle :</label>
+                <img src="@Model.ImagePath" alt="@Model.ProductName" width="200" />
+            </div>
+        }
+
+        <!-- Actions : Modifier, Supprimer -->
+        <div class="user-actions">
             <a href="@Url.Action("Update", "Product", new { id = Model.Id })" class="btn-action btn-update">Modifier</a>
 
             <form method="post" action="@Url.Action("Delete", "Product", new { id = Model.Id })" style="display:inline;">
                 <button type="submit" class="btn-action btn-delete">Supprimer</button>
             </form>
-
-            <a href="@Url.Action("Index", "Dashboard")" class="btn-return">Retour au tableau de bord</a>
         </div>
     </div>
 </div>

@@ -65,7 +65,7 @@ namespace AMAPG4.Controllers
         public IActionResult Delete(int id)
         {
             _contactService.DeleteContact(id);
-            return RedirectToAction("Index", "Dashboard");
+            return RedirectToAction("Contacts", "Dashboard");
         }
 
         [HttpPost]
@@ -78,7 +78,7 @@ namespace AMAPG4.Controllers
             }
             contact.Status = ContactStatus.Done;
             _contactService.UpdateContact(contact);
-            return RedirectToAction("Index", "Dashboard");
+            return RedirectToAction("Contacts", "Dashboard");
         }
 
     }
