@@ -62,7 +62,7 @@
 
                 <input type="hidden" name="totalStack" value="@orderLine.Quantity + @orderLine.Product.Stock" />
 
-                    <td> <input type="number" name="NewQuantity" value="@orderLine.Quantity" min="1" max="@orderLine.Product.Stock" step="1" onchange="this.form.submit()"></td>
+                    <td> <input class="styled-input" type="number" name="NewQuantity" value="@orderLine.Quantity" min="1" max="@orderLine.Product.Stock" step="1" onchange="this.form.submit()"></td>
 
 
                         <td>@orderLine.Total €</td>
