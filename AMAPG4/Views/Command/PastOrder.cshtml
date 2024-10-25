@@ -8,15 +8,15 @@
 
     Layout = "_layout";
 }
-<head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/global.css">
     <title>Panier</title>
-</head>
-<h3>
-    <p>Votre historique de commande :</p>
+
+
+    <h2 class="welcome-text">Votre historique de commande :</h2>
     <table class="table-product">
         <thead>
         <tr>
@@ -94,6 +94,6 @@
         }
     }
     </table>
-    <h3/>
+
     <div class="nav-element">@Html.ActionLink("Retour a mon compte", "Index", "Account", new { @class = "return-catalog" })</div>
     <div class="nav-element">@Html.ActionLink("Retour a l'accueil", "Index", "Home", new { @class = "return-catalog" })</div>

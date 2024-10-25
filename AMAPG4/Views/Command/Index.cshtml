@@ -13,8 +13,10 @@
     <link rel="stylesheet" href="/css/global.css">
 <link rel="stylesheet" href="/css/styles.css">
     <title>Résumé de la commande</title>
-<p>Numéro de commande : @Model.CommandId</p>
-<p>Résumé de la commande</p>
+
+<h2 class="welcome-text">
+    Résumé de la commande</h2>
+<h2>Numéro de commande : @Model.CommandId</h2>
     <table class=" table-product">
         <thead>
             <tr>
@@ -42,6 +44,7 @@
     </tfoot>
 
 </table>
-
-<div class="nav-element">@Html.ActionLink("Passer au payment", "Payment", "Command", new { @class = "return-catalog" })</div>
-<div class="nav-element">@Html.ActionLink("Retour au panier", "Index", "Order", new { @class = "return-catalog" })</div>
+<div class="add-row-product-view ">
+<div class="btn-add">@Html.ActionLink("Passer au payment", "Payment", "Command")</div>
+    <div class="btn-add">@Html.ActionLink("Retour au panier", "Index", "Order")</div>
+</div>
