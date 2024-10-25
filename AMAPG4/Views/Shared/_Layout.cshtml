@@ -29,7 +29,7 @@
 		{
 			<div class="btn-account"><a href="@Url.Action("Index", "Account")" class="btn-link"><img src="~/images/icons/icon-account.png" alt="Mon account" class="btn-icon" /></a></div>
 			<div class="btn-basket-icon"><a href="@Url.Action("Index", "Order")" class="btn-link"><img src="~/images/icons/logoPanier.png" alt="Mon panier" class="btn-icon" /></a></div>
-			<div class="btn-account"><a href="@Url.Action("IndexManager", "DashBoard")" class="btn-link"><img src="~/images/icons/dashboard.png" alt="Mon tableau de bord" class="btn-icon" /></a></div>
+			<div class="btn-account"><a href="@Url.Action("Index", "DashBoard")" class="btn-link"><img src="~/images/icons/dashboard.png" alt="Mon tableau de bord" class="btn-icon" /></a></div>
 			<div class="btn-logout-icon"><a href="@Url.Action("Deconnexion", "Login")" class="btn-link"><img src="~/images/icons/logout01.png" alt="Déconnexion" class="btn-icon" /></a></div>
 		}
 		else if (User.Identity.IsAuthenticated && User.IsInRole("Utilisateur"))
@@ -44,7 +44,7 @@
 
 				<div class="btn-account"><a href="@Url.Action("Index", "Account")" class="btn-link"><img src="~/images/icons/icon-account.png" alt="Mon account" class="btn-icon" /></a></div>
 				<div class="btn-basket-icon"><a href="@Url.Action("Index", "Order")" class="btn-link"><img src="~/images/icons/logoPanier.png" alt="Mon panier" class="btn-icon" /></a></div>
-				<div class="btn-account"><a href="@Url.Action("IndexManager", "DashBoard")" class="btn-link"><img src="~/images/icons/dashboard.png" alt="Mon tableau de bord" class="btn-icon" /></a></div>
+				<div class="btn-account"><a href="@Url.Action("Index", "DashBoard")" class="btn-link"><img src="~/images/icons/dashboard.png" alt="Mon tableau de bord" class="btn-icon" /></a></div>
 				<div class="btn-logout-icon"><a href="@Url.Action("Deconnexion", "Login")" class="btn-link"><img src="~/images/icons/logout01.png" alt="Déconnexion" class="btn-icon" /></a></div>
 
 
