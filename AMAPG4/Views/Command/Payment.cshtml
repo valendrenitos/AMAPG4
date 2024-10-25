@@ -9,7 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/global.css">
+<link rel="stylesheet" href="/css/forms.css">
     <title>Payment</title>
+
 
 
 @if (Model.status == AMAPG4.Models.StatusType.Failed || Model.status == AMAPG4.Models.StatusType.Waiting)
@@ -18,22 +20,34 @@
     {
         <div class="RejectedMessage">Le payment a été refusé</div>
     }
-   
-        
+
+
+
+    <div class="container">
+    <div class="form-container">
+      
 
 @using (Html.BeginForm())
     {
-    
+                <fieldset class="fieldset-style">
+                    <legend>Payment</legend>
+
+                    <p class="welcome-text"> Vous serez facturé pour un total de @Model.CommandLine.Total €</p>
     <input type="hidden" name="CommandId" value="@Model.CommandLine.CommandId" />
     <p> @Html.TextBoxFor(m => m.FirstName, new { @placeholder = "Prénom" })  @Html.TextBoxFor(m => m.LastName, new { @placeholder = "Nom" })</p>
     <p>@Html.TextBoxFor(m => m.CardNum, new { @placeholder = "Numéro de Carte" })</p>
     <p>@Html.TextBoxFor(m => m.CardNum, new { @placeholder = "CVV" })</p>
    
     <input type="submit" value="Payer"/>
+                </fieldset>
         }
     
+    </div>
+    </div>
 }
 else if (Model.status == AMAPG4.Models.StatusType.Success)
 {
     <h2 class="welcome-text">La commande a été effectué ! Vous pourrez venir chercher votre commande le Vendredi @Model.CommandLine.DateTimeDelivered.Day !</h2>
 }
+
+

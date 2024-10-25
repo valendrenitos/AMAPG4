@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="/css/global.css">
+<link rel="stylesheet" href="~/css/laFerme.css" />
     <title>Panier</title>
 
 
@@ -94,6 +95,8 @@
         }
     }
     </table>
+<div class="add-row-product-view ">
+    <a href="@Url.Action("Index", "Account")" class="btn-save">Retour à mon compte</a>
+    <div>@Html.ActionLink("Retour à l'accueil", "Index", "Home", null, new { @class = "return-catalog" })</div>
+</div>
 
-    <div class="nav-element">@Html.ActionLink("Retour a mon compte", "Index", "Account", new { @class = "return-catalog" })</div>
-    <div class="nav-element">@Html.ActionLink("Retour a l'accueil", "Index", "Home", new { @class = "return-catalog" })</div>

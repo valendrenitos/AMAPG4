@@ -12,11 +12,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/global.css">
 <link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="~/css/laFerme.css" />
     <title>Résumé de la commande</title>
-
+<div class=" activity-body">
+<h3>
 <h2 class="welcome-text">
-    Résumé de la commande</h2>
-<h2>Numéro de commande : @Model.CommandId</h2>
+            Résumé de la commande N° : @Model.CommandId
+        </h2>
+
     <table class=" table-product">
         <thead>
             <tr>
@@ -44,7 +47,15 @@
     </tfoot>
 
 </table>
+        <div class="add-row-product-view ">
+            <a href="@Url.Action("Payment", "Command")" class="btn-save">Passer au payment</a>
+
+        </div>
 <div class="add-row-product-view ">
-<div class="btn-add">@Html.ActionLink("Passer au payment", "Payment", "Command")</div>
-    <div class="btn-add">@Html.ActionLink("Retour au panier", "Index", "Order")</div>
+    <div>@Html.ActionLink("Retour au panier", "Index", "Order", null, new { @class = "return-catalog" })</div>
+</div>
+
+
+
+</h3>
 </div>

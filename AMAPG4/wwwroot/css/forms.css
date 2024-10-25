@@ -62,7 +62,9 @@
 }
 
 .fieldset-style {
-    border: 1px solid #285146; /* Couleur de la bordure */
+    margin-left: auto;
+    margin-right: auto;
+  
     border-radius: 30px; /* Bords arrondis */
     padding: 30px; /* Espacement intérieur */
     margin-bottom: 20px; /* Espace en bas du fieldset */
