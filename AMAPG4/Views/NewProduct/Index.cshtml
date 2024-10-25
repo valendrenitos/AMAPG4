@@ -12,9 +12,13 @@
 
 <div class="container">
     <div class="form-container">
-        <h2>Demande d'ajout d'un nouveau produit</h2>
+        <h2>Proposer un nouveau produit</h2>
+        <div class="txt-newproduct">Pour proposer un nouveau produit, merci de compléter ce formulaire. Votre demande sera traitée dans les plus brefs délais!</div>
+        <br />
         @using (Html.BeginForm("Index", "NewProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
+             <fieldset class="fieldset-style">
+                <legend>Formulaire d'ajout d'un produit</legend>
             @Html.HiddenFor(m => m.ProducerId)
 
             <!-- Nom du produit -->
@@ -34,7 +38,7 @@
             <!-- Description -->
             <div>
                 @Html.LabelFor(m => m.NewProduct.Description, "Description")
-                @Html.TextAreaFor(m => m.NewProduct.Description, new { @class = "proposition input-field", placeholder = "Description", rows = 4 })
+                @Html.TextAreaFor(m => m.NewProduct.Description, new { @class = "proposition input-field", placeholder = "Description (conditionnement, certifications, etc.)", rows = 4 })
                 @Html.ValidationMessageFor(m => m.NewProduct.Description, "", new { @class = "error-message" })
             </div>
 
@@ -48,7 +52,7 @@
             <!-- Quantité en stock -->
             <div>
                 @Html.LabelFor(m => m.NewProduct.Stock, "Quantité en stock")
-                @Html.TextBoxFor(m => m.NewProduct.Stock, new { @class = "styled-input-proposition", type = "number", min = "0" })
+                    @Html.TextBoxFor(m => m.NewProduct.Stock, new { @class = "styled-input-proposition", placeholder = "...", type = "number", min = "0" })
                 @Html.ValidationMessageFor(m => m.NewProduct.Stock, "", new { @class = "error-message" })
             </div>
 
@@ -70,7 +74,7 @@
             <div>
                 <input type="submit" value="Envoyer" class="btn-submit" />
             </div>
-
+            </fieldset>
             <!-- Message de confirmation -->
             @if (ViewBag.Message != null)
             {
