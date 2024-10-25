@@ -88,8 +88,8 @@ namespace AMAPG4.Models.ContactForm
         public void InitializeDataBase()
         {
             //DeleteCreateDatabase();
-            CreateContact("Delacoste", "Martin", "martin.delascoste@example.fr", "0706369874", "J'ai une question à vous poser", ContactStatus.Pending);
-            CreateContact("Revillard", "Pierre", "pierre.revillard@example.fr", "0706369885", "Je souhaite m'inscrire en tant que CE", ContactStatus.Pending);
+            CreateContact("Delacoste", "Martin", "martin.delascoste@example.fr", "0706369874", "Est-ce que tous vos producteurs sont certifiés biologique ?", ContactStatus.Pending);
+            CreateContact("Revillard", "Pierre", "pierre.revillard@example.fr", "0706369885", "Je souhaite m'inscrire en tant que CE, merci de m'indiquer la marche à suivre", ContactStatus.Pending);
 
 
         }
