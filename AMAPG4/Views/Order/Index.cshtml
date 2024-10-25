@@ -82,9 +82,12 @@
             </tr>
             </tfoot>
         </table>
-        
-    
-}
+
+            <div class="btn-save ">
+                <a href="@Url.Action("Index", "Command")">Payment</a>
+            </div>
+
+        }
 else
 {
 
@@ -95,7 +98,11 @@ else
 
     }
     <a href="@Url.Action("Index", "Catalog")" class="product-view-btn-add">Retourner au Catalogue</a>
-    <a href="@Url.Action("Index", "Command")" class="product-view-btn-add">Payment</a>
+
+        <div class="btn-save ">
+
+            <a href="@Url.Action("Index", "Catalog")"="">Retourner au Catalogue</a>
+        </div>
 </div>
 </h3>
 
