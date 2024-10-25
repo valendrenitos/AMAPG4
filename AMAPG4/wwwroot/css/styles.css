@@ -67,22 +67,27 @@
 
 
 /*******************************************************************/
-/***********************STYLES FOR CREATE ACCOUNT*******************/
+/***********************STYLES FOR ACCOUNT*******************/
 /*******************************************************************/
 
 .text-cas-particulier{
     font-style: italic; 
     color:#285146;
-    
+}
+
+.login-links * {
+    color: #285146;
+    font-size: 1rem;
+    text-decoration: none;
+    margin-top: 1rem;
 }
 
 /*******************************************************************/
 /*************************STYLES FOR PRODUCERS**********************/
 /*******************************************************************/
-
 .producer-body {
     display: flex;
-    flex-direction:column; 
+    flex-direction: column;
 }
 
 .presentation-producer-bottom {
