@@ -5,12 +5,19 @@
     Layout = "_BackOfficeLayout";
 }
 
-<div class="back-office-entity-category">
-
-    <!-- Tableau pour les demandes à traiter -->
-    <div class="category-block">
+<div class="dashboard-container">
+ 
+    <div class="dashboard-block">                
+ 
         <div class="section-header">
-            <h2 class="section-title">Demandes de Contact à Traiter</h2>
+            @if (Model.Status == ContactStatus.Pending)
+            {
+                <h2 class="section-title">Demandes de contact à Traiter</h2>
+            }
+            else if (Model.Status == ContactStatus.Done)
+            {
+              <h2 class="section-title">Demandes traitées </h2 >
+            }
         </div>
 
         <div class="table-container">
@@ -35,6 +42,7 @@
                             <td>@contact.PhoneNumber</td>
                             <td>@contact.Message</td>
                             <td class="td-btn-actions">
+                                <a href="@Url.Action("Read", "Contact", new { id = contact.Id })" class="btn-action btn-read">Lire</a>
                                 @if (contact.Status == ContactStatus.Pending){
                                     <form method="post" action="@Url.Action("ChangeStatus", "Contact", new { id = contact.Id })" style="display:inline;">
                                         <button type="submit" class="btn-action btn-update">Traité</button>
@@ -43,7 +51,7 @@
                                 <form method="post" action="@Url.Action("Delete", "Contact", new { id = contact.Id })" style="display:inline;">
                                     <button type="submit" class="btn-action btn-delete">Supprimer</button>
                                 </form>
-                                <a href="@Url.Action("Read", "Contact", new { id = contact.Id })" class="btn-action btn-update">Lire</a>
+                               
                             </td>
                         </tr>
                     }
@@ -52,12 +60,12 @@
        </div>
 
         <div class="link-under_table">
-            <a href="@Url.Action("Contacts", "Dashboard")">Toutes les demandes</a>
+            <a href="@Url.Action("Contacts", "Dashboard")" class="btn-action btn-read">Toutes les demandes</a>
             @if (Model.Status == ContactStatus.Pending) {
-                <a href="@Url.Action("DoneContacts", "Contact")">Demandes traitées</a>
+                <a href="@Url.Action("DoneContacts", "Contact")" class="btn-action btn-read">Demandes traitées</a>
             } 
             else if (Model.Status == ContactStatus.Done) {
-                <a href="@Url.Action("PendingContacts", "Contact")">Demande à traiter</a>
+                <a href="@Url.Action("PendingContacts", "Contact")" class=" btn-action btn-read">Demande à traiter</a>
             }
         </div>
 

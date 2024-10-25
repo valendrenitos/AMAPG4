@@ -119,12 +119,12 @@ body {
 
 /* Footer */
 .bo-footer {
-    background-color: #f7f7f7;
-    color: #1e1e1e;
+    background-color: #285146;
+    color: #f9e9d3;
     padding: 10px;
     padding-top: 0px;
     text-align: center;
-    height:8em;
+    height: 8em;
 }
 
 .footer-content {
