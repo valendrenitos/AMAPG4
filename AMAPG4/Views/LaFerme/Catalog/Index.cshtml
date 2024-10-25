@@ -43,9 +43,11 @@
 					@foreach (Product product in Model.Products)
 					{
 						<div class="product-card">
+							<div class="center-cropped-catalog">
 							<a href="@Url.Action("ProductView", "Catalog", new { id = product.Id })">
-								 <img class="product-photo" src="@Url.Content(ImageHelper.GetUnitaryImagePath(product.ImagePath))" />
+								<img class="catalog-product-photo" src="@Url.Content(ImageHelper.GetUnitaryImagePath(product.ImagePath))" />
 							</a>
+								</div>
 
 							<div class="product-name">@product.ProductName</div>
 

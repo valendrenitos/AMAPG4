@@ -7,56 +7,62 @@ html, body {
     margin: 0;
     display: flex;
     flex-direction: column;
+    background-color: #f9e9d3;
+    overflow-x: hidden;
 }
 
 body {
     min-height: 100vh;
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),url('../images/bg04.png') no-repeat center center fixed;
 }
 
-    body > *:not(footer) {
-        flex-grow: 1; 
-    }
+body > *:not(footer) {
+    flex-grow: 1;
+}
 
 /*******************************************************************/
 /***************************STYLES FOR HEADER***********************/
 /*******************************************************************/
 header {
     font-family: 'Poppins', sans-serif;
-    background-color: #f7f7f7;
-    width: 96%;
+    background-color: #285146;
+    width: 100%;
     justify-content: space-between;
     align-items: center;
     display: flex;
-    padding: 32px;
-    height: 5rem;
+    padding: 1.6rem;
+    min-height: 5rem;
+    max-height: 5rem;
     flex-shrink: 0;
     flex-grow: 0;
 }
+
 #header-logo {
-    width: 22rem;
+    width: 18rem;
 }
 
-/*Navigation elements*/
+/* Navigation elements */
 nav {
-    width: 34%;
+    min-width: 30rem;
+    max-width: 40%;
     justify-content: space-between;
     display: flex;
     padding: 0.2rem;
 }
 
 .nav-element {
-    color: #1e1e1e;
-    width: auto;
-    height: auto;
+    /*color: #1e1e1e;*/ /* Use the second style's color */
+    /*    width: auto;
+    height: auto;*/
     font-size: 1rem;
     font-weight: normal;
     justify-content: center;
     text-align: center;
-    padding: 8px;
+    margin: 0.8rem;
 }
 
 .nav-link {
-    color: #1e1e1e;
+    color: #f9e9d3;
     text-decoration: none;
     font-weight: normal;
 }
@@ -66,14 +72,18 @@ nav {
     transition: transform 0.1s ease-in-out;
 }
 
-
-/* Buttons on the right*/
+/* Buttons on the right */
 .nav-right-btns {
-    width: 28%;
+    width: 26%;
     align-items: center;
     display: flex;
-    justify-content: space-around;
 }
+
+    .nav-right-btns img {
+        width: 2.2rem;
+        height: auto;
+        object-fit: contain;
+    }
 
 .btn {
     border-radius: 16px;
@@ -85,19 +95,18 @@ nav {
     background-color: #285146;
 }
 
-.btn:hover {
-    transform: scale(1.05);
-}
+    .btn:hover {
+        transform: scale(1.05);
+    }
 
 .btn-connection {
-    background-color: #285146;
+    background-color: #a1cf59;
     white-space: nowrap;
     width: auto;
     padding: 0.4rem 1rem;
 }
 
-.btn-register,
-.btn-logout {
+.btn-register {
     background-color: #e5701d;
 }
 
@@ -108,17 +117,9 @@ nav {
     display: flex;
     justify-content: center;
     align-items: center;
-    text-align:center;
+    text-align: center;
     width: 6rem;
 }
-
-.nav-right-btns .btn-basket-icon img {
-    width: 2.5rem;
-    height: auto;
-    object-fit: contain;
-}
-
-
 
 /*******************************************************************/
 /***************************STYLES FOR FOOTER***********************/
@@ -129,48 +130,15 @@ footer {
     background-color: #285146;
 }
 
-.footer-top {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    padding: 1.6rem;
-}
-
-.footer-links {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-    .footer-links * {
-        color: #f9e9d3;
-        text-decoration: none;
-        display: flex;
-        justify-content: center;
-        width: 6rem;
-        margin: 0.3rem;
-    }
-
-.footer-logo {
-    width: 20%;
-    height: auto;
-    max-width: 100%;
-    object-fit: contain;
-}
-
-.footer-contact {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    color: #f9e9d3;
-    margin: 0.3rem;
-}
-
-    .footer-contact * {
-        margin: 0.2rem;
-    }
-
 .footer-bottom {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0.6rem;
+}
+
+.footer p {
+    margin: 0.4rem;
     color: #f9e9d3;
     text-align: center;
 }
@@ -178,19 +146,39 @@ footer {
 /*******************************************************************/
 /***************************STYLES FOR FORMS***********************/
 /*******************************************************************/
-
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    max-width: 400px;
-    margin: 20px auto;
+    gap: 0.7rem;
+    max-width: 30rem;
+    margin: 1rem;
+    color: #285146;
+    font-weight: 600;
+}
+
+    form em {
+        font-size: 0.8rem;
+    }
+
+textarea::placeholder,
+date::placeholder {
+    font-style: italic;
+    font-family: 'Poppins', sans-serif;
+}
+
+textarea, date, number {
+    font-family: 'Poppins', sans-serif;
 }
 
 input::placeholder {
     font-style: italic;
 }
 
+textarea,
+number,
+date,
+select,
+file,
 input[type="text"],
 input[type="password"],
 input[type="email"],
@@ -209,6 +197,7 @@ input[type="submit"] {
     cursor: pointer;
     font-size: 1.2rem;
     padding: 12px;
+    margin-bottom: 1.5rem;
 }
 
     input[type="submit"]:hover {
@@ -218,4 +207,10 @@ input[type="submit"] {
 .error {
     color: red;
     font-size: 0.9rem;
+}
+
+input[type="text"], input[type="submit"], textarea, select {
+    width: 100%;
+    max-width: 100%;
+    box-sizing: border-box;
 }

@@ -9,6 +9,9 @@
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+    .titre-remplissage h2 {
+        color:#285146;
+    }
 
 .user-info {
     display: flex;
@@ -62,17 +65,16 @@
     }
 
 
+
 /*******************************************************************/
 /***********************STYLES FOR CREATE ACCOUNT*******************/
 /*******************************************************************/
 
 .text-cas-particulier{
     font-style: italic; 
+    color:#285146;
     
 }
-
-
-
 
 /*******************************************************************/
 /*************************STYLES FOR PRODUCERS**********************/
@@ -173,12 +175,6 @@
     flex-direction: column;
 }
 
-
-
-
-
-
-
 .table-product {
     margin-left: auto;
     margin-right: auto;
@@ -272,8 +268,6 @@ tfoot th:nth-child(1) {
     width: 30%;
 }
 
-
-
     tfoot th:nth-last-child(-n+2) 
     {
         width: 8%;
@@ -312,3 +306,33 @@ tfoot th:nth-child(1) {
     border-radius: 10px;
 }
 
+/*******************************************************************/
+/***********************STYLES FOR HOME*****************************/
+/*******************************************************************/
+
+.home-body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    width: 100%;
+}
+
+.welcome-text {
+    color: #285146;
+    text-align: center;
+    margin: 2rem 8rem;
+    font-size: 1.3rem;
+}
+
+.welcome-text h2 {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.home-body img {
+    max-width: 70%;
+    display: block;
+    margin: 0rem auto 5rem auto;
+}

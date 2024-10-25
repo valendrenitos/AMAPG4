@@ -31,9 +31,10 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 22rem;
+    width: 18rem;
     height: 26rem;
     justify-content: space-between;
+    align-content: center;
     margin: 1rem;
     padding: 1rem;
     background-color: white;
@@ -71,6 +72,7 @@
 }
 
 /*Right side - catalog*/
+
 .catalog-container {
     width: 80%;
     display: flex;
@@ -86,8 +88,8 @@
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 12em;
-    height: 17em;
+    width: 16rem;
+    height: 18rem;
     margin: 10px;
     background-color: white;
     border-radius: 10px;
@@ -96,7 +98,7 @@
     box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
     transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
     border: 0;
-    border-radius: 1rem;
+    border-radius: 2rem;
 }
 
     .product-card:hover {
@@ -104,12 +106,20 @@
         box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
     }
 
-.catalog-photo {
-    width: 80%;
+
+.center-cropped-catalog {
+    width: 14rem;
+    height: 10rem;
+    overflow: hidden;
+    border-radius: 2rem;
+    margin: 1rem;
+}
+
+.catalog-product-photo {
+    width: 100%;
     height: auto;
-    max-width: 300px;
-    margin: 0 auto;
-    display: block;
+    object-fit: cover;
+    border-radius: 2rem;
 }
 
 .product-name {
@@ -139,6 +149,7 @@
     text-decoration: none;
 }
 
+
 /*******************************************************************/
 /************************STYLES FOR PRODUCT VIEW********************/
 /*******************************************************************/
@@ -155,7 +166,7 @@
     align-items: center;
     justify-content: center;
     width: 60rem;
-    height: 28rem;
+    height: 24rem;
     margin: 2rem;
     background-color: white;
     border-radius: 10px;
@@ -170,7 +181,8 @@
     width: 22rem;
     height: auto;
     align-content: center;
-    margin: 1rem;
+    margin: 2rem 1rem 2rem 2rem;
+    border-radius: 2rem;
 }
 
 .product-details {
@@ -332,7 +344,6 @@ a {
         box-shadow: 0 10px 20px rgba(0, 0, 0, .12), 0 4px 8px rgba(0, 0, 0, .06);
     }
 
-.basket-photo,
 .producer-photo {
     margin: 1rem;
     width: 14rem;
@@ -341,6 +352,38 @@ a {
     margin: 1rem;
     border-radius: 4rem;
 }
+
+.basket-photo {
+    margin: 1rem;
+    width: 14rem;
+    height: auto;
+    align-content: center;
+    margin: 1rem;
+    border-radius: 2rem;
+}
+
+/*.center-cropped-baskets {
+    overflow: hidden;
+    border-radius: 2rem;
+    margin: 1rem;
+}*/
+
+.catalog-product-photo {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 2rem;
+}
+
+
+
+
+
+
+
+
+
+
 
 .activity-name,
 .basket-name,
@@ -381,7 +424,7 @@ a {
 .txt-intro,
 .producer-body p,
 .login-body p {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     text-align: center;
     color: #285146;
     max-width: 80rem;
@@ -446,7 +489,7 @@ a {
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
-    width: 40rem;
+    width: 38rem;
     height: 38rem;
     margin: 2rem;
     padding: 1.5rem;
@@ -457,7 +500,7 @@ a {
     box-shadow: 0 6px 10px rgba(0, 0, 0, .08), 0 0 6px rgba(0, 0, 0, .05);
     transition: .3s transform cubic-bezier(.155, 1.105, .295, 1.12), .3s box-shadow, .3s -webkit-transform cubic-bezier(.155, 1.105, .295, 1.12);
     border: 0;
-    border-radius: 2rem;
+    border-radius: 3rem;
 }
 
     .product-activity:hover {
@@ -483,7 +526,7 @@ a {
     height: 100%;
     object-fit: contain;
     object-position: top;
-    transform: scale(1.45);
+    transform: scale(1.6);
 }
 
 .activity-price {

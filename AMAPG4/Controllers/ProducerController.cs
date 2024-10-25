@@ -148,6 +148,7 @@ namespace AMAPG4.Controllers
                     model.Description,
                     model.ProductionType,
                     model.RIB,
+                    model.ImagePath,
                     model.Account.Email,
                     model.Account.Password,
                     model.Account.Name,

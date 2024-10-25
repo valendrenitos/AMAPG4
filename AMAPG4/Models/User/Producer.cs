@@ -18,6 +18,7 @@ namespace AMAPG4.Models.User
         [Required(ErrorMessage = "Le RIB est obligatoire.")]
         [RegularExpression(@"^[A-Za-z0-9]{23}$", ErrorMessage = "Le RIB doit contenir exactement 23 caractères alphanumériques.")]
         public string RIB { get; set; }
+        public string ImagePath { get; set; }
         public virtual UserAccount Account { get; set; }
     }
 }

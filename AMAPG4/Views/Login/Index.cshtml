@@ -4,41 +4,48 @@
     Layout = "_Layout";
 }
 
-<head>
-    <link rel="stylesheet" href="~/css/global.css" />
-    <link rel="stylesheet" href="~/css/styles.css" />
-</head>
 
-@if (Model.Authentication)
-{
-    <h3>
-        Vous êtes déjà authentifié avec le login :
-        @Model.UserAccount.Email
-    </h3>
-    @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
-    @Html.ActionLink("Accueil", "Index", "Home")
-}
-else
-{
-    
-    <div class="login-body">
-        <h2> Connexion </h2>
-    <p>Veuillez vous authentifier : </p>
-        </div>
-    using (Html.BeginForm())
-    {
-        <div>
-            @Html.LabelFor(m => m.UserAccount.Email, "Email")
-            @Html.TextBoxFor(m => m.UserAccount.Email, new { @placeholder = "Adresse email" })
-            @Html.ValidationMessageFor(m => m.UserAccount.Email, "", new { @class = "error" })
-        </div>
-        <div>
-            @Html.LabelFor(m => m.UserAccount.Password, "Mot de passe")
-            @Html.PasswordFor(m => m.UserAccount.Password, new { @placeholder = "Mot de passe" })
-            @Html.ValidationMessageFor(m => m.UserAccount.Password, "", new { @class = "error" })
-        </div>
-        <input type="submit" value="Se connecter" />
-        <br />
-        @Html.ActionLink("Créer un compte", "CreateIndividualAccount")
-    }
-}
+<link rel="stylesheet" href="~/css/forms.css" />
+<link rel="stylesheet" href="~/css/styles.css" />
+
+<div class="container">
+    <div class="form-container">
+
+        @if (Model.Authentication)
+        {
+            <h3>
+                Vous êtes déjà authentifié avec le login :
+                @Model.UserAccount.Email
+            </h3>
+            @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
+            @Html.ActionLink("Accueil", "Index", "Home")
+        }
+        else
+        {
+
+         
+
+            using (Html.BeginForm())
+            {
+                <fieldset class="fieldset-style">
+                    <legend>Authentification</legend>
+                    <div>
+                        @Html.LabelFor(m => m.UserAccount.Email, "Email")
+                        @Html.TextBoxFor(m => m.UserAccount.Email, new { @placeholder = "Adresse email" })
+                        @Html.ValidationMessageFor(m => m.UserAccount.Email, "", new { @class = "error" })
+                    </div>
+                    <div>
+                        @Html.LabelFor(m => m.UserAccount.Password, "Mot de passe")
+                        @Html.PasswordFor(m => m.UserAccount.Password, new { @placeholder = "Mot de passe" })
+                        @Html.ValidationMessageFor(m => m.UserAccount.Password, "", new { @class = "error" })
+                    </div>
+                    <input type="submit" value="Se connecter" />
+                    <br />
+                    @Html.ActionLink("Créer un compte", "CreateIndividualAccount")
+                </fieldset>
+            }
+
+        }
+    </div>
+    </<div>
+    </div>
