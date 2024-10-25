@@ -2,10 +2,12 @@
 using Microsoft.AspNetCore.Mvc;
 using AMAPG4.ViewModels;
 using System.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace AMAPG4.Controllers
 {
+    [Authorize]
     public class AccountController : Microsoft.AspNetCore.Mvc.Controller
     {
         public IActionResult Index()

@@ -84,32 +84,24 @@ namespace AMAPG4.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult CreateIndividualAccount(CreateUserAccountViewModel createUserAccountViewModel)
         {
-            Console.WriteLine("1");
-            
-        
-                                
+                                                              
                 if (ModelState.IsValid)
             {
-                Console.WriteLine("2");
+ 
                 using (IndividualDal individualDal = new IndividualDal())
                 {
-                    Console.WriteLine("3");
+                  
                     // Validation  
                     if (createUserAccountViewModel.UserAccount.Password != createUserAccountViewModel.ConfirmPassword)
                     {
                         ModelState.AddModelError("ConfirmPassword", "Les mots de passe ne correspondent pas.");
                     }
-                    Console.WriteLine("4");
-                    // Vérifier si l'email existe déjà  
-                    //if (_bddContext.UserAccounts.Any(u => u.Email == email))  
-                    //{  
-                    //throw new ArgumentException("Un utilisateur avec cet email existe déjà.");  
-                    //}  
 
-                    int id = individualDal.CreateIndividual(
+                        int id = individualDal.CreateIndividual(
                         createUserAccountViewModel.Individual.FirstName,
                         DateTime.Now,
                         true,
@@ -119,11 +111,11 @@ namespace AMAPG4.Controllers
                         createUserAccountViewModel.UserAccount.Name,
                         createUserAccountViewModel.UserAccount.Address,
                         createUserAccountViewModel.UserAccount.Phone);
-                    Console.WriteLine("5");
+      
                     return Redirect("/Login/Index");
                 }
             }
-            Console.WriteLine("6");
+     
             return View();
         }
 

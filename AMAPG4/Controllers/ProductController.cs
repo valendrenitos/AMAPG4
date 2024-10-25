@@ -1,5 +1,6 @@
 ﻿using AMAPG4.Models.Catalog;
 using AMAPG4.Models.User;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -17,8 +18,8 @@ namespace AMAPG4.Controllers
         {
             _productDal = new ProductDal();
         }
-        
-        [HttpGet]
+		[Authorize(Roles = "Admin,Manager")]
+		[HttpGet]
         public IActionResult Read(int id)
         {
             Product product = _productDal.GetProductById(id);
@@ -28,8 +29,8 @@ namespace AMAPG4.Controllers
             }
             return View(product);
         }
-
-        [HttpGet]
+		[Authorize(Roles = "Admin,Manager")]
+		[HttpGet]
         public IActionResult Create()
         {
             using (ProducerDal producerDal = new ProducerDal())
@@ -39,8 +40,8 @@ namespace AMAPG4.Controllers
 
             return View();
         }
-
-        [HttpPost]
+		[Authorize(Roles = "Admin,Manager")]
+		[HttpPost]
         public IActionResult Create(Product product, IFormFile ProductImage)
         {
             Console.WriteLine("Début de la méthode Create");
@@ -158,8 +159,8 @@ namespace AMAPG4.Controllers
 
             return View(product);
         }
-
-        public IActionResult Update(int id)
+		[Authorize(Roles = "Admin,Manager")]
+		public IActionResult Update(int id)
         {
             Product product = _productDal.GetProductById(id);
 
@@ -175,8 +176,8 @@ namespace AMAPG4.Controllers
             return View(product);
         }
 
-
-        [HttpPost]
+		[Authorize(Roles = "Admin,Manager")]
+		[HttpPost]
         public IActionResult Update(Product product, IFormFile ProductImage)
         {
             if (product == null)
@@ -246,8 +247,8 @@ namespace AMAPG4.Controllers
             }
         }
 
-
-        [HttpPost]
+		[Authorize(Roles = "Admin,Manager")]
+		[HttpPost]
         public IActionResult Delete(int id) 
         {
             Product product = _productDal.GetProductById(id);
