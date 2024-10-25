@@ -120,8 +120,7 @@
 .producer-container {
     width: 80%;
     display: flex;
-    margin-left: 1rem;
-    margin-right: 1rem;
+    margin: 0.6rem 1rem 3rem 1rem;
     justify-content: center;
 }
 
