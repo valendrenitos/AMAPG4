@@ -17,22 +17,23 @@
 
 @if (Model.status == AMAPG4.Models.StatusType.Failed || Model.status == AMAPG4.Models.StatusType.Waiting)
 {
-    if (Model.status == AMAPG4.Models.StatusType.Failed)
-    {
-        <div class="RejectedMessage">Le paiement a été refusé</div>
-    }
+
+
 
 
 
     <div class="container">
     <div class="form-container">
-      
-
+    
 @using (Html.BeginForm())
     {
                 <fieldset class="fieldset-style">
                     <legend>Paiement</legend>
-
+                    @if (Model.status == AMAPG4.Models.StatusType.Failed)
+                    {
+                        <div></div>
+                        <div class="RejectedMessage">Le paiement a été refusé</div>
+                    }
                     <p class="welcome-text"> Vous serez facturé pour un total de @Model.CommandLine.Total €</p>
     <input type="hidden" name="CommandId" value="@Model.CommandLine.CommandId" />
     <p> @Html.TextBoxFor(m => m.FirstName, new { @placeholder = "Prénom" })  @Html.TextBoxFor(m => m.LastName, new { @placeholder = "Nom" })</p>

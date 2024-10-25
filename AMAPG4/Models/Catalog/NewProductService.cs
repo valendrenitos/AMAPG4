@@ -3,29 +3,31 @@ using System.Linq;
 using System;
 using AMAPG4.Models.User;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using AMAPG4.ViewModels;
 
 namespace AMAPG4.Models.Catalog
 {
     public class NewProductService : INewProductService
     {
 
-      
-        
-            private MyDBContext _bddContext;
-            public NewProductService()
-            {
-                _bddContext = new MyDBContext();
-            }
 
-            public void DeleteCreateDatabase()
-            {
-                _bddContext.Database.EnsureDeleted();
-                _bddContext.Database.EnsureCreated();
-            }
+
+        private MyDBContext _bddContext;
+        public NewProductService()
+        {
+            _bddContext = new MyDBContext();
+        }
+
+        public void DeleteCreateDatabase()
+        {
+            _bddContext.Database.EnsureDeleted();
+            _bddContext.Database.EnsureCreated();
+        }
 
         public void InitializeDataBase()
         {
-            CreateNewProduct("Fleurs", "MAgnifique", true, 15m, 10, DateTime.Now.AddDays(7), ProductType.Unitary, SubmissionStatus.Pending, 1,"1");
+            CreateNewProduct("Fleurs", "MAgnifique", true, 15m, 10, DateTime.Now.AddDays(7), ProductType.Unitary, SubmissionStatus.Pending, 1, "1");
         }
 
         public List<NewProduct> GetAllNewProducts()
@@ -42,40 +44,40 @@ namespace AMAPG4.Models.Catalog
             return _bddContext.NewProducts.Where(n => n.SubmissionStatus == SubmissionStatus.Rejected).Include(n => n.Producer).Include(n => n.Producer.Account).ToList();
         }
         public void Dispose()
-            {
-                _bddContext.Dispose();
-            }
+        {
+            _bddContext.Dispose();
+        }
 
 
-            //*******************CRUD**********************//
+        //*******************CRUD**********************//
 
-            public int CreateNewProduct(string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, SubmissionStatus status, int producerId, string imagePath)
-            {
+        public int CreateNewProduct(string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, SubmissionStatus status, int producerId, string imagePath)
+        {
             Producer producer = _bddContext.Producers.Include(p => p.Account).FirstOrDefault(p => p.Id == producerId);
             NewProduct newProduct = new NewProduct()
-                {
-                    ProductName = productName,
-                    Description = description,
-                    IsAvailable = isAvailable,
-                    Price = price,
-                    Stock = stock,
-                    LimitDate = limitDate,
-                    ProductType = productType,
-                    SubmissionStatus = status,
-                    Producer = producer,
-                    ImagePath = imagePath
+            {
+                ProductName = productName,
+                Description = description,
+                IsAvailable = isAvailable,
+                Price = price,
+                Stock = stock,
+                LimitDate = limitDate,
+                ProductType = productType,
+                SubmissionStatus = status,
+                Producer = producer,
+                ImagePath = imagePath
 
             };
-                _bddContext.NewProducts.Add(newProduct);
-                _bddContext.SaveChanges();
-                return newProduct.Id;
-            }
+            _bddContext.NewProducts.Add(newProduct);
+            _bddContext.SaveChanges();
+            return newProduct.Id;
+        }
 
-            public NewProduct GetNewProductById(int id)
-            {
-                NewProduct newproduct = GetAllNewProducts().FirstOrDefault(n => n.Id ==  id);
-                return newproduct;
-            }
+        public NewProduct GetNewProductById(int id)
+        {
+            NewProduct newproduct = GetAllNewProducts().FirstOrDefault(n => n.Id == id);
+            return newproduct;
+        }
 
 
         public void UpdateNewProduct(int newProductId, SubmissionStatus status)
@@ -124,20 +126,41 @@ namespace AMAPG4.Models.Catalog
             }
 
 
-            public void DeleteNewProduct(int id)
+        public void DeleteNewProduct(int id)
+        {
+            NewProduct newProduct = _bddContext.NewProducts.Find(id);
+            if (newProduct != null)
             {
-                NewProduct newProduct = _bddContext.NewProducts.Find(id);
-                if (newProduct != null)
-                {
-                    _bddContext.NewProducts.Remove(newProduct);
-                    _bddContext.SaveChanges();
-                }
-            }
-            public NewProduct GetNewProductByName(string name)
-            {
-                NewProduct newProduct;
-                return _bddContext.NewProducts.FirstOrDefault(newProduct => newProduct.ProductName == name);
+                _bddContext.NewProducts.Remove(newProduct);
+                _bddContext.SaveChanges();
             }
         }
+        public NewProduct GetNewProductByName(string name)
+        {
+            NewProduct newProduct;
+            return _bddContext.NewProducts.FirstOrDefault(newProduct => newProduct.ProductName == name);
+        }
+        [HttpPost]
+        public void UpdateNewProduct(NewProductViewModel newProductViewModel)
+        {
+            // Récupérer le produit par son ID dans la table NewProduct
+            NewProduct newProduct = _bddContext.NewProducts.FirstOrDefault(o=> o.Id == newProductViewModel.NewProduct.Id);
+            if (newProduct != null)
+            {
+            newProduct.ProductName = newProductViewModel.NewProduct.ProductName;
+                newProduct.Price = newProductViewModel.NewProduct.Price;
+                newProduct.Stock = newProductViewModel.NewProduct.Stock;
+                newProduct.Description = newProductViewModel.NewProduct.Description;
+                newProduct.LimitDate= newProductViewModel.NewProduct.LimitDate;
+                newProduct.ProductType= newProductViewModel.NewProduct.ProductType;
+                _bddContext.SaveChanges();
+                
+          
+            }
+          
+        }
+
     }
+
+}
 
