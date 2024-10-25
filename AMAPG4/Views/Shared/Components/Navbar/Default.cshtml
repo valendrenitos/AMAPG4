@@ -8,7 +8,7 @@
 
     @if (Model.IsProducer && User.IsInRole("Utilisateur"))
     {
-        <div class="nav-element">@Html.ActionLink("Proposer un nouveau produit", "Index", "NewProduct", new { @id = 1 }, new { @class = "nav-link" })</div>﻿
+        <div class="nav-element">@Html.ActionLink("Proposer un nouveau produit", "Index", "NewProduct", null, new { @class = "nav-link" })</div>﻿
         //<div class="nav-element">@Html.ActionLink("Mes produits", "Index", "XX", null, new { @class = "nav-link" })</div>
     }
 
