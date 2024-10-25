@@ -49,8 +49,6 @@ namespace AMAPG4.Controllers
         }
 
 
-        
-
         public IActionResult Individuals()
         {
             DashboardViewModel dashboardVM = new DashboardViewModel();
@@ -87,12 +85,23 @@ namespace AMAPG4.Controllers
             }
             return View(dashboardVM);
         }
+        public IActionResult Products()
+        {
+            DashboardViewModel dashboardVM = new DashboardViewModel();
+            using (ProductDal productDal = new ProductDal())
+            {
+                dashboardVM.Products = productDal.GetAllProducts();
+          
+            }
+            return View(dashboardVM);
+        }
         public IActionResult NewProducts()
         {
             DashboardViewModel dashboardVM = new DashboardViewModel();
             using (NewProductService newProductService = new NewProductService())
             {
-                dashboardVM.NewProducts = newProductService.GetAllNewProducts();
+                dashboardVM.NewProducts = newProductService.GetAllPendingNewProducts();
+                dashboardVM.RefusedProducts = newProductService.GetAllRefusedNewProducts();
             }
             return View(dashboardVM);
         }

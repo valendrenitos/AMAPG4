@@ -28,14 +28,18 @@ namespace AMAPG4.Models.Catalog
             CreateNewProduct("Fleurs", "MAgnifique", true, 15m, 10, DateTime.Now.AddDays(7), ProductType.Unitary, SubmissionStatus.Pending, 1,"1");
         }
 
-            public List<NewProduct> GetAllNewProducts()
-            {
-                return _bddContext.NewProducts.Include(n => n.Producer).Include(n => n.Producer.Account).ToList();
-            }
+        public List<NewProduct> GetAllNewProducts()
+        {
+            return _bddContext.NewProducts.Include(n => n.Producer).Include(n => n.Producer.Account).ToList();
+        }
 
         public List<NewProduct> GetAllPendingNewProducts()
         {
             return _bddContext.NewProducts.Where(n => n.SubmissionStatus == SubmissionStatus.Pending).Include(n => n.Producer).Include(n => n.Producer.Account).ToList();
+        }
+        public List<NewProduct> GetAllRefusedNewProducts()
+        {
+            return _bddContext.NewProducts.Where(n => n.SubmissionStatus == SubmissionStatus.Rejected).Include(n => n.Producer).Include(n => n.Producer.Account).ToList();
         }
         public void Dispose()
             {

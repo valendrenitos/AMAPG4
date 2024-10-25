@@ -6,7 +6,7 @@
 }
 
 <div class="dashboard-container">
-    <!-- Bloc pour les Adhérents -->
+  
     <div class="dashboard-block">
         <div class="section-header">
             <h2 class="section-title">Adhérents</h2>
@@ -39,6 +39,7 @@
                             <td>@(individual.IsVolunteer ? "Oui" : "Non")</td>
                             <td>@(individual.IsContributionPaid ? "Oui" : "Non")</td>
                             <td class="td-btn-actions">
+                                <a href="@Url.Action("Read", "Individual", new { id = individual.Id })" class="btn-action btn-read">Voir</a>
                                 <a href="@Url.Action("Update", "Individual", new { id = individual.Id })" class="btn-action btn-update">Modifier</a>
                                 <form method="post" action="@Url.Action("Delete", "Individual", new { id = individual.Id })" style="display:inline;">
                                     <button type="submit" class="btn-action btn-delete">Supprimer</button>

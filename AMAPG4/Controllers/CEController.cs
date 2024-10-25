@@ -48,7 +48,7 @@ namespace AMAPG4.Controllers
                     _ceDal.UpdateCE(ce);
                 }
             }
-            return RedirectToAction("Index", "Dashboard");
+            return RedirectToAction("Read", new { id = model.Id });
         }
 
         // Action pour supprimer un CE
@@ -61,7 +61,7 @@ namespace AMAPG4.Controllers
                 return NotFound();
             }
             _ceDal.DeleteCE(ce.Id);
-            return RedirectToAction("Index", "Dashboard");
+            return RedirectToAction("CEs", "Dashboard");
         }
 
         // Action pour créer un nouveau CE

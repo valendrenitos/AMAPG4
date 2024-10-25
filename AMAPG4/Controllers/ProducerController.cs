@@ -98,7 +98,7 @@ namespace AMAPG4.Controllers
                     _producerDal.UpdateProducer(producer);
                 }
             }
-            return RedirectToAction("Index", "Dashboard");
+            return RedirectToAction("Read", new { id = model.Id });
         }
 
         // Action pour supprimer un producteur
@@ -114,7 +114,7 @@ namespace AMAPG4.Controllers
             }
             Console.WriteLine("Producer found");
             _producerDal.DeleteProducer(producer.Id);
-            return RedirectToAction("Index", "Dashboard");
+            return RedirectToAction("Producers", "Dashboard");
         }
 
         // Action pour créer un nouveau producteur

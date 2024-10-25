@@ -1,10 +1,24 @@
 ﻿/* Global styles for header */
+html, body {
+    font-family: 'Poppins', sans-serif;
+    height: 100%;
+    margin: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), /* Calque transparent */
+    url("../images/MonPanierPaysanVintage.png") no-repeat center center fixed;
+    background-size: cover; /* Ajuste l'image de fond */
+}
+
 .bo-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     padding: 15px;
-    background-color: #f0f0f0;
+    background-color: #285146;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     position: relative;
 }
@@ -14,7 +28,7 @@
 }
 
 .bo-logo {
-    width: 12vw;
+    width: 9vw;
     height: auto;
     border-radius: 50%;
 }
@@ -25,6 +39,7 @@
 }
 
 .bo-nav ul {
+    display: flex;
     list-style-type: none;
     padding: 0;
     margin: 0;
@@ -37,7 +52,7 @@
 
 .bo-nav a {
     text-decoration: none;
-    color: #333;
+    color: #f9e9d3;
     font-weight: bold;
     font-size: 1.2rem;
 }
@@ -56,36 +71,36 @@
 }
 
 .badge-admin, .badge-manager {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #ff6347;
-    color: white;
+    color: #e5701d;
     font-weight: bold;
-    border-radius: 50%;
     font-size: 1rem;
     text-align: center;
 }
 
 /* Button styles */
+
 .btn {
+    background-color: #285146;
     display: inline-block;
-    padding: 10px 20px;
-    border-radius: 5px;
+    padding: 0.4rem 0.8rem;
+    border-radius: 16px;
     font-size: 1rem;
     font-weight: bold;
     color: white;
     text-align: center;
     text-decoration: none;
     margin: 5px;
+    transition: transform 0.3s ease-in-out;
 }
+    .btn:hover {
+        transform: scale(1.05);
+    }
 
 .btn-front-office {
-    background-color: #4CAF50;
+    background-color: #e5701d;
 }
 
-    .btn-front-office:hover {
-        background-color: #45a049;
-    }
+
 
 .btn-logout {
     background-color: #ff6347;
@@ -97,22 +112,25 @@
 
 /* Main content area */
 .bo-main {
+    flex: 1;
     padding: 20px;
 }
 
 /* Footer */
 .bo-footer {
-    background-color: #333;
-    color: white;
-    padding: 20px;
+    background-color: #f7f7f7;
+    color: #1e1e1e;
+    padding: 10px;
+    padding-top: 0px;
     text-align: center;
+    height:8em;
 }
 
 .footer-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px;
+    padding: 10px;
 }
 
 .footer-links {
@@ -121,7 +139,7 @@
 }
 
 .footer-link {
-    color: white;
+    color: #1e1e1e;
     text-decoration: none;
 }
 
@@ -130,7 +148,7 @@
 }
 
 .footer-logo img {
-    width: 60px;
+    width: 10rem;
     height: auto;
 }
 
@@ -174,8 +192,12 @@
 
 .dashboard-table, .category-table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate; /* Utilise separate pour préserver les coins arrondis */
+    border-spacing: 0; /* Évite l'espacement entre les cellules */
     margin-bottom: 20px;
+    border-radius: 10px; /* Arrondit les coins du tableau */
+    overflow: hidden; /* Empêche le contenu de déborder des coins arrondis */
+    border: 1px solid #ddd; /* Bordure extérieure du tableau */
 }
 
     .dashboard-table th, .category-table th,
@@ -186,9 +208,30 @@
     }
 
     .dashboard-table th, .category-table th {
-        background-color: #f4f4f4;
+        background-color: #3d7a62;
         font-weight: bold;
     }
+
+ 
+
+    /* Arrondir seulement les coins du haut du tableau */
+    .dashboard-table th:first-child {
+        border-top-left-radius: 10px;
+    }
+
+    .dashboard-table th:last-child {
+        border-top-right-radius: 10px;
+    }
+
+    /* Arrondir les coins du bas si nécessaire */
+    .dashboard-table tr:last-child td:first-child {
+        border-bottom-left-radius: 10px;
+    }
+
+    .dashboard-table tr:last-child td:last-child {
+        border-bottom-right-radius: 10px;
+    }
+
 
 
 /* Button actions inside the tables */
@@ -204,28 +247,80 @@
 /* Correction des boutons */
 .btn-action {
     display: inline-block;
-    padding: 8px 12px;
-    background-color: #27ae60; /* Vert pour les boutons Modifier */
+    padding: 0.4rem 0.8rem;
+    background-color: #3d7a62;
     color: white;
-    border-radius: 5px;
+    border-radius: 16px;
+    font-size: 1rem;
     font-weight: bold;
     text-decoration: none;
-    transition: background-color 0.3s ease;
     text-align: center;
-    width: 100px; /* Uniformiser la largeur pour éviter les décalages */
+    margin: 5px;
+    width: 6.5rem;
+    transition: background-color 0.3s ease;
+    transition: transform 0.3s ease-in-out;
 }
 
     .btn-action:hover {
-        background-color: #229954;
+        transform: scale(1.05);
+        background-color: #285146;
     }
 
-.btn-delete {
+form > div.user-actions > button,
+td.td-btn-actions > form > button,
+div.user-actions > form > button {
+    background-color: #3d7a62;
+    color: white;
+    border: none;
+    border-radius: 16px;
+    padding: 0.4rem 0.8rem;
+    font-size: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+    width: 8rem;
+    margin: 5px;
+}
+    form > div.user-actions > button:hover,
+    td.td-btn-actions > form > button:hover,
+    div.user-actions > form > button:hover {
+        transform: scale(1.05);
+        background-color: #285146;
+    }
+div.user-actions > form > button.btn-update,
+.btn-update {
+    background-color: #f39c12;
+}
+    div.user-actions > form > button.btn-update:hover,
+    .btn-update:hover {
+        background-color: #e67e22;
+    }
+form > div.user-actions > button.btn-update,
+td.td-btn-actions > form > button.btn-update {
+    background-color: #f39c12;
+}
+    form > div.user-actions > button.btn-update:hover,
+    td.td-btn-actions > form > button.btn-update:hover {
+        background-color: #e67e22;
+    }
+
+    .btn-delete {
     background-color: #e74c3c;
-    margin-left: 0; /* Supprimer les marges supplémentaires */
-    width: 100px; /* Uniformiser la largeur pour éviter les décalages */
+    
+}
+    .btn-delete:hover {
+        background-color: #c0392b;
+    }
+
+td.td-btn-actions > form > button.btn-delete,
+div.user-actions > form > button.btn-delete {
+    background-color: #e74c3c;
 }
 
-    .btn-delete:hover {
+    td.td-btn-actions > form > button.btn-delete:hover,
+    div.user-actions > form > button.btn-delete:hover
+    {
         background-color: #c0392b;
     }
 
@@ -237,11 +332,17 @@
         background-color: #218838;
     }
 
-.btn-validate {
+.btn-validate,
+td.td-btn-actions > form > button.btn-validate,
+form > div.user-actions > button.btn-validate
+{
     background-color: #28a745; /* Vert pour valider */
 }
 
-    .btn-validate:hover {
+    .btn-validate:hover,
+    td.td-btn-actions > form > button.btn-validate:hover,
+    form > div.user-actions > button.btn-validate:hover
+    {
         background-color: #218838;
     }
 
@@ -253,7 +354,11 @@
         background-color: #c0392b;
     }
 
-
+.btn-navigation {
+    display: inline;
+    background-color: #5874e0;
+    margin-left: auto;
+} 
 /* For unpaid users */
 .unpaid-user {
     color: red;
@@ -261,22 +366,27 @@
 }
 
 /* Navigation links (for sections) */
-.section-navigation a {
-    display: inline-block;
-    padding: 10px 20px;
-    background-color: #3498db;
-    color: white;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-    margin: 10px;
-    transition: background-color 0.3s ease, transform 0.3s ease;
+.section-navigation {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
-
-    .section-navigation a:hover {
-        background-color: #2980b9;
-        transform: scale(1.05);
+    .section-navigation a {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #3d7a62;
+        color: white;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: bold;
+        margin: 10px;
+        transition: background-color 0.3s ease, transform 0.3s ease;
     }
+
+        .section-navigation a:hover {
+            background-color: #285146;
+            transform: scale(1.05);
+        }
 
 /* Responsive design for the tables */
 @media (max-width: 768px) {
@@ -337,21 +447,8 @@
     text-align: center;
     margin-top: 20px;
 }
+div.user-actions > form > button
 
-    .user-actions .btn-save {
-        background-color: #28a745;
-        color: white;
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        font-size: 1.2rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-        .user-actions .btn-save:hover {
-            background-color: #218838;
-        }
 
 /* Style responsive pour les formulaires */
 @media (max-width: 768px) {
@@ -369,3 +466,15 @@
         padding: 8px 15px;
     }
 }
+
+h2 > a {
+    color: #285146;
+    text-decoration: none;
+}
+div.form-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+ 

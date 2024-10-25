@@ -39,6 +39,7 @@
                             <td>@producer.Siret</td>
                             <td>@producer.RIB</td>
                             <td class="td-btn-actions">
+                                <a href="@Url.Action("Read", "Producer", new { id = producer.Id })" class="btn-action btn-read">Voir</a>
                                 <a href="@Url.Action("Update", "Producer", new { id = producer.Id })" class="btn-action btn-update">Modifier</a>
                                 <form method="post" action="@Url.Action("Delete", "Producer", new { id = producer.Id })" style="display:inline;">
                                     <button type="submit" class="btn-action btn-delete">Supprimer</button>

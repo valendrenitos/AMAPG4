@@ -7,8 +7,11 @@
 
 <div class="user-profile-form-container">
     <div class="user-profile">
-        <h1 class="bo-entity">Détails de l'Individu n° @Model.Id</h1>
-
+        
+        <div class="form-header">
+            <h1 class="bo-entity">Détails de l'Adhérent n° @Model.Id</h1>
+            <a href="@Url.Action("Individuals", "Dashboard")" class="btn-action">Retour aux adhérents</a>
+        </div>
         <!-- Affichage des informations de l'individu -->
         <div class="user-info">
             <label>Nom :</label>
@@ -52,13 +55,14 @@
 
         <!-- Actions : Modifier, Supprimer et Retour -->
         <div class="user-actions">
+            
             <a href="@Url.Action("Update", "Individual", new { id = Model.Id })" class="btn-action btn-update">Modifier</a>
 
             <form method="post" action="@Url.Action("Delete", "Individual", new { id = Model.Id })" style="display:inline;">
                 <button type="submit" class="btn-action btn-delete">Supprimer</button>
             </form>
-
-            <a href="@Url.Action("Index", "Dashboard")">Retour au tableau de bord</a>
+            
         </div>
-    </div>
+        </div>
+    
 </div>

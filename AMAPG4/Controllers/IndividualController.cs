@@ -94,14 +94,14 @@ namespace AMAPG4.Controllers
                     _individualDal.UpdateIndividual(individual);
                 }
             }
-            return RedirectToAction("Index", "Dashboard");
+            return RedirectToAction("Read", "Individual", new { id = model.Id });
         }
 
         [HttpPost]
         public IActionResult Delete(int id)
         {
             _individualDal.DeleteIndividual(id);
-            return RedirectToAction("Index", "Dashboard");
+            return RedirectToAction("Individuals", "Dashboard");
         }
     }
 }

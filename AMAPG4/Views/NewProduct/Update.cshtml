@@ -1,20 +1,20 @@
 ﻿@using AMAPG4.Models.Catalog
 @using AMAPG4.Models.User
-@model AMAPG4.Models.Catalog.Product
+@model AMAPG4.Models.Catalog.NewProduct
 
 @{
-    ViewBag.Title = "Modifier le Produit";
+    ViewBag.Title = "Modifier la Proposition de Produit";
     Layout = "_BackOfficeLayout";
 }
 
 <div class="user-profile-form-container">
     <div class="user-profile">
         <div class="form-header">
-            <h1 class="bo-entity">Modifier le produit n° @Model.Id</h1>
-            <a href="@Url.Action("Read", "Product", new { id = Model.Id })" class="btn-action">Retour</a>
+            <h1 class="bo-entity">Modifier la proposition de produit n° @Model.Id</h1>
+            <a href="@Url.Action("Read", "NewProduct", new { id = Model.Id })" class="btn-action">Retour</a>
         </div>
 
-        @using (Html.BeginForm("Update", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("Update", "NewProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             @Html.HiddenFor(model => model.Id)
 
