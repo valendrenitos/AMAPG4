@@ -92,63 +92,9 @@ namespace AMAPG4.Models.Catalog
             }
         }
 
-        public void MoveNewProductToProduct(int newProductId)
-        {
-            // Récupérer le produit de la table NewProduct
-            var newProduct = _bddContext.NewProducts.Find(newProductId);
-            if (newProduct != null && newProduct.SubmissionStatus == SubmissionStatus.Approved)
-            {
-                // Créer un nouvel objet Product basé sur les données de NewProduct
-                Product product = new Product
-                {
-                    ProductName = newProduct.ProductName,
-                    Description = newProduct.Description,
-                    IsAvailable = newProduct.IsAvailable,
-                    Price = newProduct.Price,
-                    Stock = newProduct.Stock,
-                    LimitDate = newProduct.LimitDate,
-                    ProductType = newProduct.ProductType,
-                   
-                };
-
-                // Ajouter le produit à la table Product
-                _bddContext.Products.Add(product);
-
-                // Supprimer le produit de la table NewProduct
-                _bddContext.NewProducts.Remove(newProduct);
-
-                // Sauvegarder les modifications
-                _bddContext.SaveChanges();
-            }
-        }
 
 
-        public void UpdateNewProduct(int id, string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, SubmissionStatus status)
-            {
-                NewProduct newProduct = _bddContext.NewProducts.Find(id);
-                if (newProduct != null)
-                {
-                newProduct.ProductName = productName;
-                newProduct.Description = description;
-                newProduct.Stock = stock;
-                    if (stock != 0)
-                    {
-                    newProduct.IsAvailable = true;
-                    }
-                    else
-                    {
-                    newProduct.IsAvailable = false;
-                    }
 
-                newProduct.Price = price;
-
-                newProduct.LimitDate = limitDate;
-                newProduct.ProductType = productType;
-                newProduct.SubmissionStatus = status;
-
-                    _bddContext.SaveChanges();
-                }
-            }
 
             public void DeleteNewProduct(int id)
             {

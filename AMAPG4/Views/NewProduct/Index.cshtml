@@ -31,8 +31,18 @@
             <!-- Type de produit -->
             <div>
                 @Html.LabelFor(m => m.NewProduct.ProductType, "Type de produit")
-                @Html.DropDownListFor(m => m.NewProduct.ProductType, new SelectList(Enum.GetValues(typeof(ProductType)).Cast<ProductType>().Select(e => new SelectListItem { Value = e.ToString(), Text = e.ToString() }), "Value", "Text"), "Sélectionnez un type", new { @class = "proposition input-field" })
-                @Html.ValidationMessageFor(m => m.NewProduct.ProductType, "", new { @class = "error-message" })
+                    <select name="NewProduct.ProductType">
+
+                        <option value="">Veuillez choisir une catégorie</option>
+
+                        <option value="Basket">Panier</option>
+
+                        <option value="Unitary">Unitaire</option>
+
+                        <option value="Activité">Activité</option>
+
+
+                    </select>
             </div>
 
             <!-- Description -->

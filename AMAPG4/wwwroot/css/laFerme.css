@@ -179,7 +179,7 @@
 
 .product-photo {
     width: 22rem;
-    height: auto;
+    max-height: 20rem;
     align-content: center;
     margin: 2rem 1rem 2rem 2rem;
     border-radius: 2rem;
@@ -199,6 +199,8 @@
     font-size: 1rem;
     border-radius: 1.2rem;
     width: 10rem;
+
+    text-align: center;
 }
 
 .return-catalog {
@@ -364,7 +366,8 @@ a {
 
 .catalog-product-photo {
     width: 100%;
-    height: auto;
+    height: 10rem;
+    
     object-fit: cover;
     border-radius: 2rem;
 }
@@ -552,5 +555,6 @@ a {
     font-size: 1rem;
     width: 10rem;
     padding: 0.55rem;
+    align-items: center;
     border-radius: 1.2rem;
 }

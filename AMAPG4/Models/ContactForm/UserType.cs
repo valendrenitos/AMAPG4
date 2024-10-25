@@ -5,6 +5,6 @@
         Particulier,
         CE,
         Producteur,
-        Autre
+
     }
 }

@@ -29,17 +29,12 @@
     <div class="activities-container">
     @foreach (Product product in Model.Products)
     {
-
-
-
         <div class="product-activity">
-
             <div class="photo-name">
-            
+           
                     <div class="center-cropped">
                         <img class="activity-photo" src="@Url.Content(ImageHelper.GetActivityImagePath(product.ImagePath))" />
                     </div>
-
             </div>
               
             <div class="activity-name">@product.ProductName</div>

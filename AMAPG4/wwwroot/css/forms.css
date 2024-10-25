@@ -26,10 +26,6 @@
     align-items: center;
 }
 
-    .form-container * {
-        margin: 0.3rem;
-    }
-
     .form-container h2 {
         font-weight: bold;
         font-size: 2.2rem;
@@ -68,5 +64,5 @@
     border-radius: 30px; /* Bords arrondis */
     padding: 30px; /* Espacement intérieur */
     margin-bottom: 20px; /* Espace en bas du fieldset */
-    width: 120%;
+    width: 100%;
 }
