@@ -118,7 +118,7 @@ namespace AMAPG4.Controllers
                 );
 
                 ViewBag.Message = "Votre demande d'ajout d'un nouveau produit a été envoyée avec succès.";
-                return RedirectToAction("Index");
+                return View();
             }
             else
             {
