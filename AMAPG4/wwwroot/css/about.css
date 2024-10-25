@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content:space-between;
     align-content:center;
+    margin-bottom: 3rem;
 }
 
 .intro-section,
@@ -88,7 +89,7 @@ img.amapien-section-image {
 }
 
 .pilars-text ul {
-    list-style-type: none; /* Remove default list styling */
+    list-style-type: none;
     padding: 0; 
     margin: 0;
 }
@@ -101,7 +102,7 @@ img.amapien-section-image {
 }
 
 .engagements ul {
-    list-style-type: none; /* Remove default list styling */
+    list-style-type: none; 
     padding: 0;
     margin: 0;
 }
@@ -111,4 +112,8 @@ img.amapien-section-image {
     font-size: 1.2rem;
     margin: 0.8rem 0;
     text-align: center;
+}
+
+.join-us {
+    display: flex;
 }

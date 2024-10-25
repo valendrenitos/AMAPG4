@@ -17,8 +17,11 @@
                 Vous êtes déjà authentifié avec le login :
                 @Model.UserAccount.Email
             </h3>
-            @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
-            @Html.ActionLink("Accueil", "Index", "Home")
+            <div class="login-links">
+                @Html.ActionLink("Voulez-vous vous déconnecter ?", "Deconnexion")
+            </div>
+            <div class="login-links">
+            @Html.ActionLink("Accueil", "Index", "Home")</div>
         }
         else
         {
@@ -41,7 +44,7 @@
                     </div>
                     <input type="submit" value="Se connecter" />
                     <br />
-                    @Html.ActionLink("Créer un compte", "CreateIndividualAccount")
+                    <div class="login-links">@Html.ActionLink("Créer un compte", "CreateIndividualAccount")</div>
                 </fieldset>
             }
 
