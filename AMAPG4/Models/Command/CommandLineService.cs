@@ -70,6 +70,15 @@ namespace AMAPG4.Models.Command
             {
                 command.CommandType = CommandLineType.Paid;
                 command.DateTimeDelivered = GetDeliveryDate(command);
+                using (OrderLineDal orderLineDal = new OrderLineDal())
+                {
+                    List <OrderLine> orders = GetAllOrderLineFromCommand(command.CommandId);
+                    foreach (OrderLine orderLine in orders)
+                    {
+                        orderLine.orderLineType = OrderLineType.Paid;
+                        orderLine.DateTime= DateTime.Now;
+                    }
+                }
             }
             _bddContext.SaveChanges();
             
@@ -89,17 +98,8 @@ namespace AMAPG4.Models.Command
         public List<CommandLine> GetAllCommandFromUser(int UserId)
         {
          
-                List<CommandLine> Total = GetAllCommandLines();
-                List<CommandLine> AllFromUser = new List<CommandLine>();
-                foreach (CommandLine line in Total)
-                {
-                    if (line.UserId == UserId )
-                    {
-                        AllFromUser.Add(line);
-                    }
-         
-            }
-            return AllFromUser;
+
+            return _bddContext.CommandLines.Where(c=> c.UserId == UserId).ToList();
         }
         public List<OrderLine> GetAllOrderLineFromCommand(int CommandId)
         {

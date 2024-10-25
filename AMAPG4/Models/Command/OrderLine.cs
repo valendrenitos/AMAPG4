@@ -1,6 +1,7 @@
 
 ﻿using AMAPG4.Models.Catalog;
 using AMAPG4.Models.User;
+using System;
 using System.ComponentModel.DataAnnotations.Schema;
 
 
@@ -18,5 +19,6 @@ namespace AMAPG4.Models.Command
         public int UserAccountId { get; set; }
         public OrderLineType orderLineType { get; set; }
         public int CommandId { get; set; }
+        public DateTime DateTime { get; set; }
     }
 }

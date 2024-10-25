@@ -21,7 +21,7 @@ namespace AMAPG4.Controllers
         {
             _newProductService = new NewProductService();
         }
-
+        [Authorize]
         public IActionResult Index()
         {
             NewProductViewModel newProductViewModel = new NewProductViewModel();

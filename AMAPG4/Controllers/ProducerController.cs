@@ -9,13 +9,14 @@ using AMAPG4.Models.Command;
 using System.Collections.Generic;
 using AMAPG4.Models.Catalog;
 using Microsoft.AspNetCore.Authorization;
+using AMAPG4.Models;
 
 
 namespace AMAPG4.Controllers
 {
 	public class ProducerController : Controller
 	{
-
+        public MyDBContext _BddContext;
 		public ProducerDal _producerDal;
         public ProducerController()
         {
@@ -114,6 +115,15 @@ namespace AMAPG4.Controllers
                 return NotFound();
             }
             Console.WriteLine("Producer found");
+       
+            using (ProductDal productDal = new ProductDal())
+            {
+                List<Product> products = productDal.GetAllProductByProducer(model.Id);
+                foreach(Product product in products)
+                {
+                    productDal.DeleteProduct(product.Id);
+                }
+            }
             _producerDal.DeleteProducer(producer.Id);
             return RedirectToAction("Producers", "Dashboard");
         }
@@ -192,6 +202,31 @@ namespace AMAPG4.Controllers
             {
                 List<Product> products = productDal.GetAllProductByProducer(ProducerViewModel.Producers.Id);
                 ProducerViewModel.Products = products;
+                using(OrderLineDal orderLineDal = new OrderLineDal())
+                {
+
+              
+                foreach (Product product in products) {
+                    List<OrderLine> orders = orderLineDal.GetOrderLineByProduct(product.Id);
+                        product.TotalSales = 0;
+                        product.LastMonthSale = 0;
+                        TimeSpan time = new TimeSpan(30, 0, 0, 0);
+                        foreach (OrderLine orderLine in orders)
+                        {
+                            if (orderLine.orderLineType == OrderLineType.Paid)
+                            {
+                                product.TotalSales=orderLine.Quantity+product.TotalSales;
+                                if((orderLine.DateTime - DateTime.Now < time)) {
+                                    product.LastMonthSale=orderLine.Quantity+product.LastMonthSale;
+                                        
+
+                                }
+                            }
+                                
+                            
+                        }
+                        }
+                }
             }
 
 

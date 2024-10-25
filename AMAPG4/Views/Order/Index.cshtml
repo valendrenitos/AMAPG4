@@ -8,7 +8,16 @@
 
     Layout = "_layout";
 }
+<script>
+    document.addEventListener("DOMContentLoaded", function (event) {
+        var scrollpos = localStorage.getItem('scrollpos');
+        if (scrollpos) window.scrollTo(0, scrollpos);
+    });
 
+    window.onbeforeunload = function (e) {
+        localStorage.setItem('scrollpos', window.scrollY);
+    };
+</script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" href="~/css/styles.css" />
@@ -84,7 +93,7 @@
         </table>
 
             <div class="add-row-product-view ">
-                <a href="@Url.Action("Index", "Command")" class="btn-save">Payment</a>
+                <a href="@Url.Action("Index", "Command")" class="btn-save">Paiement</a>
               
                 </div>
             <div class="add-row-product-view ">

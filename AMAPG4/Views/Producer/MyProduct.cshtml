@@ -20,7 +20,8 @@
 
         <th>Prix</th>
         <th>Date Limite</th>
-     
+        <th> Vente les 30 derniers jours</th>
+                <th> Vente Total</th>
     </tr>
     </thead>
     <tbody>
@@ -34,7 +35,8 @@
 
             <td>@product.Price</td>
             <td>@product.LimitDate.ToShortDateString()</td>
-
+                    <td>@product.LastMonthSale</td>
+                    <td>@product.TotalSales</td>
         </tr>
     }
         </tbody>

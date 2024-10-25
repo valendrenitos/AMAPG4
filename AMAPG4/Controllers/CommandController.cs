@@ -25,7 +25,7 @@ namespace AMAPG4.Controllers
 
             }
             CommandViewModel.ListOrderline = orderLineDal.GetCurrentOrderLines(CommandViewModel.UserId, OrderLineType.Reserved);
-            int CommandId=CommandViewModel.ListOrderline[1].CommandId;
+            int CommandId=CommandViewModel.ListOrderline[0].CommandId;
           CommandViewModel.CommandId = CommandId;
         using (CommandLineService commandLine = new CommandLineService())
             {

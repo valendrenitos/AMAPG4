@@ -23,6 +23,8 @@ namespace AMAPG4.Models.Catalog
         public ProductType ProductType { get; set; }
         public string ImagePath { get; set; }
         public virtual Producer Producer { get; set; }
+        public int TotalSales { get; set; }
+        public int LastMonthSale { get; set; }
 
     }
 }

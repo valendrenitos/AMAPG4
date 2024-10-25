@@ -224,5 +224,9 @@ namespace AMAPG4.Models.Command
             return _bddContext.OrderLines.Include(od => od.Product).FirstOrDefault(orderline =>
                 (orderline.Id == id));
         }
-
-} }
+        public List<OrderLine> GetOrderLineByProduct(int id)
+        {
+            return _bddContext.OrderLines.Include(od => od.Product).Where(orderline =>
+                (orderline.Product.Id == id)).ToList();
+        }
+    } }
