@@ -75,6 +75,7 @@ namespace AMAPG4.Controllers
             {
                 Products = products,
                 status = StatusType.Success,
+                IsAuthenticated = HttpContext.User.Identity.IsAuthenticated,
             };
 
             return View("/Views/LaFerme/Baskets/Index.cshtml", viewModel);

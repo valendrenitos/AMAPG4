@@ -13,7 +13,7 @@ using System.Linq;
 
 namespace AMAPG4.Controllers
 {
-	[Authorize]
+
 	public class CatalogController : Microsoft.AspNetCore.Mvc.Controller
 	{
 		public MyDBContext _bddContext;
@@ -121,7 +121,9 @@ namespace AMAPG4.Controllers
 				Stock = product.Stock,
 				status = StatusType.Success,
 				ImagePath = product.ImagePath
-			};
+
+                IsAuthenticated = HttpContext.User.Identity.IsAuthenticated,
+            };
 
 
 			return View("/Views/LaFerme/Catalog/ProductView.cshtml", productViewModel);

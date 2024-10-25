@@ -77,7 +77,8 @@ namespace AMAPG4.Controllers
             ActivitiesViewModel viewModel = new ActivitiesViewModel
             {
                 Products = products,
-                status = StatusType.Success
+                status = StatusType.Success,
+                IsAuthenticated = HttpContext.User.Identity.IsAuthenticated,
             };
 
             return View("/Views/LaFerme/Activities/Index.cshtml", viewModel);
