@@ -2,6 +2,7 @@
 using AMAPG4.Models.Catalog;
 using AMAPG4.Models.User;
 using AMAPG4.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -56,7 +57,7 @@ namespace AMAPG4.Controllers
             return View(product);
         }
 
-        [HttpPost]
+        [Authorize][HttpPost]
         public IActionResult Index(NewProductViewModel newProductVM, IFormFile ProductImage)
         {
             // Récupère l'objet NewProduct depuis le ViewModel
