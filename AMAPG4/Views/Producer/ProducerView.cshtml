@@ -6,20 +6,22 @@
 	ViewBag.Title = "Détails des producteurs";
 	Layout = "_Layout";
 }
+<link rel="stylesheet" href="~/css/laFerme.css" />
+<link rel="stylesheet" href="~/css/styles.css" />
+<div class="product-detail-body">
+	<div class="product-container">
+		<img class="product-photo" src=" @Model.Producers.ImagePath" "  />
+		<div class="product-details">
+			<h2>@Model.Account.Name</h2>
 
-
-<div class="producer-container">
-	<img class="producer-photo" src="@Model.Producers.ImagePath" />
-
-	<div class="producer-details">
-		<h2>@Model.Account.Name</h2>
-		<p>@Model.Producers.Description</p>
+			<p class="product-view-description">@Model.Producers.Description</p>
 		@foreach (Product product in Model.Products)
 		{
-			<p>@product.ProductName</p>
+				<p class="product-view-available">@product.ProductName</p>
 		}
 	</div>
 
+</div>
 </div>
 <a href="@Url.Action("Index", "Producer")">Retour à la Liste des Producteurs</a>
 
