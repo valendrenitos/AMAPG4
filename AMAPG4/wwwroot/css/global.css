@@ -13,7 +13,7 @@ html, body {
 
 body {
     min-height: 100vh;
-    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),url('../images/bg04.png') no-repeat center center fixed;
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),url('../images/bg04.png') ;
 }
 
 body > *:not(footer) {

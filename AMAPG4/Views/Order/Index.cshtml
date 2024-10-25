@@ -19,7 +19,7 @@
 <h3>
     @if (Model.OrderLinesCurrent != null)
     {
-        <h2> Votre panier contient : </h2>
+            <h2 class="welcome-text"> Votre panier contient : </h2>
        
         
         <table class="table-product">
@@ -97,9 +97,9 @@ else
 
 
     }
-    <a href="@Url.Action("Index", "Catalog")" class="product-view-btn-add">Retourner au Catalogue</a>
+  
 
-        <div class="btn-save ">
+        <div class="btn-save">
 
             <a href="@Url.Action("Index", "Catalog")">Retourner au Catalogue</a>
         </div>
