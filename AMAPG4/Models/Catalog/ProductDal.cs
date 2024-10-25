@@ -240,7 +240,7 @@ namespace AMAPG4.Models.Catalog
         }
 
 
-        public void UpdateProduct(int id, string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType)
+        public void UpdateProduct(int id, string productName, string description, bool isAvailable, decimal price, int stock, DateTime limitDate, ProductType productType, string? imagePath = null)
         {
             Product product = _bddContext.Products.Find(id);
             if (product != null)
@@ -261,6 +261,10 @@ namespace AMAPG4.Models.Catalog
                 
                 product.LimitDate = limitDate;
                 product.ProductType = productType;
+                if (imagePath != null)
+                {
+                    product.ImagePath = imagePath;
+                }
                 _bddContext.SaveChanges();
             }
         }

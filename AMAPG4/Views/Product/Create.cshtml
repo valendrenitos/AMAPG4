@@ -3,21 +3,16 @@
 @model AMAPG4.Models.Catalog.Product
 
 @{
-    ViewBag.Title = "Modifier le Produit";
+    ViewBag.Title = "Créer un Produit";
     Layout = "_BackOfficeLayout";
 }
 
 <div class="user-profile-form-container">
     <div class="user-profile">
-        <div class="form-header">
-            <h1 class="bo-entity">Modifier le produit n° @Model.Id</h1>
-            <a href="@Url.Action("Read", "Product", new { id = Model.Id })" class="btn-action">Retour</a>
-        </div>
+        <h1 class="bo-entity">Créer un nouveau produit</h1>
 
-        @using (Html.BeginForm("Update", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("Create", "Product", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
-            @Html.HiddenFor(model => model.Id)
-
             <div class="user-info">
                 <label>Nom du produit :</label>
                 @Html.TextBoxFor(model => model.ProductName, new { @class = "form-control" })
@@ -30,37 +25,38 @@
 
             <div class="user-info">
                 <label>Prix :</label>
-                <input type="number" class="form-control" name="Price" step="0.01" value="@ViewBag.FormattedPrice" />
+                @Html.TextBoxFor(model => model.Price, new { @class = "form-control" })
             </div>
 
             <div class="user-info">
                 <label>Quantité en stock :</label>
-                @Html.TextBoxFor(model => model.Stock, new { @class = "form-control", type = "number", min = "0" })
+                @Html.TextBoxFor(model => model.Stock, new { @class = "form-control" })
             </div>
 
             <div class="user-info">
                 <label>Date limite :</label>
-                <input type="date" class="form-control" name="LimitDate" value="@ViewBag.FormattedLimitDate" />
+                @Html.TextBoxFor(model => model.LimitDate, new { @class = "form-control", type = "date" })
             </div>
 
             <div class="user-info">
                 <label>Type de produit :</label>
                 @Html.DropDownListFor(m => m.ProductType, new SelectList(Enum.GetValues(typeof(ProductType)).Cast<ProductType>().Select(e => new SelectListItem { Value = ((int)e).ToString(), Text = e.ToString() }), "Value", "Text"), "Sélectionnez un type", new { @class = "input-field" })
-                @Html.ValidationMessageFor(m => m.ProductType, "", new { @class = "error-message" })
+            </div>
+
+            <div class="user-info">
+                <label>Producteur :</label>
+                @Html.DropDownListFor(model => model.Producer.Id, new SelectList(ViewBag.Producers, "Id", "Account.Name"), "Sélectionnez un producteur", new { @class = "form-control" })
             </div>
 
             <div class="user-info">
                 <label>Image du produit :</label>
                 <input type="file" name="ProductImage" class="form-control" />
-                @if (!string.IsNullOrEmpty(Model.ImagePath))
-                {
-                    <p>Image actuelle : <img src="@Model.ImagePath" alt="@Model.ProductName" style="width: 100px; height: 100px;" /></p>
-                }
             </div>
 
             <div class="user-actions">
                 <button type="submit" class="btn-validate">Valider</button>
             </div>
         }
+
     </div>
 </div>
