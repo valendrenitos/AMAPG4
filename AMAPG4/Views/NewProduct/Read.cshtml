@@ -1,4 +1,5 @@
-﻿@model AMAPG4.Models.Catalog.NewProduct
+﻿@using AMAPG4.Models.Catalog
+@model AMAPG4.Models.Catalog.NewProduct
 
 @{
     ViewBag.Title = "Détails du Produit n° " + Model.Id;
@@ -7,7 +8,11 @@
 
 <div class="user-profile-form-container">
     <div class="user-profile">
-        <h1 class="bo-entity">Détails du Produit n° @Model.Id</h1>
+
+        <div class="form-header">
+            <h1 class="bo-entity">Détails du Produit n° @Model.Id</h1>
+            <a href="@Url.Action("NewProducts", "Dashboard")" class="btn-action">Retour aux produits</a>
+        </div>
 
         <!-- Affichage des informations du produit -->
         <div class="user-info">
@@ -47,26 +52,29 @@
 
         <div class="user-info">
             <label>Producteur :</label>
-            <span>@Model.Producer.Account.Name</span>
-        </div>
-        <div class="user-info">
-            <label>Image actuelle :</label>
-            <img src="@Model.ImagePath" alt="@Model.ProductName" width="200" />
+            <span>@Model.Producer?.Account.Name</span>
         </div>
 
-        <!-- Actions : Modifier, Valider, Rejeter et Retour -->
+        @if (!string.IsNullOrEmpty(Model.ImagePath))
+        {
+            <div class="user-info">
+                <label>Image actuelle :</label>
+                <img src="@Model.ImagePath" alt="@Model.ProductName" width="200" />
+            </div>
+        }
+
+        <!-- Actions : Modifier, Valider, Rejeter -->
         <div class="user-actions">
             <a href="@Url.Action("Update", "NewProduct", new { id = Model.Id })" class="btn-action btn-update">Modifier</a>
-
+            @if(Model.SubmissionStatus == SubmissionStatus.Pending){
             <form method="post" action="@Url.Action("Create", "NewProduct", new { id = Model.Id })" style="display:inline;">
                 <button type="submit" class="btn-action btn-validate">Valider</button>
-            </form>
+                </form>
+            }
 
-            <form method="post" action="@Url.Action("Reject", "NewProduct", new { id = Model.Id })" style="display:inline;">
-                <button type="submit" class="btn-action btn-reject">Rejeter</button>
+            <form method="post" action="@Url.Action("Refuse", "NewProduct", new { id = Model.Id })" style="display:inline;">
+                <button type="submit" class="btn-action btn-delete">Refuser</button>
             </form>
-
-            <a href="@Url.Action("Index", "Dashboard")" class="btn-action btn-return">Retour au tableau de bord</a>
         </div>
     </div>
 </div>

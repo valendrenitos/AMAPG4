@@ -13,7 +13,8 @@ html, body {
 
 body {
     min-height: 100vh;
-    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),url('../images/bg04.png') ;
+    background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6)),url('../images/bg04.png') no-repeat center center fixed;
+    background-size: 100% 100%;
 }
 
 body > *:not(footer) {
@@ -209,7 +210,7 @@ input[type="submit"] {
     font-size: 0.9rem;
 }
 
-input[type="text"], input[type="submit"], textarea, select {
+input[type="text"], input[type="submit"], input[type="password"], textarea, select {
     width: 100%;
     max-width: 100%;
     box-sizing: border-box;

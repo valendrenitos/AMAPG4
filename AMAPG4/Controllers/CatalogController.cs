@@ -123,6 +123,7 @@ namespace AMAPG4.Controllers
 				ImagePath = product.ImagePath,
 
                 IsAuthenticated = HttpContext.User.Identity.IsAuthenticated,
+				ImagePath = product.ImagePath
             };
 
 

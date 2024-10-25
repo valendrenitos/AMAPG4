@@ -1,47 +1,57 @@
 ﻿@model AMAPG4.Models.ContactForm.Contact
 
 @{
-    ViewBag.Title = "Détails du Contact";
+    ViewBag.Title = "Détails du formulaire de contact n° " + Model.Id;
     Layout = "_BackOfficeLayout";
 }
 
-<h1 class="bo-entity">Détails du formulaire de contact n°@Model.Id</h1>
+<div class="user-profile-form-container">
+    <div class="user-profile">
 
-<div class="user-profile">
-    <div class="user-info">
-        <label>Nom :</label>
-        <span>@Model.Name</span>
-    </div>
+        <div class="form-header">
+            <h1 class="bo-entity">Détails de la demande de contact n° @Model.Id</h1>
+            <a href="@Url.Action("PendingContacts", "Dashboard")" class="btn-action">Retour aux contacts</a>
+        </div>
 
-    <div class="user-info">
-        <label>Prénom :</label>
-        <span>@Model.FirstName</span>
-    </div>
+        <!-- Affichage des informations du contact -->
+        <div class="user-info">
+            <label>Nom :</label>
+            <span>@Model.Name</span>
+        </div>
 
-    <div class="user-info">
-        <label>Email :</label>
-        <span>@Model.Email</span>
-    </div>
+        <div class="user-info">
+            <label>Prénom :</label>
+            <span>@Model.FirstName</span>
+        </div>
 
-    <div class="user-info">
-        <label>Téléphone :</label>
-        <span>@Model.PhoneNumber</span>
-    </div>
+        <div class="user-info">
+            <label>Email :</label>
+            <span>@Model.Email</span>
+        </div>
 
-    <div class="user-info">
-        <label>Message :</label>
-        <span>@Model.Message</span>
-    </div>
+        <div class="user-info">
+            <label>Téléphone :</label>
+            <span>@Model.PhoneNumber</span>
+        </div>
 
-    <div class="user-info">
-        <label>Statut :</label>
-        <span>@Model.Status</span>
-    </div>
+        <div class="user-info">
+            <label>Message :</label>
+            <span>@Model.Message</span>
+        </div>
 
-    <div class="user-actions">
-        <a href="@Url.Action("Update", "Contact", new { id = Model.Id })" class="btn-save">Modifier</a>
-        <form method="post" action="@Url.Action("Delete", "Contact", new { id = Model.Id })" style="display:inline;">
-            <button type="submit" class="btn-delete">Supprimer</button>
-        </form>
+        <div class="user-info">
+            <label>Statut :</label>
+            <span>@Model.Status</span>
+        </div>
+
+        <!-- Actions : Modifier, Supprimer -->
+        <div class="user-actions">
+            <form method="post" action="@Url.Action("ChangeStatus", "Contact", new { id = Model.Id })" style="display:inline;">
+                <button type="submit" class="btn-action btn-update">Traité</button>
+            </form>
+            <form method="post" action="@Url.Action("Delete", "Contact", new { id = Model.Id })" style="display:inline;">
+                <button type="submit" class="btn-action btn-delete">Supprimer</button>
+            </form>
+        </div>
     </div>
 </div>

@@ -5,8 +5,9 @@
     Layout = "_BackOfficeLayout";
 }
 
-<div class="back-office-entity-category">
-    <div class="category-block">
+<div class="dashboard-container">
+
+<div class="dashboard-block">
 
         <div class="section-header">
             <h2 class="section-title">Comités d'Entreprise</h2>
@@ -35,6 +36,7 @@
                             <td>@ce.Account.Phone</td>
                             <td>@ce.NumberOfEmployees</td>
                             <td class="td-btn-actions">
+                                <a href="@Url.Action("Read", "CE", new { id = ce.Id })" class="btn-action btn-read">Voir</a>
                                 <a href="@Url.Action("Update", "CE", new { id = ce.Id })" class="btn-action btn-update">Modifier</a>
                                 <form method="post" action="@Url.Action("Delete", "Producer", new { id = ce.Id })">
                                     <button type="submit" class="btn-action btn-delete">Supprimer</button></form>

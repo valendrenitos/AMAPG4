@@ -9,9 +9,8 @@
     <!-- Bloc pour les nouveaux produits -->
     <div class="dashboard-block">
         <div class="section-header">
-            <h2 class="section-title">Nouveaux Produits</h2>
-            <!-- Lien pour ajouter un nouveau produit si nécessaire -->
-            <a href="@Url.Action("Create", "NewProduct")" class="btn-action btn-add">Ajouter un produit</a>
+            <h2 class="section-title">Nouveaux produits à valider</h2>
+            
         </div>
 
         <div class="table-container">
@@ -22,6 +21,7 @@
                         <th>Description</th>
                         <th>Prix</th>
                         <th>Stock</th>
+                        <th>Type de produit</th>
                         <th>Date limite</th>
                         <th>Producteur</th>
                         <th>Statut de soumission</th>
@@ -36,14 +36,96 @@
                             <td>@product.Description</td>
                             <td>@product.Price.ToString("C2")</td>
                             <td>@product.Stock</td>
+
+                            <td>
+                                @switch (product.ProductType)
+                                {
+                                    case ProductType.Basket:
+                                        @:Panier
+                                        break;
+                                    case ProductType.Unitary:
+                                        @:À l'unité
+                                        break;
+                                    default:
+                                        @product.ProductType.ToString()
+                                        break;
+                                }
+                            </td>
+
                             <td>@product.LimitDate.ToShortDateString()</td>
                             <td>@product.Producer.Account.Name</td>
                             <td>@product.SubmissionStatus.ToString()</td>
-                            <td>@product.ProductType</td>
+
                             <td class="td-btn-actions">
-                                <a href="@Url.Action("Update", "NewProduct", new { id = product.Id })" class="btn-action btn-update">Modifier</a>
-                                <a href="@Url.Action("Validate", "NewProduct", new { id = product.Id })" class="btn-action btn-save">Valider</a>
-                                <a href="@Url.Action("Reject", "NewProduct", new { id = product.Id })" class="btn-action btn-delete">Rejeter</a>
+                                <a href="@Url.Action("Read", "NewProduct", new { id = product.Id })" class="btn-action btn-read">Voir</a>
+                                <form method="post" action="@Url.Action("Create", "NewProduct", new { id = product.Id })" style="display:inline;">
+                                    <button type="submit" class="btn-action btn-validate">Valider</button>
+                                </form>
+                                <form method="post" action="@Url.Action("Refuse", "NewProduct", new { id = product.Id })" style="display:inline;">
+                                    <button type="submit" class="btn-action btn-delete">Refuser</button>
+                                </form>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="dashboard-block">
+        <div class="section-header">
+            <h2 class="section-title">Produits refusés</h2>
+
+        </div>
+
+        <div class="table-container">
+            <table class="dashboard-table">
+                <thead>
+                    <tr>
+                        <th>Nom du produit</th>
+                        <th>Description</th>
+                        <th>Prix</th>
+                        <th>Stock</th>
+                        <th>Type de produit</th>
+                        <th>Date limite</th>
+                        <th>Producteur</th>
+                        
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (NewProduct product in Model.RefusedProducts)
+                    {
+                        <tr>
+                            <td>@product.ProductName</td>
+                            <td>@product.Description</td>
+                            <td>@product.Price.ToString("C2")</td>
+                            <td>@product.Stock</td>
+
+                            <td>
+                                @switch (product.ProductType)
+                                {
+                                    case ProductType.Basket:
+                                        @:Panier
+                                        break;
+                                    case ProductType.Unitary:
+                                        @:À l'unité
+                                        break;
+                                    default:
+                                        @product.ProductType.ToString()
+                                        break;
+                                }
+                            </td>
+
+                            <td>@product.LimitDate.ToShortDateString()</td>
+                            <td>@product.Producer.Account.Name</td>
+                          
+
+                            <td class="td-btn-actions">
+                                <a href="@Url.Action("Read", "NewProduct", new { id = product.Id })" class="btn-action btn-read">Voir</a>
+                                <form method="post" action="@Url.Action("Delete", "NewProduct", new { id = product.Id })" style="display:inline;">
+                                    <button type="submit" class="btn-action btn-delete">Supprimer</button>
+                                </form>
                             </td>
                         </tr>
                     }

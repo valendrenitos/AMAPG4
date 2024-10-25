@@ -8,7 +8,7 @@
 
 <div class="user-profile-form-container">
     <div class="user-profile">
-        <h1 class="bo-entity">Créer un nouvel Individu</h1>
+        <h1 class="bo-entity">Créer un nouvel Adhérent</h1>
 
         @using (Html.BeginForm("Create", "Individual", FormMethod.Post))
         {
@@ -64,10 +64,11 @@
             </div>
 
             <div class="user-actions">
-                <button type="submit" class="btn-save">Créer</button>
+                <button type="submit" class="btn-validate">Valider</button>
+                <a href="@Url.Action("Individuals", "Dashboard")" class="btn-action btn-delete">Annuler</a>
             </div>
         }
     </div>
 </div>
 
-<a href="@Url.Action("Index", "Dashboard")">Retour au tableau de bord</a>
+
