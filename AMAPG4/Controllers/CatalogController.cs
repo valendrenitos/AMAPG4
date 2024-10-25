@@ -120,9 +120,9 @@ namespace AMAPG4.Controllers
 				IsAvailable = product.IsAvailable,
 				Stock = product.Stock,
 				status = StatusType.Success,
-				ImagePath = product.ImagePath
 
                 IsAuthenticated = HttpContext.User.Identity.IsAuthenticated,
+				ImagePath = product.ImagePath
             };
 
 
