@@ -3,30 +3,21 @@
 	ViewBag.Title = "Acceuil";
 	Layout = "_layout";
 }
+@section Styles {
 
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Page d'accueil</title>
-	<link rel="stylesheet" href="/css/global.css">
-	<link rel="stylesheet" href="/css/styles.css">
+	<link rel="stylesheet" href="~/css/styles.css" />
+}
 
-	<main>  
+<main>
+    @if (ViewBag.Message != null)
+    {
+        <p>@ViewBag.Message</p>
+    }
 		<div class="home-body">
 
 			<div class="welcome-text">
-				@if (User.IsInRole("Admin"))
-				{
-					<p>Bienvenue, Administrateur!</p>
-				}
-				@if (User.IsInRole("Manager"))
-				{
-					<p>Bienvenue, Manager!</p>
-				}
-				@if (User.IsInRole("Utilisateur"))
-				{
-					<p>Bienvenue, Utilisateur!</p>
-				}
-
+		
+			
 				<h2>Bienvenue à l'AMAP Mon Panier Paysan ! </h2>
 				<p>Envie de produits frais, bio et de saison ? Envie d’aider les productrices et producteurs locaux à développer un mode de production respectueux de l’environnement, 
 				tout en les rémunérant à un juste prix ? <br />

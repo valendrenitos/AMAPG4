@@ -2,12 +2,14 @@
 using AMAPG4.Models.ContactForm;
 using AMAPG4.Models.User;
 using AMAPG4.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace AMAPG4.Controllers
 {
+    [Authorize(Roles = "Admin,Manager")]
     public class DashboardController : Microsoft.AspNetCore.Mvc.Controller
     {
       
@@ -48,7 +50,7 @@ namespace AMAPG4.Controllers
             
         }
 
-
+        [Authorize(Roles = "Admin")]
         public IActionResult Individuals()
         {
             DashboardViewModel dashboardVM = new DashboardViewModel();
@@ -58,6 +60,7 @@ namespace AMAPG4.Controllers
             }
             return View(dashboardVM);
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult Producers()
         {
             DashboardViewModel dashboardVM = new DashboardViewModel();
@@ -67,6 +70,7 @@ namespace AMAPG4.Controllers
             }
             return View(dashboardVM);
         }
+        [Authorize(Roles = "Admin")]
         public IActionResult CEs()
         {
             DashboardViewModel dashboardVM = new DashboardViewModel();

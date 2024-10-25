@@ -26,10 +26,17 @@ namespace AMAPG4.Controllers
         {
             NewProductViewModel newProductViewModel = new NewProductViewModel();
 
-            // Récupérer l'ID de l'utilisateur connecté
-            using (UserAccountDal userAccountDal = new UserAccountDal())
+			//Vérifier si l'utilisateur est connecté
+			if (!HttpContext.User.Identity.IsAuthenticated)
+			{
+				ViewBag.Message = "Vous devez être connecté en tant que producteur pour pouvoir proposer un produit.";
+				return RedirectToAction("Index", "Home");
+			}
+			// Récupérer l'ID de l'utilisateur connecté
+			using (UserAccountDal userAccountDal = new UserAccountDal())
             {
                 UserAccount userAccount = userAccountDal.GetUserAccount(HttpContext.User.Identity.Name);
+
                 if (userAccount != null)
                 {
                     using (ProducerDal producerDal = new ProducerDal())
@@ -39,14 +46,24 @@ namespace AMAPG4.Controllers
                         {
                             newProductViewModel.ProducerId = producer.Id;
                         }
+                        else
+                        {
+                            ViewBag.Message = "Vous devez être connecté en tant que producteur pour pouvoir proposer un produit.";
+                            return RedirectToAction("Index", "Home");
+                        }
                     }
+                }
+                else
+                {
+                    ViewBag.Message = "Vous devez être connecté en tant que producteur pour pouvoir proposer un produit.";
+                    return RedirectToAction("Index", "Home");
                 }
             }
 
             return View(newProductViewModel);
         }
-
-        [HttpGet]
+		[Authorize(Roles = "Admin,Manager")]
+		[HttpGet]
         public IActionResult Read(int id)
         {
             NewProduct product = _newProductService.GetNewProductById(id);
@@ -60,8 +77,14 @@ namespace AMAPG4.Controllers
         [Authorize][HttpPost]
         public IActionResult Index(NewProductViewModel newProductVM, IFormFile ProductImage)
         {
-            // Récupère l'objet NewProduct depuis le ViewModel
-            NewProduct newProduct = newProductVM.NewProduct;
+			//Vérifier si l'utilisateur est connecté
+			if (!HttpContext.User.Identity.IsAuthenticated)
+			{
+				ViewBag.Message = "Vous devez être connecté en tant que producteur pour pouvoir proposer un produit.";
+				return RedirectToAction("Index", "Home");
+			}
+			// Récupère l'objet NewProduct depuis le ViewModel
+			NewProduct newProduct = newProductVM.NewProduct;
 
             if (ModelState.IsValid)
             {
@@ -104,10 +127,8 @@ namespace AMAPG4.Controllers
             return View(newProductVM);
         }
 
-
-
-
-        [HttpPost]
+		[Authorize(Roles = "Admin,Manager")]
+		[HttpPost]
         public IActionResult Create(int id)
         {
             NewProduct newProduct = _newProductService.GetNewProductById(id);
@@ -137,14 +158,17 @@ namespace AMAPG4.Controllers
 
             return RedirectToAction("Read", "Product", new { id = newId });
         }
-        [HttpPost]
+
+		[Authorize(Roles = "Admin,Manager")]
+		[HttpPost]
         public IActionResult Refuse(int id)
         {
             _newProductService.UpdateNewProduct(id, SubmissionStatus.Rejected);
             return RedirectToAction("NewProducts", "Dashboard");
         }
 
-        [HttpPost]
+		[Authorize(Roles = "Admin,Manager")]
+		[HttpPost]
         public IActionResult Delete(int id)
         {
             _newProductService.DeleteNewProduct(id);

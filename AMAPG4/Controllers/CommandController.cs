@@ -7,9 +7,11 @@ using System.Xml.Schema;
 using System;
 using System.Linq;
 using AMAPG4.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AMAPG4.Controllers
 {
+    [Authorize]
     public class CommandController : Controller
     {
         public IActionResult Index()

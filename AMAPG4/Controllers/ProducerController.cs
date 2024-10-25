@@ -8,6 +8,7 @@ using AMAPG4.ViewModels;
 using AMAPG4.Models.Command;
 using System.Collections.Generic;
 using AMAPG4.Models.Catalog;
+using Microsoft.AspNetCore.Authorization;
 
 
 namespace AMAPG4.Controllers
@@ -59,9 +60,9 @@ namespace AMAPG4.Controllers
             return View(model);
 		}
 
-
-        // Action pour afficher le formulaire de mise à jour d'un producteur
-        [HttpGet]
+		[Authorize(Roles = "Admin")]
+		// Action pour afficher le formulaire de mise à jour d'un producteur
+		[HttpGet]
         public IActionResult Update(int id)
         {
             Producer producer = _producerDal.GetProducerById(id);
@@ -72,7 +73,7 @@ namespace AMAPG4.Controllers
 
             return View(producer);
         }
-
+        [Authorize(Roles = "Admin")]
         // Action pour mettre à jour un producteur
         [HttpPost]
         public IActionResult Update(Producer model)
@@ -100,7 +101,7 @@ namespace AMAPG4.Controllers
             }
             return RedirectToAction("Read", new { id = model.Id });
         }
-
+        [Authorize(Roles = "Admin")]
         // Action pour supprimer un producteur
         [HttpPost]
         public IActionResult Delete(Producer model)
@@ -116,15 +117,15 @@ namespace AMAPG4.Controllers
             _producerDal.DeleteProducer(producer.Id);
             return RedirectToAction("Producers", "Dashboard");
         }
-
+        [Authorize(Roles = "Admin")]
         // Action pour créer un nouveau producteur
         [HttpGet]
         public IActionResult Create()
         {
             return View();
         }
-
-        [HttpPost]
+		[Authorize(Roles = "Admin")]
+		[HttpPost]
         public IActionResult Create(Producer model)
         {
             foreach (string key in ModelState.Keys.ToList())
@@ -159,7 +160,7 @@ namespace AMAPG4.Controllers
             }
             return View(model);
         }
-
+        [Authorize(Roles = "Admin")]
         // Action pour lire les détails d'un producteur
         [HttpGet]
         public IActionResult Read(int id)

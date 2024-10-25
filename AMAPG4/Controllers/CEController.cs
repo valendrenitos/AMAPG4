@@ -1,8 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using AMAPG4.Models.User;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AMAPG4.Controllers
 {
+    [Authorize(Roles ="Admin")]
     public class CEController : Controller
     {
         private readonly CEDal _ceDal;

@@ -84,23 +84,25 @@ namespace AMAPG4.Controllers
         {
             return View();
         }
+
         [HttpPost]
         public IActionResult CreateIndividualAccount(CreateUserAccountViewModel createUserAccountViewModel)
         {
-                 
-        
-                                
+
+                                                              
                 if (ModelState.IsValid)
             {
-       
+ 
                 using (IndividualDal individualDal = new IndividualDal())
                 {
-              
+                  
+
                     // Validation  
                     if (createUserAccountViewModel.UserAccount.Password != createUserAccountViewModel.ConfirmPassword)
                     {
                         ModelState.AddModelError("ConfirmPassword", "Les mots de passe ne correspondent pas.");
                     }
+
                    
                     // Vérifier si l'email existe déjà  
                     //if (_bddContext.UserAccounts.Any(u => u.Email == email))  
@@ -109,6 +111,7 @@ namespace AMAPG4.Controllers
                     //}  
           
                     int id = individualDal.CreateIndividual(
+
                         createUserAccountViewModel.Individual.FirstName,
                         DateTime.Now,
                         true,
@@ -118,11 +121,13 @@ namespace AMAPG4.Controllers
                         createUserAccountViewModel.UserAccount.Name,
                         createUserAccountViewModel.UserAccount.Address,
                         createUserAccountViewModel.UserAccount.Phone);
-                    
+
+      
                     return Redirect("/Login/Index");
                 }
             }
-        
+     
+
             return View();
         }
 

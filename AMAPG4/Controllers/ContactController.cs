@@ -2,6 +2,7 @@
 using AMAPG4.Models.ContactForm;
 using System.Collections.Generic;
 using AMAPG4.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 
 namespace AMAPG4.Controllers
 {
@@ -13,7 +14,7 @@ namespace AMAPG4.Controllers
         {
             _contactService = new ContactService();
         }
-
+        [Authorize(Roles = "Admin,Manager")]
         public IActionResult Read(int id)
         {
             Contact contact = _contactService.GetContactById(id);
@@ -23,7 +24,7 @@ namespace AMAPG4.Controllers
             }
             return View(contact);
         }
-
+        [Authorize(Roles = "Admin,Manager")]
         public IActionResult PendingContacts()
         {
             ContactViewModel contactVM = new ContactViewModel();
@@ -31,6 +32,7 @@ namespace AMAPG4.Controllers
             contactVM.Status = ContactStatus.Pending;
             return View("Contacts", contactVM);
         }
+        [Authorize(Roles = "Admin,Manager")]
         public IActionResult DoneContacts()
         {
             ContactViewModel contactVM = new ContactViewModel();
@@ -61,6 +63,7 @@ namespace AMAPG4.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPost]
         public IActionResult Delete(int id)
         {
@@ -68,6 +71,7 @@ namespace AMAPG4.Controllers
             return RedirectToAction("Contacts", "Dashboard");
         }
 
+        [Authorize(Roles = "Admin,Manager")]
         [HttpPost]
         public IActionResult ChangeStatus(int id)
         {
