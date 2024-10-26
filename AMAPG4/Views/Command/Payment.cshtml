@@ -47,9 +47,16 @@
     </div>
     </div>
 }
+else if (Model.status == AMAPG4.Models.StatusType.Success && Model.CommandLine.CommandType==AMAPG4.Models.Command.CommandLineType.Contribution)
+{
+    <h2 class="welcome-text">Votre contribution à bien été enregistrée ! </h2>
+    <div class="add-row-product-view ">
+        <div>@Html.ActionLink("Retourner à la connexion", "Index", "Login", null, new { @class = "return-catalog" })</div>
+    </div>
+}
 else if (Model.status == AMAPG4.Models.StatusType.Success)
 {
-    <h2 class="welcome-text">La commande a été effectué ! Vous pourrez venir chercher votre commande le Vendredi @Model.CommandLine.DateTimeDelivered.Day @Model.CommandLine.DateTimeDelivered.ToString("MMMM") !</h2>
+    <h2 class="welcome-text">Merci pour votre commande ! Vous pourrez venir la chercher aux locaux de l'AMAP le Vendredi @Model.CommandLine.DateTimeDelivered.Day @Model.CommandLine.DateTimeDelivered.ToString("MMMM") !</h2>
     <div class="add-row-product-view ">
         <div>@Html.ActionLink("Retourner à l'accueil", "Index", "Home", null, new { @class = "return-catalog" })</div>
     </div>

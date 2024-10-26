@@ -1,4 +1,5 @@
-﻿using AMAPG4.Models.User;
+﻿using AMAPG4.Models.Command;
+using AMAPG4.Models.User;
 using AMAPG4.ViewModels;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
@@ -82,7 +83,9 @@ namespace AMAPG4.Controllers
 
         public IActionResult CreateIndividualAccount()
         {
-            return View();
+            ModelState.Clear();
+
+			return View();
         }
 
         [HttpPost]
@@ -114,17 +117,29 @@ namespace AMAPG4.Controllers
 
                         createUserAccountViewModel.Individual.FirstName,
                         DateTime.Now,
-                        true,
+                        false,
                         createUserAccountViewModel.Individual.IsVolunteer,
                         createUserAccountViewModel.UserAccount.Email,
                         createUserAccountViewModel.UserAccount.Password,
                         createUserAccountViewModel.UserAccount.Name,
                         createUserAccountViewModel.UserAccount.Address,
                         createUserAccountViewModel.UserAccount.Phone);
+					CommandViewModel commandViewModel = new CommandViewModel();
+                    OrderLineDal orderLineDal = new OrderLineDal();
+                    
+                        Individual Indie =individualDal.GetIndividualById(id);
+                        Console.WriteLine(Indie.Account.Id);
+						OrderLine orderline= orderLineDal.CreateContribution(Indie.Account.Id);
+                        commandViewModel.CommandId = orderline.CommandId;
+                        commandViewModel.CommandType = CommandLineType.Contribution;
+                        commandViewModel.UserId = Indie.Account.Id;
+                    
+                   
+                  
 
-      
-                    return Redirect("/Login/Index");
-                }
+           
+                    return RedirectToAction("Payment", "Command", commandViewModel);
+				}
             }
      
 

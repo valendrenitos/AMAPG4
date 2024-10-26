@@ -5,6 +5,7 @@
         In_Progress,
         Paid,
         Delivered,
+        Contribution
 
     }
 }

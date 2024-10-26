@@ -4,5 +4,6 @@
     {
         Reserved,
          Paid,
+         Contribution
     }
 }

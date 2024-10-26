@@ -112,6 +112,12 @@ namespace AMAPG4.Models.User
             CreateIndividual("Isabelle", DateTime.Now.AddMonths(-3), false, false, "isabelle.dubois@exemple.com", "DuboisPassword321!", "Dubois", "8 Chemin des Violettes, 13006 Marseille", "0644556677");
             
         }
+        public void UpdateContribition(int id)
+        {
+            Individual Indie = GetIndividualByUserAccount(id);
+            Indie.IsContributionPaid = true;
+            _bddContext.SaveChanges();
+        }
 
     }
 

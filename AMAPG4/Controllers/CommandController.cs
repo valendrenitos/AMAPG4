@@ -11,9 +11,11 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace AMAPG4.Controllers
 {
-    [Authorize]
+
     public class CommandController : Controller
+        
     {
+        MyDBContext _bddContext;
         public IActionResult Index()
         {
             OrderLineDal orderLineDal = new OrderLineDal();
@@ -94,17 +96,27 @@ namespace AMAPG4.Controllers
             // INTEGRER UNE API ICI
             
         Console.Write(commandViewModel.CommandId);
-            
+            Console.Write(commandViewModel.CommandType);
             OrderLineDal orderLineDal = new OrderLineDal();
-    
+			using (UserAccountDal userAccountDal = new UserAccountDal())
+			{
+				if (userAccountDal.GetUserAccount(HttpContext.User.Identity.Name) != null)
+                 {
+			
+					commandViewModel.UserId = userAccountDal.GetUserAccount(HttpContext.User.Identity.Name).Id;
 
-            using (UserAccountDal userAccountDal = new UserAccountDal())
-            {
-                commandViewModel.UserId = userAccountDal.GetUserAccount(HttpContext.User.Identity.Name).Id;
-
-            }
+				}
+			}
+   
             commandViewModel.ListOrderline = orderLineDal.GetCurrentOrderLines(commandViewModel.UserId, OrderLineType.Reserved);
-
+            if (commandViewModel.ListOrderline == null)
+            {
+                commandViewModel.ListOrderline = orderLineDal.GetCurrentOrderLines(commandViewModel.UserId, OrderLineType.Contribution);
+                if (commandViewModel.ListOrderline == null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+            }
             foreach (OrderLine orderline in commandViewModel.ListOrderline)
             {
                 commandViewModel.CommandId = orderline.CommandId;
@@ -113,6 +125,8 @@ namespace AMAPG4.Controllers
             using (CommandLineService commandLineService = new CommandLineService())
             {
                 paymentViewModel.CommandLine = commandLineService.GetAllCommandLines().FirstOrDefault(c => c.CommandId == commandViewModel.CommandId);
+                Console.WriteLine(paymentViewModel.CommandLine.CommandId);
+                Console.WriteLine(paymentViewModel.CommandLine.CommandType);
             }
             paymentViewModel.IsConfirmed = false;
             paymentViewModel.status = StatusType.Waiting;
@@ -123,18 +137,34 @@ namespace AMAPG4.Controllers
         public IActionResult Payment(PaymentViewModel paymentViewModel)
         {
             // INTEGRER UNE API ICI
-         
+
             if (paymentViewModel.CardNum == "1111111111111111") // Numero de carte pour EXPEMPLE SEULEMENT
             {
-                Console.WriteLine(paymentViewModel.CommandId);
+                
                 using (CommandLineService commandLineService = new CommandLineService())
                 {
+                    paymentViewModel.CommandLine = commandLineService.GetAllCommandLines().FirstOrDefault(c => c.CommandId == paymentViewModel.CommandId);
+                    Console.WriteLine(paymentViewModel.CommandLine.CommandId);
+                    Console.WriteLine(paymentViewModel.CommandLine.CommandType);
+                    if (paymentViewModel.CommandLine.CommandType == CommandLineType.Contribution)
+                    {
+                        int id = paymentViewModel.CommandLine.UserId;
+                        using (IndividualDal userAccountDal = new IndividualDal())
+                        {
+                           userAccountDal.UpdateContribition(id);
+           
+                        }
+
+                    }
+                    else
+                    {
+                        commandLineService.UpdateCommandLine(paymentViewModel.CommandId, CommandLineType.Paid);
+                    }
                     
-                    commandLineService.UpdateCommandLine(paymentViewModel.CommandId, CommandLineType.Paid);
                     paymentViewModel.CommandLine = commandLineService.GetAllCommandLines().FirstOrDefault(c => c.CommandId == paymentViewModel.CommandId);
                     paymentViewModel.status = StatusType.Success;
                     
-                    Console.Write(55);
+                  
                 }
             }
             else

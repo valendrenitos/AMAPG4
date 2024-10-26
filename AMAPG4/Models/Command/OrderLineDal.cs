@@ -229,4 +229,27 @@ namespace AMAPG4.Models.Command
             return _bddContext.OrderLines.Include(od => od.Product).Where(orderline =>
                 (orderline.Product.Id == id)).ToList();
         }
+        public OrderLine CreateContribution(int id)
+        {
+            Console.Write(id);
+			int TempCommandId = GenerateCommandNumber(id);
+			OrderLine orderLine = new OrderLine()
+
+			{
+				Product = null,
+				UserAccountId = id,
+				Quantity = 1,
+				Total = 15,
+				orderLineType = OrderLineType.Contribution,
+				CommandId = TempCommandId,
+			};
+			_bddContext.OrderLines.Add(orderLine);
+			CommandLineService commandLineService = new CommandLineService();
+			commandLineService.CreateCommandContribution(orderLine.Total, orderLine.CommandId, orderLine.UserAccountId);
+
+
+            _bddContext.SaveChanges();
+
+			return orderLine;
+        }
     } }

@@ -141,6 +141,24 @@ namespace AMAPG4.Models.Command
             command.Total = total;
             _bddContext.SaveChanges();
         }
+        public void CreateCommandContribution(decimal Total, int CommandId, int UserId)
+        {
+           
+            
+           
+                    CommandLine commandLine = new CommandLine()
+
+                    {
+                        Total = Total,
+                        UserId = UserId,
+                        CommandType = CommandLineType.Contribution,
+                        CommandId = CommandId,
+                        DateTimeOrdered = DateTime.Now
+                    };
+                    _bddContext.CommandLines.Add(commandLine);
+            _bddContext.SaveChanges();
+                
+            }
 
     }
 }
