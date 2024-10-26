@@ -17,13 +17,15 @@
 			<p class="product-view-description">@Model.Producers.Description</p>
 		@foreach (Product product in Model.Products)
 		{
-				<p class="product-view-available">@product.ProductName</p>
+				<p>@Html.ActionLink(product.ProductName, "ProductView", "Catalog",new {id= product.Id})</p>
+			
 		}
 	</div>
 
 </div>
+	<div>@Html.ActionLink("Retour à la Liste des Producteurs", "Index", "Producer", null, new { @class = "return-catalog" })</div>
 </div>
-<a href="@Url.Action("Index", "Producer")">Retour à la Liste des Producteurs</a>
+
 
 
 

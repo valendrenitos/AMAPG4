@@ -33,7 +33,7 @@ namespace AMAPG4.Models.Command
         public void CreateCommandLine(decimal Total, int CommandId, int UserId)
         {
             CommandLine command = _bddContext.CommandLines.FirstOrDefault(c => c.CommandId == CommandId);
-            if (command == null)
+            if (command == null || command.CommandType!=CommandLineType.In_Progress)
             {
                 CommandLine commandLine = new CommandLine()
 

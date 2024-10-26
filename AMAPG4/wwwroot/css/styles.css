@@ -118,10 +118,7 @@
 
 /*Right side - producer*/
 .producer-container {
-    width: 80%;
-    display: flex;
-    margin: 0.6rem 1rem 3rem 1rem;
-    justify-content: center;
+
 }
 
 .producer-card {
@@ -166,7 +163,12 @@
 /***********************STYLES FOR PRODUCERS VIEW*******************/
 /*******************************************************************/
 .producer-container {
+    width: 80%;
     display: flex;
+    margin: 0.8rem 1rem 3rem 10rem;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    min-height: 300px
 }
 
 .producer-photo {

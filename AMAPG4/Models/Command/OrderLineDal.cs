@@ -138,14 +138,15 @@ namespace AMAPG4.Models.Command
             
             OrderLine orderLine = new OrderLine();
             // Cas ou une commande est en cours
-            if (_bddContext.OrderLines.Contains(new OrderLine { orderLineType = OrderLineType.Reserved , UserAccountId = useraccountId}))
+            if (_bddContext.OrderLines.FirstOrDefault(orderline =>
+                (orderline.orderLineType == OrderLineType.Reserved) && (orderline.UserAccountId == useraccountId)) != null )
             {
                 OrderLine orderline = _bddContext.OrderLines.FirstOrDefault(orderline =>
                 (orderline.orderLineType == OrderLineType.Reserved) && (orderline.UserAccountId == useraccountId));
                 CommandNumber = orderline.CommandId;
             }
             // Cas ou il n'y a jamais eu de commande
-            else if (!_bddContext.OrderLines.Contains(new OrderLine { orderLineType = OrderLineType.Paid, UserAccountId = useraccountId }))
+            else if (_bddContext.OrderLines.FirstOrDefault(o => (o.orderLineType == OrderLineType.Paid) && (o.UserAccountId == useraccountId)) == null)
             {
                 CommandNumber = useraccountId * 1000000 + 1;
             }
