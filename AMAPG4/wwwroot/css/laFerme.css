@@ -191,6 +191,10 @@
     margin: 16rem 3rem 16rem 2rem;
 }
 
+#product-container {
+    border-radius: 3rem;
+}
+
 .product-detail-body .product-container .product-details .product-view-btn-add {
     background-color: #a1cf59;
     color: white;
@@ -208,6 +212,10 @@
     font-size: 1.4rem;
     text-decoration: none;
     margin-bottom: 2rem;
+}
+
+.return-producers {
+    text-align:center;
 }
 
 .product-view-price,

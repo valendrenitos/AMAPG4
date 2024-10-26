@@ -3,27 +3,40 @@
 @model AMAPG4.ViewModels.ProducerViewModel
 
 @{
-	ViewBag.Title = "Détails des producteurs";
-	Layout = "_Layout";
+    ViewBag.Title = "Détails des producteurs";
+    Layout = "_Layout";
 }
+
 <link rel="stylesheet" href="~/css/laFerme.css" />
 <link rel="stylesheet" href="~/css/styles.css" />
+
+<!-- Main container for the product details -->
 <div class="product-detail-body">
-	<div class="product-container">
-		<img class="product-photo" src=" @Model.Producers.ImagePath" "  />
-		<div class="product-details">
-			<h2>@Model.Account.Name</h2>
+    <div class="product-container" id="product-container">
 
-			<p class="product-view-description">@Model.Producers.Description</p>
-		@foreach (Product product in Model.Products)
-		{
-				<p class="product-view-available">@product.ProductName</p>
-		}
-	</div>
+        <!-- Display the producer's photo, using the image path from the model's Producers object -->
+        <img class="product-photo" src=" @Model.Producers.ImagePath" />
 
+        <!-- Container for producer details -->
+        <div class="product-details">
+
+            <!-- Display the producer's name using the Account model's Name property -->
+            <h2>@Model.Account.Name</h2>
+
+            <!-- Display the producer's description -->
+            <p class="product-view-description">@Model.Producers.Description</p>
+
+            <!-- Loop through the list of products and display each product's name -->
+            @foreach (Product product in Model.Products)
+            {
+                <p class="product-view-available">@product.ProductName</p>
+            }
+        </div>
+
+    </div>
 </div>
+
+<!-- Link to return to the main list of producers, styled with a custom CSS class -->
+<div class="return-producers">
+    @Html.ActionLink("Retour à la Liste des Producteurs", "Index", "Producer", null, new { @class = "return-catalog" })
 </div>
-<a href="@Url.Action("Index", "Producer")">Retour à la Liste des Producteurs</a>
-
-
-

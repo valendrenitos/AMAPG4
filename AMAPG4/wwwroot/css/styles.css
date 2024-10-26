@@ -3,7 +3,7 @@
 /*******************************************************************/
 .user-profile {
     width: 60%;
-    margin: auto;
+    margin: 2rem auto;
     background-color: #f9f9f9;
     padding: 20px;
     border-radius: 10px;
@@ -118,8 +118,9 @@
 
 /*Right side - producer*/
 .producer-container {
-    width: 80%;
+    width: 90%;
     display: flex;
+    flex-wrap: wrap;
     margin: 0.6rem 1rem 3rem 1rem;
     justify-content: center;
 }
@@ -185,106 +186,73 @@
     margin-right: auto;
     width: 60%;
     border-collapse: collapse;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    border-radius: 2rem;
 }
-thead th:first-child {
-    width: 30%;
-    border-radius: 10% 0% 0% 10%;
+
+thead th {
+    background-color: #e3e6e8;
+    padding: 12px;
+    border: none; 
+}
+
+    thead th:first-child {
+        width: 30%;
+        border-radius: 2rem 0 0 0rem;
     }
 
-thead th:nth-child(2) {
-    width: 8%;
-}
+    thead th:nth-child(2),
+    thead th:nth-child(3),
+    thead th:last-child {
+        width: 8%; 
+    }
 
-thead th:nth-child(3) {
-    width: 8%;
-}
+    thead th:last-child {
+        border-radius: 0 2rem 0 0; 
+    }
 
-thead th:last-child {
-    width: 8%;
-    border-radius: 0% 10% 10% 0%;
-}
-thead th {
-    border-collapse: collapse;
-   
 
-}
-th,
-td {
-    padding: 12px;
-}
-tbody td {
-    border-inline: solid;
-    border-inline-width: 1px;
-    writing-mode: horizontal-tb;
+th, td {
+    padding: 12px; 
     text-align: center;
 }
 
-.table-cart {
-    table-layout: fixed;
-    width: 50%;
-    border-collapse: collapse;
-}
-
-thead th:first-child {
-    width: 30%;
-    border-radius: 10% 0% 0% 10%;
-    background-color: #e3e6e8;
-}
-
-thead th:nth-child(2) {
-    width: 8%;
-    background-color: #e3e6e8;
-}
-
-thead th:nth-child(3) {
-    width: 8%;
-    background-color: #e3e6e8;
-}
-thead th:last-child {
-    width: 8%;
-    border-radius: 0% 10% 10% 0%;
-    background-color: #e3e6e8;
-}
-
-
-
-thead th {
-    border-collapse: collapse;
-    background-color: #e3e6e8;
-}
-
-th,
-td {
-    padding: 12px;
-}
 
 tbody td {
-    border-inline: solid;
-    border-inline-width: 1px;
-    writing-mode: horizontal-tb;
-    text-align: center;
+    border: 1px solid #ddd; 
 }
+
+
+.table-product tbody tr:hover {
+    background-color: #f1f1f1; 
+}
+
+
 tfoot th {
-    border-collapse: collapse;
+    background-color: #e3e6e8; 
+    padding: 12px;
+    border: none; 
 }
 
-tfoot th:nth-child(1) {
+    tfoot th:first-child {
+        border-radius: 0 0 0 2rem;
+        width: 30%; 
+    }
 
-    width: 30%;
-}
+    tfoot th:nth-child(1) {
+        width: 30%;
+    }
 
-    tfoot th:nth-last-child(-n+2) 
-    {
+    tfoot th:nth-last-child(-n+2) {
         width: 8%;
-        border-radius: 10% 0% 0% 10%;
-        background-color: #e3e6e8;
     }
 
     tfoot th:last-child {
         width: 8%;
-        background-color: #e3e6e8;
-        border-radius: 0% 10% 10% 0%;
+        border-radius: 0 0 2rem 0;
     }
+
 
 .RejectedMessage {
     margin-left: auto;
@@ -338,4 +306,64 @@ tfoot th:nth-child(1) {
     max-width: 70%;
     display: block;
     margin: 0rem auto 5rem auto;
+}
+
+
+/*******************************************************************/
+/***********************STYLES FOR HOME*****************************/
+/*******************************************************************/
+
+.contact-body {
+    display: flex;
+    justify-content:space-around;
+    margin: 0 auto;
+}
+
+.left-side-contact {
+    display: flex;
+    flex-direction: column;
+    color: #285146;
+}
+
+.txt-contact {
+    margin: 7rem 3rem;
+}
+
+.left-side-contact p, h2 {
+    text-align: center;
+    margin: 1rem;
+}
+
+.left-side-contact,
+.form-container {
+    margin: 3rem 1rem;
+}
+
+.social-icons {
+    margin: 0 auto;
+    text-align: center;
+}
+    .social-icons img {
+        width: 40px;
+        display: inline-block;
+        margin: 0 1rem;
+    }
+
+
+/*****************orders*****************************/
+
+
+.fieldset-style .welcome-text {
+    margin: 2rem 2rem;
+}
+
+.checkout {
+    display: flex;
+    flex-direction: column;
+    align-items:center;
+}
+
+.checkout img {
+    margin: 1rem auto;
+    width: 18rem;
 }
