@@ -30,9 +30,11 @@
             <th></th>
         </tr>
         </thead>
-    @foreach (CommandLine commandLine in Model.AllFromUser)
+    @foreach (CommandLine commandLine in Model.AllFromUser )
     {
-            <tbody>
+       if(commandLine.CommandType != CommandLineType.Contribution)
+        {
+        <tbody>
             <tr>
                 <td>@commandLine.CommandId </td>
                 <td>@commandLine.DateTimeOrdered.ToShortDateString()</td>
@@ -56,6 +58,7 @@
                 <td>@commandLine.Total</td>
   
         @using (Html.BeginForm("PastOrder", "Command")){
+
             <input type="hidden" name="CommandToLookAt" value="@commandLine.CommandId" />
 
 
@@ -91,8 +94,10 @@
                        
                         </tr>
                     </tbody>
+                }
             }
         }
+ 
     }
     </table>
 <div class="add-row-product-view ">

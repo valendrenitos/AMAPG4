@@ -145,11 +145,27 @@ namespace AMAPG4.Models.Command
                 (orderline.orderLineType == OrderLineType.Reserved) && (orderline.UserAccountId == useraccountId));
                 CommandNumber = orderline.CommandId;
             }
-            // Cas ou il n'y a jamais eu de commande
-            else if (_bddContext.OrderLines.FirstOrDefault(o => (o.orderLineType == OrderLineType.Paid) && (o.UserAccountId == useraccountId)) == null)
+			else if (_bddContext.OrderLines.FirstOrDefault(o => (o.orderLineType == OrderLineType.Contribution) && (o.UserAccountId == useraccountId)) != null)
+			{
+                OrderLine order = _bddContext.OrderLines.FirstOrDefault(o => (o.orderLineType == OrderLineType.Paid) && (o.UserAccountId == useraccountId));
+                if (order == null)
+                {
+                    OrderLine orderline = _bddContext.OrderLines.OrderByDescending(orderline => orderline.CommandId).FirstOrDefault(orderline =>
+                    (orderline.orderLineType == OrderLineType.Contribution) && (orderline.UserAccountId == useraccountId));
+                    CommandNumber = orderline.CommandId + 1;
+                }
+                else
+                {
+                    CommandNumber = order.CommandId + 1;
+                }
+
+			}
+			// Cas ou il n'y a jamais eu de commande
+			else if (_bddContext.OrderLines.FirstOrDefault(o => (o.orderLineType == OrderLineType.Paid) && (o.UserAccountId == useraccountId)) == null)
             {
                 CommandNumber = useraccountId * 1000000 + 1;
             }
+     
             // cas si la commande est créee et qu'une commande a déja été passé
             else
             {
