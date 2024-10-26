@@ -95,6 +95,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 /******Left bar*******/
@@ -118,6 +120,12 @@
 
 /*Right side - producer*/
 .producer-container {
+    width: 80%;
+    display: flex;
+    margin: 0.8rem 1rem 3rem 10rem;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    min-height: 300px
 
 }
 
