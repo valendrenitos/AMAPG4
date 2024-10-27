@@ -2,64 +2,60 @@
 
 @{
 
-    Layout = "_layout";
+	Layout = "_layout";
 }
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/styles.css">
-    <link rel="stylesheet" href="/css/global.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="/css/styles.css">
+<link rel="stylesheet" href="/css/global.css">
 <link rel="stylesheet" href="/css/forms.css">
 <link rel="stylesheet" href="/css/laFerme.css">
-    <title>Paiement</title>
-
-
+<title>Paiement</title>
 
 @if (Model.status == AMAPG4.Models.StatusType.Failed || Model.status == AMAPG4.Models.StatusType.Waiting)
 {
 
+	<div class="container">
+		<div class="form-container">
 
+			@using (Html.BeginForm())
+			{
+				<fieldset class="fieldset-style">
+					<legend>Paiement</legend>
+					@if (Model.status == AMAPG4.Models.StatusType.Failed)
+					{
+						<div></div>
+						<div class="RejectedMessage">Le paiement a été refusé</div>
+					}
+					<p class="welcome-text"> Vous serez facturé pour un total de @Model.CommandLine.Total €</p>
+					<input type="hidden" name="CommandId" value="@Model.CommandLine.CommandId" />
+					<p> @Html.TextBoxFor(m => m.FirstName, new { @placeholder = "Prénom" })  @Html.TextBoxFor(m => m.LastName, new { @placeholder = "Nom" })</p>
+					<p>@Html.TextBoxFor(m => m.CardNum, new { @placeholder = "Numéro de Carte" })</p>
+					<p>@Html.TextBoxFor(m => m.SecretCode, new { @placeholder = "CVV" })</p>
 
+					<input type="submit" value="Payer" />
+				</fieldset>
+			}
 
-
-    <div class="container">
-    <div class="form-container">
-    
-@using (Html.BeginForm())
-    {
-                <fieldset class="fieldset-style">
-                    <legend>Paiement</legend>
-                    @if (Model.status == AMAPG4.Models.StatusType.Failed)
-                    {
-                        <div></div>
-                        <div class="RejectedMessage">Le paiement a été refusé</div>
-                    }
-                    <p class="welcome-text"> Vous serez facturé pour un total de @Model.CommandLine.Total €</p>
-    <input type="hidden" name="CommandId" value="@Model.CommandLine.CommandId" />
-    <p> @Html.TextBoxFor(m => m.FirstName, new { @placeholder = "Prénom" })  @Html.TextBoxFor(m => m.LastName, new { @placeholder = "Nom" })</p>
-    <p>@Html.TextBoxFor(m => m.CardNum, new { @placeholder = "Numéro de Carte" })</p>
-    <p>@Html.TextBoxFor(m => m.SecretCode, new { @placeholder = "CVV" })</p>
-   
-    <input type="submit" value="Payer"/>
-                </fieldset>
-        }
-    
-    </div>
-    </div>
+		</div>
+	</div>
 }
-else if (Model.status == AMAPG4.Models.StatusType.Success && Model.CommandLine.CommandType==AMAPG4.Models.Command.CommandLineType.Contribution)
+else if (Model.status == AMAPG4.Models.StatusType.Success && Model.CommandLine.CommandType == AMAPG4.Models.Command.CommandLineType.Contribution)
 {
-    <h2 class="welcome-text">Votre contribution à bien été enregistrée ! </h2>
-    <div class="add-row-product-view ">
-        <div>@Html.ActionLink("Retourner à la connexion", "Index", "Login", null, new { @class = "return-catalog" })</div>
-    </div>
+	<h2 class="welcome-text">Votre contribution à bien été enregistrée ! </h2>
+	<div class="add-row-product-view ">
+		<div>@Html.ActionLink("Retourner à la connexion", "Index", "Login", null, new { @class = "return-catalog" })</div>
+	</div>
 }
 else if (Model.status == AMAPG4.Models.StatusType.Success)
 {
-    <h2 class="welcome-text">Merci pour votre commande ! Vous pourrez venir la chercher aux locaux de l'AMAP le Vendredi @Model.CommandLine.DateTimeDelivered.Day @Model.CommandLine.DateTimeDelivered.ToString("MMMM") !</h2>
-    <div class="add-row-product-view ">
-        <div>@Html.ActionLink("Retourner à l'accueil", "Index", "Home", null, new { @class = "return-catalog" })</div>
-    </div>
+	<div class="checkout">
+	<h2 class="welcome-text">Merci pour votre commande ! Vous pourrez venir la chercher aux locaux de l'AMAP le Vendredi @Model.CommandLine.DateTimeDelivered.Day @Model.CommandLine.DateTimeDelivered.ToString("MMMM") !</h2>
+	<img src="~/images/icons/checkout.png" />
+	
+	<div class="add-row-product-view ">
+		<div>@Html.ActionLink("Retourner à l'accueil", "Index", "Home", null, new { @class = "return-catalog" })</div>
+	</div>
+	</div>
 }
-
-

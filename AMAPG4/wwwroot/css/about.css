@@ -116,4 +116,6 @@ img.amapien-section-image {
 
 .join-us {
     display: flex;
+    flex-direction:column;
+    margin: 0rem 3rem;
 }

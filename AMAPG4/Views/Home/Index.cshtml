@@ -1,11 +1,12 @@
-﻿ @using Microsoft.AspNetCore.Authorization
+﻿@using Microsoft.AspNetCore.Authorization
 @{
-	ViewBag.Title = "Acceuil";
-	Layout = "_layout";
+    
+    ViewBag.Title = "Accueil";
+    Layout = "_layout";
 }
-@section Styles {
 
-	<link rel="stylesheet" href="~/css/styles.css" />
+@section Styles {
+    <link rel="stylesheet" href="~/css/styles.css" />
 }
 
 <main>
@@ -13,18 +14,17 @@
     {
         <p>@ViewBag.Message</p>
     }
-		<div class="home-body">
-
-			<div class="welcome-text">
-		
-			
-				<h2>Bienvenue à l'AMAP Mon Panier Paysan ! </h2>
-				<p>Envie de produits frais, bio et de saison ? Envie d’aider les productrices et producteurs locaux à développer un mode de production respectueux de l’environnement, 
-				tout en les rémunérant à un juste prix ? <br />
-				Alors, venez découvrir l’AMAP Mon Panier Paysan,  la nouvelle AMAP près de chez vous !</p>
-			</div>
-			<img src="~/images/111111.png" />
-
-		</div>
-
-	</main>
+    <div class="home-body">
+            <!-- Welcome for the home page -->
+        <div class="welcome-text">
+            <h2>Bienvenue à l'AMAP Mon Panier Paysan !</h2>
+            <p>
+                Envie de produits frais, bio et de saison ? Envie d’aider les productrices et producteurs locaux à développer un mode de production respectueux de l’environnement,
+                tout en les rémunérant à un juste prix ? <br />
+                Alors, venez découvrir l’AMAP Mon Panier Paysan,  la nouvelle AMAP près de chez vous !
+            </p>
+        </div>
+        <!-- Displaying main image -->
+        <img src="~/images/home_image.png" />
+    </div>
+</main>
