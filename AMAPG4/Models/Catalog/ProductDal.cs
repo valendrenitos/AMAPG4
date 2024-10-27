@@ -114,17 +114,17 @@ namespace AMAPG4.Models.Catalog
 			CreateProduct("Panier de Légumes de Saison - Taille Grande",
 				"Un grand assortiment de légumes de saison, parfait pour les familles ou ceux qui aiment cuisiner en grande quantité. Tous les légumes sont cultivés de manière respectueuse de l'environnement, sans pesticides. Idéal pour profiter de légumes bio et locaux toute la semaine.",
 				true, 25.00m, 20, DateTime.Now.AddDays(7),
-				ProductType.Basket, 8, "/images/ProductImages/Panier_de_Legumes_de_Saison_Taille_Grande.jpg");
+				ProductType.Basket, 8, "/images/ProductImages/grandpanier.jpg");
 
 			CreateProduct("Panier de Fruits de Saison",
 				"Un assortiment coloré de fruits frais, récoltés localement pour offrir un goût authentique. Ce panier de fruits de saison est idéal pour des collations ou desserts, tous sélectionnés pour leur fraîcheur et qualité. Un excellent choix pour soutenir l'agriculture locale.",
 				true, 12.00m, 25, DateTime.Now.AddDays(7),
-				ProductType.Basket, 4, "/images/ProductImages/Panier_de_Fruits_de_Saison.jpg");
+				ProductType.Basket, 4, "/images/ProductImages/petitpanierpomme.jpg");
 
 			CreateProduct("Panier de Fruits de Saison - Taille Grande",
 				"Un grand assortiment de fruits frais, parfait pour les familles ou les amateurs de fruits en grande quantité. Ce panier généreux propose une sélection variée pour combler vos envies de smoothies ou desserts sains toute la semaine.",
 				true, 22.00m, 15, DateTime.Now.AddDays(7),
-				ProductType.Basket, 4, "/images/ProductImages/Panier_de_Fruits_de_Saison_Taille_Grande.jpg");
+				ProductType.Basket, 4, "/images/ProductImages/grandpanierverger.jpg");
 
 			// Activités
 			CreateProduct("Atelier de Fabrication de Savons Naturels",
