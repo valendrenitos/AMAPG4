@@ -380,3 +380,7 @@ tfoot th {
     margin: 1rem auto;
     width: 18rem;
 }
+
+.payment-img {
+    width: 30rem;
+}
