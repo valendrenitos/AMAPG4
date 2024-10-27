@@ -4,9 +4,9 @@
     ViewBag.Title = "Formulaire de proposition produit";
     Layout = "_Layout";
 }
-
-<link rel="stylesheet" href="~/css/forms.css" />
-<link rel="stylesheet" href="~/css/global.css" />
+@section Styles{
+    <link rel="stylesheet" href="~/css/forms.css" />
+}
 
 
 
@@ -14,13 +14,13 @@
     <div class="form-container">
         <h2>Proposer un nouveau produit</h2>
         <div class="txt-newproduct">Pour proposer un nouveau produit, merci de compléter ce formulaire. Votre demande sera traitée dans les plus brefs délais!</div>
-        <br />
+       
         @if (Model.StatusType == AMAPG4.Models.StatusType.Success)
         {
-            <p>Votre demande d'ajout de produit à bien été prise en compte !</p>
+            <p class="ValidationMessage">Votre demande d'ajout de produit à bien été prise en compte !</p>
         
         }
-        @using (Html.BeginForm("Index", "NewProduct", FormMethod.Post, new { enctype = "multipart/form-data" }))
+        @using (Html.BeginForm("Index", "NewProduct", FormMethod.Post, new { enctype = "multipart/form-data", @class = "form-new-product" }))
         {
              <fieldset class="fieldset-style">
                 <legend>Formulaire d'ajout d'un produit</legend>
