@@ -88,10 +88,10 @@ namespace AMAPG4.Models.ContactForm
         public void InitializeDataBase()
         {
             //DeleteCreateDatabase();
-            CreateContact("Delacoste", "Martin", "martin.delascoste@example.fr", "0706369874", "Est-ce que tous vos producteurs sont certifiés biologique ?", ContactStatus.Pending);
-            CreateContact("Revillard", "Pierre", "pierre.revillard@example.fr", "0706369885", "Je souhaite m'inscrire en tant que CE, merci de m'indiquer la marche à suivre", ContactStatus.Pending);
-
-
+            CreateContact("Delacoste", "Martin", "martin.delascoste@yahoo.fr", "0706369874", "Est-ce que tous vos producteurs sont certifiés biologique ?", ContactStatus.Pending);
+            CreateContact("Revillard", "Pierre", "pierre.revillard@msn.com", "0706369885", "Je souhaite m'inscrire en tant que CE, merci de m'indiquer la marche à suivre", ContactStatus.Pending);
+            CreateContact("Lefevre", "Sophie", "sophie.lefevre@gmail.com", "0706369812", "Bonjour, je voudrais en savoir plus sur les types de paniers disponibles et leurs prix.", ContactStatus.Pending);
+            CreateContact("Martinez", "Julien", "julien.martinez@free.fr", "0706369873", "Est-ce possible d'avoir des produits sans abonnement, uniquement à la demande ?", ContactStatus.Pending);
         }
 
     }

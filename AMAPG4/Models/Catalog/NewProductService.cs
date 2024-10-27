@@ -27,7 +27,9 @@ namespace AMAPG4.Models.Catalog
 
         public void InitializeDataBase()
         {
-            CreateNewProduct("Fleurs", "Magnifique", true, 15m, 10, DateTime.Now.AddDays(7), ProductType.Unitary, SubmissionStatus.Pending, 1, "1");
+            CreateNewProduct("Fleurs", "Magnifique", true, 15m, 10, DateTime.Now.AddDays(7), ProductType.Unitary, SubmissionStatus.Pending, 8, "/images/ProductImages/fleurs.jpg");
+            CreateNewProduct("Crème de marrons", "Délicieuse crème de marrons faite maison, idéale pour les desserts.", true, 8m, 30, DateTime.Now.AddDays(15), ProductType.Unitary, SubmissionStatus.Pending, 4, "/images/ProductImages/cremes-de-marrons.jpg");
+
         }
 
         public List<NewProduct> GetAllNewProducts()
