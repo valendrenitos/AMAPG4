@@ -215,3 +215,8 @@ input[type="text"], input[type="submit"], input[type="password"], textarea, sele
     max-width: 100%;
     box-sizing: border-box;
 }
+body > div > div > form > fieldset > div > input,
+body > div > div > form > fieldset > div > textarea,
+body > div > div > form > fieldset > div > select {
+    margin: 0.5rem 0 1rem 0;
+}
