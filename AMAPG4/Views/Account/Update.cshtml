@@ -1,0 +1,170 @@
+﻿@model AMAPG4.ViewModels.UserAccountViewModel
+
+@{
+    ViewBag.Title = "Modifier Mon Compte";
+    Layout = "_Layout";
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/global.css" />
+    <link rel="stylesheet" href="~/css/styles.css" />
+    <link rel="stylesheet" href="~/css/laFerme.css" />
+    <link rel="stylesheet" href="~/css/myAccount.css" />
+}
+
+
+
+@if (Model.Individual != null)
+{
+    <div class="user-profile">
+        <h2>Compte Adhérent</h2>
+        @using (Html.BeginForm("UpdateI", "Account", FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.UserAccount.Id)
+
+            <div class="user-info">
+                <label>Nom :</label>
+                @Html.TextBoxFor(m => m.UserAccount.Name, new { @class = "form-control" })
+            </div>
+
+            <div class="user-info">
+                <label>Prénom :</label>
+                @Html.TextBoxFor(m => m.Individual.FirstName, new { @class = "form-control" })
+            </div>
+
+            <div class="user-info">
+                <label>Adresse :</label>
+                @Html.TextBoxFor(m => m.UserAccount.Address, new { @class = "form-control" })
+            </div>
+
+            <div class="user-info">
+                <label>Email :</label>
+                @Html.TextBoxFor(m => m.UserAccount.Email, new { @class = "form-control" })
+            </div>
+
+            <div class="user-info">
+                <label>Téléphone :</label>
+                @Html.TextBoxFor(m => m.UserAccount.Phone, new { @class = "form-control" })
+            </div>
+            <div class="user-info radio">
+                @if(Model.Individual.IsVolunteer)
+                {
+                    <label>Rester Bénévole :</label>
+                }
+                else if(!Model.Individual.IsVolunteer)
+                {
+                    <label>Devenir Bénévole :</label>
+                }
+                else
+                {
+                    <label>Bénévole :</label>
+                }
+                <div class="radio-group">
+                    <label>
+                        <input type="radio" name="Individual.IsVolunteer" value="true" @(Model.Individual.IsVolunteer ? "checked" : "")> Oui
+                    </label>
+                    <label>
+                        <input type="radio" name="Individual.IsVolunteer" value="false" @(!Model.Individual.IsVolunteer ? "checked" : "")> Non
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-connection btn-text btn-link btn-link-save">Enregistrer les modifications</button>
+        }
+    </div>
+}
+
+@if (Model.Producer != null)
+{
+    <div class="user-profile">
+        <h2>Compte Producteur</h2>
+        @using (Html.BeginForm("UpdateP", "Account", FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.UserAccount.Id)
+
+            <div class="user-info">
+                <label>Nom :</label>
+                @Html.TextBoxFor(m => m.UserAccount.Name, new { @class = "form-control" })
+            </div>
+
+            <div class="user-info">
+                <label>Adresse :</label>
+                @Html.TextBoxFor(m => m.UserAccount.Address, new { @class = "form-control" })
+            </div>
+                     
+            <div class="user-info">
+                <label>Email :</label>
+                @Html.TextBoxFor(m => m.UserAccount.Email, new { @class = "form-control" })
+            </div>
+
+            <div class="user-info">
+                <label>Téléphone :</label>
+                @Html.TextBoxFor(m => m.UserAccount.Phone, new { @class = "form-control" })
+            </div>
+            <div class="user-info">
+                <label>Nom du contact :</label>
+                @Html.TextBoxFor(m => m.Producer.ContactName, new { @class = "form-control" })
+            </div>
+
+            <div class="user-info">
+                <label>SIRET :</label>
+                @Html.TextBoxFor(m => m.Producer.Siret, new { @class = "form-control" })
+            </div>
+
+            <div class="user-info">
+                <label>RIB :</label>
+                @Html.TextBoxFor(m => m.Producer.RIB, new { @class = "form-control" })
+            </div>
+
+            <button type="submit" class="btn btn-connection btn-text btn-link btn-link-save">Enregistrer les modifications</button>
+        }        
+    </div>
+    <div class="add-row-product-view ">
+        <div>@Html.ActionLink("Mes Produits", "MyProduct", "Producer", null, new { @class = "return-catalog" })</div>
+    </div>
+}
+
+@if (Model.CE != null)
+{
+    <div class="user-profile">
+        <h2>Compte Comité d'Entreprise</h2>
+        @using (Html.BeginForm("UpdateCE", "Account", FormMethod.Post))
+        {
+            @Html.HiddenFor(m => m.UserAccount.Id)
+
+            <div class="user-info">
+                <label>Nom :</label>
+                @Html.TextBoxFor(m => m.UserAccount.Name, new { @class = "form-control" })
+            </div>
+
+            <div class="user-info">
+                <label>Adresse :</label>
+                @Html.TextBoxFor(m => m.UserAccount.Address, new { @class = "form-control" })
+            </div>
+
+            <div class="user-info">
+                <label>Email :</label>
+                @Html.TextBoxFor(m => m.UserAccount.Email, new { @class = "form-control" })
+            </div>
+
+            <div class="user-info">
+                <label>Téléphone :</label>
+                @Html.TextBoxFor(m => m.UserAccount.Phone, new { @class = "form-control" })
+            </div>
+            <div class="user-info">
+                <label>Nom du contact :</label>
+                @Html.TextBoxFor(m => m.CE.ContactName, new { @class = "form-control" })
+            </div>
+
+            <div class="user-info">
+                <label>Nombre d'employés :</label>
+                @Html.TextBoxFor(m => m.CE.NumberOfEmployees, new { @class = "form-control" })
+            </div>
+
+            <button type="submit" class="btn btn-connection btn-text btn-link btn-link-save">Enregistrer les modifications</button>
+        }
+    </div>
+}
+<div class="add-row-product-view ">
+    <div>@Html.ActionLink("Historique des commandes", "PastOrder", "Command", null, new { @class = "return-catalog" })</div>
+</div>

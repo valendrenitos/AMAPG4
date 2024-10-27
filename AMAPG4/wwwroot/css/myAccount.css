@@ -1,0 +1,48 @@
+﻿div.account-page-form-header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.btn-link-modify {
+    width: fit-content;
+}
+
+.user-info input {
+    flex-grow: 1;
+    padding: 5px;
+    background-color: #eef6e1;
+    border: 1px solid #c1d5a4;
+    border-radius: 5px;
+}
+body > div > form {
+    max-width: none;
+ }
+
+.btn-link-save {
+    
+    align-self: center;
+    width: fit-content;
+    margin: 2em;
+}
+
+.radio-group {
+    display: flex;
+    gap: 10px; /* Ajustez cette valeur pour l'espacement entre Oui et Non */
+    align-items: center;
+}
+
+    .radio-group label {
+        display: flex;
+        align-items: center;
+        gap: 5px; /* Espace entre la case radio et le texte */
+    }
+.user-info.radio {
+    justify-content: flex-start;
+}
+div .radio-group label {
+align-items: flex-start;
+}
+div.radio-group label input {
+    flex-grow: 0;
+}

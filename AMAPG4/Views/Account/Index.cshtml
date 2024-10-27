@@ -3,17 +3,24 @@
     ViewBag.Title = "Mon Compte";
     Layout = "_Layout";
 }
-
-    <title>Mon Compte</title>
+@section Styles {
     <link rel="stylesheet" href="~/css/global.css" />
     <link rel="stylesheet" href="~/css/styles.css" />
-<link rel="stylesheet" href="~/css/laFerme.css" />
+    <link rel="stylesheet" href="~/css/laFerme.css" />
+    <link rel="stylesheet" href="~/css/myAccount.css" />
+}
+    <title>Mon Compte</title>
+    
 
 
     @if (Model.Individual != null)
     {
         <div class="user-profile">
+        <div class="account-page-form-header">
             <h1>Mon Compte</h1>
+        <a class="btn btn-connection btn-text btn-link btn-link-modify" href="/Account/updateI">modifier mon profil</a>
+
+    </div>
 
             <div class="user-info">
                 <label>Nom :</label>
@@ -66,7 +73,11 @@
     @if (Model.Producer != null)
     {
         <div class="user-profile">
-            <h1>Mon Compte Producteur</h1>
+            <div class="account-page-form-header">
+                <h1>Mon Compte Producteur</h1>
+            <a class="btn btn-connection btn-text btn-link btn-link-modify" href="/Account/updateP">modifier mon profil</a>
+        </div>
+           
 
             <div class="user-info">
                 <label>Nom :</label>
@@ -114,7 +125,10 @@
     @if (Model.CE != null)
     {
         <div class="user-profile">
+        <div class="account-page-form-header">
             <h1>Mon Compte Comité d'Entreprise</h1>
+            <a class="btn btn-connection btn-text btn-link btn-link-modify" href="/Account/updateCE">modifier mon profil</a>
+    </div>
 
             <div class="user-info">
                 <label>Nom :</label>
