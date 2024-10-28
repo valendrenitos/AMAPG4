@@ -4,8 +4,10 @@
     ViewBag.Title = "Créer un nouveau compte Producteur";
     Layout = "_BackOfficeLayout";
 }
+<div class="user-profile-form-container">
+    <div class="user-profile">
+        <h1 class="bo-entity">Créer un nouveau compte Producteur</h1>
 
-<h1 class="bo-entity">Créer un nouveau compte Producteur</h1>
 
 @using (Html.BeginForm("Create", "Producer", FormMethod.Post))
 {
@@ -64,3 +66,5 @@
         <button type="submit" class="btn-save">Créer</button>
     </div>
 }
+    </div>
+</div>

@@ -4,10 +4,14 @@
     ViewBag.Title = "Détails du Producteur";
     Layout = "_BackOfficeLayout";
 }
+<div class="user-profile-form-container">
+    <div class="user-profile">
+        <div class="form-header">
+            <h1 class="bo-entity">Détails du Producteur n° @Model.Id</h1>
+            <a href="@Url.Action("Producers", "Dashboard")" class="btn-action">Retour aux CE</a>
+        </div>
 
-<h1 class="bo-entity">Détails du Producteur n°@Model.Id</h1>
 
-<div class="user-profile">
     <div class="user-info">
         <label>Nom :</label>
         <span>@Model.Account.Name</span>
@@ -51,10 +55,13 @@
         <span>@Model.RIB</span>
     </div>
 
-    <div class="user-actions">
-        <a href="@Url.Action("Update", "Producer", new { id = Model.Id })" class="btn-save">Modifier</a>
-        <form method="post" action="@Url.Action("Delete", "Producer", new { id = Model.Id })">
-            <button type="submit" class="btn-delete">Supprimer</button>
+    <div class="user-actions">              
+                <a href="@Url.Action("Update", "Producer", new { id = Model.Id })" class="btn-action btn-update">Modifier</a>
+            <form method="post" action="@Url.Action("Delete", "Producer", new { id = Model.Id })" style="display:inline;">
+                <button type="submit" class="btn-action btn-delete">Supprimer</button>
         </form>
     </div>
+
 </div>
+</div>
+<
