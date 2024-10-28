@@ -21,7 +21,7 @@ namespace AMAPG4.Models
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseMySql("server=localhost;user id=root;password=!AmapG4P2;database=AmapG4");
+            optionsBuilder.UseMySql("server=localhost;user id=root;password=-Add your own password here-;database=AmapG4");
         }
     }
 }
