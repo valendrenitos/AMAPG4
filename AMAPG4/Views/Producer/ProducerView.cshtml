@@ -15,11 +15,14 @@
 			<h2>@Model.Account.Name</h2>
 
 			<p class="product-view-description">@Model.Producers.Description</p>
+			
 			@foreach (Product product in Model.Products)
 			{
-				<p>@Html.ActionLink(product.ProductName, "ProductView", "Catalog", new { id = product.Id })</p>
-
+				<div class="link-products-producer-view">
+								@Html.ActionLink(product.ProductName, "ProductView", "Catalog", new { id = product.Id })
+                </div>
 			}
+		
 		</div>
 
 	</div>

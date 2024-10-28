@@ -600,3 +600,13 @@ a {
 div.margin-top-table-product{
     margin-top: 2rem;
 }
+div.link-products-producer-view a {
+    color: #285146;
+    font-size: 1rem;
+    text-decoration:underline;
+    margin-top: 1rem;
+    margin-left: 0.5rem;
+}
+div.link-products-producer-view{
+    margin-bottom:0.3rem
+}

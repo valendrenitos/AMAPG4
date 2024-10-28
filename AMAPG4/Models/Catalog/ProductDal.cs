@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
+using XAct.Library.Settings;
 
 namespace AMAPG4.Models.Catalog
 {
@@ -93,7 +94,7 @@ namespace AMAPG4.Models.Catalog
 			CreateProduct("Tartinade de Pois Chiches",
 				"Une délicieuse tartinade crémeuse à base de pois chiches, relevée d’une pointe de citron et d’épices. Parfaite pour vos apéritifs ou pour accompagner des légumes croquants. Riche en protéines et en fibres, elle constitue une option saine et savoureuse pour vos repas.",
 				true, 4.00m, 50, DateTime.Now.AddMonths(6),
-				ProductType.Unitary, 1, "/images/ProductImages/Tartinade_de_Pois_Chiches.jpg");
+				ProductType.Unitary, 7, "/images/ProductImages/Tartinade_de_Pois_Chiches.jpg");
 
 			CreateProduct("Compote de Pommes Maison",
 				"Compote de pommes faite maison, sans sucres ajoutés, pour un dessert léger et naturellement sucré. Préparée à partir de pommes bio locales, elle est idéale pour accompagner vos yaourts, crêpes ou simplement à déguster seule. Un classique revisité pour une alimentation saine.",
@@ -104,9 +105,13 @@ namespace AMAPG4.Models.Catalog
 				"Chips croustillantes faites à partir de légumes frais, tranchés finement et cuits au four. Un en-cas savoureux et sain, parfait pour vos pauses gourmandes ou vos apéritifs. Ces chips offrent une alternative plus légère et nutritive aux chips traditionnelles, tout en conservant un goût délicieux.",
 				true, 3.20m, 60, DateTime.Now.AddMonths(6),
 				ProductType.Unitary, 8, "/images/ProductImages/Chips_de_Legumes.jpg");
+            CreateProduct("Colis Jambon Bio",
+				"Ce jambon bio est issu de porcs élevés en plein air et nourris avec des aliments 100% biologiques. Son goût savoureux et sa texture tendre en font un choix parfait pour les sandwichs, salades, ou simplement à déguster tel quel. Une option riche en protéines et garantie sans additifs ni conservateurs. Un colis pèse environ 1kg, parfois plus.",
+				true, 12.90m, 50, DateTime.Now.AddMonths(1),
+				ProductType.Unitary, 11, "/images/ProductImages/jambon-cuit-a-l-os-bio.jpg");            
 
-			// Panier
-			CreateProduct("Panier de Légumes de Saison",
+            // Panier
+            CreateProduct("Panier de Légumes de Saison",
 				"Un mélange frais de légumes de saison, cultivés localement par nos agriculteurs partenaires. Ce panier varié offre des légumes récoltés à maturité pour un goût exceptionnel. Idéal pour des recettes savoureuses, tout en respectant le rythme des saisons.",
 				true, 15.00m, 30, DateTime.Now.AddDays(7),
 				ProductType.Basket, 8, "/images/ProductImages/panier1.jpg");
@@ -130,12 +135,12 @@ namespace AMAPG4.Models.Catalog
 			CreateProduct("Atelier de Fabrication de Savons Naturels",
 				"Apprenez à créer vos propres savons avec des ingrédients bio dans cet atelier interactif et amusant. Vous découvrirez les techniques traditionnelles de saponification à froid et repartirez avec vos propres créations parfumées et personnalisées. Cet atelier est idéal pour les amateurs de produits naturels et faits maison, souhaitant réduire leur empreinte écologique tout en prenant soin de leur peau.",
 				true, 35.00m, 12, DateTime.Now.AddMonths(2),
-				ProductType.Activité, 1, "/images/ProductImages/Atelier_de_Fabrication_de_Savons_Naturels.jpg");
+				ProductType.Activité, 3, "/images/ProductImages/Atelier_de_Fabrication_de_Savons_Naturels.jpg");
 
 			CreateProduct("Visite de Jardin Botanique",
 				"Découvrez la diversité des plantes lors d'une visite guidée enrichissante dans notre jardin botanique. Accompagné d'un expert, vous en apprendrez davantage sur les espèces locales et exotiques, leur importance pour l'écosystème, et comment les préserver. Une activité parfaite pour les passionnés de nature et les curieux désireux de se reconnecter à l'environnement.",
 				true, 18.00m, 40, DateTime.Now.AddMonths(4),
-				ProductType.Activité, 1, "/images/ProductImages/Visite_de_Jardin_Botanique.jpg");
+				ProductType.Activité, 9, "/images/ProductImages/Visite_de_Jardin_Botanique.jpg");
 
 			CreateProduct("Cours de Jardinage Écologique",
 				"Apprenez les techniques de jardinage respectueuses de l'environnement et adaptées à la permaculture dans ce cours pratique. Vous découvrirez comment cultiver vos propres légumes et fleurs en utilisant des méthodes durables qui favorisent la biodiversité et la santé des sols. Idéal pour les jardiniers débutants ou expérimentés souhaitant adopter une approche plus éco-responsable.",
@@ -155,7 +160,7 @@ namespace AMAPG4.Models.Catalog
 			CreateProduct("Retraite de Bien-Être",
 				"Offrez-vous un week-end de détente avec yoga, méditation et nature lors de cette retraite de bien-être. Vous participerez à des sessions guidées de relaxation et de recentrage, tout en profitant d'un cadre paisible et naturel. Cette retraite est conçue pour vous ressourcer, vous reconnecter à vous-même, et vous offrir un moment de sérénité loin du quotidien.",
 				true, 150.00m, 8, DateTime.Now.AddMonths(4),
-				ProductType.Activité, 1, "/images/ProductImages/Retraite_de_Bien_Etre.jpg");
+				ProductType.Activité, 9, "/images/ProductImages/Retraite_de_Bien_Etre.jpg");
 
 			CreateProduct("Atelier d'Apiculture",
 				"Découvrez le monde fascinant des abeilles et apprenez les bases de l'apiculture dans cet atelier captivant. Vous comprendrez l'importance des abeilles pour notre écosystème, comment elles produisent le miel, et comment les élever de manière respectueuse. Parfait pour les amateurs de nature et ceux qui souhaitent en savoir plus sur ce métier ancien et essentiel.",
